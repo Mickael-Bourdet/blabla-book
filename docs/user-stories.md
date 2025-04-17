@@ -17,6 +17,7 @@
 | Utilisateur | laisser un avis sur un livre                    |                                             | V1  |
 | Utilisateur | supprimer définitivement mon compte             |                                             | V1  |
 | Utilisateur | modifier mon compte                             |                                             | V1  |
+| Visiteur    | Consulter le forum                              |                                             | V2  |
 | Utilisateur | Poster une message sur le forum                 |                                             | V2  |
 | Utilisateur | Échanger avec d'autres utilisateurs via un chat |                                             | V2  |
 | Utilisateur | ajouter un livre en favoris                     |                                             | V2  |
