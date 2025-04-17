@@ -4,7 +4,6 @@
 | Visiteur    | effectuer une recherche                         | trouver plus facilement ce que je recherche | V0  |
 | Visiteur    | me créer un compte                              | créer/gérer mes bibliothèques               | V0  |
 | Visiteur    | me connecter à mon compte                       |                                             | V0  |
-| Visiteur    | me déconnecter de mon compte                    |                                             | V0  |
 | Visiteur    | consulter la page d'un livre                    | connaître les détails de ce livre           | V0  |
 | Utilisateur | créer ma bibliothèque                           | répertorier mes livres préférés             | V0  |
 | Utilisateur | ajouter un livre à ma bibliothèque              |                                             | V0  |
@@ -12,6 +11,7 @@
 | Utilisateur | classer mes livres                              | voir lesquels j'ai lu ou non                | V0  |
 | Utilisateur | Rendre ma bibliothèque publique/privée          |                                             | V0  |
 | Utilisateur | Consulter une bibliothèque publique             |                                             | V0  |
+| Utilisateur | me déconnecter de mon compte                    |                                             | V0  |
 | Utilisateur | Noter un livre                                  | laisser une évaluation                      | V1  |
 | Utilisateur | Effectuer une recherche ciblé                   | trouver un livre par genre auteur etc       | V1  |
 | Utilisateur | laisser un avis sur un livre                    |                                             | V1  |
