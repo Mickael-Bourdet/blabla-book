@@ -41,13 +41,13 @@ Tous les lecteurs qu’ils soient confirmés ou encore novices souhaitant gérer
 
 **User Stories :**
 
-[User-Stories](./blabla-book-back/docs/user-stories.md)
+[User-Stories](./docs/user-stories.md)
 
 **Zoning :**
 
-Version desktop : [HomePage](./blabla-book-back/docs/zoning/homepage/zoning_desktop.png)
+Version desktop : [HomePage](./docs/zoning/homepage/zoning_desktop.png)
 
-Version mobile : [HomeMobile](./blabla-book-back/docs/zoning/homepage/zoning_mobile.png)
+Version mobile : [HomeMobile](./docs/zoning/homepage/zoning_mobile.png)
 
 **Wireframes :**
 
