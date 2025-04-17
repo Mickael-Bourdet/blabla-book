@@ -37,7 +37,7 @@ Tous les lecteurs qu’ils soient confirmés ou encore novices souhaitant gérer
 
 **Endpoints :**
 
-[Endpoints](./blabla-book-back/docs/endpoints.md)
+[Endpoints](./docs/endpoints.md)
 
 **User Stories :**
 
