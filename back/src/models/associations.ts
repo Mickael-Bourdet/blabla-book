@@ -1,8 +1,8 @@
-import { sequelize } from './client-sequelize.ts';
-import { Author } from './Author.ts';
-import { Book } from './Book.ts';
-import { Category } from './Category.ts';
-import { User } from './User.ts';
+import { sequelize } from './client-sequelize.js';
+import { Author } from './Author.js';
+import { Book } from './Book.js';
+import { Category } from './Category.js';
+import { User } from './User.js';
 
 Book.belongsToMany(Author, {
     through: "book_author",
@@ -14,8 +14,8 @@ Book.belongsToMany(Author, {
 Author.belongsToMany(Book, {
     through: "book_author",
     as: "books",
-    foreignkey: "auhtor_id",
-    otherkey: "book_id"
+    foreignKey: "auhtor_id",
+    otherKey: "book_id"
 });
 
 Book.belongsToMany(Category, {
