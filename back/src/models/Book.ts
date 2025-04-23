@@ -13,13 +13,13 @@ interface IBook {
 
 export class Book extends Model<IBook> 
     implements IBook {
-        public id: number;
-        public isbn: string;
-        public title: string | null;
-        public description: string | null;
-        public published: string | null;
-        public cover_url: string | null;
-        public page_count: string | null;
+        declare id: number;
+        declare isbn: string;
+        declare title: string;
+        declare description: string | null;
+        declare published: string | null;
+        declare cover_url: string | null;
+        declare page_count: string;
     }
 
 Book.init(
