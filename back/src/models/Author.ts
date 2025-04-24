@@ -1,4 +1,10 @@
-import { DataTypes, Model } from "sequelize";
+import {
+  DataTypes,
+  Model,
+  InferAttributes,
+  InferCreationAttributes,
+  CreationOptional,
+} from "sequelize";
 import { sequelize } from "./client-sequelize.js";
 
 export class Author extends Model<
