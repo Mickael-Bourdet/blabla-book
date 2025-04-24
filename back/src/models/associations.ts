@@ -1,8 +1,8 @@
-import { sequelize } from './client-sequelize.js';
-import { Author } from './Author.js';
-import { Book } from './Book.js';
-import { Category } from './Category.js';
-import { User } from './User.js';
+import { sequelize } from "./client-sequelize.js";
+import { Author } from "./Author.js";
+import { Book } from "./Book.js";
+import { Category } from "./Category.js";
+import { User } from "./User.js";
 
 Book.belongsToMany(Author, {
   through: "book_author",
