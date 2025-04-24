@@ -10,7 +10,7 @@ const sequelize = new Sequelize(process.env.PG_URL, {
 
 export default sequelize;
 
-// pour tester, on peut se servir de la doc
+// To test if it works
 // try {
 //   await sequelize.authenticate();
 //   console.log("Connection has been established successfully.");
