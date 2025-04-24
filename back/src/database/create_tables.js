@@ -1,13 +1,10 @@
 import { sequelize } from "../models/associations.js";
 
-try {
-  await sequelize.drop();
+(async () => {
+  console.log("Syncing database");
+  await sequelize.sync({ force: true });
 
-  await sequelize.sync({ force: true, alter: true });
+  await sequelize.close();
 
-  process.exit(0);
-} catch (error) {
-  console.error(error);
-
-  process.exit(1);
-}
+  console.log("\n✅ Database synced\n");
+})();

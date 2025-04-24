@@ -4,8 +4,9 @@ import { Sequelize } from "sequelize";
 const sequelize = new Sequelize(process.env.PG_URL, {
   define: {
     underscored: true,
-    timestamps: false,
+    timestamps: true,
   },
+  logging: false,
 });
 
 export default sequelize;

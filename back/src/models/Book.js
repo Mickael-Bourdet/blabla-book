@@ -43,5 +43,5 @@ Book.init(
 );
 
 // Test if it works
-const books = await Book.findAll();
-console.log(books);
+/* const books = await Book.findAll();
+console.log(books); */

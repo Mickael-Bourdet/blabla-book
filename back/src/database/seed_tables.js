@@ -8,9 +8,12 @@ import {
 
 async function seedDatabase() {
   try {
+    console.log("---");
+
     // sync models with database
     await sequelize.sync({ force: true });
     console.log("Base de donnée synchronisée ✅");
+    console.log("Data inserted:");
 
     // create catégories
     const categoryData = [
@@ -27,7 +30,7 @@ async function seedDatabase() {
     ];
 
     const categories = await Category.bulkCreate(categoryData);
-    console.log(categoryData.length, "Categories crées ✅");
+    console.log(categoryData.length, "Categories ");
 
     // create authors
     const authorData = [
@@ -41,7 +44,7 @@ async function seedDatabase() {
     ];
 
     const authors = await Author.bulkCreate(authorData);
-    console.log(authorData.length, "Auteurs crées ✅");
+    console.log(authorData.length, "Auteurs ");
 
     // create books
 
@@ -112,7 +115,7 @@ async function seedDatabase() {
     ];
 
     const books = await Book.bulkCreate(bookData);
-    console.log(bookData.length, "Livres crées ✅");
+    console.log(bookData.length, "Livres ");
 
     // join table book-author
     const bookAuthorAssociation = [
@@ -127,7 +130,6 @@ async function seedDatabase() {
 
     // Insert associations Book-Author in join table  book_has_author
     await sequelize.models.book_has_author.bulkCreate(bookAuthorAssociation);
-    console.log("Association livre-auteur créé");
 
     // join table book-category
     const bookCategoryAssociation = [
@@ -143,10 +145,12 @@ async function seedDatabase() {
     await sequelize.models.book_has_category.bulkCreate(
       bookCategoryAssociation
     );
-    console.log("Association livre-catégorie créé");
   } catch (error) {
     console.error("Erreur lors du seeding :", error);
   } finally {
+    console.log("---");
+    console.log("\n✅ Seeding done!\n");
+
     // Fermer la connexion à la base de données
     await sequelize.close();
   }
