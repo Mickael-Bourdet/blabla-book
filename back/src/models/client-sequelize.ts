@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import "dotenv/config";
 
 // Initialise une instance de Sequelize pour la connexion à la base de données PostgreSQL
-const sequelize = new Sequelize(process.env.DATABASE_URL as string, {
+const sequelize = new Sequelize(process.env.BASE_URL as string, {
   define: {
     underscored: true, // Utilise des noms de colonnes en snake_case
     timestamps: true, // Active les colonnes de timestamp (createdAt, updatedAt)
