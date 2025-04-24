@@ -13,7 +13,7 @@ import {
   InferAttributes<User>,
   InferCreationAttributes<User>
 > {
-    declare id: number;
+    declare id: CreationOptional<number>
     declare email: string;
     declare name: string;
     declare password: string;

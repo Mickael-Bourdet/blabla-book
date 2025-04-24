@@ -13,13 +13,18 @@ import {
   InferAttributes<Category>,
   InferCreationAttributes<Category>
 > {
+ declare id: CreationOptional<number>
   declare name: string;
   
 }
 
   Category.init(
     {
-     
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+          },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
