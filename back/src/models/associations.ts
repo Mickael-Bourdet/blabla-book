@@ -6,14 +6,14 @@ import { User } from './User.js';
 
 Book.belongsToMany(Author, {
     through: "book_author",
-    as: "authors",
+       as: "authors",
     foreignKey: "book_id",
     otherKey: "author_id"
 });
 
 Author.belongsToMany(Book, {
     through: "book_author",
-    as: "books",
+             as: "books",
     foreignKey: "auhtor_id",
     otherKey: "book_id"
 });
