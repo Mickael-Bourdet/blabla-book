@@ -11,8 +11,8 @@ export class Author extends Model<
   InferAttributes<Author>,
   InferCreationAttributes<Author>
 > {
-  declare id!: CreationOptional<number>;
-  declare name!: string;
+  declare id: CreationOptional<number>;
+  declare name: string;
 }
 
 //j'ai repris le dictionnaire des données
