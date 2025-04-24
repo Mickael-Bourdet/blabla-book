@@ -1,18 +1,9 @@
-import { Model, DataTypes } from "sequelize";
-import { sequelize } from "./client-sequelize.js";
+import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
+import { sequelize } from './client-sequelize.js';
 
-interface IBook {
-  id: number;
-  isbn: string;
-  title: string | null;
-  description: string | null;
-  published: string | null;
-  cover_url: string | null;
-  page_count: string | null;
-}
 
-export class Book extends Model<IBook> implements IBook {
-  declare id: number;
+export class Book extends Model<InferAttributes<Book>, InferCreationAttributes<Book>> {
+  declare id: CreationOptional<number>;
   declare isbn: string;
   declare title: string;
   declare description: string | null;
@@ -42,7 +33,7 @@ Book.init(
 
     description: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
 
     published: {
@@ -59,9 +50,9 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-  },
-  {
-    sequelize,
-    tableName: "book",
-  }
-);
+
+  }, {
+  sequelize,
+  tableName: 'book',
+}
+)
