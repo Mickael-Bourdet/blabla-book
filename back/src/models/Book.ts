@@ -1,5 +1,5 @@
 import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import { sequelize } from './client-sequelize';
+import { sequelize } from './client-sequelize.js';
 
 
 export class Book extends Model<InferAttributes<Book>, InferCreationAttributes<Book>> {
