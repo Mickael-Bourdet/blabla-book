@@ -15,7 +15,6 @@ export class User extends Model<
   declare email: string;
   declare name: string;
   declare password: string;
-
 }
 
 User.init(
