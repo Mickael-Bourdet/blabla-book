@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from './client-sequelize.ts';
+import { sequelize } from './client-sequelize';
 
 interface IAuthor {
     id: number;
