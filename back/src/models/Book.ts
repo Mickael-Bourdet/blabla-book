@@ -4,8 +4,8 @@ import {
   InferAttributes,
   InferCreationAttributes,
   CreationOptional,
-} from 'sequelize';
-import { sequelize } from './client-sequelize.js';
+} from "sequelize";
+import { sequelize } from "./client-sequelize.js";
 
 export class Book extends Model<
   InferAttributes<Book>,
@@ -61,6 +61,6 @@ Book.init(
   },
   {
     sequelize,
-    tableName: 'book',
+    tableName: "book",
   }
 );

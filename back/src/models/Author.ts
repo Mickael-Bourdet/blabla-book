@@ -1,5 +1,5 @@
-import { DataTypes, Model } from 'sequelize';
-import { sequelize } from './client-sequelize.js';
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "./client-sequelize.js";
 
 export class Author extends Model<
   InferAttributes<Author>,
@@ -24,6 +24,6 @@ Author.init(
   },
   {
     sequelize,
-    tableName: 'author',
+    tableName: "author",
   }
 );
