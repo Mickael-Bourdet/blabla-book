@@ -8,11 +8,11 @@ import {
 
 async function seedDatabase() {
   try {
-    // synchronisée les modèles avec la BDD
+    // sync models with database
     await sequelize.sync({ force: true });
     console.log("Base de donnée synchronisée ✅");
 
-    // creation des catégories
+    // create catégories
     const categoryData = [
       { name: "Romance" },
       { name: "Thriller" },
@@ -27,9 +27,9 @@ async function seedDatabase() {
     ];
 
     const categories = await Category.bulkCreate(categoryData);
-    console.log("Categories crées ✅");
+    console.log(categoryData.length, "Categories crées ✅");
 
-    // création des auteurs
+    // create authors
     const authorData = [
       { name: "Anna Todd" },
       { name: "Colleen Hoover" },
@@ -41,9 +41,9 @@ async function seedDatabase() {
     ];
 
     const authors = await Author.bulkCreate(authorData);
-    console.log("Auteurs crées ✅");
+    console.log(authorData.length, "Auteurs crées ✅");
 
-    // création des livres
+    // create books
 
     const bookData = [
       {
@@ -112,8 +112,9 @@ async function seedDatabase() {
     ];
 
     const books = await Book.bulkCreate(bookData);
-    console.log("Auteurs crées ✅");
+    console.log(bookData.length, "Livres crées ✅");
 
+    // join table book-author
     const bookAuthorAssociation = [
       { book_id: 1, author_id: 1 },
       { book_id: 2, author_id: 2 },
@@ -124,7 +125,25 @@ async function seedDatabase() {
       { book_id: 7, author_id: 7 },
     ];
 
-    // Insertion des associations Book-Author dans la table de liaison book_has_author
+    // Insert associations Book-Author in join table  book_has_author
+    await sequelize.models.book_has_author.bulkCreate(bookAuthorAssociation);
+    console.log("Association livre-auteur créé");
+
+    // join table book-category
+    const bookCategoryAssociation = [
+      { book_id: 1, category_id: 1 },
+      { book_id: 2, category_id: 1 },
+      { book_id: 3, category_id: 1 },
+      { book_id: 4, category_id: 1 },
+      { book_id: 5, category_id: 1 },
+      { book_id: 6, category_id: 1 },
+      { book_id: 7, category_id: 1 },
+    ];
+
+    await sequelize.models.book_has_category.bulkCreate(
+      bookCategoryAssociation
+    );
+    console.log("Association livre-catégorie créé");
   } catch (error) {
     console.error("Erreur lors du seeding :", error);
   } finally {
@@ -132,3 +151,5 @@ async function seedDatabase() {
     await sequelize.close();
   }
 }
+
+seedDatabase();
