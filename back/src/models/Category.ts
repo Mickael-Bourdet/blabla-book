@@ -13,7 +13,6 @@ export class Category extends Model<
 > {
   declare id: CreationOptional<number>
   declare name: string;
-
 }
 
 Category.init(
