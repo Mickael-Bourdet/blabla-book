@@ -1,12 +1,12 @@
-import { DataTypes, Model } from 'sequelize';
-import { sequelize } from './client-sequelize.ts';
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "./client-sequelize.js";
 
 interface IAuthor {
   id: number;
   name: string;
 }
 
-// impléments c'est pour que Typescript vérifie que la class contient bien les gens de l'interface
+// implements c'est pour que Typescript vérifie que la class contient bien les gens de l'interface
 // extends model : c'est pour sequelize sache quels champs ce modèle gère
 export class Author extends Model<IAuthor> implements IAuthor {
   public id!: number;
@@ -28,7 +28,7 @@ Author.init(
   },
   {
     sequelize,
-    tableName: 'authors',
-    modelName: 'author',
+    tableName: "authors",
+    modelName: "author",
   }
 );
