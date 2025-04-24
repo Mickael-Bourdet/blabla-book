@@ -1,7 +1,8 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { errorHandler } from "./src/middlewares/errorHandler";
+import { router } from "./src/router.js"; 
+import { errorHandler } from "./src/middlewares/errorHandler.js";
 
 // Run Application
 const app = express();
@@ -9,9 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("test 2");
-});
+app.use(router);
 
 //Middelware error
 app.use(errorHandler);
