@@ -34,28 +34,28 @@ Category.belongsToMany(Book, {
 
 Book.belongsToMany(User, {
   through: "book_read",
-  as: "users",
+  as: "users_has_read",
   foreignKey: "book_id",
   otherKey: "user_id",
 });
 
 User.belongsToMany(Book, {
   through: "book_read",
-  as: "books",
+  as: "books_is_read",
   foreignKey: "user_id",
   otherKey: "book_id",
 });
 
 Book.belongsToMany(User, {
   through: "book_to_read",
-  as: "users",
+  as: "users_need_to_read",
   foreignKey: "book_id",
   otherKey: "user_id",
 });
 
 User.belongsToMany(Book, {
   through: "book_to_read",
-  as: "books",
+  as: "books_maybe_read",
   foreignKey: "user_id",
   otherKey: "book_id",
 });
