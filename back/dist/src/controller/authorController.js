@@ -1,1 +1,2 @@
-"use strict";
+export {};
+//# sourceMappingURL=authorController.js.map

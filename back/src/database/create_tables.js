@@ -3,7 +3,7 @@ import { sequelize } from "../models/associations.js";
 try {
   await sequelize.drop();
 
-  await sequelize.sync();
+  await sequelize.sync({ force: true, alter: true });
 
   process.exit(0);
 } catch (error) {

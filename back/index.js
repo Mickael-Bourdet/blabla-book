@@ -1,14 +1,14 @@
 import "dotenv/config";
-import express, { Express, Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 
 // Run Application
-const app: Express = express();
+const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   res.send("test 2");
 });
 

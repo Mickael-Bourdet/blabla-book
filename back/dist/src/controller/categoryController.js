@@ -1,1 +1,2 @@
-"use strict";
+export {};
+//# sourceMappingURL=categoryController.js.map
