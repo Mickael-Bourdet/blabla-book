@@ -12,12 +12,10 @@ app.use(cors());
 
 app.use(router);
 
-//Middelware error
+//Middleware error
 app.use(errorHandler);
 
 // Start
 app.listen(process.env.PORT, () => {
-  console.log(
-    `Listening on API running ${process.env.BASE_URL}:${process.env.PORT}`
-  );
+  console.log(`Listening on API running ${process.env.BASE_URL}:${process.env.PORT}`);
 });

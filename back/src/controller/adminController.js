@@ -11,8 +11,7 @@ const adminController = {
 
   async AddNewBook(req, res, next) {
     // Get the params
-    const { isbn, title, description, published, cover_url, page_count } =
-      req.body;
+    const { isbn, title, description, published, cover_url, page_count } = req.body;
 
     //   check if the book is not already in the DB
     const isRegistered = await Book.findOne({ where: { isbn } });
@@ -34,6 +33,16 @@ const adminController = {
 
     res.status(201).json(newBook);
   },
+
+  /**
+   *  update a book in DB
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @return {Object} Book
+   */
+
+  async update(req, res, next) {},
 };
 
 export default adminController;

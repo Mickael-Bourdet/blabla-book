@@ -1,7 +1,7 @@
 import { Router } from "express";
 import adminController from "../controller/adminController.js";
 import { validate } from "../middlewares/validateWrapper.js";
-import { createBookSchema } from "../middlewares/schemaValidate/bookValidate.js";
+import { createBookSchema, updateBookSchema } from "../middlewares/schemaValidate/bookValidate.js";
 export const router = Router();
 
 /**
@@ -13,8 +13,5 @@ export const router = Router();
  * @return {Error} 409 - Conflict response (ex: isbn already taken)
  */
 
-router.post(
-  "/admin/add/books",
-  validate(createBookSchema),
-  adminController.AddNewBook
-);
+router.post("/admin/add/books", validate(createBookSchema), adminController.AddNewBook);
+router.patch("/admin/update/books/:bookId", validate(updateBookSchema), adminController.AddNewBook);
