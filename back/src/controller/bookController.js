@@ -10,7 +10,7 @@ const bookController = {
 
   // method to get one book
   async getOneBook(req, res, next) {
-    const id = req.params.bookId;
+    const id = parseInt(req.params.bookId);
   
     const result = await Book.findByPk(id);
 
