@@ -1,15 +1,21 @@
 import { Router } from "express";
 import { bookController } from "./controller/bookController.js";
-import { userController } from "./controller/userController.js";
+import { authorController } from "./controller/authorController.js";
+import { authorValidate } from "./middlewares/schemaValidate/authorValidate.js";
 import { validate } from "./middlewares/validateWrapper.js";
+import { userController } from "./controller/userController.js";
 import { schema } from "./middlewares/userValidateSchema.js";
 
 
 const router = Router();
 
+// Library routes
 router.get("/books", bookController.getAllBooks);
 router.get("/books/:bookId", bookController.getOneBook);
 
+// Admin routes
+router.patch("/admin/update/:authorId", validate(authorValidate), authorController.updateAuthor);
+router.delete("/admin/delete/:authorId", authorController.deleteAuthor);
 
 //User Routes
 router.get("/user/:userId", userController.getOneUser);
