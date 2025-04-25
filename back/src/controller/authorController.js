@@ -24,25 +24,34 @@ const authorController = {
 
     // get the value to change, here : name
     const { name } = req.body;
+     
+    author.name = name;
 
-    // check if the value is good
-    if (typeof name === "string" && name.trim() !== "") {
+    await author.save();
       
-      author.name = name.trim();
-      
-      await author.save();
-      
-      res.status(200).json(author);
-    } else {
-      const error = new Error("Invalid or missing 'name' field");
-        error.statusCode = 400;
-        return next(error);
-    }
-
+    res.status(200).json(author);
   },
 
+  /**
+ * @function deleteAuthor
+ * @description Delete an author by ID from the database.
+ * @param {Object} req - Express request object, must contain `authorId` as route param.
+ * @param {Object} res - Express response object, returns success message.
+ * @param {Function} next - Express next middleware function, used to handle errors.
+ */
   async deleteAuthor(req, res, next) {
+    const id = parseInt(req.params.authorId);
+    const author = await Author.findByPk(id); 
 
+    if (!author) {
+      const error = new Error("This author doesn't exist");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    await author.destroy();
+
+    res.status(200).json({ message: "Author successfully deleted." });
   },
 };
 
