@@ -8,5 +8,6 @@ router.get("/books", bookController.getAllBooks);
 router.get("/books/:bookId", bookController.getOneBook);
 
 router.patch("/admin/update/:authorId", authorController.updateAuthor);
+router.delete("/admin/delete/:authorId", authorController.deleteAuthor);
 
 export { router };

@@ -1,6 +1,7 @@
 import { Author } from "../models/Author.js";
 
 const authorController = {
+  
   /**
   * @function updateAuthor
   * @description Update the name of an existing author.
@@ -37,6 +38,10 @@ const authorController = {
         error.statusCode = 400;
         return next(error);
     }
+
+  },
+
+  async deleteAuthor(req, res, next) {
 
   },
 };
