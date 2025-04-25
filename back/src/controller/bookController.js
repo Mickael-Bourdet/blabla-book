@@ -6,11 +6,10 @@ const bookController = {
     const books = await Book.findAll({});
     
     if(!books) {
-      const error = new Error("Page not found")
-      error.statusCode = 404;
+      const error = new Error("The server cannot find all books");
+      error.statusCode = 400;
       return next();
     }
-    
     res.status(200).json(books);
   },
 
@@ -22,7 +21,7 @@ const bookController = {
 
     // checking if result exist, if it's not, go to the middleware errorHandler
     if (!result) {
-      const error = new Error("Page not found")
+      const error = new Error("This book doesn't exist");
       error.statusCode = 404;
       return next();
     }
