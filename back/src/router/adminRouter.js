@@ -14,4 +14,5 @@ export const router = Router();
  */
 
 router.post("/admin/add/books", validate(createBookSchema), adminController.AddNewBook);
-router.patch("/admin/update/books/:bookId", validate(updateBookSchema), adminController.AddNewBook);
+router.patch("/admin/update/books/:bookId", validate(updateBookSchema), adminController.updateBook);
+router.delete("/admin/delete/books/:bookId", adminController.deleteBook);

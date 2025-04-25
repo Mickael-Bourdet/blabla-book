@@ -15,7 +15,11 @@ router.get("/books", bookController.getAllBooks);
 router.get("/books/:bookId", bookController.getOneBook);
 
 // Admin routes
+
 router.patch("/admin/update/:authorId", validate(authorValidate), authorController.updateAuthor);
+router.patch("/admin/update/:categoryId", validate(authorValidate), authorController.updateAuthor);
+router.patch("/admin/update/:bookId", validate(authorValidate), authorController.updateAuthor);
+
 router.delete("/admin/delete/:authorId", authorController.deleteAuthor);
 
 //User Routes
