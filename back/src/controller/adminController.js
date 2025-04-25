@@ -10,23 +10,6 @@ const adminController = {
    */
 
   async AddNewBook(req, res, next) {
-    //  Before all, validate body :
-
-    // error is :
-    // undefined if no error
-    // an object with error details if any errors
-    const error = createBookSchema.validate(req.body, {
-      abortEarly: false,
-    }).error;
-
-    // if error in not undefined, the API return an error
-    if (error) {
-      return next({
-        statusCode: 400,
-        message: error.details.map((detail) => detail.message),
-      });
-    }
-
     // Get the params
     const { isbn, title, description, published, cover_url, page_count } =
       req.body;

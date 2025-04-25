@@ -1,6 +1,7 @@
 import { Router } from "express";
 import adminController from "../controller/adminController.js";
-
+import { validate } from "../middlewares/validateWrapper.js";
+import { createBookSchema } from "../middlewares/schemaValidate/bookValidate.js";
 export const router = Router();
 
 /**

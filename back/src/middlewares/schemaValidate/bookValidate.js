@@ -30,7 +30,7 @@ export const createBookSchema = Joi.object({
     .max(new Date().getFullYear())
     .messages({
       "published.base": "L'année de publication doit être un nombre",
-      "published.max": "L'année de publication doit être postérieur à l'an 0",
+      "published.min": "L'année de publication doit être postérieur à l'an 0",
       "published.max":
         "L'année de publication ne doit pas dépasser l'année actuel",
     }),
