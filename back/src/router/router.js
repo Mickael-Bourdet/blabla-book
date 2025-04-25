@@ -6,4 +6,6 @@ const router = Router();
 router.get("/books", bookController.getAllBooks);
 router.get("/books/:bookId", bookController.getOneBook);
 
+// sub router here
+router.use(adminRouter);
 export { router };
