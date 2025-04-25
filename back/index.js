@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import { router } from "./src/router.js";
 
 // Run Application
 const app = express();
@@ -13,6 +14,8 @@ app.get("/", (req, res) => {
 });
 
 // Start
+
+app.use(router);
 
 app.listen(process.env.PORT, () => {
   console.log(
