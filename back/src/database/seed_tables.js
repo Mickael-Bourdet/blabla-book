@@ -41,6 +41,13 @@ async function seedDatabase() {
             password:"Motdepasse01?",
            
           },
+          {
+            email: "azerty@568.com",
+            name: "Patocyetrvefehe",
+            password:"Motdepasse01?",
+           
+          },
+      
       
     ];
 
