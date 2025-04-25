@@ -42,7 +42,32 @@ const adminController = {
    * @return {Object} Book
    */
 
-  async update(req, res, next) {},
+  async updateBook(req, res, next) {
+    // First check if the url ID exist, if not error 404
+    const bookId = parseInt(req.params.bookId);
+
+    const book = await Book.findByPk(bookId);
+
+    if (!book) {
+      return next();
+    }
+
+    // Get the params
+    const fields = ["isbn", "title", "description", "published", "cover_url", "page_count"];
+
+    // if a value is declare, change it otherwise don't
+    fields.forEach((field) => {
+      if (req.body[field] !== undefined) {
+        book[field] = req.body[field];
+      }
+    });
+
+    // Save changes in the DB
+    await book.save();
+
+    // return updated book
+    res.status(200).json(book);
+  },
 };
 
 export default adminController;
