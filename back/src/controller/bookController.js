@@ -1,7 +1,10 @@
 import { Book } from "../models/Book.js"
+import { Category } from "../models/Category.js"
 
 const bookController = {
   async getAllBooks(req, res) {
+    console.log(req.query);
+    
     res.status(200).json(await Book.findAll({}));
   },
 
