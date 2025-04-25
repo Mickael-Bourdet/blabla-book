@@ -27,5 +27,5 @@ export function validate(schema) {
     // If there is no validation error, proceed to the next middleware
     next();
   };
-}
+};
 

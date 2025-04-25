@@ -15,6 +15,45 @@ async function seedDatabase() {
     console.log("Base de donnée synchronisée ✅");
     console.log("Data inserted:");
 
+ // create users
+    const userData = [
+        {
+            email: "azerty@123.com",
+            name: "Patoche",
+            password:"Motdepasse01?",
+           
+          },
+          {
+            email: "azerty@234.com",
+            name: "Pierroche",
+            password:"Motdepasse01?",
+           
+          },
+          {
+            email: "azerty@456.com",
+            name: "Loloche",
+            password:"Motdepasse01?",
+           
+          },
+          {
+            email: "azerty@567.com",
+            name: "Patocvefehe",
+            password:"Motdepasse01?",
+           
+          },
+          {
+            email: "azerty@568.com",
+            name: "Patocyetrvefehe",
+            password:"Motdepasse01?",
+           
+          },
+      
+      
+    ];
+
+    const user = await User.bulkCreate(userData);
+    console.log(userData.length, "User ")
+
     // create catégories
     const categoryData = [
       { name: "Romance" },
