@@ -1,0 +1,27 @@
+import { Router } from "express";
+import { bookController } from "../controller/bookController.js";
+import { authorController } from "../controller/authorController.js";
+import { authorValidate } from "../middlewares/schemaValidate/authorValidate.js";
+import { validate } from "../middlewares/validateWrapper.js";
+import { userController } from "../controller/userController.js";
+import { schema } from "../middlewares/userValidateSchema.js";
+import { router as adminRouter } from "./adminRouter.js";
+
+const router = Router();
+
+// Library routes
+router.get("/books", bookController.getAllBooks);
+router.get("/books/:bookId", bookController.getOneBook);
+
+// Admin routes
+router.patch("/admin/update/:authorId", validate(authorValidate), authorController.updateAuthor);
+router.delete("/admin/delete/:authorId", authorController.deleteAuthor);
+
+//User Routes
+router.get("/user/:userId", userController.getOneUser);
+router.patch("/user/:userId", validate(schema), userController.updateUser);
+router.delete("/user/:userId", validate(schema), userController.deleteUser);
+
+// sub router here
+router.use(adminRouter);
+export { router };
