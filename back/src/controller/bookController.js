@@ -1,13 +1,14 @@
 import { Book } from "../models/Book.js"
-import { Category } from "../models/Category.js"
 
 const bookController = {
+  // method to get all books
   async getAllBooks(req, res) {
     console.log(req.query);
     
     res.status(200).json(await Book.findAll({}));
   },
 
+  // method to get one book
   async getOneBook(req, res, next) {
     const id = req.params.bookId;
   
