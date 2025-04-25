@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { router } from "./src/router.js"; 
+import { router } from "./src/router/router.js";
 import { errorHandler } from "./src/middlewares/errorHandler.js";
 
 // Run Application
@@ -18,6 +18,6 @@ app.use(errorHandler);
 // Start
 app.listen(process.env.PORT, () => {
   console.log(
-    `Listening on API running ${process.env.BASE_URL}:${process.env.PORT}`,
+    `Listening on API running ${process.env.BASE_URL}:${process.env.PORT}`
   );
 });
