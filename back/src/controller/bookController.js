@@ -2,10 +2,16 @@ import { Book } from "../models/Book.js"
 
 const bookController = {
   // method to get all books
-  async getAllBooks(req, res) {
-    console.log(req.query);
+  async getAllBooks(req, res, next) {
+    const books = await Book.findAll({});
     
-    res.status(200).json(await Book.findAll({}));
+    if(!books) {
+      const error = new Error("Page not found")
+      error.statusCode = 404;
+      return next();
+    }
+    
+    res.status(200).json(books);
   },
 
   // method to get one book
@@ -16,6 +22,8 @@ const bookController = {
 
     // checking if result exist, if it's not, go to the middleware errorHandler
     if (!result) {
+      const error = new Error("Page not found")
+      error.statusCode = 404;
       return next();
     }
 
