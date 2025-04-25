@@ -36,9 +36,10 @@ const adminController = {
 
       description: Joi.string().trim().allow(null, ""),
 
-      published: Joi.integer()
+      published: Joi.number()
+        .integer()
         .positive()
-        .max(new Date().getFullYear() + 1)
+        .max(new Date().getFullYear())
         .messages({
           "published.base": "L'année de publication doit être un nombre",
           "published.max":
@@ -49,7 +50,7 @@ const adminController = {
 
       cover_url: Joi.string().trim().allow(null, ""),
 
-      page_count: Joi.integer().positive().messages({
+      page_count: Joi.number().integer().positive().messages({
         "page.base": "Le nombre de pages doit être un nombre",
         "page.min": "Le nombre de pages doit être un nombre positif",
       }),
@@ -75,13 +76,14 @@ const adminController = {
       req.body;
 
     //   check if the book is not already in the DB
-    const isRegistered = Book.findOne({ where: { isbn } });
+    const isRegistered = await Book.findOne({ where: { isbn } });
     if (isRegistered) {
       return next({
         statusCode: 409,
         message: "Impossible d'ajouter ce livre car il existe déjà",
       });
     }
+
     const newBook = await Book.create({
       isbn,
       title,

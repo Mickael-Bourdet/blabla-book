@@ -12,4 +12,8 @@ export const router = Router();
  * @return {Error} 409 - Conflict response (ex: isbn already taken)
  */
 
-router.post("/admin/add/books", adminController.AddNewBook);
+router.post(
+  "/admin/add/books",
+  validate(createBookSchema),
+  adminController.AddNewBook
+);
