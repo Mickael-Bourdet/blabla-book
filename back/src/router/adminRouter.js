@@ -4,7 +4,7 @@ import adminController from "../controller/adminController.js";
 export const router = Router();
 
 /**
- * POST /admin/add/:bookId
+ * POST /admin/add/books
  * @summary add a new book
  * @param {AddNewBookDTO} request.body.required - the book body
  * @return {Book} 201 - the added book
@@ -12,4 +12,4 @@ export const router = Router();
  * @return {Error} 409 - Conflict response (ex: isbn already taken)
  */
 
-router.post("/admin/add/:bookId", adminController.AddNewBook);
+router.post("/admin/add/books", adminController.AddNewBook);
