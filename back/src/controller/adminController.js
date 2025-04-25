@@ -49,7 +49,7 @@ const adminController = {
     const book = await Book.findByPk(bookId);
 
     if (!book) {
-      return next();
+      return next({ statusCode: 404, message: "Ce livre n'existe pas" });
     }
 
     // Get the params
@@ -67,6 +67,29 @@ const adminController = {
 
     // return updated book
     res.status(200).json(book);
+  },
+
+  /**
+   *  delete a book in DB
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @return {void}- status 204
+   */
+
+  async deleteBook(req, res, next) {
+    // First check if the url ID exist, if not error 404
+    const bookId = parseInt(req.params.bookId);
+
+    const book = await Book.findByPk(bookId);
+
+    if (!book) {
+      return next({ statusCode: 404, message: "Ce livre n'existe pas" });
+    }
+
+    // otherwise the book exist so we can delete it
+    await book.destroy();
+    res.sendStatus(204);
   },
 };
 
