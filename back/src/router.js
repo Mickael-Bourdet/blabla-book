@@ -21,6 +21,11 @@ router.patch(
   authorController.updateAuthor
 );
 router.delete("/admin/delete/:authorId", authorController.deleteAuthor);
+router.post(
+  "/admin/add/categories",
+  validate(categorySchema),
+  categoryController.createCategory
+);
 router.patch(
   "/admin/update/categories/:categoryId",
   validate(categorySchema),

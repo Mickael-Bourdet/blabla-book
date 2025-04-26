@@ -2,7 +2,21 @@ import { Category } from "../models/Category.js";
 
 const categoryController = {
   // to add a category to the database
-  async create(req, res, next) {},
+  async createCategory(req, res, next) {
+    // get a data send
+    const { name } = req.body;
+
+    // verify that that the field 'name' is present
+    if (!name) {
+      const error = new Error("Le champ 'name' est obligatoire");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const newCategory = await Category.create({ name });
+
+    res.status(201).json(newCategory);
+  },
 
   // to update a category to the database
   async updateCategory(req, res, next) {
