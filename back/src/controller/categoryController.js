@@ -1,48 +1,47 @@
 import { Category } from "../models/Category.js";
-import { validateCategory } from "../middlewares/categoryvalidateschema.js";
 
 const categoryController = {
   // to add a category to the database
-  async create(req, res) {
-    try {
-      res.status(created ? 201 : 200).json(category);
-    } catch (error) {
-      res
-        .status(500)
-        .json({ error: "Erreur, impossible de créer la categorie" });
-    }
-  },
+  async create(req, res, next) {},
 
   // to update a category to the database
   async updateCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
-    const error = validateCategory(req);
-    if (error) {
-      return next(error);
-    }
 
     const category = await Category.findByPk(id);
-    if (!category) return next(); // 404 error
+    if (!category) {
+      const error = new Error("La mise à jour est impossible ");
+      error.statusCode = 404;
 
-    for (const key in req.body) {
-      if (category[key] !== undefined) {
-        category[key] = req.body[key];
-      }
+      return next(error); // 404 error
+    }
+    //modify before save
+    const { name } = req.body; // to extract the proprety of name from req.body
+
+    //
+    if (name) {
+      category.name = name; //changes old name to the new name
     }
 
     await category.save();
     res.status(200).json(category);
   },
 
+  //to delete a category
   async deleteCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
 
     const category = await Category.findByPk(id);
-    if (!category) return next();
 
+    if (!category) {
+      const error = new Error("Impossible de supprimer");
+      error.statusCode = 404;
+
+      return next(error);
+    }
     await category.destroy();
-    res.sendstatus(204);
+    res.status(204).send();
   },
 };
 
-export default categoryController;
+export { categoryController };
