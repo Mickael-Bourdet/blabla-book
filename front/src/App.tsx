@@ -12,7 +12,6 @@ function App() {
      <Navbars/>
       <Routes>
      <Route path='/' element={<HomePage/>} />
-    
      </Routes>
      <Footer/>
     </>
