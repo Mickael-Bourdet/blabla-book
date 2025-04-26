@@ -1,6 +1,6 @@
 
 
-const Reco = () => {
+const RecommendedBooks = () => {
     return (
       <>
   
@@ -58,5 +58,5 @@ const Reco = () => {
     );
   };
   
-  export default Reco;
+  export default RecommendedBooks;
   

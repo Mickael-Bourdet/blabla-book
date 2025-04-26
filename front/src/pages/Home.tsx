@@ -1,11 +1,12 @@
 import PopularBooks from "../components/PopularsBooks";
-import Reco from "../components/RecommendedBooks";
+import RecommendedBooks from "../components/RecommendedBooks";
+
 
 
 const HomePage = () => (
     <>
       <PopularBooks />
-      <Reco />
+      <RecommendedBooks />
     </>
   );
   
