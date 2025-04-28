@@ -27,8 +27,9 @@ const BookDetail = () => {
       <section className="bg-beige-50 p-4 md:p-8">
         <div className="flex flex-row items-center md:flex-row  md:gap-8 mt-15">
           <img 
-            src="https://m.media-amazon.com/images/I/81drfTT9ZfL.jpg" 
-            alt="Harry Potter à l'école des sorciers" 
+            src={`https://metasbooks.fr/api/images/${book?.cover_url}-${book?.isbn}.jpg`} 
+            // src="https://metasbooks.fr/api/images/09d3c31afe62d073e3535401bde5205e-9782092543030.jpg" 
+            alt={`${book?.title}`} 
             className="w-30 mr-5 h-auto mb-4 md:w-60" 
           />
   

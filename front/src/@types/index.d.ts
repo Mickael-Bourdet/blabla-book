@@ -9,8 +9,8 @@ export interface IBook {
   isbn: string;
   description: string | null;
   published: number | null;
-  image: string | null;
-  nb_page: number;
+  cover_url: string | null;
+  page_count: number;
   categories: ICategory[];
   authors: IAuthor[];
 }

@@ -32,7 +32,7 @@ const Library = () => {
             <a href={`/books/${book.id}`} key={book.id} className="block">
               <div className="book cursor-pointer hover:shadow-lg hover:rounded-md transition-shadow text-center">
                 <img 
-                  src={`${book.image}`} 
+                  src={`https://metasbooks.fr/api/images/${book?.cover_url}-${book?.isbn}.jpg`}  
                   alt={`${book.title}`} 
                   className="h-95 w-auto object-cover mb-2" 
                 />
