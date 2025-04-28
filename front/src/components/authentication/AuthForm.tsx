@@ -7,9 +7,9 @@ type AuthFormProps = {
 
 const AuthForm = ({ title, children }: AuthFormProps) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center">{title}</h2>
+    <div className="flex items-center justify-center bg-gray-100">
+      <form className="p-8 rounded-lg w-96">
+        <h2 className="text-2xl font-bold -ml-20 mb-6 text-left">{title}</h2>
         {children}
       </form>
     </div>

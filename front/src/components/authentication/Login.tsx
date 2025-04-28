@@ -2,33 +2,33 @@ import AuthForm from "./AuthForm";
 
 const Login = () => {
   return (
-    <AuthForm title="Se connecter">
+    <AuthForm title="Me connecter">
       <div className="mb-4">
-        <label htmlFor="email" className="block mb-1 font-medium">Email</label>
+        <label htmlFor="pseudo" className="block mb-1 text-sm">Pseudo</label>
         <input
-          type="email"
-          id="email"
-          className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500"
-          placeholder="Votre email"
+          type="text"
+          id="pseudo"
+          className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+          placeholder="Value"
         />
       </div>
-
       <div className="mb-6">
-        <label htmlFor="password" className="block mb-1 font-medium">Mot de passe</label>
+        <label htmlFor="password" className="block mb-1 text-sm">Mot de passe</label>
         <input
           type="password"
           id="password"
-          className="w-full border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500"
-          placeholder="Votre mot de passe"
+          className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+          placeholder="Value"
         />
       </div>
-
-      <button
-        type="submit"
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-      >
-        Connexion
-      </button>
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded"
+        >
+          Connexion
+        </button>
+      </div>
     </AuthForm>
   );
 };
