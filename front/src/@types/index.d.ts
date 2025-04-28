@@ -11,6 +11,13 @@ export interface IBook {
   published: number | null;
   image: string | null;
   nb_page: number;
+  categories: ICategory[];
+  authors: IAuthor[];
+}
+
+export interface IAuthor {
+  id: number;
+  name: string;
 }
 
 export type IBooks = IBook[];
