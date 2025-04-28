@@ -59,7 +59,6 @@ const authorController = {
     const newAuthor = await Author.create({ name });
 
     res.status(201).json(newAuthor);
-
   },
 };
 

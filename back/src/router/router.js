@@ -5,7 +5,7 @@ import { authorValidate } from "../middlewares/schemaValidate/authorValidate.js"
 import { validate } from "../middlewares/validateWrapper.js";
 import { userController } from "../controller/userController.js";
 import { userLibraryController } from "../controller/userLibraryController.js";
-import { schema } from "../middlewares/userValidateSchema.js";
+import { schema } from "../middlewares/schemaValidate/userValidateSchema.js";
 import { router as adminRouter } from "./adminRouter.js";
 
 const router = Router();
