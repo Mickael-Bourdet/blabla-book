@@ -1,3 +1,4 @@
+
 import {Route,Routes } from 'react-router-dom';
 import './App.css'
 import HomePage from './pages/Home'
@@ -8,22 +9,22 @@ import Library from './components/Library';
 import SettingsUser from './pages/SettingsUser';
 
 
-
-
 function App() {
-
   return (
     <>
-     <Navbars/>
+      <Navbars />
       <Routes>
+
      <Route path='/' element={<HomePage/>} />
      <Route path="/books/:bookid" element={<DetailPage/>} />
      <Route path='/library' element={<Library/>} />
      <Route path='/settings' element={<SettingsUser/>} />
+     <Route path="/profile" element={<ProfilePage />} />
      </Routes>
      <Footer/>
+
     </>
-  )
+  );
 }
 
-export default App
+export default App;
