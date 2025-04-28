@@ -1,7 +1,7 @@
-import { Book } from "../models/Book.js"
+import { Book } from "../models/Book.js";
 
 const bookController = {
-   /**
+  /**
    * @function getAllBooks
    * @description Fetch all books from the database.
    * @param {Object} req - Express request object.
@@ -10,9 +10,13 @@ const bookController = {
    * @returns {void}
    */
   async getAllBooks(req, res, next) {
-    const books = await Book.findAll({});
-    
-    if(books.length === 0) {
+    const books = await Book.findAll({
+      include: [
+      { association: "categories"},
+      { association: "authors"}
+    ]});
+
+    if (books.length === 0) {
       const error = new Error("The server cannot find all books");
       error.statusCode = 400;
       return next(error);
@@ -30,8 +34,13 @@ const bookController = {
    */
   async getOneBook(req, res, next) {
     const id = parseInt(req.params.bookId);
-  
-    const result = await Book.findByPk(id);
+
+    const result = await Book.findByPk(id, {
+      include: [
+        { association: "categories"},
+        { association: "authors"}
+      ]
+    });
 
     // checking if result exist, if it's not, go to the middleware errorHandler
     if (!result) {
