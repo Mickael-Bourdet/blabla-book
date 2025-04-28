@@ -78,7 +78,7 @@ const categoryController = {
       return next(error);
     }
     await category.destroy();
-    res.status(204).send();
+    res.sendStatus(204);
   },
 };
 

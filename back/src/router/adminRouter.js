@@ -2,6 +2,8 @@ import { Router } from "express";
 import adminController from "../controller/adminController.js";
 import { validate } from "../middlewares/validateWrapper.js";
 import { authorController } from "../controller/authorController.js";
+import { categoryController } from "../controller/categoryController.js";
+import { categorySchema } from "../middlewares/schemaValidate/categoryValidate.js";
 import { authorValidate } from "../middlewares/schemaValidate/authorValidate.js";
 import { createBookSchema, updateBookSchema } from "../middlewares/schemaValidate/bookValidate.js";
 
@@ -35,9 +37,9 @@ router.patch("/admin/update/books/:bookId", validate(updateBookSchema), adminCon
 router.delete("/admin/delete/books/:bookId", adminController.deleteBook);
 
 // TODO : add comments
-router.post("/admin/add/categories", validate(authorValidate), authorController.addAuthor);
-router.patch("/admin/update/categories/:authorId", validate(authorValidate), authorController.updateAuthor);
-router.delete("/admin/delete/categories/:authorId", authorController.deleteAuthor);
+router.post("/admin/add/categories", validate(categorySchema), categoryController.createCategory);
+router.patch("/admin/update/categories/:categoryId", validate(categorySchema), categoryController.updateCategory);
+router.delete("/admin/delete/categories/:categoryId", categoryController.deleteCategory);
 
 // TODO : add comments
 router.post("/admin/add/authors", validate(authorValidate), authorController.addAuthor);

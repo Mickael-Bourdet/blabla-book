@@ -93,7 +93,6 @@ const userLibraryController = {
   },
 
   //delete one book to toRead list
-  // TODO : fix bug, don't delete the right book
 
   async deleteToRead(req, res, next) {
     const id = parseInt(req.params.bookId);
