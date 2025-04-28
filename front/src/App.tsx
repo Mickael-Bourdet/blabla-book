@@ -9,14 +9,14 @@ import Library from './pages/Library';
 
 
 function App() {
-  
+
   return (
     <>
       <Navbars/>
       <Routes>
         <Route path='/' element={<HomePage/>} />
         <Route path="/books" element={<Library/>} />
-        <Route path="/books/bookid" element={<DetailPage/>} />
+        <Route path="/books/:bookId" element={<DetailPage/>} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <Footer />
