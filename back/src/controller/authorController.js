@@ -53,6 +53,14 @@ const authorController = {
 
     res.status(200).json({ message: "Author successfully deleted." });
   },
+
+  async addAuthor (req, res, next) {
+    const { name } = req.body;
+    const newAuthor = await Author.create({ name });
+
+    res.status(201).json(newAuthor);
+
+  },
 };
 
 export { authorController };

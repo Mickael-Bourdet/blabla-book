@@ -20,6 +20,8 @@ router.patch("/admin/update/:authorId", validate(authorValidate), authorControll
 router.patch("/admin/update/:categoryId", validate(authorValidate), authorController.updateAuthor);
 router.patch("/admin/update/:bookId", validate(authorValidate), authorController.updateAuthor);
 
+router.post("/admin/add/authors", validate(authorValidate), authorController.addAuthor);
+
 router.delete("/admin/delete/:authorId", authorController.deleteAuthor);
 
 //User Routes
