@@ -3,8 +3,8 @@ import {
   compare,
   generateJwtToken,
   verifyJwtToken,
-} from "../sevices/authService.js";
-import { isDisposableEmail, isDomainValid } from "../sevices/emailService.js";
+} from "../services/authService.js";
+import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
 import { User } from "../models/User.js";
 
 const authController = {

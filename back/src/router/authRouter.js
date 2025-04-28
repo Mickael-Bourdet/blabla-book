@@ -8,28 +8,25 @@ export const router = Router();
 
 router.get("/users", authController.users);
 /**
- * POST
- * @summary 
- * @return {Book}
- * @return {Error}
- * @return {Error}
+ * POST /register
+ * @summary Register a new user.
+ * @return {Object} - The newly created user object.
+ * @return {Error} - Error if the registration fails.
  */
 router.post("/register", validate(registerSchema), authController.register);
 
 /**
- * POST
- * @summary 
- * @return {Book}
- * @return {Error}
- * @return {Error}
+ * POST /login
+ * @summary Log in an existing user.
+ * @return {Object} - The JWT token and expiration time.
+ * @return {Error} - Error if the login fails.
  */
 router.post("/login", authController.login);
 
 /**
- * POST
- * @summary 
- * @return {Book}
- * @return {Error}
- * @return {Error}
+ * POST /logout
+ * @summary Log out the currently authenticated user.
+ * @return {Object} - Success message or status.
+ * @return {Error} - Error if the logout fails.
  */
-router.post("/logout", authMiddleware, logout);
+router.post("/logout", authMiddleware, authController.logout);
