@@ -7,6 +7,9 @@ import HomePage from './pages/Home'
 import Navbars from './components/Navbar';
 import Footer from './components/footer';
 import DetailPage from './pages/DetailsBookPage';
+import Library from './components/Library';
+
+
 
 >>>>>>> 5e97f4021110b6acc9c77634028cafe4e8e022a5
 
@@ -19,7 +22,8 @@ function App() {
      <Navbars/>
       <Routes>
      <Route path='/' element={<HomePage/>} />
-     <Route path="/books/bookid" element={<DetailPage/>} />
+     <Route path="/books/:bookid" element={<DetailPage/>} />
+     <Route path='/library' element={<Library/>} />
      </Routes>
      <Footer/>
 >>>>>>> 5e97f4021110b6acc9c77634028cafe4e8e022a5
