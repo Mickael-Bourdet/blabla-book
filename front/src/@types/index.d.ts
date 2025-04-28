@@ -11,3 +11,5 @@ export interface IBook {
   image: string | null;
   nb_page: number;
 }
+
+export type IBooks = IBook[];
