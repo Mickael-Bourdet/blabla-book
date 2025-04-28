@@ -1,18 +1,13 @@
 import { Router } from "express";
 import { validate } from "../middlewares/validateWrapper.js";
-import { userController } from "../controller/userController.js";
 import { userLibraryController } from "../controller/userLibraryController.js";
 import { schema } from "../middlewares/schemaValidate/userValidateSchema.js";
 import { router as bookRouter } from "./bookRouter.js";
+import { router as userAccountRouter } from "./userAccountRouter.js";
 import { router as adminRouter } from "./adminRouter.js";
 
 // Main API router
 const router = Router();
-
-//User Routes
-router.get("/user/:userId", userController.getOneUser);
-router.patch("/user/:userId", validate(schema), userController.updateUser);
-router.delete("/user/:userId", validate(schema), userController.deleteUser);
 
 //userLibrary Routes
 router.get("/user/library/:userId", userLibraryController.getLibrary);
@@ -28,5 +23,6 @@ router.delete("/user/:userId/books/to-read/:bookId", validate(schema), userLibra
 // sub router here
 
 router.use(bookRouter);
+router.use(userAccountRouter);
 router.use(adminRouter);
 export { router };

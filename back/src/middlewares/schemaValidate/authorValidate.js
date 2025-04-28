@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-const authorValidate =  Joi.object({    
+const authorValidate = Joi.object({
   name: Joi.string().required(),
 });
 
