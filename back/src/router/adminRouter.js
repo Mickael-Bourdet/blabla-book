@@ -35,6 +35,11 @@ router.patch("/admin/update/books/:bookId", validate(updateBookSchema), adminCon
 router.delete("/admin/delete/books/:bookId", adminController.deleteBook);
 
 // TODO : add comments
+router.post("/admin/add/categories", validate(authorValidate), authorController.addAuthor);
+router.patch("/admin/update/categories/:authorId", validate(authorValidate), authorController.updateAuthor);
+router.delete("/admin/delete/categories/:authorId", authorController.deleteAuthor);
+
+// TODO : add comments
 router.post("/admin/add/authors", validate(authorValidate), authorController.addAuthor);
 router.patch("/admin/update/authors/:authorId", validate(authorValidate), authorController.updateAuthor);
 router.delete("/admin/delete/authors/:authorId", authorController.deleteAuthor);
