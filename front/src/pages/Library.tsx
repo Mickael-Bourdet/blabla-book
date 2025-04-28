@@ -29,7 +29,7 @@ const Library = () => {
 
             {/* loop on books */}
             {books.map((book) => 
-            <a href={`/books/${book.id}`} className="block">
+            <a href={`/books/${book.id}`} key={book.id} className="block">
               <div className="book cursor-pointer hover:shadow-lg hover:rounded-md transition-shadow text-center">
                 <img 
                   src={`${book.image}`} 
