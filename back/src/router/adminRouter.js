@@ -1,7 +1,6 @@
 import { Router } from "express";
 import adminController from "../controller/adminController.js";
 import { validate } from "../middlewares/validateWrapper.js";
-import { authorController } from "../controller/authorController.js";
 import { categorySchema } from "../middlewares/schemaValidate/categoryValidate.js";
 import { authorValidate } from "../middlewares/schemaValidate/authorValidate.js";
 import { createBookSchema, updateBookSchema } from "../middlewares/schemaValidate/bookValidate.js";
@@ -41,6 +40,6 @@ router.patch("/admin/update/categories/:categoryId", validate(categorySchema), a
 router.delete("/admin/delete/categories/:categoryId", adminController.deleteCategory);
 
 // TODO : add comments
-router.post("/admin/add/authors", validate(authorValidate), authorController.addAuthor);
-router.patch("/admin/update/authors/:authorId", validate(authorValidate), authorController.updateAuthor);
-router.delete("/admin/delete/authors/:authorId", authorController.deleteAuthor);
+router.post("/admin/add/authors", validate(authorValidate), adminController.addAuthor);
+router.patch("/admin/update/authors/:authorId", validate(authorValidate), adminController.updateAuthor);
+router.delete("/admin/delete/authors/:authorId", adminController.deleteAuthor);
