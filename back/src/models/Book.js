@@ -22,7 +22,7 @@ Book.init(
     },
 
     published: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
 
@@ -32,7 +32,7 @@ Book.init(
     },
 
     page_count: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },

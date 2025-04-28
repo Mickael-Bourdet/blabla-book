@@ -21,7 +21,7 @@ import Joi from 'joi';
                     
                 }),
 
-                password: Joi.string().min(8).max(20).pattern(/^[a-zA-Z0-9]{3,30}$/)  .messages({
+                password: Joi.string().min(8).max(100).pattern(/^[a-zA-Z0-9]{3,30}$/)  .messages({
                     
                     'string.min': 'Le mot de passe doit contenir au moins 8 caractères.',
                     'string.max': 'Le mot de passe ne doit pas dépasser 20 caractères.',
@@ -33,5 +33,11 @@ import Joi from 'joi';
                 //     'any.only': 'Les passwords ne correspondent pas.',
                 //     'string.empty': 'La confirmation est obligatoire.',
                 //   }),
+
+                description: Joi.string().min(3).max(100).messages({
+                    "string.base": "Le titre doit être une chaîne de caractères",
+                    "string.min": "Le titre doit contenir au moins 3 caractères",
+                    "string.max": "Le titre doit contenir au plus 100 caractères",
+                }),
                 })
                 export {schema}
