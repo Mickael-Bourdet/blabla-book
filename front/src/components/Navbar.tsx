@@ -37,7 +37,7 @@ const Navbars = () => {
           <h1 className="text-xl">BlaBlaBook</h1>
         </div>
         <div className="search-bar relative w-64 hidden md:block">
-        <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 ml-8 "></i>
+        <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2  ml-8 "></i>
           <input 
           
             type="text" 

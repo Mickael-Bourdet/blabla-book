@@ -3,7 +3,7 @@ const BookDetail = () => {
         <div className="md:ml-64"> {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
         
       <section className="bg-beige-50 p-4 md:p-8">
-        <div className="flex flex-row items-center md:flex-row  md:gap-8">
+        <div className="flex flex-row items-center md:flex-row  md:gap-8 mt-15">
           <img 
                  src="https://m.media-amazon.com/images/I/81drfTT9ZfL.jpg" 
                  alt="Harry Potter à l'école des sorciers" 
@@ -24,12 +24,12 @@ const BookDetail = () => {
               Ce tome approfondit les intrigues et les relations entre les personnages.
             </p>
   
-            <div className="flex gap-4 mt-4">
-              <button className="flex items-center gap-2 border border-gray-300 rounded px-3 py-1">
+            <div className="flex gap-20 mt-4 ml-30">
+              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2">
                 <input type="checkbox" />
                 <span>Lu</span>
               </button>
-              <button className="flex items-center gap-2 border border-gray-300 rounded px-3 py-1">
+              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2">
                 <input type="checkbox" />
                 <span>a Lire</span>
               </button>
