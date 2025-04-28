@@ -2,7 +2,7 @@
 const Library = () => {
 
   
-  return 
+  return (
 <>
      
   <div className="bg-nav-footer-50 font-sans mt-[100px]">
@@ -13,7 +13,7 @@ const Library = () => {
       <main className="p-4 pb-20">
         <section className="content">
           
-          <h2 className="text-xl mb-4 font-bold">Tout Nos Livres</h2>
+          <h2 className="text-xl mb-4 font-bold">Tous Nos Livres</h2>
           <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
 
             <a href="/books/bookid" className="block">
@@ -35,6 +35,6 @@ const Library = () => {
 </>
 
 
-};
+)};
 
 export default Library;
