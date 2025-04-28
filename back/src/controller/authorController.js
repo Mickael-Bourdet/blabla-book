@@ -54,6 +54,12 @@ const authorController = {
     res.status(200).json({ message: "Author successfully deleted." });
   },
 
+  /**
+ * @function addAuthor
+ * @description Create a new author with the provided name.
+ * @param {Object} req - Express request object (expects `name` in `req.body`).
+ * @param {Object} res - Express response object.
+ */
   async addAuthor (req, res) {
     const { name } = req.body;
     const newAuthor = await Author.create({ name });
