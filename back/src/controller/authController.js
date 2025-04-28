@@ -9,30 +9,6 @@ import { User } from "../models/User.js";
 
 const authController = {
   /**
-   * Controller method to retrieve all users.
-   *
-   * @param {Object} _req - The request object.
-   * @param {Object} res - The response object.
-   * @param {Function} next - The next middleware function.
-   */
-  async users(_req, res, next) {
-    // Fetch all users from the database
-    const allUser = await User.findAll();
-
-    // Check if any users were found
-    if (!allUser) {
-      // If no users were found, pass an error to the next middleware
-      return next({
-        statusCode: 400,
-        message: "Aucun utilisateur trouvés",
-      });
-    }
-
-    // Send the list of users as a JSON response
-    res.status(200).json(allUser);
-  },
-
-  /**
    * Controller method to register a new user.
    *
    * @param {Object} req - The request object.

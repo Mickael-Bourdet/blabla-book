@@ -6,7 +6,6 @@ import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 export const router = Router();
 
-router.get("/users", authController.users);
 /**
  * POST /register
  * @summary Register a new user.
