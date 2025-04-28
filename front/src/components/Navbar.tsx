@@ -48,7 +48,7 @@ const Navbars = () => {
         </div>
         <nav className="hidden md:flex gap-6 ">
           <a href="/"><i className="fa-solid fa-house-chimney"></i> <span className="whitespace-nowrap hidden xl:inline">Accueil</span></a>
-          <a href="/library"><i className="fa-solid fa-book"></i><span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span> </a>
+          <a href="/books"><i className="fa-solid fa-book"></i><span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span> </a>
           <a href="/login"><i className="fa-solid fa-user"></i><span className="hidden xl:inline">Mon compte</span> </a>
         </nav>
         <div className="block md:hidden">
@@ -61,7 +61,7 @@ const Navbars = () => {
         <a href="/" className="flex flex-col items-center text-sm">
           <i className="fa-solid fa-house-chimney"></i> Accueil
         </a>
-        <a href="/library" className="flex flex-col items-center  text-sm">
+        <a href="/books" className="flex flex-col items-center  text-sm">
           <i className="fa-solid fa-book"></i> Bibliothèque
         </a>
         <a href="/login" className="flex flex-col items-center  text-sm">

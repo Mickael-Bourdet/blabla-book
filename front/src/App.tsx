@@ -1,10 +1,10 @@
-import {Route,Routes } from 'react-router-dom';
+import { Route,Routes } from 'react-router-dom';
 import './App.css'
 import HomePage from './pages/Home'
 import Navbars from './components/Navbar';
 import Footer from './components/footer';
 import DetailPage from './pages/DetailsBookPage';
-import Library from './components/Library';
+import Library from './pages/Library';
 import SettingsUser from './pages/SettingsUser';
 import ProfilePage from './components/ProfilePage';
 
@@ -18,6 +18,7 @@ function App() {
 
      <Route path='/' element={<HomePage/>} />
      <Route path="/books/:bookId" element={<DetailPage/>} />
+     <Route path="/books" element={<Library/>} />
      <Route path='/library' element={<Library/>} />
      <Route path='/settings' element={<SettingsUser/>} />
      <Route path="/profile" element={<ProfilePage />} />
