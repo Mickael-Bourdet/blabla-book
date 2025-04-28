@@ -4,11 +4,13 @@ import HomePage from "./pages/Home";
 import Navbars from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
+import { Header } from "./components/layout/Header";
 
 function App() {
   return (
     <>
       <Navbars />
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/books/bookid" element={<DetailPage />} />
