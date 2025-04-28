@@ -1,6 +1,4 @@
 import { Router } from "express";
-import { authorController } from "../controller/authorController.js";
-import { authorValidate } from "../middlewares/schemaValidate/authorValidate.js";
 import { validate } from "../middlewares/validateWrapper.js";
 import { userController } from "../controller/userController.js";
 import { userLibraryController } from "../controller/userLibraryController.js";
@@ -10,14 +8,6 @@ import { router as adminRouter } from "./adminRouter.js";
 
 // Main API router
 const router = Router();
-
-// Admin routes
-router.post("/admin/add/authors", validate(authorValidate), authorController.addAuthor);
-
-router.patch("/admin/update/authors/:authorId", validate(authorValidate), authorController.updateAuthor);
-router.patch("/admin/update/:categoryId", validate(authorValidate), authorController.updateAuthor);
-
-router.delete("/admin/delete/authors/:authorId", authorController.deleteAuthor);
 
 //User Routes
 router.get("/user/:userId", userController.getOneUser);
