@@ -1,4 +1,6 @@
 import { Book } from "../models/associations.js";
+import { Category } from "../models/Category.js";
+import { Author } from "../models/Author.js";
 
 const adminController = {
   /**
@@ -90,6 +92,151 @@ const adminController = {
     // otherwise the book exist so we can delete it
     await book.destroy();
     res.sendStatus(204);
+  },
+
+  /**
+   * @function createCategory
+   * @description Create a new category and save it to the database.
+   * @param {object} req -- Express request object (expects `name` in body).
+   * @param {object} res -Express response object.
+   * @param {function} next - Express next middleware function.
+   */
+
+  // to add a category to the database
+  async createCategory(req, res, next) {
+    // get a data send
+    const { name } = req.body;
+
+    // verify that that the field 'name' is present
+    if (!name) {
+      const error = new Error("Le champ 'name' est obligatoire");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    const newCategory = await Category.create({ name });
+
+    res.status(201).json(newCategory);
+  },
+
+  /**
+   * @function updateCategory
+   * @description Update the name of existing name
+   * @param {object} req -Express request object (expects `categoryId` as param).
+   * @param {object} res -Express response object
+   * @param {function} next - Express next middleware function.
+   */
+
+  // to update a category to the database
+  async updateCategory(req, res, next) {
+    const id = parseInt(req.params.categoryId);
+
+    const category = await Category.findByPk(id);
+    if (!category) {
+      const error = new Error("La mise à jour est impossible ");
+      error.statusCode = 404;
+
+      return next(error); // 404 error
+    }
+    //modify before save
+    const { name } = req.body; // to extract the proprety of name from req.body
+
+    //
+    if (name) {
+      category.name = name; //changes old name to the new name
+    }
+
+    await category.save();
+    res.status(200).json(category);
+  },
+
+  /**
+   * @function deleteCategory
+   * @description Delete a name by id from the database
+   * @param {object} req -Express request object
+   * @param {object} res -Express response object, returns success message.
+   * @param {function} next - Express next middleware function, used to handle errors.
+   */
+
+  //to delete a category
+  async deleteCategory(req, res, next) {
+    const id = parseInt(req.params.categoryId);
+
+    const category = await Category.findByPk(id);
+
+    if (!category) {
+      const error = new Error("Impossible de supprimer");
+      error.statusCode = 404;
+
+      return next(error);
+    }
+    await category.destroy();
+    res.sendStatus(204);
+  },
+
+  /**
+   * @function updateAuthor
+   * @description Update the name of an existing author.
+   * @param {Object} req - Express request object (expects `authorId` as param and `name` in body).
+   * @param {Object} res - Express response object.
+   * @param {Function} next - Express next middleware function.
+   */
+  async updateAuthor(req, res, next) {
+    const id = parseInt(req.params.authorId);
+
+    const author = await Author.findByPk(id);
+
+    // check if author exist, if it doesn't, go to tne error middleware
+    if (!author) {
+      const error = new Error("This author doesn't exist");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    // get the value to change, here : name
+    const { name } = req.body;
+
+    author.name = name;
+
+    await author.save();
+
+    res.status(200).json(author);
+  },
+
+  /**
+   * @function deleteAuthor
+   * @description Delete an author by ID from the database.
+   * @param {Object} req - Express request object, must contain `authorId` as route param.
+   * @param {Object} res - Express response object, returns success message.
+   * @param {Function} next - Express next middleware function, used to handle errors.
+   */
+  async deleteAuthor(req, res, next) {
+    const id = parseInt(req.params.authorId);
+    const author = await Author.findByPk(id);
+
+    if (!author) {
+      const error = new Error("This author doesn't exist");
+      error.statusCode = 404;
+      return next(error);
+    }
+
+    await author.destroy();
+
+    // Discuss : 200 ou 204 ?
+    res.status(200).json({ message: "Author successfully deleted." });
+  },
+
+  /**
+   * @function addAuthor
+   * @description Create a new author with the provided name.
+   * @param {Object} req - Express request object (expects `name` in `req.body`).
+   * @param {Object} res - Express response object.
+   */
+  async addAuthor(req, res) {
+    const { name } = req.body;
+    const newAuthor = await Author.create({ name });
+
+    res.status(201).json(newAuthor);
   },
 };
 

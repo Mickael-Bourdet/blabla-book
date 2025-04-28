@@ -1,6 +1,17 @@
+import { useState, useEffect } from "react";
+import { IBooks } from "../@types";
+import { getAllBooks } from "../api/index"
 
 const Library = () => {
+  const [books, setBooks] = useState<IBooks>([]);
 
+  useEffect(() => {
+    async function fetchBooks() {
+      const data = await getAllBooks();
+      setBooks(data);
+    }
+    fetchBooks();
+  }, []);
   
   return (
 <>
@@ -16,16 +27,19 @@ const Library = () => {
           <h2 className="text-xl mb-4 font-bold">Tous Nos Livres</h2>
           <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
 
-            <a href="/books/bookid" className="block">
+            {/* loop on books */}
+            {books.map((book) => 
+            <a href={`/books/${book.id}`} className="block">
               <div className="book cursor-pointer hover:shadow-lg hover:rounded-md transition-shadow text-center">
                 <img 
-                  src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg" 
-                  alt="Le Comte de Monte-Cristo - Dumas" 
+                  src={`${book.image}`} 
+                  alt={`${book.title}`} 
                   className="h-95 w-auto object-cover mb-2" 
                 />
-                <p>Le Comte de Monte-Cristo</p>
+                <p>{book.title}</p>
               </div>
             </a>
+            )}
                
           </div>      
         </section>

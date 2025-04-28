@@ -5,7 +5,7 @@ import Navbars from './components/Navbar';
 import Footer from './components/Footer';
 import DetailPage from './pages/DetailsBookPage';
 import ProfilePage from './components/ProfilePage';
-import Library from './components/Library';
+import Library from './pages/Library';
 
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
       <Navbars/>
       <Routes>
         <Route path='/' element={<HomePage/>} />
-        <Route path="/books/bookid" element={<DetailPage/>} />
         <Route path="/books" element={<Library/>} />
+        <Route path="/books/bookid" element={<DetailPage/>} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <Footer />
