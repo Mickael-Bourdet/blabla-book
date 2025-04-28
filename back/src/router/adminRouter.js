@@ -1,9 +1,9 @@
 import { Router } from "express";
 import adminController from "../controller/adminController.js";
 import { validate } from "../middlewares/validateWrapper.js";
-import { categorySchema } from "../middlewares/schemaValidate/categoryValidate.js";
-import { authorValidate } from "../middlewares/schemaValidate/authorValidate.js";
-import { createBookSchema, updateBookSchema } from "../middlewares/schemaValidate/bookValidate.js";
+import { categorySchema } from "../middlewares/schemaValidate/categoryValidateSchema.js";
+import { authorValidate } from "../middlewares/schemaValidate/authorValidateSchema.js";
+import { createBookSchema, updateBookSchema } from "../middlewares/schemaValidate/bookValidateSchema.js";
 
 export const router = Router();
 
