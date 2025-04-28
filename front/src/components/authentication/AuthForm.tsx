@@ -5,7 +5,7 @@ type AuthFormProps = {
   children: ReactNode;
 };
 
-export default function AuthFormWrapper({ title, children }: AuthFormProps) {
+const AuthForm = ({ title, children }: AuthFormProps) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form className="bg-white p-8 rounded-lg shadow-md w-96">
@@ -15,3 +15,5 @@ export default function AuthFormWrapper({ title, children }: AuthFormProps) {
     </div>
   );
 }
+
+export default AuthForm;
