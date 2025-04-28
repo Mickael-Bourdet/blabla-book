@@ -1,13 +1,12 @@
 export default function CategoryPage()  {
 
   return <>
-    <div className="md:ml-64"> {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
-            
-            
+    <div className="md:ml-64"> {/* Ajoute une marge à gauche sur les écrans md et plus grands */}             
       <main className="p-4">
         <section className="content"> 
 
           <h2 className="text-xl mb-4 font-bold mt-[100px] ">Catégorie</h2>
+          
           <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         
             <a href="/books/bookid" className="block">
