@@ -12,15 +12,10 @@ import { router as adminRouter } from "./adminRouter.js";
 const router = Router();
 
 // Admin routes
-
-router.patch(
-  "/admin/update/authors/:authorId",
-  validate(authorValidate),
-  authorController.updateAuthor
-);
-router.patch("/admin/update/:categoryId", validate(authorValidate), authorController.updateAuthor);
-
 router.post("/admin/add/authors", validate(authorValidate), authorController.addAuthor);
+
+router.patch("/admin/update/authors/:authorId", validate(authorValidate), authorController.updateAuthor);
+router.patch("/admin/update/:categoryId", validate(authorValidate), authorController.updateAuthor);
 
 router.delete("/admin/delete/authors/:authorId", authorController.deleteAuthor);
 
@@ -34,23 +29,11 @@ router.get("/user/library/:userId", userLibraryController.getLibrary);
 
 //Read
 router.post("/user/:userId/books/read/:bookId", validate(schema), userLibraryController.addRead);
-router.delete(
-  "/user/:userId/books/read/:bookId",
-  validate(schema),
-  userLibraryController.deleteRead
-);
+router.delete("/user/:userId/books/read/:bookId", validate(schema), userLibraryController.deleteRead);
 
 //Toread
-router.post(
-  "/user/:userId/books/to-read/:bookId",
-  validate(schema),
-  userLibraryController.addToRead
-);
-router.delete(
-  "/user/:userId/books/to-read/:bookId",
-  validate(schema),
-  userLibraryController.deleteToRead
-);
+router.post("/user/:userId/books/to-read/:bookId", validate(schema), userLibraryController.addToRead);
+router.delete("/user/:userId/books/to-read/:bookId", validate(schema), userLibraryController.deleteToRead);
 
 // sub router here
 
