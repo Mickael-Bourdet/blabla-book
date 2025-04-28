@@ -30,7 +30,7 @@ const categoryController = {
    * @function updateCategory
    * @description Update the name of existing name
    * @param {object} req -Express request object (expects `categoryId` as param).
-   * @param {object} res -Express response object.
+   * @param {object} res -Express response object
    * @param {function} next - Express next middleware function.
    */
 
