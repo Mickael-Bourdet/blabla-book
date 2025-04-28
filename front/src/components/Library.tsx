@@ -2,7 +2,7 @@
 const Library = () => {
 
   
-  return 
+  return (
 <>
      
   <div className="bg-nav-footer-50 font-sans mt-[100px]">
@@ -32,9 +32,9 @@ const Library = () => {
       </main>
     </div>
   </div>
-</>
+  </>
 
-
+);
 };
 
 export default Library;
