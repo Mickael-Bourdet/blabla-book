@@ -5,7 +5,11 @@ import { userLibraryController } from "../controller/userLibraryController.js";
 export const router = Router();
 
 // TODO : add comments
-//userLibrary Routes
+/**
+ * GET /books
+ * @summary Return all books of one user
+ * @return {User[]} 200 - success response
+ */
 router.get("/user/library/:userId", userLibraryController.getLibrary);
 
 //Read
