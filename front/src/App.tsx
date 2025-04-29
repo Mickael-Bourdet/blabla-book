@@ -8,6 +8,7 @@ import DetailPage from "./pages/DetailsBookPage";
 import Library from "./pages/Library";
 import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
+import Authentication from "./pages/Authentication";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/library" element={<Library />} />
         <Route path="/settings" element={<SettingsUser />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/auth" element={<Authentication />} />
       </Routes>
       <Footer />
     </>
