@@ -44,7 +44,7 @@ const Header = () => {
           <a href="/" className="flex flex-col items-center text-sm">
             <i className="fa-solid fa-house-chimney"></i> Accueil
           </a>
-          <a href="/library" className="flex flex-col items-center  text-sm">
+          <a href="/books" className="flex flex-col items-center  text-sm">
             <i className="fa-solid fa-book"></i> Bibliothèque
           </a>
           <a href="/login" className="flex flex-col items-center  text-sm">
