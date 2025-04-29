@@ -10,7 +10,6 @@ import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 
-
 function App() {
   return (
     <>

@@ -8,7 +8,11 @@ const joiPassword = Joi.extend(joiPasswordExtendCore);
  * Joi schema for validating user registration data.
  */
 const registerSchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
+  name: Joi.string().min(3).max(50).required().messages({
+    "string.base": "Le nom doit être une chaîne de caractères",
+    "string.min": "Le le nom doit contenir au moins 3 caractères",
+    "string.max": "Le nom doit contenir au plus 100 caractères",
+  }),
   email: Joi.string().required(),
   password: joiPassword
     .string()
@@ -19,7 +23,12 @@ const registerSchema = Joi.object({
     .minOfNumeric(1)
     .minOfSpecialCharacters(1)
     .noWhiteSpaces()
-    .required(),
+    .required()
+    .messages({
+      "string.min": "Le mot de passe doit contenir au moins 8 caractères.",
+      "string.max": "Le mot de passe ne doit pas dépasser 20 caractères.",
+      "string.pattern.base": "Le mot de passe doit contenir uniquement des lettres et des chiffres.",
+    }),
   confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
 });
 

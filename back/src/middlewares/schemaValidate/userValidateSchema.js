@@ -1,4 +1,8 @@
 import Joi from "joi";
+import { joiPasswordExtendCore } from "joi-password";
+
+// Extend Joi with the joi-password plugin to add password validation rules
+const joiPassword = Joi.extend(joiPasswordExtendCore);
 
 const UpdateUserSchema = Joi.object({
   name: Joi.string().min(3).max(50).messages({
@@ -6,10 +10,16 @@ const UpdateUserSchema = Joi.object({
     "string.min": "Le le nom doit contenir au moins 3 caractères",
     "string.max": "Le nom doit contenir au plus 100 caractères",
   }),
-  password: Joi.string()
-    .min(8)
+  password: joiPassword
+    .string()
+    .min(12)
     .max(100)
-    .pattern(/^[a-zA-Z0-9]{3,30}$/)
+    .minOfLowercase(1)
+    .minOfUppercase(1)
+    .minOfNumeric(1)
+    .minOfSpecialCharacters(1)
+    .noWhiteSpaces()
+    .required()
     .messages({
       "string.min": "Le mot de passe doit contenir au moins 8 caractères.",
       "string.max": "Le mot de passe ne doit pas dépasser 20 caractères.",
