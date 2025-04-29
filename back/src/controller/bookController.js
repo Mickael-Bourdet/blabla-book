@@ -17,8 +17,8 @@ const bookController = {
     ]});
 
     if (result.length === 0) {
-      const error = new Error("The server cannot find all books");
-      error.statusCode = 400;
+      const error = new Error("Il n'y a pas livres dans la base de données");
+      error.statusCode = 404;
       return next(error);
     }
     res.status(200).json(result);
@@ -44,7 +44,7 @@ const bookController = {
 
     // checking if result exist, if it's not, go to the middleware errorHandler
     if (!result) {
-      const error = new Error("This book doesn't exist");
+      const error = new Error("Ce livre n'existe pas");
       error.statusCode = 404;
       return next(error);
     }
