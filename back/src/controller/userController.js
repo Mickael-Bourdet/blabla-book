@@ -6,16 +6,16 @@ const userController = {
     const id = parseInt(req.params.userId);
 
     //get the user
-    const result = await User.findByPk(id, {
-      include: ["books_is_read", "books_maybe_read"],
+    const user = await User.findByPk(id, {
+        include: ["books_already_read", "books_wish_read"],
     });
-    if (!result) {
-      const error = new Error("User not found");
+    if (!user) {
+      const error = new Error("Utilisateur non trouvé");
       error.status = 409;
       return next(error);
     }
 
-    res.status(200).json(result);
+    res.status(200).json(user);
   },
 
   //get update one user :name email password
@@ -23,9 +23,9 @@ const userController = {
     const id = parseInt(req.params.userId);
 
     //get the user
-    const result = await User.findByPk(id);
-    if (!result) {
-      const error = new Error("User not found");
+    const user = await User.findByPk(id);
+    if (!user) {
+      const error = new Error("Utilisateur non trouvé");
       error.status = 409;
       return next(error);
     }
@@ -33,19 +33,19 @@ const userController = {
     const { email, name, password } = req.body;
 
     if (email) {
-      result.email = email;
+      user.email = email;
     }
     if (name) {
-      result.name = name;
+      user.name = name;
     }
 
     if (password) {
-      result.password = password;
+      user.password = password;
     }
     // save change
-    await result.save();
+    await user.save();
 
-    res.status(200).json(result);
+    res.status(200).json(user);
   },
 
   //delete one user
@@ -56,14 +56,14 @@ const userController = {
     const user = await User.findByPk(id);
 
     if (!user) {
-      const error = new Error("User not found");
+      const error = new Error("Utilisateur non trouvé");
       error.status = 409;
       return next(error);
     } else {
       //delete the user
       await user.destroy();
 
-      res.status(200).json({ message: "delete succes" });
+      res.status(200).json({ message: "Utilisateur supprimé" });
     }
   },
 };
