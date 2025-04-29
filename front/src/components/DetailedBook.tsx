@@ -10,10 +10,16 @@ const BookDetail = () => {
   useEffect(() => {
     const loadData = async () => {
       if (bookId) {
-        const newBook = await getOneBook(Number.parseInt(bookId));
-        setBook(newBook);
+        try {
+          const newBook = await getOneBook(Number.parseInt(bookId));
+          setBook(newBook);
+          
+        } catch (error) {
+          console.error("Erreur lors de la récupération du livre", error);
+        }
       }
     };
+    
     loadData();
   }, [bookId]);
 
