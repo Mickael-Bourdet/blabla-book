@@ -67,7 +67,7 @@ async function seedDatabase() {
         description:
           "After raconte l’histoire de Tessa Young, une étudiante sérieuse qui tombe amoureuse de Hardin Scott, un jeune homme impulsif. Leur relation passionnée les entraîne dans des montagnes russes émotionnelles, entre amour, colère, réconciliation et trahison.",
         published: "2016",
-        cover_url: "dfc8bae545651e0e323c7478a55172a0",
+        cover_url: "1459864478i/29781320",
         page_count: "816",
       },
       {
@@ -76,7 +76,7 @@ async function seedDatabase() {
         description:
           "Lily Bloom, une jeune femme qui a grandi dans un environnement difficile, rencontre Ryle Kincaid, un chirurgien ambitieux. Leur relation tumultueuse la confronte à ses propres choix entre l'amour et la sécurité.",
         published: "2016",
-        cover_url: "4360bc678aad68152f1a5bc25bd55177",
+        cover_url: "1725582473i/218517898",
         page_count: "376",
       },
       {
@@ -85,7 +85,7 @@ async function seedDatabase() {
         description:
           " L’histoire poignante de deux adolescents, Hazel et Gus, qui luttent contre le cancer. Ils vivent une histoire d'amour extraordinaire, malgré la souffrance, et découvrent l'impact profond qu'ils ont l'un sur l'autre.",
         published: "2012",
-        cover_url: "09d3c31afe62d073e3535401bde5205e",
+        cover_url: "1354914714i/16176099",
         page_count: "326",
       },
       {
@@ -94,7 +94,7 @@ async function seedDatabase() {
         description:
           "Elizabeth Bennet, l’héroïne du roman, lutte contre ses sentiments pour le riche et hautain Mr. Darcy. Ce classique explore les thèmes de l'amour, de la classe sociale et des malentendus.",
         published: "2024",
-        cover_url: "9c6bf8dddc90de553658bbb0166db9c4",
+        cover_url: "1730186529i/216428118",
         page_count: "448",
       },
       {
