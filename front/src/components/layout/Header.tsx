@@ -6,7 +6,7 @@ const Header = () => {
         {/* La marge à gauche de 64 pour faire de la place à la Sidebar mais elle prend toute la place quand celle ci disparait */}
         <header className="bg-header flex items-center justify-between p-4 left-0 w-full pl-64 backdrop-blur-sm transition-all">
           <div className="logo flex items-center gap-2 mb-10 md:hidden">
-            <img src="logo.png" alt="BlaBlaBook" className="w-8" />
+            <img src="./blablabook.webp" alt="BlaBlaBook" className="w-30" />
             <h1 className="text-xl">BlaBlaBook</h1>
           </div>
           <div className="search-bar relative w-64 hidden md:block">
