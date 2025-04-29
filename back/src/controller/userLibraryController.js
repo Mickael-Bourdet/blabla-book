@@ -2,9 +2,10 @@ import { User, Book } from "../models/associations.js";
 
 const userLibraryController = {
   /**
-   * @param {Request} req
-   * @param {Response} res
-   * @param {NextFunction} next
+   * @param {Request} req - Express request object.
+   * @param {Response} res - Express response object.
+   * @param {NextFunction} next - Express next middleware function.
+   * @throws {Error} Utilisateur non trouvé (404)
    */
   async getLibrary(req, res, next) {
     const id = parseInt(req.params.userId);
@@ -22,12 +23,15 @@ const userLibraryController = {
     res.status(200).json(result);
   },
 
-  /**
-   * @param {Request} req
-   * @param {Response} res
-   * @param {NextFunction} next
+
+   /**
+   * @param {Request} req - Express request object.
+   * @param {Response} res - Express response object.
+   * @param {NextFunction} next - Express next middleware function.
+   * @throws {Error} Utilisateur non trouvé (409)
+   * @throws {Error} Livre non trouvé (409)
    */
-  async addToMyReadLibrary(req, res, next) {
+   async addToMyReadLibrary(req, res, next) {
     const userId = parseInt(req.params.userId);
     const bookId = parseInt(req.params.bookId);
 
@@ -50,35 +54,39 @@ const userLibraryController = {
     res.status(200).json({ message: "Livre ajouté à la liste des livres lus" });
   },
 
-  /**
-   * @param {Request} req
-   * @param {Response} res
-   * @param {NextFunction} next
+
+    /**
+   * @param {Request} req - Express request object.
+   * @param {Response} res - Express response object.
+   * @param {NextFunction} next - Express next middleware function.
+   * @throws {Error} Utilisateur ou livre non trouvé (409)
    */
-  async deleteToMyReadLibrary(req, res, next) {
-    const userId = parseInt(req.params.userId);
-    const bookId = parseInt(req.params.bookId);
-
-    const user = await User.findByPk(userId);
-    const book = await Book.findByPk(bookId);
-
-    if (!user || !book) {
-      const error = new Error("Utilisateur ou livre non trouvé");
-      error.status = 409;
-      return next(error);
-    }
-
-    await user.removeBooks_is_read(book);
-
-    res.status(200).json({ message: "Livre retiré de la liste des livres lus" });
-  },
-
-  /**
-   * @param {Request} req
-   * @param {Response} res
-   * @param {NextFunction} next
+    async deleteToMyReadLibrary(req, res, next) {
+        const userId = parseInt(req.params.userId);
+        const bookId = parseInt(req.params.bookId);
+    
+        const user = await User.findByPk(userId);
+        const book = await Book.findByPk(bookId);
+    
+        if (!user || !book) {
+          const error = new Error("Utilisateur ou livre non trouvé");
+          error.status = 409;
+          return next(error);
+        }
+    
+        await user.removeBooks_is_read(book);
+    
+        res.status(200).json({ message: "Livre retiré de la liste des livres lus" });
+      },
+    
+   /**
+   * @param {Request} req - Express request object.
+   * @param {Response} res - Express response object.
+   * @param {NextFunction} next - Express next middleware function.
+   * @throws {Error} Utilisateur non trouvé (409)
+   * @throws {Error} Livre non trouvé (409)
    */
-  async addToWishRead(req, res, next) {
+   async addToWishRead(req, res, next) {
     const userId = parseInt(req.params.userId);
     const bookId = parseInt(req.params.bookId);
 
@@ -101,12 +109,13 @@ const userLibraryController = {
     res.status(200).json({ message: "Livre ajouté à la liste des livres à lire" });
   },
 
-  /**
-   * @param {Request} req
-   * @param {Response} res
-   * @param {NextFunction} next
+   /**
+   * @param {Request} req - Express request object.
+   * @param {Response} res - Express response object.
+   * @param {NextFunction} next - Express next middleware function.
+   * @throws {Error} Utilisateur ou livre non trouvé (409)
    */
-  async deleteToWishRead(req, res, next) {
+   async deleteToWishRead(req, res, next) {
     const userId = parseInt(req.params.userId);
     const bookId = parseInt(req.params.bookId);
 
@@ -123,6 +132,7 @@ const userLibraryController = {
 
     res.status(200).json({ message: "Livre retiré de la liste des livres à lire" });
   },
+
 };
 
 export { userLibraryController };
