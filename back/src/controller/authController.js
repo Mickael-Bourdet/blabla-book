@@ -99,7 +99,7 @@ const authController = {
     const token = generateJwtToken({ userId: user.id });
 
     // 4. Send the JWT token and its expiration time in the response
-    res.json({ token, expiresIn: "8h" });
+    res.json({ token, expiresIn: "1h" });
   },
 
   /**
