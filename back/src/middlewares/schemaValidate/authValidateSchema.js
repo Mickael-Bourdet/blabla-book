@@ -13,7 +13,7 @@ const registerSchema = Joi.object({
     "string.min": "Le le nom doit contenir au moins 3 caractères",
     "string.max": "Le nom doit contenir au plus 50 caractères",
   }),
-  email: Joi.string().required(),
+  email: Joi.string().trim().required(),
   password: joiPassword
     .string()
     .min(12)
@@ -40,6 +40,3 @@ const registerSchema = Joi.object({
 });
 
 export { registerSchema };
-
-// Ajout des messages pour Joi
-// Ajout de trim -> A vérifié si j'en ai besoin
