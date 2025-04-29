@@ -10,18 +10,18 @@ const bookController = {
    * @returns {void}
    */
   async getAllBooks(req, res, next) {
-    const books = await Book.findAll({
+    const result = await Book.findAll({
       include: [
       { association: "categories"},
       { association: "authors"}
     ]});
 
-    if (books.length === 0) {
+    if (result.length === 0) {
       const error = new Error("The server cannot find all books");
       error.statusCode = 400;
       return next(error);
     }
-    res.status(200).json(books);
+    res.status(200).json(result);
   },
 
   /**
