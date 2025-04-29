@@ -1,3 +1,5 @@
+import { popularBooks } from "../data/popularBooks";
+
 const PopularBooks = () => {
   return (
     <>
@@ -6,60 +8,22 @@ const PopularBooks = () => {
         {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
         <main className="p-4">
           <section className="content">
-            <h2 className="text-xl mb-4 font-bold mt-[100px] ">
-              Livres populaires
-            </h2>
+            <h2 className="text-xl mb-4 font-bold mt-[100px] ">Livres populaires</h2>
             <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              <a href="/books/bookid" className="block">
-                <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                  <img
-                    src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                    alt="Le Comte de Monte-Cristo - Dumas"
-                    className="h-auto w-full object-cover mb-2"
-                  />
-                  <p>Le Comte de Monte-Cristo</p>
-                </div>
-              </a>
-              <a href="/books/bookid" className="block">
-                <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                  <img
-                    src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                    alt="Le Comte de Monte-Cristo - Dumas"
-                    className="h-auto w-full object-cover mb-2"
-                  />
-                  <p>Le Comte de Monte-Cristo</p>
-                </div>
-              </a>
-              <a href="/books/bookid" className="block">
-                <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                  <img
-                    src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                    alt="Le Comte de Monte-Cristo - Dumas"
-                    className="h-auto w-full object-cover mb-2"
-                  />
-                  <p>Le Comte de Monte-Cristo</p>
-                </div>
-              </a>
-              <a href="/books/bookid" className="block">
-                <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                  <img
-                    src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                    alt="Le Comte de Monte-Cristo - Dumas"
-                    className="h-auto w-full object-cover mb-2"
-                  />
-                  <p>Le Comte de Monte-Cristo</p>
-                </div>
-              </a>
-              <a href="/books/bookid" className="block">
-                <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                  <img
-                    src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                    alt="Le Comte de Monte-Cristo - Dumas"
-                    className="h-auto w-full object-cover mb-2"
-                  />
-                  <p>Le Comte de Monte-Cristo</p>
-                </div>
-              </a>
+              {popularBooks.map((popularBook) => {
+                return (
+                  <a key={popularBook.id} href={`/books/${popularBook.id}`} className="block">
+                    <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
+                      <img
+                        src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${popularBook.cover_url}.jpg`}
+                        alt={popularBook.title}
+                        className="h-auto w-full object-cover mb-2"
+                      />
+                      <p> {popularBook.title} </p>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </section>
         </main>
