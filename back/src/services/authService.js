@@ -29,7 +29,7 @@ export async function compare(plainTextPassword, hashedPassword) {
  * @returns {string} - The generated JWT token.
  */
 export function generateJwtToken(payload) {
-  return jwt.sign(payload, "your_secret_key", { expiresIn: "8h" });
+  return jwt.sign(payload, "your_secret_key", { expiresIn: "1h" });
 }
 
 /**

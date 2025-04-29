@@ -7,8 +7,8 @@ import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
 import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
-import ProfilPageBook from "./pages/Profilepage";
-
+import ProfilePage from "./components/ProfilePage";
+import Authentication from "./pages/Authentication";
 
 function App() {
   return (
@@ -20,7 +20,8 @@ function App() {
         <Route path="/books/:bookId" element={<DetailPage />} />
         <Route path="/library" element={<Library />} />
         <Route path="/settings" element={<SettingsUser />} />
-        <Route path="/profile" element={<ProfilPageBook />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/auth" element={<Authentication />} />
       </Routes>
       <Footer />
     </>
