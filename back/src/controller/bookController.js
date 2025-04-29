@@ -7,7 +7,7 @@ const bookController = {
    * @param {Object} req - Express request object.
    * @param {Object} res - Express response object.
    * @param {Function} next - Express next middleware function.
-   * @returns {void}
+   * @returns {Array} - Object
    */
   async getAllBooks(req, res, next) {
     const result = await Book.findAll({
@@ -30,7 +30,7 @@ const bookController = {
    * @param {Object} req - Express request object.
    * @param {Object} res - Express response object.
    * @param {Function} next - Express next middleware function.
-   * @returns {void}
+   * @returns {Object}
    */
   async getOneBook(req, res, next) {
     const id = parseInt(req.params.bookId);
