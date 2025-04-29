@@ -18,7 +18,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/books/:bookId" element={<DetailPage />} />
-        <Route path="/books" element={<Library />} />
         <Route path="/library" element={<Library />} />
         <Route path="/settings" element={<SettingsUser />} />
         <Route path="/profile" element={<ProfilPageBook />} />
