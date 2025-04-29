@@ -26,16 +26,11 @@ export const createBookSchema = Joi.object({
 
   description: Joi.string().trim().allow(null, ""),
 
-  published: Joi.number()
-    .integer()
-    .positive()
-    .max(new Date().getFullYear())
-    .messages({
-      "published.base": "L'année de publication doit être un nombre",
-      "published.min": "L'année de publication doit être postérieur à l'an 0",
-      "published.max":
-        "L'année de publication ne doit pas dépasser l'année actuel",
-    }),
+  published: Joi.number().integer().positive().max(new Date().getFullYear()).messages({
+    "published.base": "L'année de publication doit être un nombre",
+    "published.min": "L'année de publication doit être postérieur à l'an 0",
+    "published.max": "L'année de publication ne doit pas dépasser l'année actuel",
+  }),
 
   cover_url: Joi.string().trim().allow(null, ""),
 
@@ -63,16 +58,11 @@ export const updateBookSchema = Joi.object({
 
   description: Joi.string().trim().allow(null, ""),
 
-  published: Joi.number()
-    .integer()
-    .positive()
-    .max(new Date().getFullYear())
-    .messages({
-      "published.base": "L'année de publication doit être un nombre",
-      "published.min": "L'année de publication doit être postérieur à l'an 0",
-      "published.max":
-        "L'année de publication ne doit pas dépasser l'année actuel",
-    }),
+  published: Joi.number().integer().positive().max(new Date().getFullYear()).messages({
+    "published.base": "L'année de publication doit être un nombre",
+    "published.min": "L'année de publication doit être postérieur à l'an 0",
+    "published.max": "L'année de publication ne doit pas dépasser l'année actuel",
+  }),
 
   cover_url: Joi.string().trim().allow(null, ""),
 

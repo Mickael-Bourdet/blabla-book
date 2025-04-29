@@ -1,4 +1,4 @@
-export const Header = () => {
+const Header = () => {
   return (
     <>
       <div className=" flex-1 ml-0 md:ml-64 sticky top-0">
@@ -11,16 +11,24 @@ export const Header = () => {
           </div>
           <div className="search-bar relative w-64 hidden md:block">
             <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2  ml-8 "></i>
-            <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
+            <input
+              type="text"
+              placeholder="Chercher un livre"
+              className=" px-4 py-2 pl-10 border rounded-md ml-8 "
+            />
           </div>
           <nav className="hidden md:flex gap-6 ">
             <a href="/">
               <i className="fa-solid fa-house-chimney"></i>{" "}
-              <span className="whitespace-nowrap hidden xl:inline">Accueil</span>
+              <span className="whitespace-nowrap hidden xl:inline">
+                Accueil
+              </span>
             </a>
             <a href="/library">
               <i className="fa-solid fa-book"></i>
-              <span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span>{" "}
+              <span className="whitespace-nowrap hidden xl:inline">
+                Bibliothèque
+              </span>{" "}
             </a>
             <a href="/auth">
               <i className="fa-solid fa-user"></i>
@@ -47,3 +55,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Header;

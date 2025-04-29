@@ -15,45 +15,17 @@ async function seedDatabase() {
     console.log("Base de donnée synchronisée ✅");
     console.log("Data inserted:");
 
- // create users
+    // create users
     const userData = [
-        {
-            email: "azerty@123.com",
-            name: "Patoche",
-            password:"Motdepasse01?",
-           
-          },
-          {
-            email: "azerty@234.com",
-            name: "Pierroche",
-            password:"Motdepasse01?",
-           
-          },
-          {
-            email: "azerty@456.com",
-            name: "Loloche",
-            password:"Motdepasse01?",
-           
-          },
-          {
-            email: "azerty@567.com",
-            name: "Patocvefehe",
-            password:"Motdepasse01?",
-           
-          },
-          {
-            email: "azerty@568.com",
-            name: "Patocyetrvefehe",
-            password:"Motdepasse01?",
-           
-          },
-      
-          
-
+      {
+        email: "azerty@123.com",
+        name: "Admin",
+        password: "Motdepasse01?",
+      }
     ];
 
     const user = await User.bulkCreate(userData);
-    console.log(userData.length, "User ")
+    console.log(userData.length, "User ");
 
     // create catégories
     const categoryData = [
@@ -95,7 +67,7 @@ async function seedDatabase() {
         description:
           "After raconte l’histoire de Tessa Young, une étudiante sérieuse qui tombe amoureuse de Hardin Scott, un jeune homme impulsif. Leur relation passionnée les entraîne dans des montagnes russes émotionnelles, entre amour, colère, réconciliation et trahison.",
         published: "2016",
-        cover_url: "dfc8bae545651e0e323c7478a55172a0",
+        cover_url: "1459864478i/29781320",
         page_count: "816",
       },
       {
@@ -104,7 +76,7 @@ async function seedDatabase() {
         description:
           "Lily Bloom, une jeune femme qui a grandi dans un environnement difficile, rencontre Ryle Kincaid, un chirurgien ambitieux. Leur relation tumultueuse la confronte à ses propres choix entre l'amour et la sécurité.",
         published: "2016",
-        cover_url: "4360bc678aad68152f1a5bc25bd55177",
+        cover_url: "1725582473i/218517898",
         page_count: "376",
       },
       {
@@ -113,7 +85,7 @@ async function seedDatabase() {
         description:
           " L’histoire poignante de deux adolescents, Hazel et Gus, qui luttent contre le cancer. Ils vivent une histoire d'amour extraordinaire, malgré la souffrance, et découvrent l'impact profond qu'ils ont l'un sur l'autre.",
         published: "2012",
-        cover_url: "09d3c31afe62d073e3535401bde5205e",
+        cover_url: "1354914714i/16176099",
         page_count: "326",
       },
       {
@@ -122,7 +94,7 @@ async function seedDatabase() {
         description:
           "Elizabeth Bennet, l’héroïne du roman, lutte contre ses sentiments pour le riche et hautain Mr. Darcy. Ce classique explore les thèmes de l'amour, de la classe sociale et des malentendus.",
         published: "2024",
-        cover_url: "9c6bf8dddc90de553658bbb0166db9c4",
+        cover_url: "1730186529i/216428118",
         page_count: "448",
       },
       {
@@ -187,29 +159,26 @@ async function seedDatabase() {
     );
 
     const userBooksReadAssociation = [
-        { user_id: 1, book_id: 1 }, 
-        { user_id: 1, book_id: 3 }, 
-        { user_id: 2, book_id: 2 }, 
-        { user_id: 3, book_id: 4 }, 
-        { user_id: 3, book_id: 5 }, 
-      ];
-      
-      // Insérer des associations dans la table de jointure book_read
-      await sequelize.models.book_read.bulkCreate(userBooksReadAssociation);
+      { user_id: 1, book_id: 1 },
+      { user_id: 1, book_id: 3 },
+      { user_id: 2, book_id: 2 },
+      { user_id: 3, book_id: 4 },
+      { user_id: 3, book_id: 5 },
+    ];
 
+    // Insérer des associations dans la table de jointure book_read
+    await sequelize.models.book_read.bulkCreate(userBooksReadAssociation);
 
-      const bookToReadData = [
-        { user_id: user[0].id, book_id: books[0].id },
-        { user_id: user[0].id, book_id: books[1].id },
-        { user_id: user[1].id, book_id: books[2].id },
-        { user_id: user[1].id, book_id: books[3].id },
-        { user_id: user[2].id, book_id: books[4].id },
-        
-      ];
-  
-      // Insérer les associations dans la table de jonction
-      await sequelize.models.book_to_read.bulkCreate(bookToReadData);
+    const bookToReadData = [
+      { user_id: user[0].id, book_id: books[0].id },
+      { user_id: user[0].id, book_id: books[1].id },
+      { user_id: user[1].id, book_id: books[2].id },
+      { user_id: user[1].id, book_id: books[3].id },
+      { user_id: user[2].id, book_id: books[4].id },
+    ];
 
+    // Insérer les associations dans la table de jonction
+    await sequelize.models.book_to_read.bulkCreate(bookToReadData);
   } catch (error) {
     console.error("Erreur lors du seeding :", error);
   } finally {
