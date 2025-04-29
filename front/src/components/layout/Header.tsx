@@ -1,4 +1,4 @@
-export const Header = () => {
+const Header = () => {
   return (
     <>
       <div className=" flex-1 ml-0 md:ml-64 sticky top-0">
@@ -55,3 +55,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Header;

@@ -1,17 +1,20 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home";
-import Navbars from "./components/Navbar";
+import Navbars from "./components/layout/Navbar";
+import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
 import Library from "./pages/Library";
 import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 
+
 function App() {
   return (
     <>
       <Navbars />
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/books/:bookId" element={<DetailPage />} />
