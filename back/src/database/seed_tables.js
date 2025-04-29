@@ -1,10 +1,4 @@
-import {
-  sequelize,
-  Author,
-  Book,
-  Category,
-  User,
-} from "../models/associations.js";
+import { sequelize, Author, Book, Category, User } from "../models/associations.js";
 
 async function seedDatabase() {
   try {
@@ -21,7 +15,7 @@ async function seedDatabase() {
         email: "azerty@123.com",
         name: "Admin",
         password: "Motdepasse01?",
-      }
+      },
     ];
 
     const user = await User.bulkCreate(userData);
@@ -124,6 +118,27 @@ async function seedDatabase() {
         cover_url: "08b507e9ed097859998cfe6106d7bdad",
         page_count: "480",
       },
+
+      //  TODO : supprimer ici
+
+      {
+        isbn: "9791032710265",
+        title: "Les Carnets de l’Apothicaire",
+        description:
+          " Maomao est toujours en mission au palais impérial, où elle continue d’utiliser son intelligence pour résoudre des mystères liés aux poisons et à la politique complexe qui règne dans l’empire. Ce tome approfondit les intrigues et les relations entre les personnages.",
+        published: 2016,
+        cover_url: "1636297509i/59539064",
+        page_count: 159,
+      },
+      {
+        isbn: "9782377352654",
+        title: "Les Aventures de Sherlock Holmes",
+        description:
+          "Le détective Sherlock Holmes, avec son acolyte le Dr Watson, résout des mystères complexes à travers des enquêtes brillantes. Ce recueil regroupe certaines de ses aventures les plus célèbres.",
+        published: 2019,
+        cover_url: "1598474896i/55134619",
+        page_count: 393,
+      },
     ];
 
     const books = await Book.bulkCreate(bookData);
@@ -154,9 +169,7 @@ async function seedDatabase() {
       { book_id: 7, category_id: 1 },
     ];
 
-    await sequelize.models.book_has_category.bulkCreate(
-      bookCategoryAssociation
-    );
+    await sequelize.models.book_has_category.bulkCreate(bookCategoryAssociation);
 
     const userBooksReadAssociation = [
       { user_id: 1, book_id: 1 },
