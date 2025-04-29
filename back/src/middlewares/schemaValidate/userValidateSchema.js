@@ -8,7 +8,7 @@ const UpdateUserSchema = Joi.object({
   name: Joi.string().min(3).max(50).messages({
     "string.base": "Le nom doit être une chaîne de caractères",
     "string.min": "Le le nom doit contenir au moins 3 caractères",
-    "string.max": "Le nom doit contenir au plus 100 caractères",
+    "string.max": "Le nom doit contenir au plus 50 caractères",
   }),
   password: joiPassword
     .string()
