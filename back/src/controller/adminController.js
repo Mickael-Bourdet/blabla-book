@@ -100,14 +100,15 @@ const adminController = {
    * @param {object} req -- Express request object (expects `name` in body).
    * @param {object} res -Express response object.
    * @param {function} next - Express next middleware function.
-   */
+   * @return {object}- status 201 
+  */
 
-  // to add a category to the database
+  
   async createCategory(req, res, next) {
-    // get a data send
+   
     const { name } = req.body;
 
-    // verify that that the field 'name' is present
+    
     if (!name) {
       const error = new Error("Le champ 'name' est obligatoire");
       error.statusCode = 400;
@@ -125,9 +126,10 @@ const adminController = {
    * @param {object} req -Express request object (expects `categoryId` as param).
    * @param {object} res -Express response object
    * @param {function} next - Express next middleware function.
-   */
+   * @return {object}- status 200  
+  */
 
-  // to update a category to the database
+  
   async updateCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
 
@@ -136,14 +138,14 @@ const adminController = {
       const error = new Error("La mise à jour est impossible ");
       error.statusCode = 404;
 
-      return next(error); // 404 error
+      return next(error); 
     }
-    //modify before save
-    const { name } = req.body; // to extract the proprety of name from req.body
+   
+    const { name } = req.body; 
 
     //
     if (name) {
-      category.name = name; //changes old name to the new name
+      category.name = name; 
     }
 
     await category.save();
@@ -156,9 +158,10 @@ const adminController = {
    * @param {object} req -Express request object
    * @param {object} res -Express response object, returns success message.
    * @param {function} next - Express next middleware function, used to handle errors.
-   */
+   * @return {void}- status 204  
+  */
 
-  //to delete a category
+  
   async deleteCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
 
