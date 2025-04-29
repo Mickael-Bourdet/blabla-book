@@ -7,8 +7,13 @@ const Library = () => {
 
   useEffect(() => {
     async function fetchBooks() {
-      const data = await getAllBooks();
-      setBooks(data);
+      try {
+        const data = await getAllBooks();
+        setBooks(data);
+        
+      } catch (error) {
+        console.error("Erreur lors de la récupération des livres", error)
+      }
     }
     fetchBooks();
   }, []);
