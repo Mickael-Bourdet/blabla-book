@@ -180,6 +180,7 @@ const adminController = {
    * @param {Object} req - Express request object (expects `authorId` as param and `name` in body).
    * @param {Object} res - Express response object.
    * @param {Function} next - Express next middleware function.
+   * @returns {Object} - author
    */
   async updateAuthor(req, res, next) {
     const id = parseInt(req.params.authorId);
@@ -188,7 +189,7 @@ const adminController = {
 
     // check if author exist, if it doesn't, go to tne error middleware
     if (!author) {
-      const error = new Error("This author doesn't exist");
+      const error = new Error("Cet auteur n'existe pas");
       error.statusCode = 404;
       return next(error);
     }
@@ -209,21 +210,21 @@ const adminController = {
    * @param {Object} req - Express request object, must contain `authorId` as route param.
    * @param {Object} res - Express response object, returns success message.
    * @param {Function} next - Express next middleware function, used to handle errors.
+   * @returns {void}
    */
   async deleteAuthor(req, res, next) {
     const id = parseInt(req.params.authorId);
     const author = await Author.findByPk(id);
 
     if (!author) {
-      const error = new Error("This author doesn't exist");
+      const error = new Error("Cet auteur n'existe pas");
       error.statusCode = 404;
       return next(error);
     }
 
     await author.destroy();
 
-    // Discuss : 200 ou 204 ?
-    res.status(200).json({ message: "Author successfully deleted." });
+    res.status(204).json({ message: "Auteur effacé avec succès" });
   },
 
   /**
@@ -231,6 +232,7 @@ const adminController = {
    * @description Create a new author with the provided name.
    * @param {Object} req - Express request object (expects `name` in `req.body`).
    * @param {Object} res - Express response object.
+   * @returns {Object} - author
    */
   async addAuthor(req, res) {
     const { name } = req.body;
