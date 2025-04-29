@@ -7,7 +7,7 @@ import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
 import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
-import ProfilePage from "./components/ProfilePage";
+import ProfilPageBook from "./pages/Profilepage";
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/books" element={<Library />} />
         <Route path="/library" element={<Library />} />
         <Route path="/settings" element={<SettingsUser />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilPageBook />} />
       </Routes>
       <Footer />
     </>
