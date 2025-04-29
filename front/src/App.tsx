@@ -9,6 +9,7 @@ import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
+import ErrorNotFound from "./pages/ErrorNotFound";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/settings" element={<SettingsUser />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/auth" element={<Authentication />} />
+        <Route path="*" element={<ErrorNotFound />} />
       </Routes>
       <Footer />
     </>
