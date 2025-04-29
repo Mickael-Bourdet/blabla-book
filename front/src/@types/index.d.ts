@@ -4,7 +4,7 @@ export interface ICategory {
 }
 
 export interface IBook {
-  id: number
+  id: number;
   title: string;
   isbn: string;
   description: string | null;
