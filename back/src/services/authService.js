@@ -46,3 +46,6 @@ export function verifyJwtToken(token) {
     return null;
   }
 }
+
+// A vérifié si on peut supprimer un token selon si t'es sur desktop ou mobile
+// Docs express pour l'histoire des try catch

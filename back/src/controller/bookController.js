@@ -7,21 +7,21 @@ const bookController = {
    * @param {Object} req - Express request object.
    * @param {Object} res - Express response object.
    * @param {Function} next - Express next middleware function.
-   * @returns {void}
+   * @returns {Array} - Object
    */
   async getAllBooks(req, res, next) {
-    const books = await Book.findAll({
+    const result = await Book.findAll({
       include: [
       { association: "categories"},
       { association: "authors"}
     ]});
 
-    if (books.length === 0) {
-      const error = new Error("The server cannot find all books");
-      error.statusCode = 400;
+    if (result.length === 0) {
+      const error = new Error("Il n'y a pas livres dans la base de données");
+      error.statusCode = 404;
       return next(error);
     }
-    res.status(200).json(books);
+    res.status(200).json(result);
   },
 
   /**
@@ -30,7 +30,7 @@ const bookController = {
    * @param {Object} req - Express request object.
    * @param {Object} res - Express response object.
    * @param {Function} next - Express next middleware function.
-   * @returns {void}
+   * @returns {Object}
    */
   async getOneBook(req, res, next) {
     const id = parseInt(req.params.bookId);
@@ -44,7 +44,7 @@ const bookController = {
 
     // checking if result exist, if it's not, go to the middleware errorHandler
     if (!result) {
-      const error = new Error("This book doesn't exist");
+      const error = new Error("Ce livre n'existe pas");
       error.statusCode = 404;
       return next(error);
     }

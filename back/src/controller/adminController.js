@@ -100,14 +100,15 @@ const adminController = {
    * @param {object} req -- Express request object (expects `name` in body).
    * @param {object} res -Express response object.
    * @param {function} next - Express next middleware function.
-   */
+   * @return {object}- status 201 
+  */
 
-  // to add a category to the database
+  
   async createCategory(req, res, next) {
-    // get a data send
+   
     const { name } = req.body;
 
-    // verify that that the field 'name' is present
+    
     if (!name) {
       const error = new Error("Le champ 'name' est obligatoire");
       error.statusCode = 400;
@@ -125,9 +126,10 @@ const adminController = {
    * @param {object} req -Express request object (expects `categoryId` as param).
    * @param {object} res -Express response object
    * @param {function} next - Express next middleware function.
-   */
+   * @return {object}- status 200  
+  */
 
-  // to update a category to the database
+  
   async updateCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
 
@@ -136,14 +138,14 @@ const adminController = {
       const error = new Error("La mise à jour est impossible ");
       error.statusCode = 404;
 
-      return next(error); // 404 error
+      return next(error); 
     }
-    //modify before save
-    const { name } = req.body; // to extract the proprety of name from req.body
+   
+    const { name } = req.body; 
 
     //
     if (name) {
-      category.name = name; //changes old name to the new name
+      category.name = name; 
     }
 
     await category.save();
@@ -156,9 +158,10 @@ const adminController = {
    * @param {object} req -Express request object
    * @param {object} res -Express response object, returns success message.
    * @param {function} next - Express next middleware function, used to handle errors.
-   */
+   * @return {void}- status 204  
+  */
 
-  //to delete a category
+  
   async deleteCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
 
@@ -180,6 +183,7 @@ const adminController = {
    * @param {Object} req - Express request object (expects `authorId` as param and `name` in body).
    * @param {Object} res - Express response object.
    * @param {Function} next - Express next middleware function.
+   * @returns {Object} - author
    */
   async updateAuthor(req, res, next) {
     const id = parseInt(req.params.authorId);
@@ -188,7 +192,7 @@ const adminController = {
 
     // check if author exist, if it doesn't, go to tne error middleware
     if (!author) {
-      const error = new Error("This author doesn't exist");
+      const error = new Error("Cet auteur n'existe pas");
       error.statusCode = 404;
       return next(error);
     }
@@ -209,21 +213,21 @@ const adminController = {
    * @param {Object} req - Express request object, must contain `authorId` as route param.
    * @param {Object} res - Express response object, returns success message.
    * @param {Function} next - Express next middleware function, used to handle errors.
+   * @returns {void}
    */
   async deleteAuthor(req, res, next) {
     const id = parseInt(req.params.authorId);
     const author = await Author.findByPk(id);
 
     if (!author) {
-      const error = new Error("This author doesn't exist");
+      const error = new Error("Cet auteur n'existe pas");
       error.statusCode = 404;
       return next(error);
     }
 
     await author.destroy();
 
-    // Discuss : 200 ou 204 ?
-    res.status(200).json({ message: "Author successfully deleted." });
+    res.status(204).json({ message: "Auteur effacé avec succès" });
   },
 
   /**
@@ -231,6 +235,7 @@ const adminController = {
    * @description Create a new author with the provided name.
    * @param {Object} req - Express request object (expects `name` in `req.body`).
    * @param {Object} res - Express response object.
+   * @returns {Object} - author
    */
   async addAuthor(req, res) {
     const { name } = req.body;

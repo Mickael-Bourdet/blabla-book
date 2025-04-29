@@ -24,3 +24,6 @@ const registerSchema = Joi.object({
 });
 
 export { registerSchema };
+
+// Ajout des messages pour Joi
+// Ajout de trim -> A vérifié si j'en ai besoin

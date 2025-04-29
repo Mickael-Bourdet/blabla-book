@@ -41,7 +41,7 @@ Book.belongsToMany(User, {
 
 User.belongsToMany(Book, {
   through: "book_read",
-  as: "books_is_read",
+  as: "books_already_read",
   foreignKey: "user_id",
   otherKey: "book_id",
 });
@@ -55,7 +55,7 @@ Book.belongsToMany(User, {
 
 User.belongsToMany(Book, {
   through: "book_to_read",
-  as: "books_maybe_read",
+  as: "books_wish_read",
   foreignKey: "user_id",
   otherKey: "book_id",
 });
