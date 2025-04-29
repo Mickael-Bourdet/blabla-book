@@ -1,7 +1,11 @@
 import { User, Book } from "../models/associations.js";
 
 const userLibraryController = {
-  // Get the full library of a user (read and to-read lists)
+  /**
+   * @param {Request} req
+   * @param {Response} res
+   * @param {NextFunction} next
+   */
   async getLibrary(req, res, next) {
     const id = parseInt(req.params.userId);
 
@@ -18,7 +22,11 @@ const userLibraryController = {
     res.status(200).json(result);
   },
 
-  // Add a book to the user's "already read" list
+  /**
+   * @param {Request} req
+   * @param {Response} res
+   * @param {NextFunction} next
+   */
   async addToMyReadLibrary(req, res, next) {
     const userId = parseInt(req.params.userId);
     const bookId = parseInt(req.params.bookId);
@@ -42,7 +50,11 @@ const userLibraryController = {
     res.status(200).json({ message: "Livre ajouté à la liste des livres lus" });
   },
 
-  // Remove a book from the user's "already read" list
+  /**
+   * @param {Request} req
+   * @param {Response} res
+   * @param {NextFunction} next
+   */
   async deleteToMyReadLibrary(req, res, next) {
     const userId = parseInt(req.params.userId);
     const bookId = parseInt(req.params.bookId);
@@ -61,7 +73,11 @@ const userLibraryController = {
     res.status(200).json({ message: "Livre retiré de la liste des livres lus" });
   },
 
-  // Add a book to the user's "to read" list
+  /**
+   * @param {Request} req
+   * @param {Response} res
+   * @param {NextFunction} next
+   */
   async addToWishRead(req, res, next) {
     const userId = parseInt(req.params.userId);
     const bookId = parseInt(req.params.bookId);
@@ -85,7 +101,11 @@ const userLibraryController = {
     res.status(200).json({ message: "Livre ajouté à la liste des livres à lire" });
   },
 
-  // Remove a book from the user's "to read" list
+  /**
+   * @param {Request} req
+   * @param {Response} res
+   * @param {NextFunction} next
+   */
   async deleteToWishRead(req, res, next) {
     const userId = parseInt(req.params.userId);
     const bookId = parseInt(req.params.bookId);
