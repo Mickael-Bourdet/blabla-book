@@ -24,7 +24,7 @@ const authController = {
     if (existingUser) {
       return next({
         statusCode: 409,
-        message: "Email already used",
+        message: "E-mail déjà utilisé",
       });
     }
 
@@ -32,7 +32,7 @@ const authController = {
     if (isDisposableEmail(email)) {
       return next({
         statusCode: 400,
-        message: "Temporary email addresses are not accepted.",
+        message: "Les adresses e-mail temporaires ne sont pas acceptées",
       });
     }
 
@@ -41,7 +41,7 @@ const authController = {
     if (!domainIsValid) {
       return next({
         statusCode: 400,
-        message: "The email domain is invalid",
+        message: "Ce domain n'est pas valide.",
       });
     }
 
@@ -55,7 +55,7 @@ const authController = {
     // 5. Send a success response with the new user's data
     res.status(201).json({
       status: "success",
-      message: "User created successfully",
+      message: "Utilisateur créé avec succès.",
       data: {
         user: {
           id: newUser.id,
@@ -82,7 +82,7 @@ const authController = {
     if (!user) {
       return next({
         statusCode: 401,
-        message: "Invalid credentials",
+        message: "Identifiant invalide",
       });
     }
 
@@ -91,7 +91,7 @@ const authController = {
     if (!validPassword) {
       return next({
         statusCode: 401,
-        message: "Invalid credentials",
+        message: "Identifiant invalide",
       });
     }
 
