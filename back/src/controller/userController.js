@@ -1,69 +1,93 @@
 import { User, Book, Author } from "../models/associations.js";
 
 const userController = {
-  //get one user info wiht associate table
+  // Get one user with associated tables (already read books, wish-to-read books)
+  /**
+   * GET /user/:userId
+   * @summary Fetch a user's information along with their associated books (already read and wish-to-read).
+   * @param {number} userId.path.required - The ID of the user.
+   * @return {object} 200 - Success response with user data and associated books.
+   * @throws {Error} 409 - Utilisateur non trouvé.
+   */
   async getOneUser(req, res, next) {
     const id = parseInt(req.params.userId);
 
-    //get the user
-    const result = await User.findByPk(id, {
-      include: ["books_is_read", "books_maybe_read"],
+    // Fetch the user with associated books
+    const user = await User.findByPk(id, {
+        include: ["books_already_read", "books_wish_read"],
     });
-    if (!result) {
-      const error = new Error("User not found");
+    if (!user) {
+      const error = new Error("Utilisateur non trouvé");
       error.status = 409;
       return next(error);
     }
 
-    res.status(200).json(result);
+    res.status(200).json(user);
   },
 
-  //get update one user :name email password
+  // Update a user's information (name, email, password)
+  /**
+   * PATCH /user/:userId
+   * @summary Update a user's information such as name, email, and password.
+   * @param {number} userId.path.required - The ID of the user to update.
+   * @param {object} body.body.required - The fields to update (email, name, password).
+   * @return {object} 200 - Success response with updated user data.
+   * @throws {Error} 409 - Utilisateur non trouvé.
+   */
   async updateUser(req, res, next) {
     const id = parseInt(req.params.userId);
 
-    //get the user
-    const result = await User.findByPk(id);
-    if (!result) {
-      const error = new Error("User not found");
+    // Fetch the user
+    const user = await User.findByPk(id);
+    if (!user) {
+      const error = new Error("Utilisateur non trouvé");
       error.status = 409;
       return next(error);
     }
-    // get the req body and change
+
+    // Update the user data
     const { email, name, password } = req.body;
 
     if (email) {
-      result.email = email;
+      user.email = email;
     }
     if (name) {
-      result.name = name;
+      user.name = name;
     }
 
     if (password) {
-      result.password = password;
+      user.password = password;
     }
-    // save change
-    await result.save();
 
-    res.status(200).json(result);
+    // Save the updated user data
+    await user.save();
+
+    res.status(200).json(user);
   },
 
-  //delete one user
+  // Delete a user
+  /**
+   * DELETE /user/:userId
+   * @summary Delete a specific user.
+   * @param {number} userId.path.required - The ID of the user to delete.
+   * @return {object} 200 - Success message indicating the user was deleted.
+   * @throws {Error} 409 - Utilisateur non trouvé.
+   */
   async deleteUser(req, res, next) {
     const id = parseInt(req.params.userId);
 
-    //get the user
+    // Fetch the user
     const user = await User.findByPk(id);
 
     if (!user) {
-      const error = new Error("User not found");
+      const error = new Error("Utilisateur non trouvé");
       error.status = 409;
       return next(error);
     } else {
-      //delete the user
+      // Delete the user
       await user.destroy();
 
-      res.status(200).json({ message: "delete succes" });
+      res.status(200).json({ message: "Utilisateur supprimé" });
     }
   },
 };
