@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { IBooks } from "../@types";
-import { getAllBooks } from "../api/index";
+import { getAllBooks } from "../api/apiBooks";
 
 const Library = () => {
   const [books, setBooks] = useState<IBooks>([]);
 
   useEffect(() => {
     async function fetchBooks() {
-      const data = await getAllBooks();
-      setBooks(data);
+      try {
+        const data = await getAllBooks();
+        setBooks(data);
+        
+      } catch (error) {
+        console.error("Erreur lors de la récupération des livres", error)
+      }
     }
     fetchBooks();
   }, []);
