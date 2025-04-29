@@ -5,7 +5,7 @@ import Navbars from "./components/layout/Navbar";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
-import Library from "./pages/Library";
+import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 
