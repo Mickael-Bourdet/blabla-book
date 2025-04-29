@@ -59,11 +59,9 @@ const BookDetail = () => {
 
             <div className="flex gap-20 mt-4 ml-30">
               <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2">
-                <input type="checkbox" />
                 <span>Lu</span>
               </button>
               <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2">
-                <input type="checkbox" />
                 <span>a Lire</span>
               </button>
             </div>
