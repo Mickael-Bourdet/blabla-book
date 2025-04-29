@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { IBook } from "../@types";
-import { getOneBook } from "../api";
+import { getOneBook } from "../api/apiBooks";
 
 const BookDetail = () => {
   const { bookId } = useParams();
@@ -13,6 +13,7 @@ const BookDetail = () => {
         try {
           const newBook = await getOneBook(Number.parseInt(bookId));
           setBook(newBook);
+          console.log(book);
           
         } catch (error) {
           console.error("Erreur lors de la récupération du livre", error);

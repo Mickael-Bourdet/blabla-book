@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { IBooks } from "../@types";
-import { getAllBooks } from "../api/index";
+import { getAllBooks } from "../api/apiBooks";
 
 const Library = () => {
   const [books, setBooks] = useState<IBooks>([]);
