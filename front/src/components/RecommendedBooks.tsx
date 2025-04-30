@@ -7,7 +7,7 @@ const RecommendedBooks = () => {
       <div className="md:ml-64">
         {" "}
         {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
-        <main className="p-4">
+        <main className="p-4 bg-body">
           <section className="content">
             <h2 className="text-xl mt-8 mb-4 font-bold">Recommandations</h2>
             <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
