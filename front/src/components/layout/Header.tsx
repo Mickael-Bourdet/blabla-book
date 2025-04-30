@@ -15,7 +15,7 @@ const Header = () => {
             <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
           </div>
           <nav className="hidden md:flex gap-6 ">
-          <Link className="hover:text-blue-600 " to={`/profile`}>
+          <Link className="hover:text-blue-600 " to={`/`}>
               <i className="fa-solid fa-house-chimney"></i>{" "}
               <span className="whitespace-nowrap  hidden xl:inline">Accueil</span>
             </Link>
