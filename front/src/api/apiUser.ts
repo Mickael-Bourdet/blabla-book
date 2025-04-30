@@ -1,4 +1,4 @@
-import type { IBook } from "../@types";
+import type { IBook, IUser } from "../@types";
 
 const apiBaseUrl = "http://localhost:3000";
 
@@ -21,7 +21,13 @@ export async function addToWishRead(userId: number, bookId: number): Promise<IBo
       // "Authorization": `Bearer token`
     },
   });
-
   const book = await response.json();
   return book;
 }
+
+export async function getLibrary(id: number): Promise<IUser> {
+  const response = await fetch(`${apiBaseUrl}/user/library/${id}`);
+  const book = await response.json();
+  return book;
+}
+

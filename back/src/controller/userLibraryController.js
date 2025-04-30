@@ -74,7 +74,7 @@ const userLibraryController = {
           return next(error);
         }
     
-        await user.removeBooks_is_read(book);
+        await user.removeBooks_already_read(book);
     
         res.status(200).json({ message: "Livre retiré de la liste des livres lus" });
       },
@@ -128,7 +128,7 @@ const userLibraryController = {
       return next(error);
     }
 
-    await user.removeBooks_maybe_read(book);
+    await user.removeBooks_wish_read(book);
 
     res.status(200).json({ message: "Livre retiré de la liste des livres à lire" });
   },

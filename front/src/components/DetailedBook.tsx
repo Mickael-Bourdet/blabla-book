@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBook } from "../@types";
 import { getOneBook } from "../api/apiBooks";
-import { addToMyReadLibrary, addToWishRead } from "../api/apiUser";
+import { addToMyReadLibrary, addToWishRead, getLibrary } from "../api/apiUser";
 
 const BookDetail = () => {
   const { bookId } = useParams();
@@ -11,6 +11,9 @@ const BookDetail = () => {
 
   // TODO changer 1 par userId
   const handleAddRead = () => {
+    // const checkBook = getLibrary(1);
+    // console.log(checkBook);
+    
     addToMyReadLibrary(1, numericBookId);
   };
   const handleWishRead = () => {addToWishRead(1, numericBookId)};
