@@ -1,7 +1,11 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 
 @theme {
   --color-body: #faf4e8;
   --color-sidebar: #c6c1c6;
   --color-header: #eeded5;
+  --font-title: "Atkinson", sans-serif;
+  --font-body: "Merriweather", serif;
 }

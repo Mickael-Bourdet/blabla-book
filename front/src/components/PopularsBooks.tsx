@@ -3,7 +3,7 @@ import { popularBooks } from "../data/popularBooks";
 const PopularBooks = () => {
   return (
     <>
-      <div className="md:ml-64">
+      <div className="">
         {" "}
         {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
         <main className="p-4">
@@ -19,7 +19,7 @@ const PopularBooks = () => {
                         alt={popularBook.title}
                         className="h-80 w-100 object-contain mb-2 mx-auto"
                       />
-                       <p className="text-center"> {popularBook.title} </p>
+                      <p className="text-center text-lg font-body"> {popularBook.title} </p>
                     </div>
                   </a>
                 );
