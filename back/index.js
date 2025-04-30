@@ -5,6 +5,7 @@ import { router } from "./src/router/router.js";
 import { errorHandler } from "./src/middlewares/errorHandler.js";
 import { xss } from "express-xss-sanitizer";
 
+
 // Run Application
 const app = express();
 
