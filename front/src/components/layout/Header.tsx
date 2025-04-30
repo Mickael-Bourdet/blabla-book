@@ -14,9 +14,9 @@ const Header = () => {
             <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
           </div>
           <nav className="hidden md:flex gap-6 ">
-            <a href="/">
+            <a className="hover:text-blue-600" href="/">
               <i className="fa-solid fa-house-chimney"></i>{" "}
-              <span className="whitespace-nowrap hidden xl:inline">Accueil</span>
+              <span className="whitespace-nowrap  hidden xl:inline">Accueil</span>
             </a>
             <a href="/library">
               <i className="fa-solid fa-book"></i>
@@ -27,19 +27,19 @@ const Header = () => {
               <span className="hidden xl:inline">Mon compte</span>{" "}
             </a>
           </nav>
-          <div className="block md:hidden">
+          <div className="block hover:text-blue-600 md:hidden">
             <i className="fas fa-search search-mobile text-xl"></i>
           </div>
         </header>
         {/* Navigation mobile */}
-        <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4  z-10 md:hidden">
-          <a href="/" className="flex flex-col items-center text-sm">
-            <i className="fa-solid fa-house-chimney"></i> Accueil
+        <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4  z-10 rounded-t md:hidden">
+          <a href="/" className="hover:text-blue-600 flex flex-col items-center text-sm">
+            <i className="fa-solid fa-house-chimney "></i> Accueil
           </a>
-          <a href="/books" className="flex flex-col items-center  text-sm">
+          <a href="/library" className="hover:text-blue-600 flex flex-col items-center  text-sm">
             <i className="fa-solid fa-book"></i> Bibliothèque
           </a>
-          <a href="/login" className="flex flex-col items-center  text-sm">
+          <a href="/auth" className="hover:text-blue-600 flex flex-col items-center  text-sm">
             <i className="fa-solid fa-user"></i> Mon compte
           </a>
         </div>

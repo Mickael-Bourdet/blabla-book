@@ -1,6 +1,7 @@
 import { Book } from "../models/associations.js";
 import { Category } from "../models/Category.js";
 import { Author } from "../models/Author.js";
+import { fn, col, where } from "sequelize";
 
 const adminController = {
   /**
@@ -109,11 +110,13 @@ const adminController = {
     const { name } = req.body;
 
     
-    if (!name) {
-      const error = new Error("Le champ 'name' est obligatoire");
-      error.statusCode = 400;
-      return next(error);
-    }
+    const isRegistered = await Category.findOne({ where: { name } });
+  if (isRegistered) {
+    return next({
+      statusCode: 409,
+      message: "Impossible d'ajouter cette catégorie car elle existe déjà",
+    });
+  }
 
     const newCategory = await Category.create({ name });
 
@@ -237,10 +240,22 @@ const adminController = {
    * @param {Object} res - Express response object.
    * @returns {Object} - author
    */
-  async addAuthor(req, res) {
+  async addAuthor(req, res, next) {
     const { name } = req.body;
+    const allAuthors = await Author.findAll();
+    
+    // Check if an author with the same name (case-insensitive) already exists
+    const authorExists = allAuthors.some(author => 
+      author.name.toLowerCase() === name.toLowerCase()
+    );
+    
+    if (authorExists) {
+      const error = new Error("Impossible d'ajouter cet auteur car il existe déjà");
+      error.statusCode = 409;
+      return next(error);  
+    };
+       
     const newAuthor = await Author.create({ name });
-
     res.status(201).json(newAuthor);
   },
 };
