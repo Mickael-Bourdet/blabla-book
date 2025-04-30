@@ -7,25 +7,29 @@ import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
 import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
-import ProfilePageBook from "./pages/Profilepage";
+import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
+import ErrorNotFound from "./pages/ErrorNotFound";
 
 function App() {
   return (
     <>
       <Navbars />
       <Header />
-      <main className="bg-body">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/books/:bookId" element={<DetailPage />} />
-        <Route path="/library" element={<Library />} />
-        <Route path="/user/:userId/settings" element={<SettingsUser />} />
-        <Route path="/profile" element={<ProfilePageBook />} />
-        <Route path="/auth" element={<Authentication />} />
-      </Routes>
-      </main>
-      <Footer />
+      <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/books/:bookId" element={<DetailPage />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/user/:userId/settings" element={<SettingsUser />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/auth" element={<Authentication />} />
+          <Route path="*" element={<ErrorNotFound />} />
+        </Routes>
+         </main>
+        <Footer />
+     
+      
     </>
   );
 }
