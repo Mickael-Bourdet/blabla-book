@@ -4,7 +4,7 @@ const RecommendedBooks = () => {
   return (
     <>
       {/* Contenu principal avec marge à gauche */}
-      <div className="md:ml-64">
+      <div className="">
         {" "}
         {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
         <section className="content ml-[5vw] mr-[5vw] ">

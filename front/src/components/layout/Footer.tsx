@@ -1,10 +1,18 @@
 const Footer = () => {
   return (
     <>
-      <footer className="bg-header p-4 text-sm text-center hidden md:block relative bottom-0 w-full">
-        <p>À propos</p>
-        <p>Mentions légales</p>
-        <p>© Promo Sushi - Équipe BlaBlaBook</p>
+      <footer className="bg-header px-8 py-2 text-base font-bold hidden md:block relative bottom-0 w-full  ">
+        <ul className="flex justify-between items-center">
+          <li>
+            <a href="/about">À propos</a>
+          </li>
+          <li>
+            <a href="/legal">Mentions légales</a>
+          </li>
+          <li>
+            © Promo Sushi <br /> Équipe BlaBlaBook
+          </li>
+        </ul>
       </footer>
     </>
   );
