@@ -55,14 +55,16 @@ const BookDetail = () => {
             </p>
 
             <p className="font-semibold mt-4 mb-1">Description :</p>
-            <p>{book.description}</p>
+            <p>{book.description}</p>S
 
             <div className="flex gap-20 mt-4 ml-30">
-              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2">
+              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2 cursor-pointer">
+                <i className="fa-solid fa-book"></i>
                 <span>Lu</span>
               </button>
-              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2">
-                <span>a Lire</span>
+              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2 cursor-pointer">
+                <i className="fa-solid fa-book-open-reader"></i>
+                <span>À Lire</span>
               </button>
             </div>
           </div>
