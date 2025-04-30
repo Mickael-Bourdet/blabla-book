@@ -55,7 +55,7 @@ const BookDetail = () => {
             </p>
 
             <p className="font-semibold mt-4 mb-1">Description :</p>
-            <p>{book.description}</p>S
+            <p>{book.description}</p>
 
             <div className="flex gap-20 mt-4 ml-30">
               <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2 cursor-pointer">
