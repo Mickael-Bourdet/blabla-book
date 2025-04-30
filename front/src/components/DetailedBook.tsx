@@ -58,12 +58,12 @@ const BookDetail = () => {
             <p>{book.description}</p>
 
             <div className="flex gap-20 mt-4 ml-30">
-              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2 cursor-pointer">
+              <button className="flex items-center gap-2 bg-gray-300 hover:bg-gray-200 rounded px-10 py-2 cursor-pointer">
                 {/* <i className="fa-solid fa-book"></i> */}
                 <i className="fa-solid fa-eye"></i>
                 <span>Non Lu</span>
               </button>
-              <button className="flex items-center gap-2 bg-gray-300 rounded px-10 py-2 cursor-pointer">
+              <button className="flex items-center gap-2 bg-gray-300 hover:bg-gray-200 rounded px-10 py-2 cursor-pointer">
                 <i className="fa-solid fa-book-open-reader"></i>
                 <span>À Lire</span>
               </button>
