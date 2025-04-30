@@ -237,10 +237,18 @@ const adminController = {
    * @param {Object} res - Express response object.
    * @returns {Object} - author
    */
-  async addAuthor(req, res) {
+  async addAuthor(req, res, next) {
     const { name } = req.body;
+    const isRegistered = await Author.findOne({where: { name }});
+    
+    if (isRegistered) {
+      const error = new Error("Impossible d'ajouter cet auteur car il existe déjà");
+      error.statusCode = 409;
+      return next(error);  
+      };
+    
+    
     const newAuthor = await Author.create({ name });
-
     res.status(201).json(newAuthor);
   },
 };
