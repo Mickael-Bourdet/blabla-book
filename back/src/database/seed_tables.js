@@ -97,7 +97,7 @@ async function seedDatabase() {
         description:
           "Bella Swan, une adolescente ordinaire, tombe amoureuse de Edward Cullen, un vampire. Leur amour interdit fait face à de nombreux obstacles, notamment les dangers liés à la nature de Edward.",
         published: "2006",
-        cover_url: "af48b3ed407c94c56ff201c9aeb20aa4",
+        cover_url: "1700522826i/41865",
         page_count: "498",
       },
       {
@@ -106,7 +106,7 @@ async function seedDatabase() {
         description:
           "Alors que sa famille traverse des heures sombres et que tous les espoirs reposent sur elle, Lou, 26 ans, perd son travail. Pour retrouver un emploi, elle est prête à tout, ou presque : elle ne sera ni strip-teaseuse ni garde-malade. Elle finit par accepter un contrat de six mois pour tenir compagnie à un jeune tétraplégique. Malgré l’accueil glacial qu’il lui réserve, Lou va découvrir en Will un homme exceptionnel, brillant dans les affaires, accro aux sensations fortes et voyageur invétéré. Mais depuis son accident, il veut mettre fin à ses jours. Lou n’a que quelques mois pour le faire changer d’avis.",
         published: "2013",
-        cover_url: "00a2b9b204bdd419773d7fb5d0bb99bf",
+        cover_url: "1359004687i/17281930",
         page_count: "480",
       },
       {
@@ -115,7 +115,7 @@ async function seedDatabase() {
         description:
           "Olive Smith, une doctorante en biologie, se lance dans une fausse relation avec Adam Carlsen, un professeur. Alors qu'ils feignent l'amour, des sentiments réels commencent à émerger, chamboulant leurs vies et leurs carrières.",
         published: "2022",
-        cover_url: "08b507e9ed097859998cfe6106d7bdad",
+        cover_url: "1663504369i/61313872",
         page_count: "480",
       },
 
