@@ -10,13 +10,14 @@ import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
+import About from "./pages/About";
 
 function App() {
   return (
     <>
       <Navbars />
-      <Header />
-      <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
+      <main className="md:ml-64 flex flex-col min-h-100 bg-body justify-start">
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/books/:bookId" element={<DetailPage />} />
@@ -24,6 +25,7 @@ function App() {
           <Route path="/settings" element={<SettingsUser />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/auth" element={<Authentication />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>
         <Footer />
