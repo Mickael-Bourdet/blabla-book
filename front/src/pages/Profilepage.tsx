@@ -1,11 +1,11 @@
 import ProfilePage from "../components/ProfilePage";
 
 
-const HomePage = () => (
+const ProfilePageBook = () => (
   <>
     <ProfilePage />
     
   </>
 );
 
-export default HomePage;
+export default ProfilePageBook ;
