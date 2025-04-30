@@ -10,9 +10,8 @@ const Library = () => {
       try {
         const data = await getAllBooks();
         setBooks(data);
-        
       } catch (error) {
-        console.error("Erreur lors de la récupération des livres", error)
+        console.error("Erreur lors de la récupération des livres", error);
       }
     }
     fetchBooks();
@@ -20,12 +19,12 @@ const Library = () => {
 
   return (
     <>
-      <div className="bg-nav-footer-50 font-sans">
-        {/* Contenu principal avec marge à gauche */}
-        <div className="md:ml-64">
-          {" "}
-          {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
-          <main className="p-4">
+      <main className="p-4">
+        <div className="bg-nav-footer-50 font-sans">
+          {/* Contenu principal avec marge à gauche */}
+          <div className="md:ml-64">
+            {" "}
+            {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
             <section className="content ml-[5vw] mr-[5vw]">
               <h2 className="text-xl mb-4 font-bold">Tous Nos Livres</h2>
               <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
@@ -44,9 +43,9 @@ const Library = () => {
                 ))}
               </div>
             </section>
-          </main>
+          </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };
