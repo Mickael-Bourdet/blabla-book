@@ -1,7 +1,7 @@
 import type { IUser } from "../@types";
 import { useState, useEffect } from "react";
 import { getOneUser, updateUser} from "../api/apiBooks"
-import { useParams } from "react-router-dom";
+import { useParams , Link} from "react-router-dom";
 
 const SettingsUser = () => {
   const { userId } = useParams();
@@ -99,6 +99,14 @@ const SettingsUser = () => {
   return (
     <>
       <div className="flex flex-col w-full p-8 md:ml-100">
+        {/* Bouton Retour */}
+        <div className="mb-4">
+          <Link to={`/profile`}>
+            <button className="text-blue-500 hover:underline">
+              ← Retour
+            </button>
+          </Link>
+        </div>
         {/* Profil */}
         <div className="flex mb-8">
           <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">
