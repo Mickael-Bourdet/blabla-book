@@ -1,6 +1,7 @@
 import { Book } from "../models/associations.js";
 import { Category } from "../models/Category.js";
 import { Author } from "../models/Author.js";
+import { fn, col, where } from "sequelize";
 
 const adminController = {
   /**
@@ -239,15 +240,19 @@ const adminController = {
    */
   async addAuthor(req, res, next) {
     const { name } = req.body;
-    const isRegistered = await Author.findOne({where: { name }});
+    const allAuthors = await Author.findAll();
     
-    if (isRegistered) {
+    // Check if an author with the same name (case-insensitive) already exists
+    const authorExists = allAuthors.some(author => 
+      author.name.toLowerCase() === name.toLowerCase()
+    );
+    
+    if (authorExists) {
       const error = new Error("Impossible d'ajouter cet auteur car il existe déjà");
       error.statusCode = 409;
       return next(error);  
-      };
-    
-    
+    };
+       
     const newAuthor = await Author.create({ name });
     res.status(201).json(newAuthor);
   },
