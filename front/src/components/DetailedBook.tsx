@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBook } from "../@types";
 import { getOneBook } from "../api/apiBooks";
+import { addToMyReadLibrary, addToWishRead } from "../api/apiUser";
 
 const BookDetail = () => {
   const { bookId } = useParams();
+  const numericBookId = Number(bookId);
   const [book, setBook] = useState<IBook>();
+
+  // TODO changer 1 par userId
+  const handleAddRead = () => {addToMyReadLibrary(1, numericBookId)};
+  const handleWishRead = () => {addToWishRead(1, numericBookId)};
 
   useEffect(() => {
     const loadData = async () => {
@@ -58,12 +64,16 @@ const BookDetail = () => {
             <p>{book.description}</p>
 
             <div className="flex gap-20 mt-4 ml-30">
-              <button className="flex items-center gap-2 bg-gray-300 hover:bg-gray-200 rounded px-10 py-2 cursor-pointer">
+              <button 
+                onClick={handleAddRead}
+                className="flex items-center gap-2 bg-gray-300 hover:bg-gray-200 rounded px-10 py-2 cursor-pointer">
                 {/* <i className="fa-solid fa-book"></i> */}
                 <i className="fa-solid fa-eye"></i>
                 <span>Non Lu</span>
               </button>
-              <button className="flex items-center gap-2 bg-gray-300 hover:bg-gray-200 rounded px-10 py-2 cursor-pointer">
+              <button 
+                onClick={handleWishRead}
+                className="flex items-center gap-2 bg-gray-300 hover:bg-gray-200 rounded px-10 py-2 cursor-pointer">
                 <i className="fa-solid fa-book-open-reader"></i>
                 <span>À Lire</span>
               </button>
