@@ -49,7 +49,7 @@ const userLibraryController = {
       return next(error);
     }
 
-    await user.addBooks_is_read(book);
+    await user.addBooks_already_read(book);
 
     res.status(200).json({ message: "Livre ajouté à la liste des livres lus" });
   },
@@ -104,7 +104,7 @@ const userLibraryController = {
       return next(error);
     }
 
-    await user.addBooks_maybe_read(book);
+    await user.addBooks_wish_read(book);
 
     res.status(200).json({ message: "Livre ajouté à la liste des livres à lire" });
   },

@@ -54,4 +54,3 @@ router.post("/user/:userId/books/to-read/:bookId", userLibraryController.addToWi
  * @return {object} 200 - Success message
  */
 router.delete("/user/:userId/books/to-read/:bookId", userLibraryController.deleteToWishRead);
-
