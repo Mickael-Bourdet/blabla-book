@@ -3,7 +3,7 @@ import Register from "../components/authentication/Register";
 
 const Authentication = () => {
   return (
-    <main className="md:ml-64">
+    <main className="">
       <Login />
       <Register />
     </main>

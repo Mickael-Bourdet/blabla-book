@@ -10,9 +10,8 @@ const Library = () => {
       try {
         const data = await getAllBooks();
         setBooks(data);
-        
       } catch (error) {
-        console.error("Erreur lors de la récupération des livres", error)
+        console.error("Erreur lors de la récupération des livres", error);
       }
     }
     fetchBooks();
@@ -20,9 +19,9 @@ const Library = () => {
 
   return (
     <>
-      <div className="bg-nav-footer-50 font-sans mt-[100px]">
+      <div className="bg-body font-sans pt-8 pl-4">
         {/* Contenu principal avec marge à gauche */}
-        <div className="md:ml-64">
+        <div className="">
           {" "}
           {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
           <main className="p-4 pb-20">
