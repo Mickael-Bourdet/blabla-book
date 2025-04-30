@@ -20,8 +20,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/books/:bookId" element={<DetailPage />} />
         <Route path="/library" element={<Library />} />
-        <Route path="/settings" element={<SettingsUser />} />
-        <Route path="/profile" element={<ProfilePageBook  />} />
+        <Route path="/user/:userId/settings" element={<SettingsUser />} />
+        <Route path="/profile" element={<ProfilePageBook />} />
         <Route path="/auth" element={<Authentication />} />
       </Routes>
       </main>
