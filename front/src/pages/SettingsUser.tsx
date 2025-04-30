@@ -6,7 +6,7 @@ import { useParams , Link ,useNavigate} from "react-router-dom";
 const SettingsUser = () => {
     const navigate = useNavigate();
   const { userId } = useParams();
-  const [user, setUser] = useState<IUser>();
+  const [user, setUser] = useState<IUser | null>(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [emailConfirm, setEmailConfirm] = useState("");
@@ -23,6 +23,10 @@ const SettingsUser = () => {
     const loadData = async () => {
       if (userId) {
         const newUser = await getOneUser(Number.parseInt(userId));
+        if (!newUser) {
+            navigate("/404");
+            return;
+          }
         setUser(newUser);
         setUsername(newUser.name);
        setEmail(newUser.email); 
@@ -65,7 +69,7 @@ const SettingsUser = () => {
   const handleConfirmation = async (confirm: boolean) => {
     if (confirm) {
         
-      const updatedData: { name?: string; email?: string; password?: string } = {};
+      const updatedData: { name?: string; email?: string; password?: string }= {};
       console.log("Mise à jour avec :", updatedData);
       // Mise à jour conditionnelle en fonction des champs modifiés
       if (username !== user?.name) updatedData.name = username;
@@ -77,6 +81,10 @@ const SettingsUser = () => {
         await updateUser(Number(userId), updatedData);
          // Recharge les infos utilisateur depuis l'API
   const updatedUser = await getOneUser(Number(userId));
+  if (!updatedUser ) {
+    navigate("/404");
+    return;
+  }
   setUser(updatedUser);
   setUsername(updatedUser.name);
   setEmail(updatedUser.email);
