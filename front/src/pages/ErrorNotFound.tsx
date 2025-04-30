@@ -7,7 +7,7 @@ export default function ErrorNotFound() {
       <p className="font-body text-2xl text-center p-6">
         On dirait que cette page s'est perdue entre deux chapitres...
       </p>
-      <button className="pb-4">Retour à l'accueil</button>
+      <button className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded mb-6">Retour à l'accueil</button>
     </div>
   );
 }
