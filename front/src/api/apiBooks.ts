@@ -36,3 +36,10 @@ export async function getOneUser(id: number): Promise<IUser> {
   
     return res.json();
   };
+
+  export const deleteUser = async (userId: number): Promise<void> => {
+    await fetch(`http://localhost:3000/user/${userId}`, {
+      method: "DELETE",
+    });
+  };
+  
