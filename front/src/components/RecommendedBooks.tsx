@@ -20,7 +20,7 @@ const RecommendedBooks = () => {
                         alt={book.title}
                         className="h-100 w-full object-cover mb-2"
                       />
-                      <p>{book.title}</p>
+                      <p className="text-center">{book.title}</p>
                     </div>
                   </a>
                 );

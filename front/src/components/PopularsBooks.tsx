@@ -19,7 +19,7 @@ const PopularBooks = () => {
                         alt={popularBook.title}
                         className="h-100 w-full object-cover mb-2"
                       />
-                      <p> {popularBook.title} </p>
+                       <p className="text-center"> {popularBook.title} </p>
                     </div>
                   </a>
                 );
