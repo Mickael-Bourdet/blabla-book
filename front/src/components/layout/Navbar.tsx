@@ -8,7 +8,7 @@ const Navbars = () => {
           <aside className="hidden md:block bg-sidebar p-4 w-64 fixed h-screen z-20 overflow-y-auto">
           <a href="/" >
             <div className="logo flex items-center gap-2 mb-10">
-              <div href="/" className="flex items-center">
+              <div className="flex items-center">
                 <img src="/blablabook.webp" alt="BlaBlaBook" className="w-20" />
                 <h1 className="text-xl font-black font-title">BlaBlaBook</h1>
               </div>
