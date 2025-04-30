@@ -1,10 +1,4 @@
-import {
-  sequelize,
-  Author,
-  Book,
-  Category,
-  User,
-} from "../models/associations.js";
+import { sequelize, Author, Book, Category, User } from "../models/associations.js";
 
 async function seedDatabase() {
   try {
@@ -21,7 +15,7 @@ async function seedDatabase() {
         email: "azerty@123.com",
         name: "Admin",
         password: "Motdepasse01?",
-      }
+      },
     ];
 
     const user = await User.bulkCreate(userData);
@@ -103,7 +97,7 @@ async function seedDatabase() {
         description:
           "Bella Swan, une adolescente ordinaire, tombe amoureuse de Edward Cullen, un vampire. Leur amour interdit fait face à de nombreux obstacles, notamment les dangers liés à la nature de Edward.",
         published: "2006",
-        cover_url: "af48b3ed407c94c56ff201c9aeb20aa4",
+        cover_url: "1700522826i/41865",
         page_count: "498",
       },
       {
@@ -112,7 +106,7 @@ async function seedDatabase() {
         description:
           "Alors que sa famille traverse des heures sombres et que tous les espoirs reposent sur elle, Lou, 26 ans, perd son travail. Pour retrouver un emploi, elle est prête à tout, ou presque : elle ne sera ni strip-teaseuse ni garde-malade. Elle finit par accepter un contrat de six mois pour tenir compagnie à un jeune tétraplégique. Malgré l’accueil glacial qu’il lui réserve, Lou va découvrir en Will un homme exceptionnel, brillant dans les affaires, accro aux sensations fortes et voyageur invétéré. Mais depuis son accident, il veut mettre fin à ses jours. Lou n’a que quelques mois pour le faire changer d’avis.",
         published: "2013",
-        cover_url: "00a2b9b204bdd419773d7fb5d0bb99bf",
+        cover_url: "1359004687i/17281930",
         page_count: "480",
       },
       {
@@ -121,8 +115,101 @@ async function seedDatabase() {
         description:
           "Olive Smith, une doctorante en biologie, se lance dans une fausse relation avec Adam Carlsen, un professeur. Alors qu'ils feignent l'amour, des sentiments réels commencent à émerger, chamboulant leurs vies et leurs carrières.",
         published: "2022",
-        cover_url: "08b507e9ed097859998cfe6106d7bdad",
+        cover_url: "1663504369i/61313872",
         page_count: "480",
+      },
+
+      //  TODO : supprimer ici
+
+      {
+        isbn: "9791032710265",
+        title: "Les Carnets de l’Apothicaire",
+        description:
+          " Maomao est toujours en mission au palais impérial, où elle continue d’utiliser son intelligence pour résoudre des mystères liés aux poisons et à la politique complexe qui règne dans l’empire. Ce tome approfondit les intrigues et les relations entre les personnages.",
+        published: 2016,
+        cover_url: "1636297509i/59539064",
+        page_count: 159,
+      },
+      {
+        isbn: "9782377352654",
+        title: "Les Aventures de Sherlock Holmes",
+        description:
+          "Le détective Sherlock Holmes, avec son acolyte le Dr Watson, résout des mystères complexes à travers des enquêtes brillantes. Ce recueil regroupe certaines de ses aventures les plus célèbres.",
+        published: 2019,
+        cover_url: "1598474896i/55134619",
+        page_count: 393,
+      },
+      {
+        isbn: "9782070585205",
+        title: "Harry Potter et la Coupe de Feu",
+        description:
+          "Harry participe au Tournoi des Trois Sorciers, une compétition magique qui met ses capacités à l'épreuve. Ce tome voit son monde s'assombrir, alors qu’il fait face à des épreuves dangereuses et à de nouveaux défis. C'est un tournant majeur dans la saga.",
+        published: 2011,
+        cover_url: "1508475182i/36444262",
+        page_count: 774,
+      },
+      {
+        isbn: "9782290319956",
+        title: "Le Trône de Fer – Tome 5 : L’Invincible Forteresse",
+        description:
+          "Dans un monde où le pouvoir change de mains, ce tome explore les luttes politiques intenses après un grand bouleversement. De nouveaux défis et trahisons surgissent, et les protagonistes se battent pour garder leur place dans un jeu de pouvoir impitoyable.",
+        published: 2002,
+        cover_url: "1330189403i/2072931",
+        page_count: 352,
+      },
+      {
+        isbn: "9791032711262",
+        title: "Frieren : Beyond Journey’s End - Tome 4",
+        description:
+          " Frieren continue son voyage après la fin de la quête des héros. Ce tome se concentre sur la découverte de nouvelles régions et sur les rencontres avec des personnages qui vont remettre en question sa vision du monde et du passage du temps.",
+        published: 2022,
+        cover_url: "1657191679i/61405470",
+        page_count: 188,
+      },
+      {
+        isbn: "9782266260787",
+        title: "Hunger Games - Tome 2",
+        description:
+          "Dans un futur dystopique, Katniss Everdeen, une jeune fille, doit participer à un combat à mort télévisé avec d'autres enfants pour divertir les élites. Un récit de survie, de rébellion et de résistance.",
+        published: 2008,
+        cover_url: "1451581575i/28415052",
+        page_count: 432,
+      },
+      {
+        isbn: "9782253088752",
+        title: "Frankenstein",
+        description:
+          "Le Dr. Frankenstein créé un monstre à partir de morceaux de cadavres, mais se retrouve horrifié par sa création. Un roman gothique qui interroge la responsabilité scientifique, la solitude et l’éthique.",
+        published: 2009,
+        cover_url: "1364186726i/7261829",
+        page_count: 345,
+      },
+      {
+        isbn: "9782012101401",
+        title: "Astérix chez les Bretons",
+        description:
+          "Astérix et son ami Obélix, deux irréductibles Gaulois, se battent contre les Romains et affrontent divers défis avec humour et esprit. Une série pleine de références à l’histoire et la culture européenne.",
+        published: 2004,
+        cover_url: "1419178691i/900568",
+        page_count: 48,
+      },
+      {
+        isbn: "9782212567595",
+        title: "Naruto - Tome 41",
+        description:
+          "Ce tome marque un tournant majeur dans l'histoire, alors que Naruto et ses alliés se lancent dans une guerre contre l'Akatsuki. Des batailles épiques ont lieu, et des révélations importantes sur les origines de certains personnages changent la dynamique de la guerre. L'émotion et l'intensité des combats sont à leur apogée.",
+        published: 2009,
+        cover_url: "1363037606i/6218526",
+        page_count: 192,
+      },
+      {
+        isbn: "9782505005582",
+        title: "L’art subtil de s’en foutre",
+        description:
+          "Un livre de développement personnel qui renverse les conventions habituelles. Mark Manson prône une approche plus réaliste du bonheur, en se concentrant sur les choses qui comptent vraiment et en abandonnant la quête d'une vie parfaite",
+        published: 2017,
+        cover_url: "1533568095i/41057918",
+        page_count: 188,
       },
     ];
 
@@ -154,9 +241,7 @@ async function seedDatabase() {
       { book_id: 7, category_id: 1 },
     ];
 
-    await sequelize.models.book_has_category.bulkCreate(
-      bookCategoryAssociation
-    );
+    await sequelize.models.book_has_category.bulkCreate(bookCategoryAssociation);
 
     const userBooksReadAssociation = [
       { user_id: 1, book_id: 1 },

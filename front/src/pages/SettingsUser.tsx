@@ -1,9 +1,9 @@
 import type { IUser } from "../@types";
 import { useState, useEffect } from "react";
-import { getOneUser, updateUser } from "../api/index";
+import { getOneUser, updateUser} from "../api/apiBooks"
 import { useParams } from "react-router-dom";
 
-const SettingUser = () => {
+const SettingsUser = () => {
   const { userId } = useParams();
   const [user, setUser] = useState<IUser>();
   const [username, setUsername] = useState("");
@@ -48,6 +48,7 @@ const SettingUser = () => {
       setPasswordError(false);
     }
 
+    //  VERFIFICATION A RETIRER - UTILISER LE BACK POUR PLUS DE SECURITÉ
     // Vérification du mot de passe actuel si un nouveau mot de passe est entré
     if (password && currentPassword !== user?.password) {
       alert("Le mot de passe actuel est incorrect");
@@ -77,6 +78,7 @@ const SettingUser = () => {
   setUsername(updatedUser.name);
   setEmail(updatedUser.email);
   setEmailConfirm(updatedUser.email);
+  
       }
 
       // Réinitialiser les champs et fermer la fenêtre de confirmation
@@ -96,7 +98,7 @@ const SettingUser = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full mt-[100px] p-8 md:ml-100">
+      <div className="flex flex-col w-full p-8 md:ml-100">
         {/* Profil */}
         <div className="flex mb-8">
           <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">
@@ -116,7 +118,7 @@ const SettingUser = () => {
           {/* Pseudo */}
           <div className="flex items-center justify-between border-b border-gray-300 pb-2">
             <input
-              className="w-[150px] my-1"
+              className="w-120 my-1 focus:outline-none "
               type="text"
               id="login-username"
               name="username"
@@ -128,7 +130,7 @@ const SettingUser = () => {
           {/* Email */}
           <div className="flex items-center justify-between border-b border-gray-300 pb-2">
             <input
-              className="w-[150px] my-1"
+              className="w-120 my-1 focus:outline-none "
               type="email"
               id="register-email"
               name="email"
@@ -141,7 +143,7 @@ const SettingUser = () => {
           {/* Confirmer l'email */}
           <div className="flex items-center justify-between border-b border-gray-300 pb-2">
             <input
-              className="w-[150px] my-1"
+              className="w-120 my-1 focus:outline-none "
               type="email"
               id="register-email-confirm"
               name="email-confirm"
@@ -157,7 +159,7 @@ const SettingUser = () => {
           {/* Mot de passe actuel */}
           <div className="flex items-center justify-between border-b border-gray-300 pb-2">
             <input
-              className="w-[150px] my-1"
+              className="w-120 my-1 focus:outline-none "
               type="password"
               id="current-password"
               name="current-password"
@@ -170,7 +172,7 @@ const SettingUser = () => {
           {/* Nouveau mot de passe */}
           <div className="flex items-center justify-between border-b border-gray-300 pb-2">
             <input
-              className="w-[150px] my-1"
+              className="w-120 my-1 focus:outline-none "
               type="password"
               id="register-password"
               name="password"
@@ -183,7 +185,7 @@ const SettingUser = () => {
           {/* Confirmer le mot de passe */}
           <div className="flex items-center justify-between border-b border-gray-300 pb-2">
             <input
-              className="w-[150px] my-1"
+              className="w-120 my-1 focus:outline-none "
               type="password"
               id="confirm-password"
               name="confirm-password"
@@ -207,7 +209,7 @@ const SettingUser = () => {
 
         {/* Modal de confirmation */}
         {confirmationModal && (
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex items-center justify-center">
+          <div className="fixed center flex items-center justify-center">
             <div className="bg-white p-6 rounded shadow-lg">
               <p>Êtes-vous sûr de vouloir sauvegarder ces modifications ?</p>
               <div className="flex gap-4 mt-4">
@@ -248,4 +250,4 @@ const SettingUser = () => {
   );
 };
 
-export default SettingUser;
+export default SettingsUser;
