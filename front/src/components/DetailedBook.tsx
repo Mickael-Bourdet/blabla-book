@@ -10,7 +10,9 @@ const BookDetail = () => {
   const [book, setBook] = useState<IBook>();
 
   // TODO changer 1 par userId
-  const handleAddRead = () => {addToMyReadLibrary(1, numericBookId)};
+  const handleAddRead = () => {
+    addToMyReadLibrary(1, numericBookId);
+  };
   const handleWishRead = () => {addToWishRead(1, numericBookId)};
 
   useEffect(() => {
