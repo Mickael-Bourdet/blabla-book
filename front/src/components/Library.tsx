@@ -20,13 +20,13 @@ const Library = () => {
 
   return (
     <>
-      <div className="bg-nav-footer-50 font-sans mt-[100px]">
+      <div className="bg-nav-footer-50 font-sans">
         {/* Contenu principal avec marge à gauche */}
         <div className="md:ml-64">
           {" "}
           {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
-          <main className="p-4 pb-20">
-            <section className="content">
+          <main className="p-4">
+            <section className="content ml-[5vw] mr-[5vw]">
               <h2 className="text-xl mb-4 font-bold">Tous Nos Livres</h2>
               <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                 {/* loop on books */}
@@ -36,7 +36,7 @@ const Library = () => {
                       <img
                         src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                         alt={`${book.title}`}
-                        className="h-95 w-auto object-cover mb-2"
+                        className="h-80 w-100 object-contain mb-2 mx-auto"
                       />
                       <p>{book.title}</p>
                     </div>

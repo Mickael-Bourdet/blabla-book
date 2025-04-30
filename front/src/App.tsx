@@ -15,6 +15,7 @@ function App() {
     <>
       <Navbars />
       <Header />
+      <main className="bg-body">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/books/:bookId" element={<DetailPage />} />
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<ProfilePageBook  />} />
         <Route path="/auth" element={<Authentication />} />
       </Routes>
+      </main>
       <Footer />
     </>
   );
