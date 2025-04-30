@@ -17,7 +17,7 @@ const PopularBooks = () => {
                       <img
                         src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${popularBook.cover_url}.jpg`}
                         alt={popularBook.title}
-                        className="h-auto w-full object-cover mb-2"
+                        className="h-100 w-full object-cover mb-2"
                       />
                       <p> {popularBook.title} </p>
                     </div>

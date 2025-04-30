@@ -18,7 +18,7 @@ const RecommendedBooks = () => {
                       <img
                         src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                         alt={book.title}
-                        className="h-auto w-full object-cover mb-2"
+                        className="h-100 w-full object-cover mb-2"
                       />
                       <p>{book.title}</p>
                     </div>
