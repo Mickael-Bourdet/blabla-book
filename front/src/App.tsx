@@ -1,4 +1,3 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home";
 import Navbars from "./components/layout/Navbar";
@@ -10,7 +9,7 @@ import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
-
+import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
@@ -26,10 +25,9 @@ function App() {
           <Route path="/auth" element={<Authentication />} />
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>
-         </main>
-        <Footer />
-     
-      
+        
+      </main>
+      <Footer />
     </>
   );
 }
