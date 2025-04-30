@@ -22,10 +22,6 @@ export interface IAuthor {
   name: string;
 }
 
-export type IBooks = IBook[];
-
-
-
 export interface IUser {
   id: number;
   email: string;
