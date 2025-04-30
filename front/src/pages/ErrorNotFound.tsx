@@ -1,8 +1,13 @@
 export default function ErrorNotFound() {
   return (
-    <div className="bg-body flex-1  flex flex-col items-center justify-center h-max items-stretch">
-      <h1 className="font-title text-[10rem] text-center">404</h1>
-      <img className="w-150 mt-4 mx-auto" src="/error404_homme.webp" alt="" />
+    <div className="bg-body flex flex-col items-center justify-center h-max">
+      <h1 className="font-title text-9xl text-center font-black p-8">404</h1>
+      <img className="w-120 mt-4 mx-auto" src="/error404_homme.webp" alt="" />
+      <p className="font-title text-6xl text-center font-bold pt-6">Oups, page introuvable !</p>
+      <p className="font-body text-2xl text-center p-6">
+        On dirait que cette page s'est perdue entre deux chapitres...
+      </p>
+      <button className="pb-4">Retour à l'accueil</button>
     </div>
   );
 }
