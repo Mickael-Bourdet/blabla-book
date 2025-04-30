@@ -1,3 +1,5 @@
+import SearchBar from "./SearchBar";
+
 const Header = () => {
   return (
     <>
@@ -9,10 +11,7 @@ const Header = () => {
             <img src="./blablabook.webp" alt="BlaBlaBook" className="w-30" />
             <h1 className="text-xl">BlaBlaBook</h1>
           </div>
-          <div className="search-bar relative w-64 hidden md:block">
-            <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2  ml-8 "></i>
-            <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
-          </div>
+         <SearchBar />
           <nav className="hidden md:flex gap-6 ">
             <a href="/">
               <i className="fa-solid fa-house-chimney"></i>{" "}
