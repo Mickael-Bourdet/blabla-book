@@ -61,41 +61,45 @@ const SettingsUser = () => {
 
   const handleConfirmation = async (confirm: boolean) => {
     if (confirm) {
-        
       const updatedData: { name?: string; email?: string; password?: string } = {};
-      console.log("Mise à jour avec :", updatedData);
-      // Mise à jour conditionnelle en fonction des champs modifiés
+  
+      // Mise à jour conditionnelle des champs modifiés
       if (username !== user?.name) updatedData.name = username;
       if (email !== user?.email) updatedData.email = email;
       if (password) updatedData.password = password;
-
+      console.log(updatedData.name);
+  
       // Si des données ont été modifiées, effectuer la mise à jour
       if (Object.keys(updatedData).length > 0) {
         await updateUser(Number(userId), updatedData);
-         // Recharge les infos utilisateur depuis l'API
-  const updatedUser = await getOneUser(Number(userId));
-  setUser(updatedUser);
-  setUsername(updatedUser.name);
-  setEmail(updatedUser.email);
-  setEmailConfirm(updatedUser.email);
   
+        // Met à jour les champs d'état localement sans attendre le rechargement de l'API
+        if (updatedData.name) setUsername(updatedData.name);
+        if (updatedData.email) {
+          setEmail(updatedData.email);
+          setEmailConfirm(updatedData.email);
+        }
+  
+        // Met à jour aussi l'objet user localement
+        setUser((prevUser) => ({
+          ...prevUser!,
+          ...updatedData,
+        }));
       }
-
-      // Réinitialiser les champs et fermer la fenêtre de confirmation
+  
+      // Réinitialiser les champs de mot de passe et fermer la modale
       setPassword("");
       setPasswordConfirm("");
       setCurrentPassword("");
       setEmailError(false);
       setPasswordError(false);
       setConfirmationModal(false);
-
-     
+  
     } else {
       // Si l'utilisateur annule, fermer la fenêtre de confirmation
       setConfirmationModal(false);
     }
   };
-
   return (
     <>
       <div className="flex flex-col w-full p-8 md:ml-100">
