@@ -16,6 +16,14 @@ async function seedDatabase() {
         name: "Admin",
         password: "Motdepasse01?",
       },
+      { email: "b@b.com", 
+        name: "Bob", 
+        password: "Motdepasse02?" 
+      },
+      { email: "c@c.com", 
+        name: "Charlie", 
+        password: "Motdepasse03?"
+       },
     ];
 
     const user = await User.bulkCreate(userData);
