@@ -2,11 +2,14 @@ import { recommendedBooks } from "../data/recommendedBooks";
 
 const RecommendedBooks = () => {
   return (
-    <div className="md:ml-64">
-      {" "}
-        <section className="content">
+    <>
+      {/* Contenu principal avec marge à gauche */}
+      <div className="md:ml-64">
+        {" "}
+        {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
+        <section className="content ml-[5vw] mr-[5vw] ">
           <h2 className="text-xl mt-8 mb-4 font-bold">Recommandations</h2>
-          <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3  lg:grid-cols-5">
             {recommendedBooks.map((book) => {
               return (
                 <a key={book.id} href={`/books/${book.id}`} className="block">
@@ -14,16 +17,17 @@ const RecommendedBooks = () => {
                     <img
                       src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                       alt={book.title}
-                      className="h-100 w-full object-cover mb-2"
+                      className="h-80 w-full object-contain mb-2 mx-auto"
                     />
-                    <p>{book.title}</p>
+                    <p className="text-center">{book.title}</p>
                   </div>
                 </a>
               );
             })}
           </div>
         </section>
-    </div>
+      </div>
+    </>
   );
 };
 

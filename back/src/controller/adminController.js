@@ -110,11 +110,13 @@ const adminController = {
     const { name } = req.body;
 
     
-    if (!name) {
-      const error = new Error("Le champ 'name' est obligatoire");
-      error.statusCode = 400;
-      return next(error);
-    }
+    const isRegistered = await Category.findOne({ where: { name } });
+  if (isRegistered) {
+    return next({
+      statusCode: 409,
+      message: "Impossible d'ajouter cette catégorie car elle existe déjà",
+    });
+  }
 
     const newCategory = await Category.create({ name });
 
