@@ -7,7 +7,7 @@ const Navbars = () => {
           {/* Sidebar fixe à gauche */}
           <aside className="hidden md:block bg-sidebar p-4 w-64 fixed h-screen z-20 overflow-y-auto">
             <div className="logo flex items-center gap-2 mb-10">
-              <img src="./blablabook.webp" alt="BlaBlaBook" className="w-16" />
+              <img src="/blablabook.webp" alt="BlaBlaBook" className="w-16" />
               <h1 className="text-xl">BlaBlaBook</h1>
             </div>
             <h2 className="text-lg mb-4">Genres</h2>
