@@ -8,7 +8,7 @@ const PopularBooks = () => {
         {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
         <main className="p-8">
           <section className="content">
-            <h2 className="text-xl mb-4 font-title font-bold mt-[10px] ">Livres populaires</h2>
+            <h2 className="text-2xl mb-4 font-title font-[900] mt-[10px] ">Livres populaires</h2>
             <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
               {popularBooks.map((popularBook) => {
                 return (
@@ -19,7 +19,7 @@ const PopularBooks = () => {
                         alt={popularBook.title}
                         className="h-100 w-full object-cover mb-2"
                       />
-                      <p className="text-center"> {popularBook.title} </p>
+                      <p className="text-center text-lg font-body"> {popularBook.title} </p>
                     </div>
                   </a>
                 );

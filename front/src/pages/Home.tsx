@@ -2,7 +2,7 @@ import PopularBooks from "../components/PopularsBooks";
 import RecommendedBooks from "../components/RecommendedBooks";
 
 const HomePage = () => (
-  <main className="bg-body font-body">
+  <main className="bg-body ">
     <PopularBooks />
     <RecommendedBooks />
   </main>
