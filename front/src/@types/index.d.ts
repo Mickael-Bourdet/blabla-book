@@ -15,9 +15,9 @@ export interface IBook {
   authors: IAuthor[];
 }
 
+export type IBooks = IBook[];
+
 export interface IAuthor {
   id: number;
   name: string;
 }
-
-export type IBooks = IBook[];
