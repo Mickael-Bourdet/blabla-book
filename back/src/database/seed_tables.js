@@ -27,7 +27,7 @@ async function seedDatabase() {
     const categoryData = [
       { name: "Romance" },
       { name: "Thriller" },
-      { name: "Fantasie" },
+      { name: "Fantasy" },
       { name: "Science-fiction" },
       { name: "Développement personnel" },
       { name: "Biographie" },
@@ -109,6 +109,7 @@ async function seedDatabase() {
       { name: "Natsu Hyuuga" },
       { name: "Itsuki Nanao" },
       { name: "Nekokurage" },
+      { name: "Touco Shino" },
       { name: "Koyoharu Gotōge" },
       { name: "Gege Akutami" },
       { name: "Masashi Kishimoto" },
@@ -116,6 +117,7 @@ async function seedDatabase() {
       { name: "Takeshi Obata" },
       { name: "Kohei Horikoshi" },
       { name: "Tatsuya Endo" },
+      { name: "Chugong" },
 
       // Bande dessinée
       { name: "Felix Delep" },
