@@ -16,14 +16,8 @@ async function seedDatabase() {
         name: "Admin",
         password: "Motdepasse01?",
       },
-      { email: "b@b.com", 
-        name: "Bob", 
-        password: "Motdepasse02?" 
-      },
-      { email: "c@c.com", 
-        name: "Charlie", 
-        password: "Motdepasse03?"
-       },
+      { email: "b@b.com", name: "Bob", password: "Motdepasse02?" },
+      { email: "c@c.com", name: "Charlie", password: "Motdepasse03?" },
     ];
 
     const user = await User.bulkCreate(userData);
@@ -33,7 +27,7 @@ async function seedDatabase() {
     const categoryData = [
       { name: "Romance" },
       { name: "Thriller" },
-      { name: "Fantasy" },
+      { name: "Fantasie" },
       { name: "Science-fiction" },
       { name: "Développement personnel" },
       { name: "Biographie" },
@@ -47,7 +41,9 @@ async function seedDatabase() {
     console.log(categoryData.length, "Categories ");
 
     // create authors
+
     const authorData = [
+      // Romance
       { name: "Anna Todd" },
       { name: "Colleen Hoover" },
       { name: "John Green" },
@@ -55,6 +51,88 @@ async function seedDatabase() {
       { name: "Stephenie Meyer" },
       { name: "Jojo Moyes" },
       { name: "Ali Hazelwood" },
+
+      // Thriller
+      { name: "Joël Dicker" },
+      { name: "Donato Carrisi" },
+      { name: "Gillian Flynn" },
+      { name: "Jean-Christophe Grangé" },
+      { name: "Dennis Lehane" },
+      { name: "Agatha Christie" },
+      { name: "Paula Hawkins" },
+
+      // Fantaisie
+      { name: "J.K. Rowling" },
+      { name: "J.R.R. Tolkien" },
+      { name: "Christelle Dabos" },
+      { name: "Robin Hobb" },
+      { name: "Christopher Paolini" },
+      { name: "George R.R. Martin" },
+      { name: "Leigh Bardugo" },
+
+      // Science-fiction
+      { name: "Frank Herbert" },
+      { name: "Isaac Asimov" },
+      { name: "Andy Weir" },
+      { name: "William Gibson" },
+      { name: "Margaret Atwood" },
+      { name: "Dan Simmons" },
+
+      // Développement personnel
+      { name: "Don Miguel Ruiz" },
+      { name: "James Clear" },
+      { name: "Eckhart Tolle" },
+      { name: "Raphaëlle Giordano" },
+      { name: "Hal Elrod" },
+      { name: "Mark Manson" },
+
+      // Biographie
+      { name: "Michelle Obama" },
+      { name: "Walter Isaacson" },
+      { name: "Simone Veil" },
+      { name: "Nelson Mandela" },
+      { name: "Malala Yousafzai" },
+      { name: "Philippe Lançon" },
+
+      // Jeunesse
+      { name: "Suzanne Collins" },
+      { name: "Rick Riordan" },
+      { name: "Alice Oseman" },
+      { name: "Erin Hunter" },
+      { name: "Tui T. Sutherland" },
+      { name: "Antoine de Saint-Exupéry" },
+      { name: "Bertrand Santini" },
+
+      // Mangas
+      { name: "Kanehito Yamada" },
+      { name: "Tsukasa Abe" },
+      { name: "Natsu Hyuuga" },
+      { name: "Itsuki Nanao" },
+      { name: "Nekokurage" },
+      { name: "Koyoharu Gotōge" },
+      { name: "Gege Akutami" },
+      { name: "Masashi Kishimoto" },
+      { name: "Tsugumi Ohba" },
+      { name: "Takeshi Obata" },
+      { name: "Kohei Horikoshi" },
+      { name: "Tatsuya Endo" },
+
+      // Bande dessinée
+      { name: "Felix Delep" },
+      { name: "Xavier Dorison" },
+      { name: "Hergé" },
+      { name: "René Goscinny" },
+      { name: "Albert Uderzo" },
+      { name: "Wilfrid Lupano" },
+      { name: "Paul Cauuet" },
+
+      // Classique
+      { name: "Victor Hugo" },
+      { name: "Alexandre Dumas" },
+      { name: "Herman Melville" },
+      { name: "Mary Shelley" },
+      { name: "Bram Stoker" },
+      { name: "Arthur Conan Doyle" },
     ];
 
     const authors = await Author.bulkCreate(authorData);
