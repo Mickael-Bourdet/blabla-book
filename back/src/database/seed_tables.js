@@ -61,7 +61,7 @@ async function seedDatabase() {
       { name: "Agatha Christie" },
       { name: "Paula Hawkins" },
 
-      // Fantaisie
+      // Fantasy
       { name: "J.K. Rowling" },
       { name: "J.R.R. Tolkien" },
       { name: "Christelle Dabos" },
@@ -145,12 +145,12 @@ async function seedDatabase() {
     const bookData = [
       {
         isbn: "9782253194583",
-        title: "After, Tome 1",
+        title: "After - Tome 1",
         description:
-          "After raconte l’histoire de Tessa Young, une étudiante sérieuse qui tombe amoureuse de Hardin Scott, un jeune homme impulsif. Leur relation passionnée les entraîne dans des montagnes russes émotionnelles, entre amour, colère, réconciliation et trahison.",
+          "After raconte l'histoire de Tessa Young, une étudiante sérieuse qui tombe amoureuse de Hardin Scott, un jeune homme impulsif. Leur relation passionnée les entraîne dans des montagnes russes émotionnelles, entre amour, colère, réconciliation et trahison.",
         published: "2016",
         cover_url: "1459864478i/29781320",
-        page_count: "816",
+        page_count: 816,
       },
       {
         isbn: "9781501110368",
@@ -159,25 +159,25 @@ async function seedDatabase() {
           "Lily Bloom, une jeune femme qui a grandi dans un environnement difficile, rencontre Ryle Kincaid, un chirurgien ambitieux. Leur relation tumultueuse la confronte à ses propres choix entre l'amour et la sécurité.",
         published: "2016",
         cover_url: "1725582473i/218517898",
-        page_count: "376",
+        page_count: 384,
       },
       {
         isbn: "9782092543030",
         title: "Nos étoiles contraires",
         description:
-          " L’histoire poignante de deux adolescents, Hazel et Gus, qui luttent contre le cancer. Ils vivent une histoire d'amour extraordinaire, malgré la souffrance, et découvrent l'impact profond qu'ils ont l'un sur l'autre.",
-        published: "2012",
+          "L'histoire poignante de deux adolescents, Hazel et Gus, qui luttent contre le cancer. Ils vivent une histoire d'amour extraordinaire, malgré la souffrance, et découvrent l'impact profond qu'ils ont l'un sur l'autre.",
+        published: "2013",
         cover_url: "1354914714i/16176099",
-        page_count: "326",
+        page_count: 336,
       },
       {
         isbn: "9782080460110",
         title: "Orgueil et Préjugés",
         description:
-          "Elizabeth Bennet, l’héroïne du roman, lutte contre ses sentiments pour le riche et hautain Mr. Darcy. Ce classique explore les thèmes de l'amour, de la classe sociale et des malentendus.",
+          "Elizabeth Bennet, l'héroïne du roman, lutte contre ses sentiments pour le riche et hautain Mr. Darcy. Ce classique explore les thèmes de l'amour, de la classe sociale et des malentendus.",
         published: "2024",
         cover_url: "1730186529i/216428118",
-        page_count: "448",
+        page_count: 432,
       },
       {
         isbn: "9780316015844",
@@ -186,16 +186,16 @@ async function seedDatabase() {
           "Bella Swan, une adolescente ordinaire, tombe amoureuse de Edward Cullen, un vampire. Leur amour interdit fait face à de nombreux obstacles, notamment les dangers liés à la nature de Edward.",
         published: "2006",
         cover_url: "1700522826i/41865",
-        page_count: "498",
+        page_count: 544,
       },
       {
         isbn: "9782811210014",
         title: "Avant toi",
         description:
-          "Alors que sa famille traverse des heures sombres et que tous les espoirs reposent sur elle, Lou, 26 ans, perd son travail. Pour retrouver un emploi, elle est prête à tout, ou presque : elle ne sera ni strip-teaseuse ni garde-malade. Elle finit par accepter un contrat de six mois pour tenir compagnie à un jeune tétraplégique. Malgré l’accueil glacial qu’il lui réserve, Lou va découvrir en Will un homme exceptionnel, brillant dans les affaires, accro aux sensations fortes et voyageur invétéré. Mais depuis son accident, il veut mettre fin à ses jours. Lou n’a que quelques mois pour le faire changer d’avis.",
+          "Alors que sa famille traverse des heures sombres et que tous les espoirs reposent sur elle, Lou, 26 ans, perd son travail. Pour retrouver un emploi, elle est prête à tout, ou presque : elle ne sera ni strip-teaseuse ni garde-malade. Elle finit par accepter un contrat de six mois pour tenir compagnie à un jeune tétraplégique. Malgré l'accueil glacial qu'il lui réserve, Lou va découvrir en Will un homme exceptionnel, brillant dans les affaires, accro aux sensations fortes et voyageur invétéré. Mais depuis son accident, il veut mettre fin à ses jours. Lou n'a que quelques mois pour le faire changer d'avis.",
         published: "2013",
         cover_url: "1359004687i/17281930",
-        page_count: "480",
+        page_count: 480,
       },
       {
         isbn: "9782381222738",
@@ -204,103 +204,451 @@ async function seedDatabase() {
           "Olive Smith, une doctorante en biologie, se lance dans une fausse relation avec Adam Carlsen, un professeur. Alors qu'ils feignent l'amour, des sentiments réels commencent à émerger, chamboulant leurs vies et leurs carrières.",
         published: "2022",
         cover_url: "1663504369i/61313872",
-        page_count: "480",
-      },
-
-      //  TODO : supprimer ici
-
-      {
-        isbn: "9791032710265",
-        title: "Les Carnets de l’Apothicaire",
-        description:
-          " Maomao est toujours en mission au palais impérial, où elle continue d’utiliser son intelligence pour résoudre des mystères liés aux poisons et à la politique complexe qui règne dans l’empire. Ce tome approfondit les intrigues et les relations entre les personnages.",
-        published: 2016,
-        cover_url: "1636297509i/59539064",
-        page_count: 159,
+        page_count: 480,
       },
       {
-        isbn: "9782377352654",
-        title: "Les Aventures de Sherlock Holmes",
+        isbn: "9782889730087",
+        title: "La Vérité sur l'affaire Harry Quebert",
         description:
-          "Le détective Sherlock Holmes, avec son acolyte le Dr Watson, résout des mystères complexes à travers des enquêtes brillantes. Ce recueil regroupe certaines de ses aventures les plus célèbres.",
-        published: 2019,
-        cover_url: "1598474896i/55134619",
-        page_count: 393,
+          "Un jeune écrivain, Marcus Goldman, enquête sur son mentor Harry Quebert, accusé du meurtre d'une adolescente. Le livre explore le monde de la littérature et des secrets du passé.",
+        published: "2022",
+        cover_url: "1647372117i/60624997",
+        page_count: 863,
+      },
+      {
+        isbn: "9782253157205",
+        title: "Le Chuchoteur",
+        description:
+          "Un tueur en série sévit en Italie, et un inspecteur est appelé pour résoudre le mystère. Le thriller plonge dans l'âme humaine, entre douleur et manipulations.",
+        published: "2011",
+        cover_url: "1351170620i/11038480",
+        page_count: 576,
+      },
+      {
+        isbn: "9780753827666",
+        title: "Gone Girl",
+        description:
+          "Amy disparaît mystérieusement le jour de son anniversaire, et son mari Nick devient le principal suspect. Un jeu de manipulation, mensonges et retournements de situation plonge les lecteurs dans une spirale d'incertitude.",
+        published: "2013",
+        cover_url: "1636561575i/59586576",
+        page_count: 528,
+      },
+      {
+        isbn: "9782253171676",
+        title: "Les Rivières Pourpres",
+        description:
+          "L'inspecteur Pierre Niémans et la jeune détective Camille Delaunay enquêtent sur une série de meurtres dans une petite ville. Ce roman mêle crime, mystère et secrets enfouis.",
+        published: "2001",
+        cover_url: "1344861788i/15826126",
+        page_count: 448,
+      },
+      {
+        isbn: "9782743659769",
+        title: "Shutter Island",
+        description:
+          "Teddy Daniels, un détective, enquête sur la disparition d'une patiente d'un hôpital psychiatrique situé sur une île isolée. Au fur et à mesure de son enquête, il se rend compte que les choses ne sont pas ce qu'elles semblent être.",
+        published: "2023",
+        cover_url: "1680719721i/125315964",
+        page_count: 400,
+      },
+      {
+        isbn: "9782351052204",
+        title: "Le Crime de l'Orient-Express",
+        description:
+          "Le détective Hercule Poirot résout un meurtre à bord de l'Orient-Express, où chaque passager pourrait être un suspect. Un classique du genre, où l'ingéniosité du détective est mise à l'épreuve.",
+        published: "2023",
+        cover_url: "1719700134i/198342656",
+        page_count: 160,
+      },
+      {
+        isbn: "9782266254489",
+        title: "La Fille du train",
+        description:
+          "Rachel, une femme alcoolique, se retrouve mêlée à la disparition d'une femme qu'elle observait tous les jours depuis le train. Un thriller psychologique captivant où le passé et la réalité se mélangent.",
+        published: "2016",
+        cover_url: "1469737918i/31285614",
+        page_count: 464,
       },
       {
         isbn: "9782070585205",
-        title: "Harry Potter et la Coupe de Feu",
+        title: "Harry Potter – Tome 4 : Harry Potter et la Coupe de Feu",
         description:
-          "Harry participe au Tournoi des Trois Sorciers, une compétition magique qui met ses capacités à l'épreuve. Ce tome voit son monde s'assombrir, alors qu’il fait face à des épreuves dangereuses et à de nouveaux défis. C'est un tournant majeur dans la saga.",
-        published: 2011,
+          "Harry participe au Tournoi des Trois Sorciers, une compétition magique qui met ses capacités à l'épreuve. Ce tome voit son monde s'assombrir, alors qu'il fait face à des épreuves dangereuses et à de nouveaux défis. C'est un tournant majeur dans la saga.",
+        published: "2017",
         cover_url: "1508475182i/36444262",
-        page_count: 774,
+        page_count: 784,
+      },
+      {
+        isbn: "9782267046892",
+        title: "Le Seigneur des Anneaux – Tome 2 : Les Deux Tours",
+        description:
+          "Frodon et Sam continuent leur périple vers le Mordor. Tandis que la Communauté est dispersée, Aragorn et ses compagnons affrontent de nouveaux ennemis et se battent pour la survie du monde libre. Le mal se renforce et les enjeux deviennent de plus en plus graves.",
+        published: "2022",
+        cover_url: "1659718003i/61867641",
+        page_count: 432,
+      },
+      {
+        isbn: "9782075120951",
+        title: "La Passe-miroir – Tome 3 : La Mémoire de Babel",
+        description:
+          "Ophélie, partie en quête de Thorn, se rend dans l'arche de Babel, un endroit mystérieux et élitiste. Entre intrigues politiques et mystères à résoudre, elle découvre des secrets qui pourraient changer son univers à jamais.",
+        published: "2019",
+        cover_url: "1558645732i/46000950",
+        page_count: 566,
+      },
+      {
+        isbn: "9782290383315",
+        title: "L'Assassin royal – Tome 6 : La Reine solitaire",
+        description:
+          "FitzChevalerie, exilé et caché sous une nouvelle identité, est forcé de revenir à la cour pour protéger la famille royale. Ses relations et son passé le rattrapent, et des secrets anciens refont surface. L'intrigue se centre sur ses dilemmes internes et les enjeux politiques autour de la cour royale.",
+        published: "2023",
+        cover_url: "1680726932i/125387537",
+        page_count: 384,
+      },
+      {
+        isbn: "9791036313714",
+        title: "Eragon – Tome 2 : L'Aîné",
+        description:
+          "Eragon poursuit son apprentissage en tant que Dragonnier, se rendant dans une lointaine cité pour parfaire ses compétences. Pendant ce temps, une guerre éclate et les secrets des dragonniers refont surface. Ce tome suit son évolution en tant que héros et son exploration de son propre destin.",
+        published: "2019",
+        cover_url: "1579366189i/50534386",
+        page_count: 808,
       },
       {
         isbn: "9782290319956",
-        title: "Le Trône de Fer – Tome 5 : L’Invincible Forteresse",
+        title: "Le Trône de Fer – Tome 5 : L'Invincible Forteresse",
         description:
           "Dans un monde où le pouvoir change de mains, ce tome explore les luttes politiques intenses après un grand bouleversement. De nouveaux défis et trahisons surgissent, et les protagonistes se battent pour garder leur place dans un jeu de pouvoir impitoyable.",
-        published: 2002,
+        published: "2002",
         cover_url: "1330189403i/2072931",
         page_count: 352,
       },
       {
-        isbn: "9791032711262",
-        title: "Frieren : Beyond Journey’s End - Tome 4",
+        isbn: "9782016265376",
+        title: "Six of Crows – Tome 1 : Six of Crows",
         description:
-          " Frieren continue son voyage après la fin de la quête des héros. Ce tome se concentre sur la découverte de nouvelles régions et sur les rencontres avec des personnages qui vont remettre en question sa vision du monde et du passage du temps.",
-        published: 2022,
-        cover_url: "1657191679i/61405470",
+          "Kaz Brekker, un criminel brillant, forme une équipe d'individus aux talents exceptionnels pour réaliser un casse impossible. Ce groupe improbable s'attaque à un défi dangereux et découvre qu'ils devront se confronter à plus que de simples obstacles physiques.",
+        published: "2017",
+        cover_url: "1556826594i/45440651",
+        page_count: 576,
+      },
+      {
+        isbn: "9782266320481",
+        title: "Dune – Tome 1 : Dune",
+        description:
+          "Sur la planète Arrakis, la lutte pour le contrôle de l'épice, une substance précieuse, est au cœur de l'intrigue. Paul Atreides, héritier de la maison noble des Atreides, devra naviguer dans des complots politiques, des guerres et des révélations mystiques.",
+        published: "2021",
+        cover_url: "1631544792i/58989059",
+        page_count: 936,
+      },
+      {
+        isbn: "9782070360536",
+        title: "Fondation – Tome 1 : Le cycle de Fondation",
+        description:
+          "La Fondation est une organisation scientifique fondée pour préserver les connaissances humaines dans un futur galactique. L'histoire suit des personnages clés qui luttent contre la chute imminente de l'Empire Galactique.",
+        published: "2009",
+        cover_url: "1462877032i/26073740",
+        page_count: 416,
+      },
+      {
+        isbn: "9782811215729",
+        title: "Seul sur Mars",
+        description:
+          "Mark Watney, un astronaute laissé pour mort sur Mars après un accident, utilise son ingéniosité pour survivre en attendant un sauvetage. Un récit de survie intense, alliant science et humour.",
+        published: "2015",
+        cover_url: "1447332097i/27810119",
+        page_count: 480,
+      },
+      {
+        isbn: "9791030703658",
+        title: "Neuromancien",
+        description:
+          "Case, un pirate informatique, est engagé pour effectuer un vol virtuel dans un monde cybernétique. Le roman explore des thèmes de réalité virtuelle, d'intelligence artificielle et d'intrigues technologiques.",
+        published: "2020",
+        cover_url: "1603108626i/55725587",
+        page_count: 438,
+      },
+      {
+        isbn: "9782221249949",
+        title: "La Servante écarlate",
+        description:
+          "Dans un futur dystopique, les femmes sont réduites à des rôles subordonnés dans une société totalitaire. Offred, l'héroïne, est une servante dont la seule fonction est de procréer pour les élites dirigeantes. Un puissant récit de résistance et de liberté.",
+        published: "2021",
+        cover_url: "1672941418i/56982509",
+        page_count: 560,
+      },
+      {
+        isbn: "9782266252584",
+        title: "Hypérion",
+        description:
+          "Un groupe de pèlerins se rend sur la planète Hypérion, chacun ayant une histoire personnelle à raconter. Un mélange de récits et d'aventures dans un futur lointain où l'humanité est confrontée à des forces mystérieuses.",
+        published: "2014",
+        cover_url: "1415797952i/23548915",
+        page_count: 640,
+      },
+      {
+        isbn: "9782290342480",
+        title: "Le cycle des robots - Tome 1 : les robots",
+        description:
+          "Dans le futur, les robots sont devenus progressivement indispensables à l'homme, en étant toujours plus sophistiqués, plus puissants - mais aussi, parfois, plus dangereux. Heureusement, les humains sont bien protégés par la première loi, qui rend les androïdes inoffensifs. Mais qu'adviendra-t-il si son interprétation était biaisée ? Et si des machines s'imposaient à des postes clés de notre société ? Et si les robots venaient à diriger le monde ?",
+        published: "2004",
+        cover_url: "1611401044i/56790999",
+        page_count: 320,
+      },
+      {
+        isbn: "9782883534612",
+        title: "Les Quatre Accords Toltèques",
+        description:
+          "Ce livre propose quatre principes simples mais puissants pour mener une vie plus heureuse et épanouie : ne pas prendre les choses personnellement, ne pas faire de suppositions, toujours faire de son mieux et être impeccable avec ses mots.",
+        published: "2005",
+        cover_url: "1182507457i/1285456",
+        page_count: 125,
+      },
+      {
+        isbn: "9782035969200",
+        title: "Un rien peut tout changer !",
+        description:
+          "James Clear propose une méthode pour créer de petites habitudes positives qui peuvent avoir un impact énorme sur la vie. Il explore la science derrière les habitudes et comment les modifier pour améliorer notre quotidien.",
+        published: "2019",
+        cover_url: "1566852995l/52678497",
+        page_count: 320,
+      },
+      {
+        isbn: "9782290020203",
+        title: "Le Pouvoir du moment présent",
+        description:
+          "Un guide spirituel qui encourage à vivre dans l'instant présent et à se détacher des pensées négatives. Tolle invite à trouver la paix intérieure en se libérant de l'ego et des préoccupations de l'esprit.",
+        published: "2010",
+        cover_url: "1328402604i/10370389",
+        page_count: 256,
+      },
+      {
+        isbn: "9782416014291",
+        title: "Ta deuxième vie commence quand tu comprends que tu n'en as qu'une",
+        description:
+          'Ce livre raconte l\'histoire de Camille, une femme qui traverse une crise de la quarantaine et qui décide de réinventer sa vie grâce à un "coach de vie". Une approche simple et bienveillante pour retrouver sa joie de vivre.',
+        published: "2024",
+        cover_url: "1719702777i/198823285",
+        page_count: 304,
+      },
+      {
+        isbn: "9782266268554",
+        title: "Miracle Morning",
+        description:
+          "Hal Elrod propose une routine matinale de 6 pratiques simples à intégrer dès le matin pour transformer sa vie. Le livre encourage à commencer chaque journée avec des habitudes saines qui ont un impact positif sur toute la journée.",
+        published: "2017",
+        cover_url: "1513629747i/37563551",
+        page_count: 272,
+      },
+      {
+        isbn: "9782212567595",
+        title: "L'art subtil de s'en foutre",
+        description:
+          "Un livre de développement personnel qui renverse les conventions habituelles. Mark Manson prône une approche plus réaliste du bonheur, en se concentrant sur les choses qui comptent vraiment et en abandonnant la quête d'une vie parfaite.",
+        published: "2017",
+        cover_url: "1533568095i/41057918",
         page_count: 188,
+      },
+      // Suite des livres...
+      {
+        isbn: "9782016284926",
+        title: "Devenir",
+        description:
+          "Les mémoires de l'ex-Première Dame des États-Unis, Michelle Obama, qui raconte son enfance, son parcours à la Maison Blanche, et ses réflexions sur la politique, la famille et la race. Un témoignage émouvant et inspirant.",
+        published: "2021",
+        cover_url: "1632514726i/59069328",
+        page_count: 512,
+      },
+      {
+        isbn: "9782709638326",
+        title: "Steve Jobs",
+        description:
+          "Une biographie complète du co-fondateur d'Apple, Steve Jobs, qui explore sa vie, ses créations révolutionnaires et son caractère complexe. Le livre dévoile des aspects personnels de Jobs, ainsi que sa vision du monde technologique.",
+        published: "2011",
+        cover_url: "1348825606i/12808064",
+        page_count: 668,
+      },
+      {
+        isbn: "9782253127765",
+        title: "Une vie",
+        description:
+          "Les mémoires de Simone Veil, figure emblématique de la lutte pour les droits des femmes et la justice sociale en France. Son récit retrace son parcours, de la déportation à Auschwitz à son engagement pour la légalisation de l'avortement.",
+        published: "2009",
+        cover_url: "1328373264i/7952689",
+        page_count: 352,
+      },
+      {
+        isbn: "9782253140634",
+        title: "Un long chemin vers la liberté",
+        description:
+          "Les mémoires de Nelson Mandela, leader de la lutte contre l'apartheid en Afrique du Sud, détaillant son parcours depuis son enfance jusqu'à son emprisonnement et son ascension politique. Un témoignage puissant sur la résistance et l'espoir.",
+        published: "1996",
+        cover_url: "1347380655i/1740591",
+        page_count: 768,
+      },
+      {
+        isbn: "9782013193184",
+        title: "Moi, Malala",
+        description:
+          "L'histoire de Malala Yousafzai, la plus jeune lauréate du prix Nobel de la paix, qui raconte son combat pour l'éducation des filles au Pakistan et son attaque par les talibans, suivie de sa résilience et de sa voix mondiale.",
+        published: "2016",
+        cover_url: "1453908068i/28780030",
+        page_count: 320,
+      },
+      {
+        isbn: "9782072873706",
+        title: "Le Lambeau",
+        description:
+          "Un témoignage poignant de Philippe Lançon, victime de l'attentat contre Charlie Hebdo en 2015, qui raconte son combat pour survivre et se reconstruire après les blessures physiques et psychologiques.",
+        published: "2020",
+        cover_url: "1578405275i/50348311",
+        page_count: 512,
       },
       {
         isbn: "9782266260787",
-        title: "Hunger Games - Tome 2",
+        title: "Hunger Games - Tome 2 : L'embrasement",
         description:
           "Dans un futur dystopique, Katniss Everdeen, une jeune fille, doit participer à un combat à mort télévisé avec d'autres enfants pour divertir les élites. Un récit de survie, de rébellion et de résistance.",
-        published: 2008,
+        published: "2015",
         cover_url: "1451581575i/28415052",
         page_count: 432,
       },
       {
-        isbn: "9782253088752",
-        title: "Frankenstein",
+        isbn: "9782019109974",
+        title: "Percy Jackson - Tome 3 : Le sort Du Titan",
         description:
-          "Le Dr. Frankenstein créé un monstre à partir de morceaux de cadavres, mais se retrouve horrifié par sa création. Un roman gothique qui interroge la responsabilité scientifique, la solitude et l’éthique.",
-        published: 2009,
-        cover_url: "1364186726i/7261829",
-        page_count: 345,
+          "Percy Jackson, un adolescent, découvre qu'il est un demi-dieu, fils de Poséidon, et doit partir en quête pour récupérer l'éclair de Zeus. Le livre mélange mythologie grecque et aventures modernes dans un style captivant et plein d'humour.",
+        published: "2016",
+        cover_url: "1524087196i/33167226",
+        page_count: 384,
       },
       {
-        isbn: "9782012101401",
-        title: "Astérix chez les Bretons",
+        isbn: "9782017108313",
+        title: "Heartstopper - Tome 1 : Deux garçons. Une Rencontre",
         description:
-          "Astérix et son ami Obélix, deux irréductibles Gaulois, se battent contre les Romains et affrontent divers défis avec humour et esprit. Une série pleine de références à l’histoire et la culture européenne.",
-        published: 2004,
-        cover_url: "1419178691i/900568",
-        page_count: 48,
+          "L'histoire d'amour touchante entre Nick et Charlie, deux adolescents qui se rencontrent au lycée. Une bande dessinée émouvante qui explore l'amitié, l'acceptation de soi et les premiers amours.",
+        published: "2019",
+        cover_url: "1570545397l/52649092",
+        page_count: 272,
       },
       {
-        isbn: "9782212567595",
-        title: "Naruto - Tome 41",
+        isbn: "9782266178921",
+        title: "La Guerre des clan - Tome 3 : Les mystères de la forêt",
         description:
-          "Ce tome marque un tournant majeur dans l'histoire, alors que Naruto et ses alliés se lancent dans une guerre contre l'Akatsuki. Des batailles épiques ont lieu, et des révélations importantes sur les origines de certains personnages changent la dynamique de la guerre. L'émotion et l'intensité des combats sont à leur apogée.",
-        published: 2009,
-        cover_url: "1363037606i/6218526",
+          "Ce livre raconte les aventures de différents clans de chats sauvages qui luttent pour leur survie dans la forêt. Chaque chat a son rôle et ses croyances, créant un monde complexe et fascinant.",
+        published: "2008",
+        cover_url: "1348944190i/6470103",
+        page_count: 319,
+      },
+      {
+        isbn: "9782070661831",
+        title: "Les Royaumes de Feu - Tome 1 : La Prophétie",
+        description:
+          "L'histoire suit cinq dragons qui se battent pour mettre fin à une guerre sanglante entre les tribus de dragons. Chaque personnage apporte une perspective différente sur la guerre et la rédemption.",
+        published: "2015",
+        cover_url: "1424697774i/25001418",
+        page_count: 383,
+      },
+      {
+        isbn: "9782070612758",
+        title: "Le Petit Prince",
+        description:
+          "Un pilote se retrouve coincé dans le désert du Sahara, où il rencontre un petit prince venu d'une autre planète. Un conte philosophique qui aborde l'amitié, l'amour, la perte et la recherche de sens dans la vie.",
+        published: "2007",
+        cover_url: "1566560677i/832605",
+        page_count: 120,
+      },
+      {
+        isbn: "9782848657899",
+        title: "Le Journal de Gurty - Tome 1 : Vacances en Provences",
+        description:
+          "Gurty, un chien adorable mais un peu maladroit, raconte ses aventures et ses réflexions dans son journal. Une série pleine de charme et d'humour, idéale pour les jeunes lecteurs.",
+        published: "2015",
+        cover_url: "1430339064i/25452511",
+        page_count: 140,
+      },
+      {
+        isbn: "9791032711262",
+        title: "Frieren : Beyond Journey's End - Tome 4",
+        description:
+          "Frieren continue son voyage après la fin de la quête des héros. Ce tome se concentre sur la découverte de nouvelles régions et sur les rencontres avec des personnages qui vont remettre en question sa vision du monde et du passage du temps.",
+        published: "2022",
+        cover_url: "1657191679i/61405470",
+        page_count: 176,
+      },
+      {
+        isbn: "9791032710265",
+        title: "Les Carnets de l'Apothicaire - Tome 6",
+        description:
+          "Maomao est toujours en mission au palais impérial, où elle continue d'utiliser son intelligence pour résoudre des mystères liés aux poisons et à la politique complexe qui règne dans l'empire. Ce tome approfondit les intrigues et les relations entre les personnages.",
+        published: "2021",
+        cover_url: "1636297509i/59539064",
+        page_count: 173,
+      },
+      {
+        isbn: "9782809487206",
+        title: "Demon Slayer - Tome 8",
+        description:
+          "Tanjiro et ses compagnons affrontent des démons de plus en plus puissants dans leur quête pour sauver l'humanité. Ce tome met en avant des combats intenses et des moments de développement des personnages, tout en explorant les défis émotionnels qu'ils rencontrent.",
+        published: "2020",
+        cover_url: "1595186624i/54594742",
         page_count: 192,
       },
       {
-        isbn: "9782505005582",
-        title: "L’art subtil de s’en foutre",
+        isbn: "9791032710944",
+        title: "Jujutsu Kaisen - Tome 13",
         description:
-          "Un livre de développement personnel qui renverse les conventions habituelles. Mark Manson prône une approche plus réaliste du bonheur, en se concentrant sur les choses qui comptent vraiment et en abandonnant la quête d'une vie parfaite",
-        published: 2017,
-        cover_url: "1533568095i/41057918",
+          "L'arc de Shibuya entre dans une nouvelle phase de confrontation où des alliances et des stratégies se forment face à des ennemis redoutables. Ce tome se concentre sur les luttes internes des personnages et les répercussions de leurs choix dans un monde dévasté par les malédictions.",
+        published: "2022",
+        cover_url: "1644868330i/60405543",
         page_count: 188,
       },
+      {
+        isbn: "9782871299110",
+        title: "Naruto - Tome 22",
+        description:
+          "Le conflit contre l'Akatsuki devient plus intense, et Naruto, Sasuke et leurs alliés se retrouvent confrontés à des menaces qui mettront à l'épreuve leur loyauté et leur détermination. Ce tome prépare le terrain pour des révélations majeures et des changements de direction dans l'histoire.",
+        published: "2006",
+        cover_url: "1375474531i/2506078",
+        page_count: 192,
+      },
+      {
+        isbn: "9782505001997",
+        title: "Death Note - Tome 7",
+        description:
+          "Light Yagami et L continuent leur affrontement psychologique à un niveau plus intense. Ce tome explore l'évolution de leurs stratégies respectives, tandis que les enjeux pour chaque personnage montent en flèche.",
+        published: "2007",
+        cover_url: "1327318717i/2380483",
+        page_count: 208,
+      },
+      {
+        isbn: "9791032703281",
+        title: "My Hero Academia - Tome 16",
+        description:
+          "Midoriya et ses camarades affrontent de nouveaux défis en dehors de l'école, avec des conséquences importantes pour leur développement en tant que héros. Ce tome explore davantage les relations entre les personnages et la complexité des luttes intérieures des protagonistes.",
+        published: "2018",
+        cover_url: "1553970669i/44663034",
+        page_count: 192,
+      },
+      {
+        isbn: "9782380711493",
+        title: "Spy × Family - Tome 5",
+        description:
+          "Anya poursuit son objectif de devenir une \"Stella\" à l'école Eden, tandis que Yor continue de jongler entre ses missions d'assassin et sa vie familiale. Ce tome explore de nouveaux aspects des personnages principaux tout en offrant une dose de suspense et d'humour.",
+        published: "2021",
+        cover_url: "1630239103i/56967942",
+        page_count: 208,
+      },
+      {
+        isbn: "9782505005582",
+        title: "Naruto - Tome 41",
+        description:
+          "Ce tome marque un tournant majeur dans l'histoire, alors que Naruto et ses alliés se lancent dans une guerre contre l'Akatsuki. Des batailles épiques ont lieu, et des révélations importantes sur les origines de certains personnages changent la dynamique de la guerre. L'émotion et l'intensité des combats sont à leur apogée.",
+        published: "2009",
+        cover_url: "1363037606i/6218526",
+        page_count: 192,
+      },
     ];
-
     const books = await Book.bulkCreate(bookData);
     console.log(bookData.length, "Livres ");
 
