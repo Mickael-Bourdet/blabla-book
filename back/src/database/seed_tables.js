@@ -648,6 +648,114 @@ async function seedDatabase() {
         cover_url: "1363037606i/6218526",
         page_count: 192,
       },
+      {
+        isbn: "9782413075424",
+        title: "Solo Leveling - Tome 8",
+        description:
+          "Le tome 8 marque un tournant dans l'histoire. Jinwoo, après avoir obtenu un ingrédient rare, parvient à créer un élixir de vie sacré dans l'espoir de sauver sa mère. Simultanément, une expédition est lancée pour éliminer une menace grandissante sur l'île de Jeju.​ Ce volume met en lumière les chasseurs de rang S, dévoilant leurs forces, leurs faiblesses et leurs interactions. Alors que l'expédition semble bien préparée, des événements inattendus surviennent, mettant en péril la mission et révélant des ennemis d'une puissance inouïe",
+        published: "2022",
+        cover_url: "1668028642i/63265606",
+        page_count: 272,
+      },
+      {
+        isbn: "9782203148888",
+        title: "Le château des animaux - Tome 1 : Miss Bengalore",
+        description:
+          "Dans une ferme isolée, des animaux vivent sous la domination brutale d'un taureau tyrannique et de ses chiens soldats. L'ordre est imposé par la peur et la force, dans une société où règnent l'oppression et l'injustice. Mais parmi les opprimés, quelques voix commencent à s'élever. Une chatte discrète et un lapin imprévisible croisent la route d'un vieux rat sage, porteur d'idées nouvelles. Ensemble, ils vont tenter de semer les graines de la révolte… non pas par la violence, mais par l'intelligence, la ruse et la solidarité.",
+        published: "2019",
+        cover_url: "1627134325i/50831481",
+        page_count: 71,
+      },
+      {
+        isbn: "9782203001107",
+        title: "Tintin - Tome 11 : Le Secret de la Licorne",
+        description:
+          "Tintin achète un modèle réduit de bateau qui intrigue aussitôt son ami le capitaine Haddock, car il est lié à l'histoire de sa famille. En enquêtant sur cet objet mystérieux, Tintin découvre qu'il pourrait être la clé d'un ancien secret oublié depuis des siècles. Ce qui semblait être une simple curiosité va rapidement les entraîner dans une aventure pleine d'énigmes, de poursuites et de découvertes historiques, alors qu'ils tentent de réunir les pièces d'un puzzle menant à un trésor perdu.",
+        published: "1993",
+        cover_url: "1558670829i/146140",
+        page_count: 68,
+      },
+      {
+        isbn: "9782012101401",
+        title: "Astérix - Tome 8 : Astérix chez les Bretons",
+        description:
+          "Quand les légions de César envahissent une île de l'ouest, un cousin d'Astérix vient chercher de l'aide au village gaulois. Fidèles à leur réputation, Astérix et Obélix embarquent pour une mission à l'étranger, armés de courage… et d'un tonneau très spécial. Là-bas, ils découvrent un pays aux coutumes étranges et aux combats insolites, mais aussi un peuple décidé à ne pas se laisser faire. Une aventure pleine d'humour, de jeux de mots et de décalages culturels, comme toujours chez les irréductibles Gaulois.",
+        published: "1997",
+        cover_url: "1419178691i/900568",
+        page_count: 48,
+      },
+      {
+        isbn: "9782505019930",
+        title: "Les Vieux Fourneaux – Tome 1 : Ceux qui restent",
+        description:
+          "Trois amis d'enfance, désormais retraités, n'ont pas perdu leur mordant ni leur sens de la révolte. Avec humour et tendresse, ils naviguent entre souvenirs, regrets et coups de gueule, dans une époque qu'ils ne reconnaissent plus tout à fait. Lorsqu'un événement du passé ressurgit brutalement, l'un d'eux embarque les autres dans un voyage inattendu aux allures de règlement de comptes. Le tout donne une comédie grinçante et humaine sur l'amitié, la vieillesse… et les luttes qui ne s'éteignent jamais vraiment.",
+        published: "2014",
+        cover_url: "1398683903i/22019317",
+        page_count: 56,
+      },
+      {
+        isbn: "9782010008993",
+        title: "Les Misérables",
+        description:
+          "L'histoire épique de Jean Valjean, un ancien forçat qui cherche à se racheter, et de l'inspecteur Javert, qui poursuit sans relâche sa capture. Ce roman explore des thèmes comme la rédemption, la justice, l'amour et la pauvreté dans la société française du XIXe siècle.",
+        published: "2014",
+        cover_url: "1677818802i/30116949",
+        page_count: 343,
+      },
+      {
+        isbn: "9782072895647",
+        title: "Le Comte de Monte-Cristo",
+        description:
+          "Edmond Dantès, un jeune homme accusé à tort de trahison, s'évade du Château d'If et devient le mystérieux Comte de Monte-Cristo. Un chef-d'œuvre de vengeance, de trahison et de rédemption, avec des intrigues palpitantes et des personnages inoubliables.",
+        published: "2020",
+        cover_url: "1608818220i/56398644",
+        page_count: 1264,
+      },
+      {
+        isbn: "9782253088905",
+        title: "Orgueil et Préjugés",
+        description:
+          "Elizabeth Bennet, une jeune femme vive et indépendante, se confronte aux attentes sociales de l'époque et à sa relation complexe avec le mystérieux Mr. Darcy. Une comédie de mœurs, pleine de critiques sociales et d'histoires d'amour.",
+        published: "2011",
+        cover_url: "1375087857i/11913773",
+        page_count: 510,
+      },
+      {
+        isbn: "9782070400669",
+        title: "Moby Dick",
+        description:
+          "Le capitaine Ahab est obsédé par la chasse à Moby Dick, une baleine blanche géante. Ce roman explore des thèmes de destin, d'obsession et de la nature humaine, tout en racontant l'aventure sur les océans.",
+        published: "2001",
+        cover_url: "1182532294i/1289792",
+        page_count: 731,
+      },
+      {
+        isbn: "9782253088752",
+        title: "Frankenstein",
+        description:
+          "Le Dr. Frankenstein créé un monstre à partir de morceaux de cadavres, mais se retrouve horrifié par sa création. Un roman gothique qui interroge la responsabilité scientifique, la solitude et l'éthique.",
+        published: "2009",
+        cover_url: "1364186726i/7261829",
+        page_count: 352,
+      },
+      {
+        isbn: "9782253023388",
+        title: "Dracula",
+        description:
+          "Le comte Dracula, un vampire charismatique, se rend à Londres dans l'intention de répandre son mal. Un classique du genre horrifique qui a défini la figure du vampire et a inspiré de nombreuses adaptations cinématographiques.",
+        published: "2009",
+        cover_url: "1327268294i/6998329",
+        page_count: 604,
+      },
+      {
+        isbn: "9782377352654",
+        title: "Les Aventures de Sherlock Holmes",
+        description:
+          "Le détective Sherlock Holmes, avec son acolyte le Dr Watson, résout des mystères complexes à travers des enquêtes brillantes. Ce recueil regroupe certaines de ses aventures les plus célèbres.",
+        published: "2019",
+        cover_url: "1598474896i/55134619",
+        page_count: 394,
+      },
     ];
     const books = await Book.bulkCreate(bookData);
     console.log(bookData.length, "Livres ");
