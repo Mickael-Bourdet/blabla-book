@@ -866,13 +866,74 @@ async function seedDatabase() {
 
     // join table book-category
     const bookCategoryAssociation = [
-      { book_id: 1, category_id: 1 },
-      { book_id: 2, category_id: 1 },
-      { book_id: 3, category_id: 1 },
-      { book_id: 4, category_id: 1 },
-      { book_id: 5, category_id: 1 },
-      { book_id: 6, category_id: 1 },
-      { book_id: 7, category_id: 1 },
+      { book_id: 1, category_id: 1 }, // After - Tome 1 - Romance
+      { book_id: 2, category_id: 1 }, // It Ends With Us - Romance
+      { book_id: 3, category_id: 1 }, // Nos étoiles contraires - Romance
+      { book_id: 4, category_id: 1 }, // Orgueil et Préjugés - Romance
+      { book_id: 5, category_id: 1 }, // Twilight - Romance
+      { book_id: 6, category_id: 1 }, // Avant toi - Romance
+      { book_id: 7, category_id: 1 }, // The Love Hypothesis - Romance
+      { book_id: 8, category_id: 2 }, // La Vérité sur l'affaire Harry Quebert - Thriller
+      { book_id: 9, category_id: 2 }, // Le Chuchoteur - Thriller
+      { book_id: 10, category_id: 2 }, // Gone Girl - Thriller
+      { book_id: 11, category_id: 2 }, // Les Rivières Pourpres - Thriller
+      { book_id: 12, category_id: 2 }, // Shutter Island - Thriller
+      { book_id: 13, category_id: 2 }, // Le Crime de l'Orient-Express - Thriller
+      { book_id: 14, category_id: 2 }, // La Fille du train - Thriller
+      { book_id: 15, category_id: 3 }, // Harry Potter - Tome 4 - Fantaisie
+      { book_id: 16, category_id: 3 }, // Le Seigneur des Anneaux - Tome 2 - Fantaisie
+      { book_id: 17, category_id: 3 }, // La Passe-miroir - Tome 3 - Fantaisie
+      { book_id: 18, category_id: 3 }, // L'Assassin royal - Tome 6 - Fantaisie
+      { book_id: 19, category_id: 3 }, // Eragon - Tome 2 - Fantaisie
+      { book_id: 20, category_id: 3 }, // Le Trône de Fer - Tome 5 - Fantaisie
+      { book_id: 21, category_id: 3 }, // Six of Crows - Tome 1 - Fantaisie
+      { book_id: 22, category_id: 4 }, // Dune - Tome 1 - Science-fiction
+      { book_id: 23, category_id: 4 }, // Fondation - Tome 1 - Science-fiction
+      { book_id: 24, category_id: 4 }, // Seul sur Mars - Science-fiction
+      { book_id: 25, category_id: 4 }, // Neuromancien - Science-fiction
+      { book_id: 26, category_id: 4 }, // La Servante écarlate - Science-fiction
+      { book_id: 27, category_id: 4 }, // Hypérion - Science-fiction
+      { book_id: 28, category_id: 4 }, // Le cycle des robots - Tome 1 - Science-fiction
+      { book_id: 29, category_id: 5 }, // Les Quatre Accords Toltèques - Développement personnel
+      { book_id: 30, category_id: 5 }, // Un rien peut tout changer ! - Développement personnel
+      { book_id: 31, category_id: 5 }, // Le Pouvoir du moment présent - Développement personnel
+      { book_id: 32, category_id: 5 }, // Ta deuxième vie commence quand... - Développement personnel
+      { book_id: 33, category_id: 5 }, // Miracle Morning - Développement personnel
+      { book_id: 34, category_id: 5 }, // L'art subtil de s'en foutre - Développement personnel
+      { book_id: 35, category_id: 6 }, // Devenir - Biographie
+      { book_id: 36, category_id: 6 }, // Steve Jobs - Biographie
+      { book_id: 37, category_id: 6 }, // Une vie - Biographie
+      { book_id: 38, category_id: 6 }, // Un long chemin vers la liberté - Biographie
+      { book_id: 39, category_id: 6 }, // Moi, Malala - Biographie
+      { book_id: 40, category_id: 6 }, // Le Lambeau - Biographie
+      { book_id: 41, category_id: 7 }, // Hunger Games - Tome 2 - Jeunesse
+      { book_id: 42, category_id: 7 }, // Percy Jackson - Tome 3 - Jeunesse
+      { book_id: 43, category_id: 7 }, // Heartstopper - Tome 1 - Jeunesse
+      { book_id: 44, category_id: 7 }, // La Guerre des clan - Tome 3 - Jeunesse
+      { book_id: 45, category_id: 7 }, // Les Royaumes de Feu - Tome 1 - Jeunesse
+      { book_id: 46, category_id: 7 }, // Le Petit Prince - Jeunesse
+      { book_id: 47, category_id: 7 }, // Le Journal de Gurty - Tome 1 - Jeunesse
+      { book_id: 48, category_id: 8 }, // Frieren : Beyond Journey's End - Tome 4 - Manga
+      { book_id: 49, category_id: 8 }, // Les Carnets de l'Apothicaire - Tome 6 - Manga
+      { book_id: 50, category_id: 8 }, // Demon Slayer - Tome 8 - Manga
+      { book_id: 51, category_id: 8 }, // Jujutsu Kaisen - Tome 13 - Manga
+      { book_id: 52, category_id: 8 }, // Naruto - Tome 22 - Manga
+      { book_id: 53, category_id: 8 }, // Death Note - Tome 7 - Manga
+      { book_id: 54, category_id: 8 }, // My Hero Academia - Tome 16 - Manga
+      { book_id: 55, category_id: 8 }, // Spy × Family - Tome 5 - Manga
+      { book_id: 56, category_id: 8 }, // Naruto - Tome 41 - Manga
+      { book_id: 57, category_id: 8 }, // Solo Leveling - Tome 8 - Manga
+      { book_id: 58, category_id: 9 }, // Le château des animaux - Tome 1 - Bande dessinée
+      { book_id: 59, category_id: 9 }, // Tintin - Tome 11 - Bande dessinée
+      { book_id: 60, category_id: 9 }, // Astérix - Tome 8 - Bande dessinée
+      { book_id: 61, category_id: 9 }, // Les Vieux Fourneaux - Tome 1 - Bande dessinée
+      { book_id: 62, category_id: 10 }, // Les Misérables - Classique
+      { book_id: 63, category_id: 10 }, // Le Comte de Monte-Cristo - Classique
+      { book_id: 64, category_id: 10 }, // Orgueil et Préjugés - Classique
+      { book_id: 65, category_id: 10 }, // Moby Dick - Classique
+      { book_id: 66, category_id: 10 }, // Frankenstein - Classique
+      { book_id: 67, category_id: 10 }, // Dracula - Classique
+      { book_id: 68, category_id: 10 },
     ];
 
     await sequelize.models.book_has_category.bulkCreate(bookCategoryAssociation);
