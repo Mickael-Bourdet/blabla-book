@@ -122,6 +122,7 @@ async function seedDatabase() {
       // Bande dessinée
       { name: "Felix Delep" },
       { name: "Xavier Dorison" },
+      { name: "Jessica Bodard" },
       { name: "Hergé" },
       { name: "René Goscinny" },
       { name: "Albert Uderzo" },
@@ -449,7 +450,7 @@ async function seedDatabase() {
         cover_url: "1533568095i/41057918",
         page_count: 188,
       },
-      // Suite des livres...
+
       {
         isbn: "9782016284926",
         title: "Devenir",
@@ -824,22 +825,31 @@ async function seedDatabase() {
       { book_id: 47, author_id: [46] }, // Le Journal de Gurty - Tome 1
 
       // Manga
-      { book_id: 48, author_id: [47, 48] }, // Frieren : Beyond Journey's End - Tome 4
-      { book_id: 49, author_id: [49, 50, 51, 52] }, // Les Carnets de l'Apothicaire - Tome 6
-      { book_id: 50, author_id: [53] }, // Demon Slayer - Tome 8
-      { book_id: 51, author_id: [54] }, // Jujutsu Kaisen - Tome 13
-      { book_id: 52, author_id: [55] }, // Naruto - Tome 22
-      { book_id: 53, author_id: [56, 57] }, // Death Note - Tome 7
-      { book_id: 54, author_id: [58] }, // My Hero Academia - Tome 16
-      { book_id: 55, author_id: [59] }, // Spy × Family - Tome 5
-      { book_id: 56, author_id: [55] }, // Naruto - Tome 41
-      { book_id: 57, author_id: [60] }, // Solo Leveling - Tome 8
+      { book_id: 48, author_id: 47 }, // Frieren : Beyond Journey's End - Tome 4
+      { book_id: 48, author_id: 48 }, // Frieren : Beyond Journey's End - Tome 4
+      { book_id: 49, author_id: 49 }, // Les Carnets de l'Apothicaire - Tome 6
+      { book_id: 49, author_id: 50 }, // Les Carnets de l'Apothicaire - Tome 6
+      { book_id: 49, author_id: 51 }, // Les Carnets de l'Apothicaire - Tome 6
+      { book_id: 49, author_id: 52 }, // Les Carnets de l'Apothicaire - Tome 6
+      { book_id: 50, author_id: 53 }, // Demon Slayer - Tome 8
+      { book_id: 51, author_id: 54 }, // Jujutsu Kaisen - Tome 13
+      { book_id: 52, author_id: 55 }, // Naruto - Tome 22
+      { book_id: 53, author_id: 56 }, // Death Note - Tome 7
+      { book_id: 53, author_id: 57 }, // Death Note - Tome 7
+      { book_id: 54, author_id: 58 }, // My Hero Academia - Tome 16
+      { book_id: 55, author_id: 59 }, // Spy × Family - Tome 5
+      { book_id: 56, author_id: 55 }, // Naruto - Tome 41
+      { book_id: 57, author_id: 60 }, // Solo Leveling - Tome 8
 
       // Bande dessinée
-      { book_id: 58, author_id: [61, 62, 63] }, // Le château des animaux - Tome 1
-      { book_id: 59, author_id: [64] }, // Tintin - Tome 11
-      { book_id: 60, author_id: [65, 66] }, // Astérix - Tome 8
-      { book_id: 61, author_id: [67, 68] }, // Les Vieux Fourneaux - Tome 1
+      { book_id: 58, author_id: 61 }, // Le château des animaux - Tome 1
+      { book_id: 58, author_id: 62 }, // Le château des animaux - Tome 1
+      { book_id: 58, author_id: 63 }, // Le château des animaux - Tome 1
+      { book_id: 59, author_id: 64 }, // Tintin - Tome 11
+      { book_id: 60, author_id: 65 }, // Astérix - Tome 8
+      { book_id: 60, author_id: 66 }, // Astérix - Tome 8
+      { book_id: 61, author_id: 67 }, // Les Vieux Fourneaux - Tome 1
+      { book_id: 61, author_id: 68 }, // Les Vieux Fourneaux - Tome 1
 
       // Classique
       { book_id: 62, author_id: [69] }, // Les Misérables
