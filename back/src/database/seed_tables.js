@@ -762,13 +762,93 @@ async function seedDatabase() {
 
     // join table book-author
     const bookAuthorAssociation = [
-      { book_id: 1, author_id: 1 },
-      { book_id: 2, author_id: 2 },
-      { book_id: 3, author_id: 3 },
-      { book_id: 4, author_id: 4 },
-      { book_id: 5, author_id: 5 },
-      { book_id: 6, author_id: 6 },
-      { book_id: 7, author_id: 7 },
+      // Romance
+      { book_id: 1, author_id: [1] }, // After - Tome 1
+      { book_id: 2, author_id: [2] }, // It Ends With Us
+      { book_id: 3, author_id: [3] }, // Nos étoiles contraires
+      { book_id: 4, author_id: [4] }, // Orgueil et Préjugés
+      { book_id: 5, author_id: [5] }, // Twilight
+      { book_id: 6, author_id: [6] }, // Avant toi
+      { book_id: 7, author_id: [7] }, // The Love Hypothesis
+
+      // Thriller
+      { book_id: 8, author_id: [8] }, // La Vérité sur l'affaire Harry Quebert
+      { book_id: 9, author_id: [9] }, // Le Chuchoteur
+      { book_id: 10, author_id: [10] }, // Gone Girl
+      { book_id: 11, author_id: [11] }, // Les Rivières Pourpres
+      { book_id: 12, author_id: [12] }, // Shutter Island
+      { book_id: 13, author_id: [13] }, // Le Crime de l'Orient-Express
+      { book_id: 14, author_id: [14] }, // La Fille du train
+
+      // Fantasy
+      { book_id: 15, author_id: [15] }, // Harry Potter - Tome 4
+      { book_id: 16, author_id: [16] }, // Le Seigneur des Anneaux - Tome 2
+      { book_id: 17, author_id: [17] }, // La Passe-miroir - Tome 3
+      { book_id: 18, author_id: [18] }, // L'Assassin royal - Tome 6
+      { book_id: 19, author_id: [19] }, // Eragon - Tome 2
+      { book_id: 20, author_id: [20] }, // Le Trône de Fer - Tome 5
+      { book_id: 21, author_id: [21] }, // Six of Crows - Tome 1
+
+      // Science-fiction
+      { book_id: 22, author_id: [22] }, // Dune - Tome 1
+      { book_id: 23, author_id: [23] }, // Fondation - Tome 1
+      { book_id: 24, author_id: [24] }, // Seul sur Mars
+      { book_id: 25, author_id: [25] }, // Neuromancien
+      { book_id: 26, author_id: [26] }, // La Servante écarlate
+      { book_id: 27, author_id: [27] }, // Hypérion
+      { book_id: 28, author_id: [23] }, // Le cycle des robots - Tome 1
+
+      // Développement personnel
+      { book_id: 29, author_id: [28] }, // Les Quatre Accords Toltèques
+      { book_id: 30, author_id: [29] }, // Un rien peut tout changer !
+      { book_id: 31, author_id: [30] }, // Le Pouvoir du moment présent
+      { book_id: 32, author_id: [31] }, // Ta deuxième vie commence quand tu comprends
+      { book_id: 33, author_id: [32] }, // Miracle Morning
+      { book_id: 34, author_id: [33] }, // L'art subtil de s'en foutre
+
+      // Biographie
+      { book_id: 35, author_id: [34] }, // Devenir
+      { book_id: 36, author_id: [35] }, // Steve Jobs
+      { book_id: 37, author_id: [36] }, // Une vie
+      { book_id: 38, author_id: [37] }, // Un long chemin vers la liberté
+      { book_id: 39, author_id: [38] }, // Moi, Malala
+      { book_id: 40, author_id: [39] }, // Le Lambeau
+
+      // Jeunesse
+      { book_id: 41, author_id: [40] }, // Hunger Games - Tome 2
+      { book_id: 42, author_id: [41] }, // Percy Jackson - Tome 3
+      { book_id: 43, author_id: [42] }, // Heartstopper - Tome 1
+      { book_id: 44, author_id: [43] }, // La Guerre des clan - Tome 3
+      { book_id: 45, author_id: [44] }, // Les Royaumes de Feu - Tome 1
+      { book_id: 46, author_id: [45] }, // Le Petit Prince
+      { book_id: 47, author_id: [46] }, // Le Journal de Gurty - Tome 1
+
+      // Manga
+      { book_id: 48, author_id: [47, 48] }, // Frieren : Beyond Journey's End - Tome 4
+      { book_id: 49, author_id: [49, 50, 51, 52] }, // Les Carnets de l'Apothicaire - Tome 6
+      { book_id: 50, author_id: [53] }, // Demon Slayer - Tome 8
+      { book_id: 51, author_id: [54] }, // Jujutsu Kaisen - Tome 13
+      { book_id: 52, author_id: [55] }, // Naruto - Tome 22
+      { book_id: 53, author_id: [56, 57] }, // Death Note - Tome 7
+      { book_id: 54, author_id: [58] }, // My Hero Academia - Tome 16
+      { book_id: 55, author_id: [59] }, // Spy × Family - Tome 5
+      { book_id: 56, author_id: [55] }, // Naruto - Tome 41
+      { book_id: 57, author_id: [60] }, // Solo Leveling - Tome 8
+
+      // Bande dessinée
+      { book_id: 58, author_id: [61, 62, 63] }, // Le château des animaux - Tome 1
+      { book_id: 59, author_id: [64] }, // Tintin - Tome 11
+      { book_id: 60, author_id: [65, 66] }, // Astérix - Tome 8
+      { book_id: 61, author_id: [67, 68] }, // Les Vieux Fourneaux - Tome 1
+
+      // Classique
+      { book_id: 62, author_id: [69] }, // Les Misérables
+      { book_id: 63, author_id: [70] }, // Le Comte de Monte-Cristo
+      { book_id: 64, author_id: [4] }, // Orgueil et Préjugés (Classique)
+      { book_id: 65, author_id: [71] }, // Moby Dick
+      { book_id: 66, author_id: [72] }, // Frankenstein
+      { book_id: 67, author_id: [73] }, // Dracula
+      { book_id: 68, author_id: [74] },
     ];
 
     // Insert associations Book-Author in join table  book_has_author
