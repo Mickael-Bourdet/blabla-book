@@ -8,7 +8,7 @@ export default function About() {
     rounded-md bg-[linear-gradient(to_right,_rgb(60,_13,_20)_3px,_rgba(255,_255,_255,_0.5)_10px,_rgba(255,_255,_255,_0.25)_7px,_rgba(255,_255,_255,_0.25)_20px,_transparent_24px,_transparent_32px,_rgba(255,_255,_255,_0.25)_34px,_transparent_44px)]"
         >
           <div className="flex flex-col items-center justify-center h-full text-gray-300">
-            <p className=" text-4xl text-center leading-[1.5]">Qui se cache derrière BlaBlaBook</p>
+            <p className=" text-4xl text-center leading-[1.5]">Mentions Légales</p>
             <p className="text-center mt-4">Un livre edition O'clock</p>
           </div>
         </div>
