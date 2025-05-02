@@ -7,7 +7,7 @@ const Footer = () => {
             <a href="/about">À propos</a>
           </li>
           <li>
-            <a href="/legal">Mentions légales</a>
+            <a href="/mentions-legales">Mentions légales</a>
           </li>
           <li>
             © Promo Sushi <br /> Équipe BlaBlaBook

@@ -1,5 +1,5 @@
 import HTMLFlipBook from "react-pageflip";
-export default function About() {
+export default function Mentions() {
   return (
     <div className="flex justify-center p-20 pb-25 items-stretch">
       <HTMLFlipBook width={500} height={600} size={"fixed"} showCover={true} maxShadowOpacity={0.5} flippingTime={700}>

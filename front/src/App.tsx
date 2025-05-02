@@ -11,6 +11,7 @@ import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
 import About from "./pages/About";
+import Mentions from "./pages/Mentions";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/auth" element={<Authentication />} />
           <Route path="/about" element={<About />} />
+          <Route path="/mentions-legales" element={<Mentions />} />
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>
         <Footer />
