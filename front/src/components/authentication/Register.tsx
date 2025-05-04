@@ -1,5 +1,6 @@
 import AuthForm from "./AuthForm";
 import { IRegister } from "../../@types/auth";
+import { useState } from "react";
 
 export interface IRegisterProps {
   data: IRegister;
@@ -8,6 +9,9 @@ export interface IRegisterProps {
 }
 
 const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
+  // État pour contrôler l'affichage des règles de mot de passe
+  const [showPasswordRules, setShowPasswordRules] = useState(false);
+  
   return (
     <AuthForm title="M'inscrire">
       <div className="mb-4">
@@ -18,7 +22,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           value={data.name}
           onChange={(e) => onChange({ ...data, name: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Pseudo"
+          placeholder="Nom"
         />
       </div>
       <div className="mb-4">
@@ -39,9 +43,26 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           id="registerPassword"
           value={data.password}
           onChange={(e) => onChange({ ...data, password: e.target.value })}
+          onFocus={() => setShowPasswordRules(true)}
+          onBlur={() => setShowPasswordRules(false)}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
           placeholder="Mot de passe"
         />
+        
+        {/* Affichage des règles de mot de passe */}
+        {showPasswordRules && (
+          <div className="mt-2 text-xs text-gray-600 bg-gray-50 p-2 rounded">
+            <p className="font-medium mb-1">Le mot de passe doit contenir :</p>
+            <ul className="list-disc pl-5">
+              <li>Au moins 12 caractères</li>
+              <li>Au moins une lettre majuscule</li>
+              <li>Au moins une lettre minuscule</li>
+              <li>Au moins un chiffre</li>
+              <li>Au moins un caractère spécial</li>
+              <li>Pas d'espaces</li>
+            </ul>
+          </div>
+        )}
       </div>
       <div className="mb-6">
         <label htmlFor="confirmPassword" className="block mb-1 text-sm">Confirmation</label>

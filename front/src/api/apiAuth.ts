@@ -1,4 +1,4 @@
-import { IRegister } from "../@types/auth";
+import { IError, IRegister } from "../@types/auth";
 
 const API_URL = "http://localhost:3000"; // à extraire dans un .env plus tard
 
@@ -19,7 +19,15 @@ export const registerUser = async (registerData: IRegister) => {
   const resData = await response.json();
   console.log("🌐 Réponse serveur (register) :", resData);
 
-  if (!response.ok) throw new Error(resData.message || "Erreur d'inscription");
+  if (!response.ok) {
+    // Créer un objet d'erreur avec toutes les informations de la réponse
+    const error: IError = {
+      message: resData.message || "Erreur d'inscription",
+      status: resData.status,
+      errors: resData.errors // Récupérer le tableau d'erreurs s'il existe
+    };
+    throw error;
+  }
 
   return resData;
 }

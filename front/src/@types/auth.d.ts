@@ -1,8 +1,14 @@
+/**
+ * 
+ */
 export interface ILogin {
   email: string;
   password: string;
 }
 
+/**
+ * 
+ */
 export interface IRegister {
   name: string;
   email: string;
@@ -10,9 +16,12 @@ export interface IRegister {
   confirmPassword: string;
 }
 
-// types/ErrorTypes.ts
+/**
+ * 
+ */
 export interface IError {
   message: string;
   status?: number;
   code?: string;
+  errors?: string[];
 }
