@@ -9,16 +9,20 @@ import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import ErrorServer from "./pages/ErrorServer";
 import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
+  const location = useLocation();
   return (
     <>
       <Navbars />
       <Header />
-      <ErrorBoundary FallbackComponent={ErrorServer}>
+      {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
+          // The `resetKeys` prop resets the error state automatically whenever the URL changes.
+          // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
+      <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
         <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
           <Routes>
             <Route path="/" element={<HomePage />} />
