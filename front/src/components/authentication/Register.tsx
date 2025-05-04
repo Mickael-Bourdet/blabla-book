@@ -80,7 +80,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
         <label htmlFor="email" className="block mb-1 text-sm">Adresse email</label>
         <input
           type="email"
-          id="email"
+          id="registerEmail"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"

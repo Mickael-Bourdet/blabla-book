@@ -127,6 +127,19 @@ const authController = {
         });
     }
   },
+
+  async users(req, res, next) {
+    const users = await User.findAll();
+
+    if (!users) {
+      return next({
+        statusCode: 400,
+        message: "Aucuns utilisateurs trouvés",
+      });
+    }
+    
+    res.status(200).json({ users });
+  },
 };
 
 export { authController };

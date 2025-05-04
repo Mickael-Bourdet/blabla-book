@@ -12,10 +12,10 @@ const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
   return (
     <AuthForm title="Me connecter">
       <div className="mb-4">
-        <label htmlFor="email" className="block mb-1 text-sm">E-mail</label>
+        <label htmlFor="loginEmail" className="block mb-1 text-sm">E-mail</label>
         <input
           type="text"
-          id="email"
+          id="loginEmail"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
@@ -23,10 +23,10 @@ const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
         />
       </div>
       <div className="mb-6">
-        <label htmlFor="password" className="block mb-1 text-sm">Mot de passe</label>
+        <label htmlFor="loginPassword" className="block mb-1 text-sm">Mot de passe</label>
         <input
           type="password"
-          id="password"
+          id="loginPassword"
           value={data.password}
           onChange={(e) => onChange({ ...data, password: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
