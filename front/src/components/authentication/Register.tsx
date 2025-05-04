@@ -1,50 +1,66 @@
 import AuthForm from "./AuthForm";
+import { IRegister } from "../../@types/auth";
 
-const Register = () => {
+export interface IRegisterProps {
+  data: IRegister;
+  onChange: (data: IRegister) => void;
+  onSubmit: () => void;
+}
+
+const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
   return (
     <AuthForm title="M'inscrire">
       <div className="mb-4">
-        <label htmlFor="reg-pseudo" className="block mb-1 text-sm">Pseudo</label>
+        <label htmlFor="Name" className="block mb-1 text-sm">Nom</label>
         <input
           type="text"
-          id="reg-pseudo"
+          id="Name"
+          value={data.name}
+          onChange={(e) => onChange({ ...data, name: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="Pseudo"
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="reg-email" className="block mb-1 text-sm">Email</label>
+        <label htmlFor="email" className="block mb-1 text-sm">Adresse email</label>
         <input
           type="email"
-          id="reg-email"
+          id="email"
+          value={data.email}
+          onChange={(e) => onChange({ ...data, email: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="email@example.com"
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="reg-password" className="block mb-1 text-sm">Mot de passe</label>
+        <label htmlFor="password" className="block mb-1 text-sm">Mot de passe</label>
         <input
           type="password"
-          id="reg-password"
+          id="password"
+          value={data.password}
+          onChange={(e) => onChange({ ...data, password: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="Mot de passe"
         />
       </div>
       <div className="mb-6">
-        <label htmlFor="reg-confirm" className="block mb-1 text-sm">Confirmation Mot de passe</label>
+        <label htmlFor="confirmPassword" className="block mb-1 text-sm">Confirmation</label>
         <input
           type="password"
-          id="reg-confirm"
+          id="confirmPassword"
+          value={data.confirmPassword}
+          onChange={(e) => onChange({ ...data, confirmPassword: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="Confirmer le mot de passe"
         />
       </div>
       <div className="flex justify-center">
         <button
-          type="submit"
+          type="button"
           className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded"
+          onClick={onSubmit}
         >
-          Valider l'inscription
+          Incription
         </button>
       </div>
     </AuthForm>
