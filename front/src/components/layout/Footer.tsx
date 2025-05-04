@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <>
-      <footer className="bg-header px-8 py-2 text-base font-bold hidden md:block relative bottom-0   ">
+      <footer className="bg-header px-8 py-2 text-base font-bold hidden md:block relative bottom-0  md:ml-64 ">
         <ul className="flex justify-between items-center">
           <li>
             <a href="/about">À propos</a>

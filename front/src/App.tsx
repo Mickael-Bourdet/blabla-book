@@ -11,23 +11,27 @@ import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
 import { Route, Routes } from "react-router-dom";
 import ErrorServer from "./pages/ErrorServer";
+import { ErrorBoundary } from "react-error-boundary";
+
 function App() {
   return (
     <>
       <Navbars />
       <Header />
-      <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/books/:bookId" element={<DetailPage />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/user/:userId/settings" element={<SettingsUser />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/auth" element={<Authentication />} />
-          <Route path="/error-500" element={<ErrorServer />} />
-          <Route path="*" element={<ErrorNotFound />} />
-        </Routes>
-      </main>
+      <ErrorBoundary FallbackComponent={ErrorServer}>
+        <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/books/:bookId" element={<DetailPage />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/user/:userId/settings" element={<SettingsUser />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/auth" element={<Authentication />} />
+            <Route path="*" element={<ErrorNotFound />} />
+          </Routes>
+        </main>
+      </ErrorBoundary>
+
       <Footer />
     </>
   );
