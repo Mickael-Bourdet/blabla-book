@@ -11,7 +11,7 @@ export interface IRegister {
 }
 
 // types/ErrorTypes.ts
-export interface AppError {
+export interface IError {
   message: string;
   status?: number;
   code?: string;

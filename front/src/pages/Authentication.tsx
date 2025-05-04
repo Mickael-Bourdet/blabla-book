@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Login from "../components/authentication/Login";
 import Register from "../components/authentication/Register";
-import { IRegister } from "../@types/auth";
+import { IRegister, IError } from "../@types/auth";
 import { registerUser } from "../api/apiAuth";
+import { toastError } from "../utils/toastError";
+import { toastSuccess } from "../utils/toastSuccess";
 
 const Authentication = () => {
 
@@ -13,13 +15,15 @@ const Authentication = () => {
     console.log("📤 Étape 2 - données envoyées :", registerData);
   
     if (registerData.password !== registerData.confirmPassword) {
+      toastError("Les mots de passe ne correspondent pas");
       return;
     }
   
     try {
       const result = await registerUser(registerData);
-
+  
       console.log("✅ Étape 3 - utilisateur inscrit :", result);
+      toastSuccess("Inscription réussie !");
 
       // ✅ Réinitialisation des champs
       setRegisterDate({
@@ -29,8 +33,10 @@ const Authentication = () => {
         confirmPassword: "",
       });
 
-    } catch (error: unknown) {
+    } catch (error) {
       console.error("❌ Étape 4 - erreur :", error);
+      const apiError = error as IError;
+      toastError(apiError.message || "Erreur d'inscription");
     }
   };
 
