@@ -1,0 +1,12 @@
+export default function ErrorServer() {
+  return (
+    <div className="bg-body flex flex-col items-center justify-center h-max">
+      <h1 className="font-title text-9xl text-center font-black p-7">500</h1>
+      <img className="w-120 mt-4 mx-auto" src="/error500_femme.webp" alt="" />
+      <p className="font-title text-6xl text-center font-bold pt-6">Catastrophe - Littéraire !</p>
+      <button className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded mb-6">
+        <a href="/">Retour à l'accueil</a>
+      </button>
+    </div>
+  );
+}
