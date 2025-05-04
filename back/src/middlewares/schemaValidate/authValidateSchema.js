@@ -10,10 +10,15 @@ const joiPassword = Joi.extend(joiPasswordExtendCore);
 const registerSchema = Joi.object({
   name: Joi.string().min(3).max(50).required().messages({
     "string.base": "Le nom doit être une chaîne de caractères",
-    "string.min": "Le le nom doit contenir au moins 3 caractères",
+    "string.min": "Le nom doit contenir au moins 3 caractères",
     "string.max": "Le nom doit contenir au plus 50 caractères",
+    "any.required": "Le nom est requis",
   }),
-  email: Joi.string().trim().required(),
+  email: Joi.string().trim().email().required().messages({
+    "string.base": "L'email doit être une chaîne de caractères",
+    "string.email": "L'email doit être valide",
+    "any.required": "L'email est requis",
+  }),
   password: joiPassword
     .string()
     .min(12)
@@ -30,13 +35,15 @@ const registerSchema = Joi.object({
       "string.base": "Le mot de passe doit être une chaîne de caractères.",
       "string.empty": "Le mot de passe ne peut pas être vide.",
       "any.required": "Le mot de passe est requis.",
-      "string.minOfLowercase": "Le mot de passe doit contenir au moins une lettre minuscule.",
-      "string.minOfUppercase": "Le mot de passe doit contenir au moins une lettre majuscule.",
-      "string.minOfNumeric": "Le mot de passe doit contenir au moins un chiffre.",
-      "string.minOfSpecialCharacters": "Le mot de passe doit contenir au moins un caractère spécial.",
-      "string.noWhiteSpaces": "Le mot de passe ne doit pas contenir d'espaces.",
+      "password.minOfLowercase": "Le mot de passe doit contenir au moins une lettre minuscule.",
+      "password.minOfUppercase": "Le mot de passe doit contenir au moins une lettre majuscule.",
+      "password.minOfNumeric": "Le mot de passe doit contenir au moins un chiffre.",
+      "password.minOfSpecialCharacters": "Le mot de passe doit contenir au moins un caractère spécial.",
+      "password.noWhiteSpaces": "Le mot de passe ne doit pas contenir d'espaces.",
     }),
-  confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
+  confirmPassword: Joi.string().valid(Joi.ref("password")).required().messages({
+    "any.only": "Les mots de passe ne correspondent pas",
+    "any.required": "La confirmation du mot de passe est requise",
+  }),
 });
-
 export { registerSchema };

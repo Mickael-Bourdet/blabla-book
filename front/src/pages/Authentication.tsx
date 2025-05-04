@@ -33,7 +33,7 @@ const Authentication = () => {
         confirmPassword: "",
       });
 
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("❌ Étape 4 - erreur :", error);
       const apiError = error as IError;
       toastError(apiError.message || "Erreur d'inscription");
