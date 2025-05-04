@@ -11,10 +11,10 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
   return (
     <AuthForm title="M'inscrire">
       <div className="mb-4">
-        <label htmlFor="Name" className="block mb-1 text-sm">Nom</label>
+        <label htmlFor="registerName" className="block mb-1 text-sm">Nom</label>
         <input
           type="text"
-          id="Name"
+          id="registerName"
           value={data.name}
           onChange={(e) => onChange({ ...data, name: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
@@ -33,10 +33,10 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
         />
       </div>
       <div className="mb-4">
-        <label htmlFor="password" className="block mb-1 text-sm">Mot de passe</label>
+        <label htmlFor="registerPassword" className="block mb-1 text-sm">Mot de passe</label>
         <input
           type="password"
-          id="password"
+          id="registerPassword"
           value={data.password}
           onChange={(e) => onChange({ ...data, password: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
