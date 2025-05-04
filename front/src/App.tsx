@@ -10,6 +10,7 @@ import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
 import { Route, Routes } from "react-router-dom";
+import ErrorServer from "./pages/ErrorServer";
 function App() {
   return (
     <>
@@ -23,9 +24,9 @@ function App() {
           <Route path="/user/:userId/settings" element={<SettingsUser />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/auth" element={<Authentication />} />
+          <Route path="/error-500" element={<ErrorServer />} />
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>
-        
       </main>
       <Footer />
     </>
