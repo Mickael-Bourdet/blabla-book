@@ -1,30 +1,43 @@
 import AuthForm from "./AuthForm";
+import { ILogin } from "../../@types/auth";
 
-const Login = () => {
+export interface ILoginProps {
+  data: ILogin;
+  onChange: (data: ILogin) => void;
+  onSubmit: () => void;
+}
+
+const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
+  
   return (
     <AuthForm title="Me connecter">
       <div className="mb-4">
-        <label htmlFor="loginName" className="block mb-1 text-sm">Nom</label>
+        <label htmlFor="email" className="block mb-1 text-sm">E-mail</label>
         <input
           type="text"
-          id="loginName"
+          id="email"
+          value={data.email}
+          onChange={(e) => onChange({ ...data, email: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
           placeholder="Value"
         />
       </div>
       <div className="mb-6">
-        <label htmlFor="loginPassword" className="block mb-1 text-sm">Mot de passe</label>
+        <label htmlFor="password" className="block mb-1 text-sm">Mot de passe</label>
         <input
           type="password"
-          id="loginPassword"
+          id="password"
+          value={data.password}
+          onChange={(e) => onChange({ ...data, password: e.target.value })}
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
           placeholder="Value"
         />
       </div>
       <div className="flex justify-center">
         <button
-          type="submit"
+          type="button"
           className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded"
+          onClick={onSubmit}
         >
           Connexion
         </button>

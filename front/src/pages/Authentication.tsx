@@ -1,12 +1,19 @@
 import { useState } from "react";
 import Login from "../components/authentication/Login";
 import Register from "../components/authentication/Register";
-import { IRegister, IError } from "../@types/auth";
-import { registerUser } from "../api/apiAuth";
+import { IRegister, IError, ILogin } from "../@types/auth";
+import { loginUser, registerUser } from "../api/apiAuth";
 import { toastError } from "../utils/toastError";
 import { toastSuccess } from "../utils/toastSuccess";
+import { useNavigate } from "react-router-dom";
 
 const Authentication = () => {
+  const navigate = useNavigate();
+  
+  const [loginData, setLoginData] = useState<ILogin>({
+    email: "",
+    password: "",
+  });
 
   const [registerData, setRegisterDate] = useState<IRegister>({
     name: "",
@@ -14,6 +21,36 @@ const Authentication = () => {
     password: "",
     confirmPassword: ""
   });
+
+  const handleLogin = async () => {
+    console.log("📤 Étape 1 - handleLogin appelée");
+  
+    try {
+      console.log("📤 Étape 2 - envoi des données :", loginData);
+  
+      const data = await loginUser(loginData);
+      console.log("✅ Étape 3 - réponse reçue :", data);
+  
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      console.log("📦 Étape 4 - données stockées");
+  
+      toastSuccess("Connexion réussie !");
+
+      // ✅ Réinitialisation des champs
+      setLoginData({
+        email: "",
+        password: "",
+      });
+
+      // Redirection
+      navigate("/profile");
+
+    } catch (error) {
+      console.log("❌ Étape 5 - erreur capturée :", error);
+      toastError("");
+    }
+  };
 
   const handleRegister = async () => {
     console.log("📤 Étape 1 - handleRegister appelée");
@@ -51,11 +88,15 @@ const Authentication = () => {
 
   return (
     <main className="md:ml-64">
-      <Login />
-      <Register 
+      <Login
+        data={loginData}
+        onChange={setLoginData}
+        onSubmit={handleLogin}
+      />
+      <Register
         data={registerData}
         onChange={setRegisterDate}
-        onSubmit={handleRegister}     
+        onSubmit={handleRegister}
       />
     </main>
   );

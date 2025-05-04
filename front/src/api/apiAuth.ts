@@ -1,6 +1,35 @@
-import { IError, IRegister } from "../@types/auth";
+import { IError, ILogin, IRegister } from "../@types/auth";
 
-const API_URL = "http://localhost:3000"; // à extraire dans un .env plus tard
+const API_URL = "http://localhost:3000";
+
+/**
+ * 
+ * @param loginData 
+ * @returns 
+ */
+export const loginUser = async (loginData: ILogin) => {
+  console.log("🚀 loginUser() appelée avec :", loginData);
+
+  const response = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(loginData),
+  });
+
+  console.log("🌐 Statut de la réponse :", response.status);
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.log("❌ Réponse non OK :", error);
+    throw new Error(error.message || "Erreur inconnue lors de la connexion.");
+  }
+
+  const data = await response.json();
+  console.log("📥 Données reçues du backend :", data);
+  return data;
+};
 
 /**
  * 
