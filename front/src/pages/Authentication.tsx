@@ -12,15 +12,13 @@ const Authentication = () => {
     console.log("📤 Étape 2 - données envoyées :", registerData);
   
     if (registerData.password !== registerData.confirmPassword) {
-      toastError("Les mots de passe ne correspondent pas");
       return;
     }
   
     try {
       const result = await registerUser(registerData);
-  
+
       console.log("✅ Étape 3 - utilisateur inscrit :", result);
-      toastSuccess("Inscription réussie !");
 
       // ✅ Réinitialisation des champs
       setRegisterDate({
@@ -30,9 +28,8 @@ const Authentication = () => {
         confirmPassword: "",
       });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("❌ Étape 4 - erreur :", error);
-      toastError(error.message || "Erreur d'inscription");
     }
   };
 

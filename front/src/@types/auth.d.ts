@@ -9,3 +9,10 @@ export interface IRegister {
   password: string;
   confirmPassword: string;
 }
+
+// types/ErrorTypes.ts
+export interface AppError {
+  message: string;
+  status?: number;
+  code?: string;
+}
