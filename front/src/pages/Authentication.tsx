@@ -2,6 +2,7 @@ import { useState } from "react";
 import Login from "../components/authentication/Login";
 import Register from "../components/authentication/Register";
 import { IRegister } from "../@types/auth";
+import { registerUser } from "../api/apiAuth";
 
 const Authentication = () => {
 
