@@ -8,7 +8,32 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  
+  useEffect(() => {
+    async function fetchUser() {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        setError("Utilisateur non connecté");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const userData = await getOneUser(Number(userId));
+        setUser(userData);
+      } catch (err) {
+        setError("Impossible de charger le profil.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  if (loading) return <p className="text-center">Chargement de votre profil...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
+  if (!user) return null;
+
   return (
     <div className="p-4 md:ml-64">
       <div className="flex justify-between items-center mb-6">
