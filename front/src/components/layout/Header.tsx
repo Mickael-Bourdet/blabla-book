@@ -1,4 +1,14 @@
+import { useEffect } from "react";
+import { useAuthStore } from "../../utils/useAuthStore";
+
 const Header = () => {
+  const user = useAuthStore((state) => state.user);
+
+  // Ajout de logs pour debug
+  useEffect(() => {
+    console.log("État utilisateur dans Header:", user);
+  }, [user]);
+
   return (
     <>
       <div className=" flex flex-1 ml-0 md:ml-64 sticky top-0">
@@ -24,9 +34,11 @@ const Header = () => {
               <i className="fa-solid fa-book"></i>
               <span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span>{" "}
             </a>
-            <a className="hover:text-blue-600"href="/auth">
+            <a className="hover:text-blue-600" href={user ? "/profile" : "/auth"}>
               <i className="fa-solid fa-user"></i>
-              <span className="hidden xl:inline">Mon compte</span>{" "}
+              <span className="hidden xl:inline">
+                {user ? user.name : "Mon compte"}
+              </span>
             </a>
           </nav>
           <div className="block hover:text-blue-600 md:hidden">
@@ -41,8 +53,9 @@ const Header = () => {
           <a href="/library" className="hover:text-blue-600 flex flex-col items-center  text-sm">
             <i className="fa-solid fa-book"></i> Bibliothèque
           </a>
-          <a href="/auth" className="hover:text-blue-600 flex flex-col items-center  text-sm">
-            <i className="fa-solid fa-user"></i> Mon compte
+          <a href={user ? "/profile" : "/auth"} className="hover:text-blue-600 flex flex-col items-center text-sm">
+            <i className="fa-solid fa-user"></i>
+            {user ? user.name : "Mon compte"}
           </a>
         </div>
       </div>
