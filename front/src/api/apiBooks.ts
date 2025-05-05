@@ -9,8 +9,6 @@ export async function getAllBooks(): Promise<IBooks> {
 }
 
 export async function getOneBook(id: number): Promise<IBook> {
-  throw new Error();
-
   const response = await fetch(`${apiBaseUrl}/books/${id}`);
   const book = await response.json();
   return book;
