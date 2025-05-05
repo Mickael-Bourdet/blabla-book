@@ -14,7 +14,6 @@ export async function getOneBook(id: number): Promise<IBook> {
   return book;
 }
 
-
 export async function getOneUser(id: number): Promise<IUser> {
   const response = await fetch(`${apiBaseUrl}/user/${id}`);
   const user = await response.json();
@@ -22,10 +21,7 @@ export async function getOneUser(id: number): Promise<IUser> {
   return user;
 }
 
-export const updateUser = async (
-  userId: number,
-  data: { name?: string; email?: string; password?: string }
-) => {
+export const updateUser = async (userId: number, data: { name?: string; email?: string; password?: string }) => {
   const res = await fetch(`${apiBaseUrl}/user/${userId}`, {
     method: "PATCH",
     headers: {

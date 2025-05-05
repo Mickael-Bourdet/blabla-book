@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { IBooks } from "../@types";
 import { getAllBooks } from "../api/apiBooks";
 import { Link } from "react-router-dom";
+import { useErrorHandler } from "../useErrorHandler";
 
 const Library = () => {
   const [books, setBooks] = useState<IBooks>([]);
+  const { handleError } = useErrorHandler();
 
   useEffect(() => {
     async function fetchBooks() {
@@ -12,7 +14,8 @@ const Library = () => {
         const data = await getAllBooks();
         setBooks(data);
       } catch (error) {
-        console.error("Erreur lors de la récupération des livres", error);
+        // console.error("Erreur lors de la récupération des livres", error);
+        handleError(error);
       }
     }
     fetchBooks();

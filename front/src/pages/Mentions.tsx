@@ -1,4 +1,5 @@
 import HTMLFlipBook from "react-pageflip";
+
 export default function Mentions() {
   return (
     <div className="flex justify-center p-20 pb-25 items-stretch">

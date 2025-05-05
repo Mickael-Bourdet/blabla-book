@@ -1,4 +1,5 @@
 import HTMLFlipBook from "react-pageflip";
+
 export default function About() {
   return (
     <div className="flex justify-center pt-10 pb-10  items-stretch overflow-hidden">
