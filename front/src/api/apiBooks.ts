@@ -18,7 +18,6 @@ export async function getOneBook(id: number): Promise<IBook> {
 export async function getOneUser(id: number): Promise<IUser> {
     const response = await fetch(`${apiBaseUrl}/user/${id}`);
     const user = await response.json();
-    
     return user;
   }
 

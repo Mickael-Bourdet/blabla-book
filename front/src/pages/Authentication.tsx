@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Login from "../components/authentication/Login";
 import Register from "../components/authentication/Register";
 import { IRegister, IError, ILogin } from "../@types/auth";
@@ -10,15 +10,7 @@ import { useAuthStore } from "../utils/useAuthStore";
 
 const Authentication = () => {
   const navigate = useNavigate();
-  const login = useAuthStore((state) => state.login);
-  const user = useAuthStore((state) => state.user);
 
-  // Rediriger vers le profil si déjà connecté
-  useEffect(() => {
-    if (user) {
-      navigate("/profile");
-    }
-  }, [user, navigate]);
   
   const [loginData, setLoginData] = useState<ILogin>({
     email: "",
@@ -43,7 +35,7 @@ const Authentication = () => {
       }
 
       // Mettre à jour le store avec les données utilisateur
-      login(data.user, data.token);
+      login(data.user, data.token); // 🔥 stockage Zustand + localStorage
 
       // Vérifier que le store a bien été mis à jour
       console.log("Store après login:", useAuthStore.getState());
@@ -84,7 +76,7 @@ const Authentication = () => {
     } catch (error: unknown) {
       console.error("❌ Étape 4 - erreur :", error);
       const apiError = error as IError;
-      
+
       // Utiliser le tableau d'erreurs s'il existe, sinon utiliser le message général
       if (apiError.errors && apiError.errors.length > 0) {
         toastError(apiError.errors);
@@ -95,7 +87,7 @@ const Authentication = () => {
   };
 
   return (
-    <main className="md:ml-64">
+    <main>
       <Login
         data={loginData}
         onChange={setLoginData}

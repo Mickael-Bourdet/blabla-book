@@ -51,7 +51,7 @@ const Header = () => {
           <a href="/library" className="hover:text-blue-600 flex flex-col items-center  text-sm">
             <i className="fa-solid fa-book"></i> Bibliothèque
           </a>
-          <a href={user ? "/profile" : "/auth"} className="hover:text-blue-600 flex flex-col items-center text-sm">
+          <a className="hover:text-blue-600 flex flex-col items-center text-sm" href={user ? "/profile" : "/auth"}>
             <i className="fa-solid fa-user"></i>
             {user ? user.name : "Mon compte"}
           </a>
