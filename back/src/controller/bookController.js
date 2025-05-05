@@ -14,17 +14,17 @@ const bookController = {
 
     const { search } = req.query; // get query string
 
-    const whereConditions = {};
+    const conditions = {};
 
     // filter by author or name 
     if (search) {
-      whereConditions[Op.or] = [
+     conditions[Op.or] = [
         { title: { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le titre du livre
         { "$authors.name$": { [Op.iLike]: `%${search}%` } } // Recherche insensible à la casse sur le nom de l'auteur
       ];
     }
     const result = await Book.findAll({
-        where: whereConditions,
+        where:conditions,
       include: [
       { association: "categories"},
       { association: "authors"}

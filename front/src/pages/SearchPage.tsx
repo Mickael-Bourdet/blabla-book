@@ -4,14 +4,14 @@ import { searchBooks } from "../api/apiBooks";
 import { IBook } from "../@types";
 
 
-//geet query string
+//get query string
 const useQuery = () => {
   return new URLSearchParams(useLocation().search); // exemple :?query=harry+potter.
 };
 
 const SearchPage = () => {
   const query = useQuery();
-  const searchTerm = query.get("query") || "";
+  const searchTerm = query.get("query") || ""; //Si l'URL contient ?query=harry, alors searchTerm = "harry".
   const [results, setResults] = useState<IBook[]>([]);
   
 

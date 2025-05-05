@@ -27,10 +27,10 @@ const SearchBar = () => {
   };
 
 
-//fonction qui effecut un apple a l'api afin de proposer des suggestion 
+//fonction qui effectue un appel a l'api afin de proposer des suggestions 
   useEffect(() => {
     const fetchData = async () => {
-        // si la recherche fais plus de 2 caractezre on commence a chercher dans la bdd
+        // si la recherche fais plus de 2 caractezres on commence a chercher dans la bdd
       if (researchTerm.length > 2) { 
         const res = await searchBooks(researchTerm);
         setResults(res);
