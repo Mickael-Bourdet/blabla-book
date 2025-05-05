@@ -1,4 +1,5 @@
 import { recommendedBooks } from "../data/recommendedBooks";
+import { Link } from "react-router-dom";
 
 const RecommendedBooks = () => {
   return (
@@ -12,7 +13,7 @@ const RecommendedBooks = () => {
           <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3  lg:grid-cols-5">
             {recommendedBooks.map((book) => {
               return (
-                <a key={book.id} href={`/books/${book.id}`} className="block">
+                <Link key={book.id} to={`/books/${book.id}`} className="block">
                   <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                     <img
                       src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
@@ -21,7 +22,7 @@ const RecommendedBooks = () => {
                     />
                     <p className="text-center">{book.title}</p>
                   </div>
-                </a>
+                </Link>
               );
             })}
           </div>

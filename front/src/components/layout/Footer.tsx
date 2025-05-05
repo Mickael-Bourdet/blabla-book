@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom"; 
+
 const Footer = () => {
   return (
     <>
       <footer className="bg-header px-8 py-2 text-base font-bold hidden md:block bottom-0 w-full  ">
         <ul className="flex justify-between items-center">
           <li>
-            <a href="/about">À propos</a>
+            <Link to="/about">À propos</Link>
           </li>
           <li>
-            <a href="/mentions-legales">Mentions légales</a>
+            <Link to="/mentions-legales">Mentions légales</Link>
           </li>
           <li>
             © Promo Sushi <br /> Équipe BlaBlaBook

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Navbars = () => {
   return (
     <>
@@ -6,65 +8,65 @@ const Navbars = () => {
         <div className="flex">
           {/* Sidebar fixe à gauche */}
           <aside className="hidden md:block bg-sidebar p-4 w-64 fixed h-screen z-20 overflow-y-auto">
-          <a href="/" >
+          <Link to="/" >
             <div className="logo flex items-center gap-2 mb-10">
-              <a href="/" className="flex items-center">
+              <Link to="/" className="flex items-center">
                 <img src="/blablabook.webp" alt="BlaBlaBook" className="w-20" />
                 <h1 className="text-xl font-black font-title">BlaBlaBook</h1>
-              </a>
+              </Link>
             </div>
-            </a>
+            </Link>
             <h2 className="text-lg mb-4">Genres</h2>
             <ul>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Romance
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Thriller
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Fantaisie
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Science-fiction
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Développement personnel
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Biographie
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Jeunesse
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Manga
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Bande dessinée
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="block text-gray-800 hover:text-blue-600 mb-2">
+                <Link to="#" className="block text-gray-800 hover:text-blue-600 mb-2">
                   Classique
-                </a>
+                </Link>
               </li>
             </ul>
           </aside>

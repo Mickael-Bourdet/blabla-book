@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function CategoryPage() {
   return (
     <>
@@ -9,7 +11,7 @@ export default function CategoryPage() {
             <h2 className="text-xl mb-4 font-bold mt-[100px] ">Catégorie</h2>
 
             <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              <a href="/books/bookid" className="block">
+              <Link to="/books/bookid" className="block">
                 <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                   <img
                     src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
@@ -18,9 +20,9 @@ export default function CategoryPage() {
                   />
                   <p>Le Comte de Monte-Cristo</p>
                 </div>
-              </a>
+              </Link>
 
-              <a href="/books/bookid" className="block">
+              <Link to="/books/bookid" className="block">
                 <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                   <img
                     src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
@@ -29,9 +31,9 @@ export default function CategoryPage() {
                   />
                   <p>Le Comte de Monte-Cristo</p>
                 </div>
-              </a>
+              </Link>
 
-              <a href="/books/bookid" className="block">
+              <Link to="/books/bookid" className="block">
                 <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                   <img
                     src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
@@ -40,9 +42,9 @@ export default function CategoryPage() {
                   />
                   <p>Le Comte de Monte-Cristo</p>
                 </div>
-              </a>
+              </Link>
 
-              <a href="/books/bookid" className="block">
+              <Link to="/books/bookid" className="block">
                 <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                   <img
                     src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
@@ -51,9 +53,9 @@ export default function CategoryPage() {
                   />
                   <p>Le Comte de Monte-Cristo</p>
                 </div>
-              </a>
+              </Link>
 
-              <a href="/books/bookid" className="block">
+              <Link to="/books/bookid" className="block">
                 <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                   <img
                     src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
@@ -62,7 +64,7 @@ export default function CategoryPage() {
                   />
                   <p>Le Comte de Monte-Cristo</p>
                 </div>
-              </a>
+              </Link>
             </div>
           </section>
         </main>
