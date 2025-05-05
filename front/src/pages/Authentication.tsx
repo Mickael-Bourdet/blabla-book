@@ -3,10 +3,9 @@ import Login from "../components/authentication/Login";
 import Register from "../components/authentication/Register";
 import { IRegister, IError, ILogin } from "../@types/auth";
 import { loginUser, registerUser } from "../api/apiAuth";
-import { toastError } from "../utils/toastError";
-import { toastSuccess } from "../utils/toastSuccess";
+import { toastError } from "../utils/toast/toastError";
+import { toastSuccess } from "../utils/toast/toastSuccess";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../utils/useAuthStore";
 
 const Authentication = () => {
   const navigate = useNavigate();
@@ -24,24 +23,16 @@ const Authentication = () => {
   });
 
   const handleLogin = async () => {
+    console.log("📤 Étape 1 - handleLogin appelée");
+
     try {
+      console.log("📤 Étape 2 - envoi des données :", loginData);
       const data = await loginUser(loginData);
-      console.log("Données de connexion reçues:", data);
-
-      // Vérifier que les données nécessaires sont présentes
-      if (!data.user || !data.token) {
-        throw new Error("Données utilisateur incomplètes");
-      }
-
-      // Mettre à jour le store avec les données utilisateur
-      login(data.user, data.token); // 🔥 stockage Zustand + localStorage
-
-      // Vérifier que le store a bien été mis à jour
-      console.log("Store après login:", useAuthStore.getState());
-
+      console.log("✅ Étape 3 - réponse reçue :", data);
+      console.log("📦 Étape 4 - données stockées");
       toastSuccess("Connexion réussie !");
 
-      // Réinitialisation des champs
+      // ✅ Réinitialisation des champs
       setLoginData({
         email: "",
         password: "",
@@ -50,8 +41,8 @@ const Authentication = () => {
       // Redirection
       navigate("/profile");
     } catch (error) {
-      console.log("❌ Erreur de connexion:", error);
-      toastError("Échec de la connexion");
+      console.log("❌ Étape 5 - erreur capturée :", error);
+      toastError("Echec de la connexion");
     }
   };
 
