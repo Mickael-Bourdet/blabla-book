@@ -1,24 +1,11 @@
-// import { useState } from "react";
-
-// const SearchBar = () => {
-//     return (
-//       <>
-        
-//             <div className="search-bar relative w-64 hidden md:block">
-//               <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2  ml-8 "></i>
-//               <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
-//             </div>
-            
-//       </>
-//     );
-//   };
-  
-//   export default SearchBar;
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { searchBooks } from "../../api/apiBooks";
+import { IBook } from "../../@types";
 
 const SearchBar = () => {
   const [researchTerm, setResearch] = useState("");
+  const [results, setResults] = useState<IBook[]>([]);
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -28,19 +15,45 @@ const SearchBar = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (researchTerm.length > 2) {
+        const res = await searchBooks(researchTerm);
+        setResults(res);
+      } else {
+        setResults([]);
+      }
+    };
+
+    const timer = setTimeout(fetchData, 300); // debounce
+    return () => clearTimeout(timer);
+  }, [researchTerm]);
+
   return (
-    <form onSubmit={handleSearch} className="flex gap-2 mb-4">
-      <input
-        type="text"
-        placeholder="Rechercher un livre ou un auteur"
-        value={researchTerm}
-        onChange={(e) => setResearch(e.target.value)}
-        className="border rounded px-3 py-2 w-full"
-      />
-      <button type="submit" className="border px-4 py-2 rounded">
-        Rechercher
-      </button>
-    </form>
+    <div className="search-bar text-gray-500 ml-10 relative w-70 hidden md:block">
+      <form onSubmit={handleSearch} className="flex gap-2">
+        <button type="submit">
+          <i className="fas fa-search absolute left-3 -translate-y-1/2"></i>
+        </button>
+        <input
+          type="text"
+          value={researchTerm}
+          placeholder="     Chercher un livre"
+          onChange={(e) => setResearch(e.target.value)}
+          className="border rounded px-3 py-2 w-full"
+        />
+      </form>
+
+      {results.length > 0 && (
+        <ul className="absolute bg-white border border-gray-200 rounded-md mt-1 w-full max-h-60 overflow-auto shadow-lg z-10">
+          {results.map((book) => (
+            <li key={book.id} className="p-2 hover:bg-gray-100 text-sm">
+              <a href={`/books/${book.id}`}>{book.title}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 
