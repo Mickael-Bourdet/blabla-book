@@ -1,6 +1,6 @@
 import type { IUser } from "../@types";
 import { useState, useEffect } from "react";
-import { getOneUser, updateUser , deleteUser} from "../api/apiBooks"
+import { getOneUser, updateUser , deleteUser} from "../api/apiUser"
 import { useParams , Link ,useNavigate} from "react-router-dom";
 
 const SettingsUser = () => {
