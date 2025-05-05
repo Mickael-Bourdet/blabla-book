@@ -56,7 +56,7 @@ const BookDetail = () => {
             <h1 className="text-lg font-bold mb-2">{book.title}</h1>
 
             <p>
-              <span className="font-semibold">Catégorie</span> : {book.categories.map((cat) => cat.name)}
+              <span className="font-semibold">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
             </p>
 
             <p className="mb-2">
