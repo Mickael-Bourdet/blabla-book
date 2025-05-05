@@ -26,8 +26,8 @@ const BookDetail = () => {
           const newBook = await getOneBook(Number.parseInt(bookId));
           setBook(newBook);
         } catch (error) {
-          handleError(error);
           // console.error("Erreur lors de la récupération du livre", error);
+          handleError(error);
         }
       }
     };
@@ -52,7 +52,7 @@ const BookDetail = () => {
           />
 
           <div className="text-sm md:text-base max-w-xl">
-            <p className="text-gray-700 mb-1">Par {book.authors.map((auth) => auth.name)}</p>
+            <p className="text-gray-700 mb-1">Par {book.authors.map((auth) => auth.name).join(", ")}</p>
             <h1 className="text-lg font-bold mb-2">{book.title}</h1>
 
             <p>

@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home";
 import Navbars from "./components/layout/Navbar";
@@ -9,12 +10,12 @@ import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
-import { Route, Routes, useLocation } from "react-router-dom";
+import About from "./pages/About";
+import Mentions from "./pages/Mentions";
 import ErrorServer from "./pages/ErrorServer";
 import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
-  const location = useLocation();
   return (
     <>
       <Navbars />
@@ -31,6 +32,8 @@ function App() {
             <Route path="/user/:userId/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/auth" element={<Authentication />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/mentions-legales" element={<Mentions />} />
             <Route path="*" element={<ErrorNotFound />} />
           </Routes>
         </main>
