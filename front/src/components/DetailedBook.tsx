@@ -17,6 +17,7 @@ const BookDetail = () => {
   const handleAddRead = () => {
     addToMyReadLibrary(1, numericBookId);
     setIsRead(true);
+    setToRead(false);
   };
   const handleRemoveRead = () => {
     deleteToMyReadLibrary(1, numericBookId);
@@ -25,6 +26,7 @@ const BookDetail = () => {
   const handleWishRead = () => {
     addToWishRead(1, numericBookId);
     setToRead(true);
+    setIsRead(false);
   };
   const handleRemoveWishRead = () => {
     deleteToWishRead(1, numericBookId);
