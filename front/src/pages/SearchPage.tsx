@@ -3,8 +3,10 @@ import { useLocation , Link} from "react-router-dom";
 import { searchBooks } from "../api/apiBooks"; 
 import { IBook } from "../@types";
 
+
+//geet query string
 const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
+  return new URLSearchParams(useLocation().search); // exemple :?query=harry+potter.
 };
 
 const SearchPage = () => {
@@ -15,7 +17,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     const fetchResults = async () => {
-      const res = await searchBooks(searchTerm); // adapte à ton API
+      const res = await searchBooks(searchTerm);
       setResults(res);
     };
 

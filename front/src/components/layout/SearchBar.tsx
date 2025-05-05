@@ -3,22 +3,35 @@ import { useNavigate ,Link} from "react-router-dom";
 import { searchBooks } from "../../api/apiBooks";
 import { IBook } from "../../@types";
 
+
+
 const SearchBar = () => {
   const [researchTerm, setResearch] = useState("");
   const [results, setResults] = useState<IBook[]>([]);
   const navigate = useNavigate();
 
+
+  // fonction pour gerer la page des resultats de recherche
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (researchTerm.trim()) {
-      navigate(`/search?query=${encodeURIComponent(researchTerm.trim())}`);
+      navigate(`/search?query=${encodeURIComponent(researchTerm.trim())}`);// renvoi vers la page des resultats a la soummission du formulaire
       setResearch("");
     }
   };
 
+ //fonction pour reset la bar de recherche apres avoir clicquer sur une suggestion   
+   const handleSuggestionClick = () => {
+    setResearch(""); 
+    setResults([]); 
+  };
+
+
+//fonction qui effecut un apple a l'api afin de proposer des suggestion 
   useEffect(() => {
     const fetchData = async () => {
-      if (researchTerm.length > 2) {
+        // si la recherche fais plus de 2 caractezre on commence a chercher dans la bdd
+      if (researchTerm.length > 2) { 
         const res = await searchBooks(researchTerm);
         setResults(res);
       } else {
@@ -49,7 +62,7 @@ const SearchBar = () => {
         <ul className="absolute bg-white border border-gray-200 rounded-md mt-1 w-full max-h-60 overflow-auto shadow-lg z-10 ">
           {results.map((book) => (
             <li key={book.id} className="p-2 hover:bg-gray-100 text-sm">
-              <Link to={`/books/${book.id}`}>{book.title}</Link>
+              <Link to={`/books/${book.id}`} onClick={handleSuggestionClick} >{book.title}</Link>
             </li>
           ))}
         </ul>

@@ -24,16 +24,11 @@ const bookController = {
       ];
     }
     const result = await Book.findAll({
-<<<<<<< HEAD
         where: whereConditions,
       include: [
       { association: "categories"},
       { association: "authors"}
     ]});
-=======
-      include: [{ association: "categories" }, { association: "authors" }],
-    });
->>>>>>> dev
 
     if (result.length === 0) {
       const error = new Error("Il n'y a pas livres dans la base de données");

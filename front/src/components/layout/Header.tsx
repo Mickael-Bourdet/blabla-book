@@ -16,15 +16,15 @@ const Header = () => {
           <nav className="hidden md:flex gap-6">
             <Link to="/" className="hover:text-blue-600">
               <i className="fa-solid fa-house-chimney"></i>
-              <span className="whitespace-nowrap hidden xl:inline">Accueil</span>
+              <span className="whitespace-nowrap hidden xl:inline"> Accueil</span>
             </Link>
             <Link to="/library" className="hover:text-blue-600">
               <i className="fa-solid fa-book"></i>
-              <span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span>
+              <span className="whitespace-nowrap hidden xl:inline"> Bibliothèque</span>
             </Link>
             <Link to="/auth" className="hover:text-blue-600">
               <i className="fa-solid fa-user"></i>
-              <span className="hidden xl:inline">Mon compte</span>
+              <span className="hidden xl:inline"> Mon compte</span>
             </Link>
           </nav>
           <div className="block hover:text-blue-600 md:hidden">
