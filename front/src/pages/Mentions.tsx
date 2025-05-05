@@ -3,6 +3,7 @@ import HTMLFlipBook from "react-pageflip";
 export default function Mentions() {
   return (
     <div className="flex justify-center p-20 pb-25 items-stretch">
+      {/* @ts-ignore */}
       <HTMLFlipBook width={500} height={600} size={"fixed"} showCover={true} maxShadowOpacity={0.5} flippingTime={700}>
         <div
           className="bg-red-800 h-full flex flex-col items-center justify-center 
