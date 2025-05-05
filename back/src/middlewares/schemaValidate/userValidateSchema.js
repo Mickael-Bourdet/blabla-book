@@ -19,7 +19,6 @@ const UpdateUserSchema = Joi.object({
     .minOfNumeric(1)
     .minOfSpecialCharacters(1)
     .noWhiteSpaces()
-    .required()
     .messages({
       "string.min": "Le mot de passe doit contenir au moins 8 caractères.",
       "string.max": "Le mot de passe ne doit pas dépasser 20 caractères.",
