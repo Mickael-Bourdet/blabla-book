@@ -17,6 +17,9 @@ const SettingsUser = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [confirmationModal, setConfirmationModal] = useState(false); 
   const [deleteModal, setDeleteModal] = useState(false);
+const [editEmail, setEditEmail] = useState(false);
+const [editPassword, setEditPassword] = useState(false);
+
 
 
   useEffect(() => {
@@ -155,50 +158,48 @@ const SettingsUser = () => {
             />
           </div>
 
-          {/* Email */}
-          <div className="flex items-center justify-between border-b border-gray-300 pb-2">
-            <input
-              className="w-120 my-1 focus:outline-none "
-              type="email"
-              id="register-email"
-              name="email"
-              placeholder="Nouvel Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+          {/* email */}
+<div className="flex items-center justify-between border-b border-gray-300 pb-2">
+  <input
+    className="w-120 my-1 focus:outline-none"
+    type="email"
+    id="register-email"
+    name="email"
+    placeholder="Nouvel Email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    readOnly={!editEmail}
+  />
+  <button
+    type="button"
+    className="ml-2 text-gray-500 text-sm"
+    onClick={() => setEditEmail(!editEmail)}
+  >
+    {editEmail ? "✔️" : "✏️"}
+  </button>
+</div>
+{/* confirm email */}
+{editEmail && (
+  <div className="flex items-center justify-between border-b border-gray-300 pb-2">
+    <input
+      className="w-120 my-1 focus:outline-none"
+      type="email"
+      id="register-email-confirm"
+      name="email-confirm"
+      placeholder="Confirmer l'Email"
+      value={emailConfirm}
+      onChange={(e) => setEmailConfirm(e.target.value)}
+    />
+  </div>
+)}
 
-          {/* Confirmer l'email */}
-          <div className="flex items-center justify-between border-b border-gray-300 pb-2">
-            <input
-              className="w-120 my-1 focus:outline-none "
-              type="email"
-              id="register-email-confirm"
-              name="email-confirm"
-              placeholder="Confirmer l'Email"
-              value={emailConfirm}
-              onChange={(e) => setEmailConfirm(e.target.value)}
-            />
-          </div>
+{emailError && <p className="text-red-500">Les emails ne correspondent pas.</p>}
 
-          {/* Affichage de l'erreur email */}
-          {emailError && <p className="text-red-500">Les emails ne correspondent pas.</p>}
 
-          {/* Mot de passe actuel */}
-          <div className="flex items-center justify-between border-b border-gray-300 pb-2">
-            <input
-              className="w-120 my-1 focus:outline-none "
-              type="password"
-              id="current-password"
-              name="current-password"
-              placeholder="Mot de passe actuel"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-            />
-          </div>
+       
 
           {/* Nouveau mot de passe */}
-          <div className="flex items-center justify-between border-b border-gray-300 pb-2">
+          <div className="hidden flex items-center justify-between border-b border-gray-300 pb-2">
             <input
               className="w-120 my-1 focus:outline-none "
               type="password"
@@ -210,21 +211,57 @@ const SettingsUser = () => {
             />
           </div>
 
-          {/* Confirmer le mot de passe */}
-          <div className="flex items-center justify-between border-b border-gray-300 pb-2">
-            <input
-              className="w-120 my-1 focus:outline-none "
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              placeholder="Confirmer le mot de passe"
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-            />
-          </div>
+   
 
-          {/* Affichage de l'erreur de mot de passe */}
-          {passwordError && <p className="text-red-500">Les mots de passe ne correspondent pas.</p>}
+<div className="flex items-center justify-between border-b border-gray-300 pb-2">
+  <input
+    className="w-120 my-1 focus:outline-none"
+    type="password"
+    id="register-password"
+    name="password"
+    placeholder="Nouveau mot de passe"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    readOnly={!editPassword}
+  />
+  <button
+    type="button"
+    className="ml-2 text-gray-500 text-sm"
+    onClick={() => setEditPassword(!editPassword)}
+  >
+    {editPassword ? "✔️" : "✏️"}
+  </button>
+</div>
+
+{editPassword && (
+  <div className="flex items-center justify-between border-b border-gray-300 pb-2">
+    <input
+      className="w-120 my-1 focus:outline-none"
+      type="password"
+      id="confirm-password"
+      name="confirm-password"
+      placeholder="Confirmer le mot de passe"
+      value={passwordConfirm}
+      onChange={(e) => setPasswordConfirm(e.target.value)}
+    />
+  </div>
+
+)}
+       {editPassword && (
+  <div className="flex items-center justify-between border-b border-gray-300 pb-2">
+  <input
+    className="w-120 my-1 focus:outline-none"
+    type="password"
+    id="current-password"
+    name="current-password"
+    placeholder="Mot de passe actuel"
+    value={currentPassword}
+    onChange={(e) => setCurrentPassword(e.target.value)}
+  />
+</div>
+)}
+
+{passwordError && <p className="text-red-500">Les mots de passe ne correspondent pas.</p>}
 
           {/* Bouton sauvegarder */}
           <button
