@@ -1,6 +1,6 @@
 export const recommendedBooks = [
   {
-    id: 13,
+    id: 41,
     isbn: "9782266260787",
     title: "Hunger Games - Tome 2",
     description:
@@ -10,7 +10,7 @@ export const recommendedBooks = [
     page_count: 432,
   },
   {
-    id: 14,
+    id: 66,
     isbn: "9782253088752",
     title: "Frankenstein",
     description:
@@ -20,7 +20,7 @@ export const recommendedBooks = [
     page_count: 345,
   },
   {
-    id: 15,
+    id: 60,
     isbn: "9782012101401",
     title: "Astérix chez les Bretons",
     description:
@@ -30,7 +30,7 @@ export const recommendedBooks = [
     page_count: 48,
   },
   {
-    id: 16,
+    id: 56,
     isbn: "9782212567595",
     title: "Naruto - Tome 41",
     description:
@@ -40,7 +40,7 @@ export const recommendedBooks = [
     page_count: 192,
   },
   {
-    id: 17,
+    id: 34,
     isbn: "9782505005582",
     title: "L’art subtil de s’en foutre",
     description:
