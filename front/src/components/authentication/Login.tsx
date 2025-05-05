@@ -8,11 +8,12 @@ export interface ILoginProps {
 }
 
 const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
-  
   return (
     <AuthForm title="Me connecter">
       <div className="mb-4">
-        <label htmlFor="loginEmail" className="block mb-1 text-sm">E-mail</label>
+        <label htmlFor="loginEmail" className="block mb-1 text-sm">
+          E-mail
+        </label>
         <input
           type="text"
           id="loginEmail"
@@ -23,7 +24,9 @@ const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
         />
       </div>
       <div className="mb-6">
-        <label htmlFor="loginPassword" className="block mb-1 text-sm">Mot de passe</label>
+        <label htmlFor="loginPassword" className="block mb-1 text-sm">
+          Mot de passe
+        </label>
         <input
           type="password"
           id="loginPassword"

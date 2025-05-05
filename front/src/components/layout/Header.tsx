@@ -21,18 +21,29 @@ const Header = () => {
           </div>
           <div className="search-bar relative w-64 hidden md:block">
             <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2  ml-8 "></i>
-            <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
+            <input
+              type="text"
+              placeholder="Chercher un livre"
+              className=" px-4 py-2 pl-10 border rounded-md ml-8 "
+            />
           </div>
           <nav className="hidden md:flex gap-6 ">
             <a className="hover:text-blue-600" href="/">
               <i className="fa-solid fa-house-chimney"></i>{" "}
-              <span className="whitespace-nowrap  hidden xl:inline">Accueil</span>
+              <span className="whitespace-nowrap  hidden xl:inline">
+                Accueil
+              </span>
             </a>
             <a className="hover:text-blue-600" href="/library">
               <i className="fa-solid fa-book"></i>
-              <span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span>{" "}
+              <span className="whitespace-nowrap hidden xl:inline">
+                Bibliothèque
+              </span>{" "}
             </a>
-            <a className="hover:text-blue-600" href={user ? "/profile" : "/auth"}>
+            <a
+              className="hover:text-blue-600"
+              href={user ? "/profile" : "/auth"}
+            >
               <i className="fa-solid fa-user"></i>
               <span className="hidden xl:inline">
                 {user ? user.name : "Mon compte"}
@@ -45,13 +56,22 @@ const Header = () => {
         </header>
         {/* Navigation mobile */}
         <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4  z-10 rounded-t md:hidden">
-          <a href="/" className="hover:text-blue-600 flex flex-col items-center text-sm">
+          <a
+            href="/"
+            className="hover:text-blue-600 flex flex-col items-center text-sm"
+          >
             <i className="fa-solid fa-house-chimney "></i> Accueil
           </a>
-          <a href="/library" className="hover:text-blue-600 flex flex-col items-center  text-sm">
+          <a
+            href="/library"
+            className="hover:text-blue-600 flex flex-col items-center  text-sm"
+          >
             <i className="fa-solid fa-book"></i> Bibliothèque
           </a>
-          <a className="hover:text-blue-600 flex flex-col items-center text-sm" href={user ? "/profile" : "/auth"}>
+          <a
+            className="hover:text-blue-600 flex flex-col items-center text-sm"
+            href={user ? "/profile" : "/auth"}
+          >
             <i className="fa-solid fa-user"></i>
             {user ? user.name : "Mon compte"}
           </a>

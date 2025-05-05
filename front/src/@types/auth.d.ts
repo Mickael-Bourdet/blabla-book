@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 export interface ILogin {
   email: string;
@@ -7,7 +7,7 @@ export interface ILogin {
 }
 
 /**
- * 
+ *
  */
 export interface IRegister {
   name: string;
@@ -17,7 +17,7 @@ export interface IRegister {
 }
 
 /**
- * 
+ *
  */
 export interface IError {
   message: string;

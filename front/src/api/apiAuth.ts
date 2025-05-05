@@ -3,9 +3,9 @@ import { IError, ILogin, IRegister } from "../@types/auth";
 const API_URL = "http://localhost:3000";
 
 /**
- * 
- * @param loginData 
- * @returns 
+ *
+ * @param loginData
+ * @returns
  */
 export const loginUser = async (loginData: ILogin) => {
   console.log("🚀 loginUser() appelée avec :", loginData);
@@ -32,9 +32,9 @@ export const loginUser = async (loginData: ILogin) => {
 };
 
 /**
- * 
- * @param registerData 
- * @returns 
+ *
+ * @param registerData
+ * @returns
  */
 export const registerUser = async (registerData: IRegister) => {
   console.log("🚀 registerUser() appelée avec :", registerData);
@@ -53,10 +53,10 @@ export const registerUser = async (registerData: IRegister) => {
     const error: IError = {
       message: resData.message || "Erreur d'inscription",
       status: resData.status,
-      errors: resData.errors // Récupérer le tableau d'erreurs s'il existe
+      errors: resData.errors, // Récupérer le tableau d'erreurs s'il existe
     };
     throw error;
   }
 
   return resData;
-}
+};

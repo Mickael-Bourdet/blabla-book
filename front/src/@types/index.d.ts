@@ -32,4 +32,3 @@ export interface IUser {
   books_already_read: IBookRead[];
   books_wish_read: IBookWish[];
 }
-

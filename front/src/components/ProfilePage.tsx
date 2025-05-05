@@ -25,11 +25,9 @@ const ProfilePage = () => {
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
                   className="h-100 w-full object-cover mb-2"
-                  />
+                />
                 <p className="text-center">{book.title}</p>
-
               </div>
-              
             </Link>
           ))}
         </div>
@@ -50,9 +48,7 @@ const ProfilePage = () => {
                   className="h-100 w-full object-cover mb-2"
                 />
                 <p className="text-center">{book.title}</p>
-
               </div>
-
             </Link>
           ))}
         </div>

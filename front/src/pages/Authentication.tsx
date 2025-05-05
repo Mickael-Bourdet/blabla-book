@@ -11,7 +11,6 @@ import { useAuthStore } from "../utils/useAuthStore";
 const Authentication = () => {
   const navigate = useNavigate();
 
-  
   const [loginData, setLoginData] = useState<ILogin>({
     email: "",
     password: "",
@@ -21,7 +20,7 @@ const Authentication = () => {
     name: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const handleLogin = async () => {
@@ -88,11 +87,7 @@ const Authentication = () => {
 
   return (
     <main>
-      <Login
-        data={loginData}
-        onChange={setLoginData}
-        onSubmit={handleLogin}
-      />
+      <Login data={loginData} onChange={setLoginData} onSubmit={handleLogin} />
       <Register
         data={registerData}
         onChange={setRegisterDate}

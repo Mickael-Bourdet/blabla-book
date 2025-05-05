@@ -1,8 +1,8 @@
 import iziToast from "izitoast";
 
 /**
- * 
- * @param message 
+ *
+ * @param message
  */
 export const toastSuccess = (message: string) => {
   iziToast.success({
