@@ -11,9 +11,11 @@ const bookController = {
    * @returns {Array} - Object
    */
   async getAllBooks(req, res, next) {
-    const { search } = req.query; // get query string
+    const { search, categoryId, categoryName } = req.query; // get query
 
     const whereConditions = {};
+
+    const includeOptions = [{ association: "categories" }, { association: "authors" }];
 
     // filter by author or name
     if (search) {
@@ -22,9 +24,18 @@ const bookController = {
         { "$authors.name$": { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le nom de l'auteur
       ];
     }
+
+    // If param is given, filter by category ID if param is given
+    if (categoryId) {
+      // initialise association to prevent error
+      includeOptions[0].where = includeOptions[0].where || {};
+      // define categoryId as a filter
+      includeOptions[0].where.id = categoryId;
+    }
+
     const result = await Book.findAll({
       where: whereConditions,
-      include: [{ association: "categories" }, { association: "authors" }],
+      include: includeOptions,
     });
 
     if (result.length === 0) {
