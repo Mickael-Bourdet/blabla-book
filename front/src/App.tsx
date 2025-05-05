@@ -20,12 +20,12 @@ function App() {
   return (
     <>
       <Navbars />
-      <Header />
-      {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
+      <main className="md:ml-64 flex flex-col min-h-screen bg-body">
+        <Header />
+        {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
           // The `resetKeys` prop resets the error state automatically whenever the URL changes.
           // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
-      <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
-          <main className="md:ml-64 flex flex-col min-h-screen bg-body">
+        <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
@@ -38,10 +38,10 @@ function App() {
             <Route path="/mentions-legales" element={<Mentions />} />
             <Route path="*" element={<ErrorNotFound />} />
           </Routes>
-        </main>
-      </ErrorBoundary>
+        </ErrorBoundary>
 
-      <Footer />
+        <Footer />
+      </main>
     </>
   );
 }
