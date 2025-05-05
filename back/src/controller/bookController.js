@@ -11,10 +11,8 @@ const bookController = {
    */
   async getAllBooks(req, res, next) {
     const result = await Book.findAll({
-      include: [
-      { association: "categories"},
-      { association: "authors"}
-    ]});
+      include: [{ association: "categories" }, { association: "authors" }],
+    });
 
     if (result.length === 0) {
       const error = new Error("Il n'y a pas livres dans la base de données");
@@ -36,10 +34,7 @@ const bookController = {
     const id = parseInt(req.params.bookId);
 
     const result = await Book.findByPk(id, {
-      include: [
-        { association: "categories"},
-        { association: "authors"}
-      ]
+      include: [{ association: "categories" }, { association: "authors" }],
     });
 
     // checking if result exist, if it's not, go to the middleware errorHandler

@@ -24,10 +24,12 @@ const ProfilePage = () => {
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="h-auto w-full object-cover mb-2"
-                />
-                <p>{book.title}</p>
+                  className="h-100 w-full object-cover mb-2"
+                  />
+                <p className="text-center">{book.title}</p>
+
               </div>
+              
             </Link>
           ))}
         </div>
@@ -45,10 +47,12 @@ const ProfilePage = () => {
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="h-auto w-full object-cover mb-2"
+                  className="h-100 w-full object-cover mb-2"
                 />
-                <p>{book.title}</p>
+                <p className="text-center">{book.title}</p>
+
               </div>
+
             </Link>
           ))}
         </div>
