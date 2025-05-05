@@ -9,8 +9,6 @@ const API_URL = "http://localhost:3000";
  * @returns
  */
 export const loginUser = async (loginData: ILogin) => {
-  console.log("🚀 loginUser() appelée avec :", loginData);
-
   try {
     const response = await fetch(`${API_URL}/login`, {
       method: "POST",
@@ -20,8 +18,6 @@ export const loginUser = async (loginData: ILogin) => {
       body: JSON.stringify(loginData),
     });
 
-    console.log("🌐 Statut de la réponse :", response.status);
-
     if (!response.ok) {
       const error = await response.json();
       console.log("❌ Réponse non OK :", error);
@@ -29,10 +25,9 @@ export const loginUser = async (loginData: ILogin) => {
     }
 
     const data = await response.json();
-    console.log("📥 Données reçues du backend :", data);
 
     // Utiliser le store pour stocker les informations d'authentification
-    if (data.user && data.token ) {
+    if (data.user && data.token) {
       useAuthStore.getState().login(data.user, data.token);
     }
 
@@ -49,8 +44,6 @@ export const loginUser = async (loginData: ILogin) => {
  * @returns
  */
 export const registerUser = async (registerData: IRegister) => {
-  console.log("🚀 registerUser() appelée avec :", registerData);
-
   try {
     const response = await fetch(`${API_URL}/register`, {
       method: "POST",
@@ -59,7 +52,6 @@ export const registerUser = async (registerData: IRegister) => {
     });
 
     const resData = await response.json();
-    console.log("🌐 Réponse serveur (register) :", resData);
 
     if (!response.ok) {
       // Créer un objet d'erreur avec toutes les informations de la réponse

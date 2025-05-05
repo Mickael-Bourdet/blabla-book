@@ -17,17 +17,11 @@ const Login = () => {
   });
 
   const handleLogin = async () => {
-    console.log("📤 Étape 1 - handleLogin appelée");
-
     try {
-      console.log("📤 Étape 2 - envoi des données :", loginData);
       const data = await loginUser(loginData);
-      console.log("✅ Étape 3 - réponse reçue :", data);
       const { name, token } = data;
-      console.log("✅ user renvoyé par l'API :", name);
 
-      login (name,token);
-      console.log("📦 Étape 4 - données stockées");
+      login(name, token);
       toastSuccess("Connexion réussie !");
 
       // ✅ Réinitialisation des champs

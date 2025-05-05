@@ -2,6 +2,7 @@ import type { IBooks, IBook } from "../@types";
 const apiBaseUrl = "http://localhost:3000";
 
 export async function getAllBooks(): Promise<IBooks> {
+  throw new Error();
   const response = await fetch(`${apiBaseUrl}/books`);
   const books = await response.json();
   return books;

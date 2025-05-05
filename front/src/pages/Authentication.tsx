@@ -7,7 +7,6 @@ import { toastError } from "../utils/toast/toastError";
 import { toastSuccess } from "../utils/toast/toastSuccess";
 
 const Authentication = () => {
-
   const [registerData, setRegisterDate] = useState<IRegister>({
     name: "",
     email: "",
