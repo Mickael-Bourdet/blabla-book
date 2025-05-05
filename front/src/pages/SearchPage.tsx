@@ -29,7 +29,7 @@ const SearchPage = () => {
   return (
 <>
   {/* Contenu principal avec marge à gauche */}
-  <div className="md:ml-64">
+  <div>
     {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
     <main className="p-4">
       <section className="content ml-[5vw] mr-[5vw]">
