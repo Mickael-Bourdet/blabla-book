@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import { searchBooks } from "../../api/apiBooks";
 import { IBook } from "../../@types";
 
@@ -48,7 +48,7 @@ const SearchBar = () => {
         <ul className="absolute bg-white border border-gray-200 rounded-md mt-1 w-full max-h-60 overflow-auto shadow-lg z-10">
           {results.map((book) => (
             <li key={book.id} className="p-2 hover:bg-gray-100 text-sm">
-              <a href={`/books/${book.id}`}>{book.title}</a>
+              <Link to={`/books/${book.id}`}>{book.title}</Link>
             </li>
           ))}
         </ul>
