@@ -97,9 +97,10 @@ const authController = {
 
     // 3. Generate a JWT token with the user's ID as the payload
     const token = generateJwtToken({ userId: user.id });
+    console.log("👤 Utilisateur trouvé :", user.toJSON());
 
     // 4. Send the JWT token and its expiration time in the response
-    res.json({ token, expiresIn: "1h" });
+    res.json({name: user.name, token, expiresIn: "1h" });
   },
 
   /**

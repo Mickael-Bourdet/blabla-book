@@ -290,12 +290,14 @@ const SettingsUser = () => {
 
         {/* Boutons se déconnecter et supprimer */}
         <div className="flex gap-20 mt-20 mb-20">
-          <button
-            className="bg-white text-black rounded px-4 py-2 mt-4 border hover:bg-gray-100"
-            type="button"
-          >
-            Se déconnecter
-          </button>
+          <Link to="/logout">
+            <button
+              className="bg-white text-black rounded px-4 py-2 mt-4 border hover:bg-gray-100"
+              type="button"
+            >
+              Se déconnecter
+            </button>
+          </Link>
           <button
             className="bg-black text-white rounded px-4 py-2 mt-4 border-none hover:bg-gray-900"
             type="button"

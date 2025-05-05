@@ -32,8 +32,8 @@ export const loginUser = async (loginData: ILogin) => {
     console.log("📥 Données reçues du backend :", data);
 
     // Utiliser le store pour stocker les informations d'authentification
-    if (data.token && data.user) {
-      useAuthStore.getState().login(data.token, data.user);
+    if (data.user && data.token ) {
+      useAuthStore.getState().login(data.user, data.token);
     }
 
     return data;

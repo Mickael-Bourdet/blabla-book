@@ -3,14 +3,12 @@ import { persist } from 'zustand/middleware'
 
 interface IUser {
   name: string,
-  email: string,
-  password: string,
 }
 
 interface AuthState {
   user: IUser | null
   token: string | null
-  login: (user: IUser, token: string) => void
+  login: (name: string, token: string) => void
   logout: () => void
 }
 
@@ -21,7 +19,7 @@ export const useAuthStore = create<AuthState>()(
       token: null,
 
       // Fonction appelée quand on se connecte
-      login: (user, token) => set(() => ({user, token})),
+      login: (name, token) => set(() => ({user : {name}, token})),
 
       // Fonction appelée quand on se déconnecte
       logout: () => set({ user: null, token: null }),

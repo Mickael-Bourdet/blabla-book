@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuthStore } from "../../utils/store/useAuthStore";
 
 const Header = () => {
-const user = useAuthStore((state) => state.user);
+  const { user } = useAuthStore();
 
   return (
     <>
@@ -36,15 +36,17 @@ const user = useAuthStore((state) => state.user);
               </span>
             </Link>
 
-            <Link
-              className="hover:text-blue-600"
-              to={user ? "/profile" : "/auth"}
-            >
-              <i className="fa-solid fa-user"></i>
-              <span className="hidden xl:inline">
-                {user ? user.name : "Mon compte"}
-              </span>
-            </Link>
+            {!user ? (
+              <Link className="hover:text-blue-600" to="/auth">
+                <i className="fa-solid fa-user"></i>
+                <span className="hidden xl:inline">Mon compte</span>
+              </Link>
+            ) : (
+              <Link className="hover:text-blue-600" to="/profile">
+                <i className="fa-solid fa-user"></i>
+                <span className="hidden xl:inline">{user.name}</span>
+              </Link>
+            )}
           </nav>
 
           <div className="block hover:text-blue-600 md:hidden">
@@ -67,13 +69,24 @@ const user = useAuthStore((state) => state.user);
             <i className="fa-solid fa-book"></i> Bibliothèque
           </Link>
 
-          <Link
-            to={user ? "/profile" : "/auth"}
-            className="hover:text-blue-600 flex flex-col items-center text-sm"
-          >
-            <i className="fa-solid fa-user"></i>
-            {user ? user.name : "Mon compte"}
-          </Link>
+          {/* Application de la même condition pour la version mobile */}
+          {!user ? (
+            <Link
+              to="/auth"
+              className="hover:text-blue-600 flex flex-col items-center text-sm"
+            >
+              <i className="fa-solid fa-user"></i>
+              Mon compte
+            </Link>
+          ) : (
+            <Link
+              to="/profile"
+              className="hover:text-blue-600 flex flex-col items-center text-sm"
+            >
+              <i className="fa-solid fa-user"></i>
+              {user.name}
+            </Link>
+          )}
         </div>
       </div>
     </>
