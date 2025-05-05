@@ -20,7 +20,7 @@ router.get("/user/:userId", userController.getOneUser);
  * PATCH /user/:userId
  * @summary Update a specific user's information (name, email, password).
  * @param {number} userId.path.required - The ID of the user to update.
- * @param {object} body.body.required - The user data to update (email, name, password).
+ * @param {object} - The user data to update (email, name, password).
  * @return {object} 200 - Success response with the updated user data.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
