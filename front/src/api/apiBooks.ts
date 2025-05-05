@@ -12,3 +12,12 @@ export async function getOneBook(id: number): Promise<IBook> {
   const book = await response.json();
   return book;
 }
+
+export async function searchBooks(query: string): Promise<IBook[]> {
+  const response = await fetch(
+    `${apiBaseUrl}/books?search=${encodeURIComponent(query)}`
+  );
+
+  const books = await response.json();
+  return books;
+}

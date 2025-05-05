@@ -9,6 +9,7 @@ import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
+import SearchPage from "./pages/SearchPage";
 import ErrorNotFound from "./pages/ErrorNotFound";
 import About from "./pages/About";
 import Mentions from "./pages/Mentions";
@@ -38,6 +39,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/auth" element={<Authentication />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/mentions-legales" element={<Mentions />} />
             <Route path="*" element={<ErrorNotFound />} />

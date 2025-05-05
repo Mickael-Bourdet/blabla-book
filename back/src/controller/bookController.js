@@ -1,4 +1,5 @@
 import { Book } from "../models/Book.js";
+import { Op } from "sequelize";
 
 const bookController = {
   /**
@@ -10,9 +11,24 @@ const bookController = {
    * @returns {Array} - Object
    */
   async getAllBooks(req, res, next) {
+
+    const { search } = req.query; // get query string
+
+    const conditions = {};
+
+    // filter by author or name 
+    if (search) {
+     conditions[Op.or] = [
+        { title: { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le titre du livre
+        { "$authors.name$": { [Op.iLike]: `%${search}%` } } // Recherche insensible à la casse sur le nom de l'auteur
+      ];
+    }
     const result = await Book.findAll({
-      include: [{ association: "categories" }, { association: "authors" }],
-    });
+        where:conditions,
+      include: [
+      { association: "categories"},
+      { association: "authors"}
+    ]});
 
     if (result.length === 0) {
       const error = new Error("Il n'y a pas livres dans la base de données");
