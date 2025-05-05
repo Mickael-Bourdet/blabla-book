@@ -24,7 +24,7 @@ function App() {
           <Route path="/books/:bookId" element={<DetailPage />} />
           <Route path="/library" element={<Library />} />
           <Route path="/settings" element={<SettingsUser />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/user/library/:userId" element={<ProfilePage />} />
           <Route path="/auth" element={<Authentication />} />
           <Route path="/about" element={<About />} />
           <Route path="/mentions-legales" element={<Mentions />} />
