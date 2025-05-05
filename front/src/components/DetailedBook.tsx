@@ -4,6 +4,7 @@ import { IBook } from "../@types";
 import { getOneBook } from "../api/apiBooks";
 import { addToMyReadLibrary, addToWishRead, deleteToMyReadLibrary, deleteToWishRead } from "../api/apiUser";
 import { useErrorHandler } from "../useErrorHandler";
+import { toastSuccess } from "../utils/toast/success";
 
 const BookDetail = () => {
   const { bookId } = useParams();
@@ -16,20 +17,26 @@ const BookDetail = () => {
   // TODO changer 1 par userId
   const handleAddRead = () => {
     addToMyReadLibrary(1, numericBookId);
+    if (toRead) {handleRemoveWishRead()};
+    toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
     setIsRead(true);
     setToRead(false);
   };
   const handleRemoveRead = () => {
     deleteToMyReadLibrary(1, numericBookId);
+    toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
     setIsRead(false);
   }
   const handleWishRead = () => {
     addToWishRead(1, numericBookId);
+    if (isRead) {handleRemoveRead()};
+    toastSuccess(`Le livre a bien été ajouté à la liste "à lire"`);
     setToRead(true);
     setIsRead(false);
   };
   const handleRemoveWishRead = () => {
     deleteToWishRead(1, numericBookId);
+    toastSuccess(`Le livre a bien été enlevé de la liste "à lire"`);
     setToRead(false);
   }
 
@@ -40,7 +47,6 @@ const BookDetail = () => {
           const newBook = await getOneBook(Number.parseInt(bookId));
           setBook(newBook);
         } catch (error) {
-          // console.error("Erreur lors de la récupération du livre", error);
           handleError(error);
         }
       }
@@ -88,8 +94,7 @@ const BookDetail = () => {
                 onClick={!isRead ? handleAddRead : handleRemoveRead}
                 className={`flex items-center gap-2 ${isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : 'bg-gray-300 hover:bg-gray-200'}  rounded px-10 py-2 cursor-pointer`}
               >
-                {/* <i className="fa-solid fa-book"></i> */}
-                <i className="fa-solid fa-eye"></i>
+                <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-eye"}`}></i>
                 <span>{`${isRead && !toRead ? 'Lu' : 'Non Lu'}`}</span>
               </button>
               <button
