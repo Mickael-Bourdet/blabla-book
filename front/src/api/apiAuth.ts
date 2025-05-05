@@ -4,9 +4,11 @@ import { useAuthStore } from "../utils/store/useAuthStore";
 const API_URL = "http://localhost:3000";
 
 /**
+ * Function to log in a user.
  *
- * @param loginData
- * @returns
+ * @param {ILogin} loginData - The login data containing email and password.
+ * @returns {Promise<Object>} - The response data containing user and token.
+ * @throws {Error} - Throws an error if the login fails.
  */
 export const loginUser = async (loginData: ILogin) => {
   try {
@@ -39,9 +41,11 @@ export const loginUser = async (loginData: ILogin) => {
 };
 
 /**
+ * Function to register a new user.
  *
- * @param registerData
- * @returns
+ * @param {IRegister} registerData - The registration data containing name, email, password, and confirmPassword.
+ * @returns {Promise<Object>} - The response data from the registration.
+ * @throws {IError} - Throws an error if the registration fails.
  */
 export const registerUser = async (registerData: IRegister) => {
   try {

@@ -16,6 +16,9 @@ const Login = () => {
     password: "",
   });
 
+  /**
+   * Handles the login process.
+   */
   const handleLogin = async () => {
     try {
       const data = await loginUser(loginData);
@@ -24,13 +27,11 @@ const Login = () => {
       login(name, token);
       toastSuccess("Connexion réussie !");
 
-      // ✅ Réinitialisation des champs
       setLoginData({
         email: "",
         password: "",
       });
 
-      // Redirection
       navigate("/profile");
     } catch (error) {
       console.log("❌ Étape 5 - erreur capturée :", error);

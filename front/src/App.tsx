@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home";
 import Navbars from "./components/layout/Navbar";
@@ -18,7 +18,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Logout from "./components/authentication/Logout";
 
 function App() {
-
+  const location = useLocation();
   return (
     <>
       <Navbars />

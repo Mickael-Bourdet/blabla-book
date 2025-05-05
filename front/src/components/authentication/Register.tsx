@@ -31,7 +31,9 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
     noSpaces: false,
   });
 
-  // Vérifier les règles de mot de passe à chaque changement
+  /**
+   * Effect hook to update password validation state based on the password input.
+   */
   useEffect(() => {
     if (data.password) {
       setPasswordValidation({
@@ -43,7 +45,6 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
         noSpaces: !/\s/.test(data.password),
       });
     } else {
-      // Réinitialiser toutes les validations si le mot de passe est vide
       setPasswordValidation({
         minLength: false,
         hasUppercase: false,
@@ -55,7 +56,12 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
     }
   }, [data.password]);
 
-  // Fonction pour afficher l'indicateur de validation
+  /**
+   * Function to render a validation mark based on the validation state.
+   *
+   * @param {boolean} isValid - The validation state.
+   * @returns {JSX.Element} - A span element with a checkmark or dot based on the validation state.
+   */
   const renderValidationMark = (isValid: boolean) => {
     return isValid ? (
       <span className="text-green-500 ml-1">✓</span>

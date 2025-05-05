@@ -1,5 +1,5 @@
 /**
- *
+ * Interface representing the structure of login data.
  */
 export interface ILogin {
   email: string;
@@ -7,7 +7,7 @@ export interface ILogin {
 }
 
 /**
- *
+ * Interface representing the structure of registration data.
  */
 export interface IRegister {
   name: string;
@@ -17,7 +17,7 @@ export interface IRegister {
 }
 
 /**
- *
+ * Interface representing the structure of an error object.
  */
 export interface IError {
   message: string;
