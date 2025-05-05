@@ -1,6 +1,6 @@
 export const popularBooks = [
   {
-    id: 8,
+    id: 49,
     isbn: "9791032710265",
     title: "Les Carnets de l’Apothicaire",
     description:
@@ -10,7 +10,7 @@ export const popularBooks = [
     page_count: 159,
   },
   {
-    id: 9,
+    id: 68,
     isbn: "9782377352654",
     title: "Les Aventures de Sherlock Holmes",
     description:
@@ -20,7 +20,7 @@ export const popularBooks = [
     page_count: 393,
   },
   {
-    id: 10,
+    id: 15,
     isbn: "9782070585205",
     title: "Harry Potter et la Coupe de Feu",
     description:
@@ -30,7 +30,7 @@ export const popularBooks = [
     page_count: 774,
   },
   {
-    id: 11,
+    id: 20,
     isbn: "9782290319956",
     title: "Le Trône de Fer – Tome 5 : L’Invincible Forteresse",
     description:
@@ -40,7 +40,7 @@ export const popularBooks = [
     page_count: 352,
   },
   {
-    id: 12,
+    id: 48,
     isbn: "9791032711262",
     title: "Frieren : Beyond Journey’s End - Tome 4",
     description:

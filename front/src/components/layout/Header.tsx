@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <>
-      <div className=" flex ml-0 sticky top-0">
+      <div className=" flex ml-0 sticky top-0 z-10">
         {" "}
         {/* La marge à gauche de 64 pour faire de la place à la Sidebar mais elle prend toute la place quand celle ci disparait */}
         <header className="bg-header flex items-center justify-between p-4 left-0 w-full pl-64 backdrop-blur-sm transition-all">
