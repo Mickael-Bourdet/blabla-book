@@ -49,12 +49,16 @@ const BookDetail = () => {
           />
 
           <div className="text-sm md:text-base max-w-xl">
-            <p className="text-gray-700 mb-1">Par {book.authors.map((auth) => auth.name).join(", ")}</p>
+            <p>
+              <span className="font-semibold">Par</span> : {book.authors.map((auth) => auth.name).join(", ")}
+            </p>
+            
             <h1 className="text-lg font-bold mb-2">{book.title}</h1>
 
             <p>
               <span className="font-semibold">Catégorie</span> : {book.categories.map((cat) => cat.name)}
             </p>
+
             <p className="mb-2">
               <span className="font-semibold">Date de publication</span> : {book.published}
             </p>
