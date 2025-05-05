@@ -15,8 +15,8 @@ function App() {
   return (
     <>
       <Navbars />
-      <main className="md:ml-64 flex flex-col min-h-screen ">
-        <Header />
+      <Header />
+      <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/books/:bookId" element={<DetailPage />} />

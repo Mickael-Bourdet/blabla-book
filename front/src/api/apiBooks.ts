@@ -16,23 +16,23 @@ export async function getOneBook(id: number): Promise<IBook> {
 
 
 export async function getOneUser(id: number): Promise<IUser> {
-    const response = await fetch(`${apiBaseUrl}/user/${id}`);
-    const user = await response.json();
-    
-    return user;
-  }
+  const response = await fetch(`${apiBaseUrl}/user/${id}`);
+  const user = await response.json();
 
-  export const updateUser = async (
-    userId: number,
-    data: { name?: string; email?: string; password?: string }
-  ) => {
-    const res = await fetch(`${apiBaseUrl}/user/${userId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-  
-    return res.json();
-  };
+  return user;
+}
+
+export const updateUser = async (
+  userId: number,
+  data: { name?: string; email?: string; password?: string }
+) => {
+  const res = await fetch(`${apiBaseUrl}/user/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return res.json();
+};

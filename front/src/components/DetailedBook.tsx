@@ -11,9 +11,6 @@ const BookDetail = () => {
 
   // TODO changer 1 par userId
   const handleAddRead = () => {
-    // const checkBook = getLibrary(1);
-    // console.log(checkBook);
-    
     addToMyReadLibrary(1, numericBookId);
   };
   const handleWishRead = () => {addToWishRead(1, numericBookId)};

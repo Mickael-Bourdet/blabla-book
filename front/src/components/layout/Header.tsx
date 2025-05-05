@@ -18,11 +18,11 @@ const Header = () => {
               <i className="fa-solid fa-house-chimney"></i>{" "}
               <span className="whitespace-nowrap  hidden xl:inline">Accueil</span>
             </a>
-            <a href="/library">
+            <a className="hover:text-blue-600" href="/library">
               <i className="fa-solid fa-book"></i>
               <span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span>{" "}
             </a>
-            <a href="/auth">
+            <a className="hover:text-blue-600" href="/auth">
               <i className="fa-solid fa-user"></i>
               <span className="hidden xl:inline">Mon compte</span>{" "}
             </a>
