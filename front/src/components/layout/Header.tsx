@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+import { useAuthStore } from "../../utils/store/useAuthStore";
 
 const Header = () => {
+const user = useAuthStore((state) => state.user);
 
   return (
     <>
@@ -20,23 +23,28 @@ const Header = () => {
           </div>
 
           <nav className="hidden md:flex gap-6">
-            <a className="hover:text-blue-600" href="/">
+            <Link className="hover:text-blue-600" to="/">
               <i className="fa-solid fa-house-chimney"></i>
               <span className="whitespace-nowrap hidden xl:inline">
                 Accueil
               </span>
-            </a>
-            <a className="hover:text-blue-600" href="/library">
+            </Link>
+            <Link className="hover:text-blue-600" to="/library">
               <i className="fa-solid fa-book"></i>
               <span className="whitespace-nowrap hidden xl:inline">
                 Bibliothèque
               </span>
-            </a>
+            </Link>
 
-            <a className="hover:text-blue-600" href="/auth">
+            <Link
+              className="hover:text-blue-600"
+              to={user ? "/profile" : "/auth"}
+            >
               <i className="fa-solid fa-user"></i>
-              <span className="hidden xl:inline">Mon compte</span>
-            </a>
+              <span className="hidden xl:inline">
+                {user ? user.name : "Mon compte"}
+              </span>
+            </Link>
           </nav>
 
           <div className="block hover:text-blue-600 md:hidden">
@@ -46,26 +54,26 @@ const Header = () => {
 
         {/* Navigation mobile */}
         <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4 z-10 rounded-t md:hidden">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="hover:text-blue-600 flex flex-col items-center text-sm"
           >
             <i className="fa-solid fa-house-chimney"></i> Accueil
-          </a>
-          <a
-            href="/library"
+          </Link>
+          <Link
+            to="/library"
             className="hover:text-blue-600 flex flex-col items-center text-sm"
           >
             <i className="fa-solid fa-book"></i> Bibliothèque
-          </a>
+          </Link>
 
-          <a
+          <Link
+            to={user ? "/profile" : "/auth"}
             className="hover:text-blue-600 flex flex-col items-center text-sm"
-            href="/auth"
           >
-            <i className="fa-solid fa-user"></i> Mon compte
-          </a>
-
+            <i className="fa-solid fa-user"></i>
+            {user ? user.name : "Mon compte"}
+          </Link>
         </div>
       </div>
     </>

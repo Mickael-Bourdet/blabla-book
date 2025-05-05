@@ -1,13 +1,46 @@
 import AuthForm from "./AuthForm";
 import { ILogin } from "../../@types/auth";
+import { useAuthStore } from "../../utils/store/useAuthStore";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { loginUser } from "../../api/apiAuth";
+import { toastSuccess } from "../../utils/toast/toastSuccess";
+import { toastError } from "../../utils/toast/toastError";
 
-export interface ILoginProps {
-  data: ILogin;
-  onChange: (data: ILogin) => void;
-  onSubmit: () => void;
-}
+const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuthStore();
 
-const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
+  const [loginData, setLoginData] = useState<ILogin>({
+    email: "",
+    password: "",
+  });
+
+  const handleLogin = async () => {
+    console.log("📤 Étape 1 - handleLogin appelée");
+
+    try {
+      console.log("📤 Étape 2 - envoi des données :", loginData);
+      const data = await loginUser(loginData);
+      console.log("✅ Étape 3 - réponse reçue :", data);
+      console.log("📦 Étape 4 - données stockées");
+      toastSuccess("Connexion réussie !");
+
+      // ✅ Réinitialisation des champs
+      setLoginData({
+        email: "",
+        password: "",
+      });
+
+      login({user.name}, token)
+      // Redirection
+      navigate("/profile");
+    } catch (error) {
+      console.log("❌ Étape 5 - erreur capturée :", error);
+      toastError("Echec de la connexion");
+    }
+  };
+
   return (
     <AuthForm title="Me connecter">
       <div className="mb-4">
@@ -17,8 +50,10 @@ const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
         <input
           type="text"
           id="loginEmail"
-          value={data.email}
-          onChange={(e) => onChange({ ...data, email: e.target.value })}
+          value={loginData.email}
+          onChange={(e) =>
+            setLoginData({ ...loginData, email: e.target.value })
+          }
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
           placeholder="Value"
         />
@@ -30,8 +65,10 @@ const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
         <input
           type="password"
           id="loginPassword"
-          value={data.password}
-          onChange={(e) => onChange({ ...data, password: e.target.value })}
+          value={loginData.password}
+          onChange={(e) =>
+            setLoginData({ ...loginData, password: e.target.value })
+          }
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
           placeholder="Value"
         />
@@ -40,7 +77,7 @@ const Login = ({ data, onChange, onSubmit }: ILoginProps) => {
         <button
           type="button"
           className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded"
-          onClick={onSubmit}
+          onClick={handleLogin}
         >
           Connexion
         </button>

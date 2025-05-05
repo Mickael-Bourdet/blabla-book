@@ -14,15 +14,9 @@ import About from "./pages/About";
 import Mentions from "./pages/Mentions";
 import ErrorServer from "./pages/ErrorServer";
 import { ErrorBoundary } from "react-error-boundary";
-import { useAuthStore } from "./utils/store/useAuthStore";
-import { useEffect } from "react";
 
 function App() {
-  const loadUserFromStorage = useAuthStore((state) => state.loadUserFromStorage)
 
-  useEffect(() => {
-    loadUserFromStorage()
-  }, [])
   return (
     <>
       <Navbars />
