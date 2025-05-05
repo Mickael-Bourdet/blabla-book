@@ -25,7 +25,14 @@ const bookController = {
       ];
     }
 
-    // If param is given, filter by category ID if param is given
+    // If param is given, filter by category ID
+    if (categoryId) {
+      // initialise association to prevent error
+      includeOptions[0].where = includeOptions[0].where || {};
+      // define categoryId as a filter
+      includeOptions[0].where.id = categoryId;
+    }
+    // If param is given, filter by category name
     if (categoryId) {
       // initialise association to prevent error
       includeOptions[0].where = includeOptions[0].where || {};
