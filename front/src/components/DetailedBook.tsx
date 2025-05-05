@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import { IBook } from "../@types";
 import { getOneBook } from "../api/apiBooks";
 import { addToMyReadLibrary, addToWishRead } from "../api/apiUser";
+import { useErrorHandler } from "../useErrorHandler";
 
 const BookDetail = () => {
   const { bookId } = useParams();
   const numericBookId = Number(bookId);
   const [book, setBook] = useState<IBook>();
+  const { handleError } = useErrorHandler();
 
   // TODO changer 1 par userId
   const handleAddRead = () => {
@@ -24,7 +26,8 @@ const BookDetail = () => {
           const newBook = await getOneBook(Number.parseInt(bookId));
           setBook(newBook);
         } catch (error) {
-          console.error("Erreur lors de la récupération du livre", error);
+          // console.error("Erreur lors de la récupération du livre", error);
+          handleError(error);
         }
       }
     };
