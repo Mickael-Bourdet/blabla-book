@@ -1,11 +1,12 @@
 import type { IUser } from "../@types";
 import { useState, useEffect } from "react";
-import { getOneUser, updateUser} from "../api/apiBooks"
-import { useParams } from "react-router-dom";
+import { getOneUser, updateUser , deleteUser} from "../api/apiBooks"
+import { useParams , Link ,useNavigate} from "react-router-dom";
 
 const SettingsUser = () => {
+    const navigate = useNavigate();
   const { userId } = useParams();
-  const [user, setUser] = useState<IUser>();
+  const [user, setUser] = useState<IUser | null>(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [emailConfirm, setEmailConfirm] = useState("");
@@ -14,12 +15,18 @@ const SettingsUser = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [confirmationModal, setConfirmationModal] = useState(false); // Modal de confirmation
+  const [confirmationModal, setConfirmationModal] = useState(false); 
+  const [deleteModal, setDeleteModal] = useState(false);
+
 
   useEffect(() => {
     const loadData = async () => {
       if (userId) {
         const newUser = await getOneUser(Number.parseInt(userId));
+        if (!newUser) {
+            navigate("/404");
+            return;
+          }
         setUser(newUser);
         setUsername(newUser.name);
        setEmail(newUser.email); 
@@ -61,48 +68,65 @@ const SettingsUser = () => {
 
   const handleConfirmation = async (confirm: boolean) => {
     if (confirm) {
-      const updatedData: { name?: string; email?: string; password?: string } = {};
-  
-      // Mise à jour conditionnelle des champs modifiés
+        
+      const updatedData: { name?: string; email?: string; password?: string }= {};
+      console.log("Mise à jour avec :", updatedData);
+      // Mise à jour conditionnelle en fonction des champs modifiés
       if (username !== user?.name) updatedData.name = username;
       if (email !== user?.email) updatedData.email = email;
       if (password) updatedData.password = password;
-      console.log(updatedData.name);
-  
+
       // Si des données ont été modifiées, effectuer la mise à jour
       if (Object.keys(updatedData).length > 0) {
         await updateUser(Number(userId), updatedData);
+         // Recharge les infos utilisateur depuis l'API
+  const updatedUser = await getOneUser(Number(userId));
+  if (!updatedUser ) {
+    navigate("/404");
+    return;
+  }
+  setUser(updatedUser);
+  setUsername(updatedUser.name);
+  setEmail(updatedUser.email);
+  setEmailConfirm(updatedUser.email);
   
-        // Met à jour les champs d'état localement sans attendre le rechargement de l'API
-        if (updatedData.name) setUsername(updatedData.name);
-        if (updatedData.email) {
-          setEmail(updatedData.email);
-          setEmailConfirm(updatedData.email);
-        }
-  
-        // Met à jour aussi l'objet user localement
-        setUser((prevUser) => ({
-          ...prevUser!,
-          ...updatedData,
-        }));
       }
-  
-      // Réinitialiser les champs de mot de passe et fermer la modale
+
+      // Réinitialiser les champs et fermer la fenêtre de confirmation
       setPassword("");
       setPasswordConfirm("");
       setCurrentPassword("");
       setEmailError(false);
       setPasswordError(false);
       setConfirmationModal(false);
-  
+
+     
     } else {
       // Si l'utilisateur annule, fermer la fenêtre de confirmation
       setConfirmationModal(false);
     }
   };
+
+  const handleDeleteAccount = async () => {
+    if (userId) {
+      await deleteUser(Number(userId));
+      // Rediriger vers la page d’accueil ou de connexion après suppression
+       navigate("/");
+    }
+  };
+  
+
   return (
     <>
       <div className="flex flex-col w-full p-8 md:ml-100">
+        {/* Bouton Retour */}
+        <div className="mb-4">
+          <Link to={`/profile`}>
+            <button className="text-blue-500 hover:underline">
+              ← Retour
+            </button>
+          </Link>
+        </div>
         {/* Profil */}
         <div className="flex mb-8">
           <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">
@@ -234,6 +258,29 @@ const SettingsUser = () => {
           </div>
         )}
 
+           {deleteModal && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-body p-6 rounded shadow-lg">
+      <p className="text-lg font-semibold">Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible.</p>
+      <div className="flex gap-4 mt-4 justify-end">
+        <button
+          className="bg-white-300 border text-black px-4 py-2 rounded"
+          onClick={() => setDeleteModal(false)}
+        >
+          Annuler
+        </button>
+        <button
+          className="bg-red-600 border text-white px-4 py-2 rounded"
+          onClick={handleDeleteAccount}
+        >
+          Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
         {/* Boutons se déconnecter et supprimer */}
         <div className="flex gap-20 mt-20 mb-20">
           <button
@@ -245,6 +292,7 @@ const SettingsUser = () => {
           <button
             className="bg-black text-white rounded px-4 py-2 mt-4 border-none hover:bg-gray-900"
             type="button"
+            onClick={()=> setDeleteModal(true)}
           >
             Supprimer mon compte
           </button>
