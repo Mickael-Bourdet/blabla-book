@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <>
@@ -14,10 +16,10 @@ const Header = () => {
             <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
           </div>
           <nav className="hidden md:flex gap-6 ">
-            <a className="hover:text-blue-600" href="/">
+            <Link className="hover:text-blue-600" to="/">
               <i className="fa-solid fa-house-chimney"></i>{" "}
               <span className="whitespace-nowrap  hidden xl:inline">Accueil</span>
-            </a>
+            </Link>
             <a className="hover:text-blue-600" href="/library">
               <i className="fa-solid fa-book"></i>
               <span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span>{" "}

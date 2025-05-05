@@ -9,9 +9,9 @@ export default function ErrorServer() {
       <p className="font-body text-2xl text-center p-6">
         Il semblerait que notre bibliothèque soit indisponible pour le moment...
       </p>
-      <button className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded mb-10 ">
-        <Link to="/">Retour à l'accueil</Link>
-      </button>
+      <Link to="/" className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded mb-10 ">
+        Retour à l'accueil
+      </Link>
     </div>
   );
 }
