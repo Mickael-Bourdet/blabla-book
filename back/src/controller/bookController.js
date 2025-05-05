@@ -12,11 +12,11 @@ const bookController = {
    */
   async getAllBooks(req, res, next) {
 
-    const { search } = req.query; // Récupérer la recherche depuis la query string
+    const { search } = req.query; // get query string
 
     const whereConditions = {};
 
-    // Si un terme de recherche est fourni, filtrer par nom de livre ou auteur
+    // filter by author or name 
     if (search) {
       whereConditions[Op.or] = [
         { title: { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le titre du livre
