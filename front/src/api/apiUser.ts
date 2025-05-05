@@ -12,6 +12,11 @@ export async function addToMyReadLibrary(userId: number, bookId: number): Promis
   return book;
 }
 
+export async function deleteToMyReadLibrary(userId: number, bookId: number) {
+  const response = await fetch(`${apiBaseUrl}/user/${userId}/books/read/${bookId}`, { method: "DELETE" });
+  return response.ok;
+}
+
 export async function addToWishRead(userId: number, bookId: number): Promise<IBook> {
   const response = await fetch(`${apiBaseUrl}/user/${userId}/books/to-read/${bookId}`, {
     method: "POST",
@@ -23,6 +28,11 @@ export async function addToWishRead(userId: number, bookId: number): Promise<IBo
   });
   const book = await response.json();
   return book;
+}
+
+export async function deleteToWishRead(userId: number, bookId: number) {
+  const response = await fetch(`${apiBaseUrl}/user/${userId}/books/to-read/${bookId}`, { method: "DELETE" });
+  return response.ok;
 }
 
 export async function getLibrary(id: number): Promise<IUser> {

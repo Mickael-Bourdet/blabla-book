@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBook } from "../@types";
 import { getOneBook } from "../api/apiBooks";
-import { addToMyReadLibrary, addToWishRead } from "../api/apiUser";
+import { addToMyReadLibrary, addToWishRead, deleteToMyReadLibrary, deleteToWishRead } from "../api/apiUser";
 import { useErrorHandler } from "../useErrorHandler";
 
 const BookDetail = () => {
@@ -18,10 +18,18 @@ const BookDetail = () => {
     addToMyReadLibrary(1, numericBookId);
     setIsRead(true);
   };
+  const handleRemoveRead = () => {
+    deleteToMyReadLibrary(1, numericBookId);
+    setIsRead(false);
+  }
   const handleWishRead = () => {
     addToWishRead(1, numericBookId);
     setToRead(true);
   };
+  const handleRemoveWishRead = () => {
+    deleteToWishRead(1, numericBookId);
+    setToRead(false);
+  }
 
   useEffect(() => {
     const loadData = async () => {
@@ -75,16 +83,16 @@ const BookDetail = () => {
 
             <div className="flex gap-20 mt-4 ml-30">
               <button
-                onClick={handleAddRead}
-                className={`flex items-center gap-2 ${isRead ? 'bg-green-300 hover:bg-green-200' : 'bg-gray-300 hover:bg-gray-200'}  rounded px-10 py-2 cursor-pointer`}
+                onClick={!isRead ? handleAddRead : handleRemoveRead}
+                className={`flex items-center gap-2 ${isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : 'bg-gray-300 hover:bg-gray-200'}  rounded px-10 py-2 cursor-pointer`}
               >
                 {/* <i className="fa-solid fa-book"></i> */}
                 <i className="fa-solid fa-eye"></i>
-                <span>{`${isRead ? 'Lu' : 'Non Lu'}`}</span>
+                <span>{`${isRead && !toRead ? 'Lu' : 'Non Lu'}`}</span>
               </button>
               <button
-                onClick={handleWishRead}
-                className={`flex items-center gap-2 ${ toRead ? 'bg-green-300 hover:bg-green-200' : 'bg-gray-300 hover:bg-gray-200'} rounded px-10 py-2 cursor-pointer`}
+                onClick={!toRead ? handleWishRead : handleRemoveWishRead}
+                className={`flex items-center gap-2 ${ toRead && !isRead ? 'bg-green-300 hover:bg-green-200' : 'bg-gray-300 hover:bg-gray-200'} rounded px-10 py-2 cursor-pointer`}
               >
                 <i className="fa-solid fa-book-open-reader"></i>
                 <span>À Lire</span>
