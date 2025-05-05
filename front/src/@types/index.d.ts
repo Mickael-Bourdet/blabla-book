@@ -15,9 +15,21 @@ export interface IBook {
   authors: IAuthor[];
 }
 
+export type IBooks = IBook[];
+
 export interface IAuthor {
   id: number;
   name: string;
 }
 
-export type IBooks = IBook[];
+export interface IUser {
+  id: number;
+  email: string;
+  name: string;
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+  books_already_read: IBookRead[];
+  books_wish_read: IBookWish[];
+}
+
