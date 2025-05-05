@@ -12,6 +12,7 @@ const SearchBar = () => {
     e.preventDefault();
     if (researchTerm.trim()) {
       navigate(`/search?query=${encodeURIComponent(researchTerm.trim())}`);
+      setResearch("");
     }
   };
 
@@ -25,7 +26,7 @@ const SearchBar = () => {
       }
     };
 
-    const timer = setTimeout(fetchData, 300); // debounce
+    const timer = setTimeout(fetchData, 300); 
     return () => clearTimeout(timer);
   }, [researchTerm]);
 
@@ -38,14 +39,14 @@ const SearchBar = () => {
         <input
           type="text"
           value={researchTerm}
-          placeholder="     Chercher un livre"
+          placeholder="Chercher un livre"
           onChange={(e) => setResearch(e.target.value)}
-          className="border rounded px-3 py-2 w-full"
+          className="border rounded px-3 py-2 w-full pl-10"
         />
       </form>
 
       {results.length > 0 && (
-        <ul className="absolute bg-white border border-gray-200 rounded-md mt-1 w-full max-h-60 overflow-auto shadow-lg z-10">
+        <ul className="absolute bg-white border border-gray-200 rounded-md mt-1 w-full max-h-60 overflow-auto shadow-lg z-10 ">
           {results.map((book) => (
             <li key={book.id} className="p-2 hover:bg-gray-100 text-sm">
               <Link to={`/books/${book.id}`}>{book.title}</Link>

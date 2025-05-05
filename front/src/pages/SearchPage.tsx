@@ -31,7 +31,7 @@ const SearchPage = () => {
     {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
     <main className="p-4">
       <section className="content ml-[5vw] mr-[5vw]">
-        <h2 className="text-xl mt-8 mb-4 font-bold">Résultat de votre recherche ({results.length}) :</h2>
+        <h2 className="text-xl mt-8 mb-4 font-bold"> {results.length} Résultat(s) pour la recherche : " {searchTerm} "</h2>
         {results.length > 0 ? (
           <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {results.map((book: any) => (
