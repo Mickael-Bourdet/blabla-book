@@ -1,4 +1,5 @@
 import { Book } from "../models/Book.js";
+import { Op } from "sequelize";
 
 const bookController = {
   /**
@@ -10,7 +11,19 @@ const bookController = {
    * @returns {Array} - Object
    */
   async getAllBooks(req, res, next) {
+    const { search } = req.query; // get query string
+
+    const whereConditions = {};
+
+    // filter by author or name
+    if (search) {
+      whereConditions[Op.or] = [
+        { title: { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le titre du livre
+        { "$authors.name$": { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le nom de l'auteur
+      ];
+    }
     const result = await Book.findAll({
+      where: whereConditions,
       include: [{ association: "categories" }, { association: "authors" }],
     });
 
