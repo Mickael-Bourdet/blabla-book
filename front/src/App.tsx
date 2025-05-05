@@ -9,24 +9,33 @@ import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
 import ErrorNotFound from "./pages/ErrorNotFound";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import ErrorServer from "./pages/ErrorServer";
+import { ErrorBoundary } from "react-error-boundary";
+
 function App() {
+  const location = useLocation();
   return (
     <>
       <Navbars />
       <Header />
-      <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/books/:bookId" element={<DetailPage />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/user/:userId/settings" element={<SettingsUser />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/auth" element={<Authentication />} />
-          <Route path="*" element={<ErrorNotFound />} />
-        </Routes>
-        
-      </main>
+      {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
+          // The `resetKeys` prop resets the error state automatically whenever the URL changes.
+          // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
+      <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
+        <main className="md:ml-64 flex flex-col min-h-screen bg-body ">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/books/:bookId" element={<DetailPage />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/user/:userId/settings" element={<SettingsUser />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/auth" element={<Authentication />} />
+            <Route path="*" element={<ErrorNotFound />} />
+          </Routes>
+        </main>
+      </ErrorBoundary>
+
       <Footer />
     </>
   );

@@ -1,4 +1,4 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
@@ -15,7 +15,7 @@ const Header = () => {
             <input type="text" placeholder="Chercher un livre" className=" px-4 py-2 pl-10 border rounded-md ml-8 " />
           </div>
           <nav className="hidden md:flex gap-6 ">
-          <Link className="hover:text-blue-600 " to={`/`}>
+            <Link className="hover:text-blue-600 " to={`/`}>
               <i className="fa-solid fa-house-chimney"></i>{" "}
               <span className="whitespace-nowrap  hidden xl:inline">Accueil</span>
             </Link>
@@ -34,15 +34,15 @@ const Header = () => {
         </header>
         {/* Navigation mobile */}
         <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4  z-10 rounded-t md:hidden">
-        <Link className="hover:text-blue-600 "to={`/`}>
+          <Link className="hover:text-blue-600 " to={`/`}>
             <i className="fa-solid fa-house-chimney "></i> Accueil
           </Link>
           <Link className="hover:text-blue-600 " to={`/library`}>
             <i className="fa-solid fa-book"></i> Bibliothèque
-            </Link>
-            <Link className="hover:text-blue-600 " to={`/auth`}>
+          </Link>
+          <Link className="hover:text-blue-600 " to={`/auth`}>
             <i className="fa-solid fa-user"></i> Mon compte
-            </Link>
+          </Link>
         </div>
       </div>
     </>
