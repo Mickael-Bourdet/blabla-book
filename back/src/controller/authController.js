@@ -1,7 +1,7 @@
 import { hash, compare, generateJwtToken } from "../services/authService.js";
 import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
 import { User } from "../models/User.js";
-import { ApiError } from "../middlewares/schemaValidate/ApiError.js";
+import { ApiError } from "../middlewares/ApiError.js";
 
 const authController = {
   /**
@@ -95,13 +95,8 @@ const authController = {
    * @param {Object} req - The request object.
    * @param {Object} res - The response object.
    */
-  async logout(req, res) {
+  async logout(_req, res) {
     try {
-      // Optionally, you can add logic to invalidate the token on the server side
-      // For example, add the token to a revoked tokens list in the database
-      // const token = req.headers.authorization?.split(" ")[1];
-      // await revokeToken(token);
-
       // Send a response indicating successful logout
       res.status(200).json({ message: "Déconnexion réussie" });
     } catch (error) {
@@ -109,9 +104,8 @@ const authController = {
     }
   },
 
-  async users(req, res, next) {
+  async users(_req, res, _next) {
     const users = await User.findAll();
-
     res.status(200).json({ users });
   },
 };

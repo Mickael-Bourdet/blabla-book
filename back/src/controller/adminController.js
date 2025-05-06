@@ -1,6 +1,7 @@
 import { Book } from "../models/associations.js";
 import { Category } from "../models/Category.js";
 import { Author } from "../models/Author.js";
+import { ApiError } from "../middlewares/ApiError.js";
 import { fn, col, where } from "sequelize";
 
 const adminController = {
@@ -20,10 +21,7 @@ const adminController = {
     //   check if the book is not already in the DB
     const isRegistered = await Book.findOne({ where: { isbn } });
     if (isRegistered) {
-      return next({
-        statusCode: 409,
-        message: "Impossible d'ajouter ce livre car il existe déjà",
-      });
+      return next(new ApiError("Impossible d'ajouter ce livre car il existe déjà", 409));
     }
 
     const newBook = await Book.create({
@@ -53,7 +51,7 @@ const adminController = {
     const book = await Book.findByPk(bookId);
 
     if (!book) {
-      return next({ statusCode: 404, message: "Ce livre n'existe pas" });
+      return next(new ApiError("Ce livre n'existe pas", 409));
     }
 
     // Get the params
@@ -95,7 +93,7 @@ const adminController = {
     const book = await Book.findByPk(bookId);
 
     if (!book) {
-      return next({ statusCode: 404, message: "Ce livre n'existe pas" });
+      return next(new ApiError("Ce livre n'existe pas", 409));
     }
 
     // otherwise the book exist so we can delete it
