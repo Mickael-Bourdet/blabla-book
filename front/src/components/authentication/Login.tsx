@@ -22,9 +22,9 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const data = await loginUser(loginData);
-      const { name, token } = data;
+      const { name, id, token } = data;
 
-      login(name, token);
+      login(name, id, token);
       toastSuccess("Connexion réussie !");
 
       setLoginData({
@@ -53,7 +53,7 @@ const Login = () => {
             setLoginData({ ...loginData, email: e.target.value })
           }
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="email@example.com"
         />
       </div>
       <div className="mb-6">
@@ -68,7 +68,7 @@ const Login = () => {
             setLoginData({ ...loginData, password: e.target.value })
           }
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="Mot de passe"
         />
       </div>
       <div className="flex justify-center">
