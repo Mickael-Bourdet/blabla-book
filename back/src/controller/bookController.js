@@ -32,7 +32,10 @@ const bookController = {
     ]});
 
     if (result.length === 0) {
-      return next(new ApiError("Il n'y a pas livres dans la base de données", 404));
+      return res.status(200).json({
+        message: "Aucun livre trouvé.",
+        data: [],
+      });
     }
     res.status(200).json(result);
   },
