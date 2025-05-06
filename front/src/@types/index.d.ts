@@ -29,6 +29,6 @@ export interface IUser {
   password: string;
   createdAt: string;
   updatedAt: string;
-  books_already_read: IBookRead[];
-  books_wish_read: IBookWish[];
+  books_already_read: IBook[];
+  books_wish_read: IBook[];
 }

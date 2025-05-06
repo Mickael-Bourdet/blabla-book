@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { getOneUser } from "../api/apiBooks";
-import type { IUser } from "../@types";
+import { getOneUser } from "../api/apiUser";
+import type { IUser } from "../@types/index.d.ts";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../utils/store/useAuthStore";
 
-
-
 const ProfilePage = () => {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [localUser, setLocalUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const { user } = useAuthStore(); 
+
   useEffect(() => {
     async function fetchUser() {
-      localStorage.setItem("userId", "1");
-      //localStorage.clear();
       const userId = localStorage.getItem("userId");
       if (!userId) {
         setError("Utilisateur non connecté");
@@ -24,7 +22,7 @@ const ProfilePage = () => {
 
       try {
         const userData = await getOneUser(Number(userId));
-        setUser(userData);
+        setLocalUser(userData);
       } catch (err) {
         setError("Impossible de charger le profil.");
       } finally {
@@ -37,12 +35,10 @@ const ProfilePage = () => {
 
   if (loading) return <p className="text-center">Chargement de votre profil...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
-  if (!user) return null;
-
-  const { user } = useAuthStore();
+  if (!localUser) return null;
 
   return (
-    <div className="p-4 ">
+    <div className="p-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">{user?.name}</h1>
         <button className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500">
@@ -53,16 +49,16 @@ const ProfilePage = () => {
       {/* Livres lus */}
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">
-          Mes livres lus : {user.books_already_read.length}
+          Mes livres lus : {localUser.books_already_read.length}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {user.books_already_read.map((book) => (
+          {localUser.books_already_read.map((book) => (
             <Link key={book.id} to={`/books/${book.id}`}>
               <div className="hover:shadow-lg rounded-md transition-shadow">
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="h-100 w-full object-cover mb-2"
+                  className="h-64 w-full object-cover mb-2"
                 />
                 <p className="text-center">{book.title}</p>
               </div>
@@ -74,10 +70,10 @@ const ProfilePage = () => {
       {/* Livres à lire */}
       <section>
         <h2 className="text-2xl font-semibold mb-4">
-          Mes livres à lire : {user.books_wish_read.length}
+          Mes livres à lire : {localUser.books_wish_read.length}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {user.books_wish_read.map((book) => (
+          {localUser.books_wish_read.map((book) => (
             <Link key={book.id} to={`/books/${book.id}`}>
               <div className="hover:shadow-lg rounded-md transition-shadow">
                 <img
