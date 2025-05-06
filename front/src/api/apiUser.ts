@@ -9,7 +9,7 @@ export async function getOneUser(id: number): Promise<IUser | null> {
   }
   const user = await response.json();
   console.log("je récupére un utilisateur : ", user);
-  
+
   return user;
 }
 
