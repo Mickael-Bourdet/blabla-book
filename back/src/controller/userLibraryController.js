@@ -15,9 +15,7 @@ const userLibraryController = {
     });
 
     if (!result) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 404;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 404));
     }
 
     res.status(200).json(result);
@@ -36,16 +34,12 @@ const userLibraryController = {
 
     const user = await User.findByPk(userId);
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 404));
     }
 
     const book = await Book.findByPk(bookId);
     if (!book) {
-      const error = new Error("Livre non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Livre non trouvé", 409));
     }
 
     await user.addBooks_already_read(book);
@@ -67,14 +61,14 @@ const userLibraryController = {
     const book = await Book.findByPk(bookId);
 
     if (!user || !book) {
-      const error = new Error("Utilisateur ou livre non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur ou livre non trouvé", 409));
     }
 
     await user.removeBooks_already_read(book);
 
-    res.status(200).json({ message: "Livre retiré de la liste des livres lus" });
+    res
+      .status(200)
+      .json({ message: "Livre retiré de la liste des livres lus" });
   },
 
   /**
@@ -90,21 +84,19 @@ const userLibraryController = {
 
     const user = await User.findByPk(userId);
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 409));
     }
 
     const book = await Book.findByPk(bookId);
     if (!book) {
-      const error = new Error("Livre non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Livre non trouvé", 409));
     }
 
     await user.addBooks_wish_read(book);
 
-    res.status(200).json({ message: "Livre ajouté à la liste des livres à lire" });
+    res
+      .status(200)
+      .json({ message: "Livre ajouté à la liste des livres à lire" });
   },
 
   /**
@@ -121,14 +113,14 @@ const userLibraryController = {
     const book = await Book.findByPk(bookId);
 
     if (!user || !book) {
-      const error = new Error("Utilisateur ou livre non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur ou livre non trouvé", 409));
     }
 
     await user.removeBooks_wish_read(book);
 
-    res.status(200).json({ message: "Livre retiré de la liste des livres à lire" });
+    res
+      .status(200)
+      .json({ message: "Livre retiré de la liste des livres à lire" });
   },
 };
 
