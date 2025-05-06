@@ -13,6 +13,8 @@ export interface IBook {
   page_count: number;
   categories: ICategory[];
   authors: IAuthor[];
+  users_has_read: IUser[];
+  users_need_to_read: IUser[];
 }
 
 export type IBooks = IBook[];

@@ -22,7 +22,6 @@ const BookDetail = () => {
   const [toRead, setToRead] = useState(false);
   const { handleError } = useErrorHandler();
 
-  // TODO changer 1 par userId
   const handleAddRead = () => {
     addToMyReadLibrary(userId, numericBookId);
     if (toRead) {
@@ -54,6 +53,7 @@ const BookDetail = () => {
 
   useEffect(() => {
     const loadData = async () => {
+    
       if (bookId) {
         try {
           const newBook = await getOneBook(Number.parseInt(bookId));
@@ -109,9 +109,9 @@ const BookDetail = () => {
 
             <div className="flex gap-20 mt-4 ml-30">
               <button
-                onClick={!isRead ? handleAddRead : handleRemoveRead}
+                onClick={ book.users_has_read.some((user) => user.id === userId) ? handleAddRead : handleRemoveRead }
                 className={`flex items-center gap-2 ${
-                  isRead && !toRead
+                  book.users_has_read.some((user) => user.id === userId)
                     ? `bg-green-300 hover:bg-green-200 ${!toRead}`
                     : "bg-gray-300 hover:bg-gray-200"
                 }  rounded px-10 py-2 cursor-pointer`}
@@ -126,9 +126,9 @@ const BookDetail = () => {
                 <span>{`${isRead && !toRead ? "Lu" : "Non Lu"}`}</span>
               </button>
               <button
-                onClick={!toRead ? handleWishRead : handleRemoveWishRead}
+                onClick={!book.users_need_to_read.some((user) => user.id === userId) ? handleRemoveWishRead : handleWishRead}
                 className={`flex items-center gap-2 ${
-                  toRead && !isRead
+                  book.users_need_to_read.some((user) => user.id === userId)
                     ? "bg-green-300 hover:bg-green-200"
                     : "bg-gray-300 hover:bg-gray-200"
                 } rounded px-10 py-2 cursor-pointer`}

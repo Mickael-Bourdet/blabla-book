@@ -50,7 +50,12 @@ const bookController = {
     const id = parseInt(req.params.bookId);
 
     const result = await Book.findByPk(id, {
-      include: [{ association: "categories" }, { association: "authors" }],
+      include: [
+        { association: "categories" },
+        { association: "authors" },
+        { association: "users_has_read" }, 
+        { association: "users_need_to_read" }, 
+      ],
     });
 
     // checking if result exist, if it's not, go to the middleware errorHandler
