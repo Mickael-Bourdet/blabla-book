@@ -53,7 +53,7 @@ const Login = () => {
             setLoginData({ ...loginData, email: e.target.value })
           }
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="E-mail"
         />
       </div>
       <div className="mb-6">
@@ -68,7 +68,7 @@ const Login = () => {
             setLoginData({ ...loginData, password: e.target.value })
           }
           className="w-full border border-gray-300 p-2 rounded focus:outline-none"
-          placeholder="Value"
+          placeholder="Mot de passe"
         />
       </div>
       <div className="flex justify-center">
