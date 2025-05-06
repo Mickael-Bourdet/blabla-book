@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IBook } from "../@types";
+import { IBook, IUser } from "../@types";
 import { getOneBook } from "../api/apiBooks";
+import { getOneUser } from "../api/apiUser";
 import {
   addToMyReadLibrary,
   addToWishRead,
@@ -17,21 +18,35 @@ const BookDetail = () => {
   const userId = Number(user?.id);
   const { bookId } = useParams();
   const numericBookId = Number(bookId);
+  const [ userLogged, setUserLogged ] = useState<IUser | null>();
   const [book, setBook] = useState<IBook>();
   const [isRead, setIsRead] = useState(false);
   const [toRead, setToRead] = useState(false);
   const { handleError } = useErrorHandler();
+  const userHasRead = book?.users_has_read.some((user) => user.id === userId);
+  const userWishRead = book?.users_need_to_read.some((user) => user.id === userId);
 
   const handleAddRead = () => {
-    addToMyReadLibrary(userId, numericBookId);
-    if (toRead) {
+    console.log(userHasRead);
+    console.log(toRead);
+    
+    if (!userHasRead && userWishRead) {
+      addToMyReadLibrary(userId, numericBookId);
       handleRemoveWishRead();
+      toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
+      setIsRead(true);
+      setToRead(false);
+    } else if (!userHasRead && !userWishRead){
+      addToMyReadLibrary(userId, numericBookId);
+      toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
+      setIsRead(true);
+      setToRead(false);
+    } else {
+      handleRemoveRead
     }
-    toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
-    setIsRead(true);
-    setToRead(false);
   };
   const handleRemoveRead = () => {
+    console.log(!book?.users_has_read?.some((user) => user.id === userId));
     deleteToMyReadLibrary(userId, numericBookId);
     toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
     setIsRead(false);
@@ -56,6 +71,8 @@ const BookDetail = () => {
       if (bookId) {
         try {
           const newBook = await getOneBook(Number.parseInt(bookId));
+          const userConnected = await getOneUser(userId);
+          setUserLogged(userConnected);
           setBook(newBook);
         } catch (error) {
           handleError(error);
@@ -108,7 +125,8 @@ const BookDetail = () => {
 
             <div className="flex gap-20 mt-4 ml-30">
               <button
-                onClick={book.users_has_read ? handleAddRead : handleRemoveRead}
+                onClick={handleAddRead}
+                
                 className={`flex items-center gap-2 ${
                   book.users_has_read
                     ? `bg-green-300 hover:bg-green-200 ${!toRead}`
