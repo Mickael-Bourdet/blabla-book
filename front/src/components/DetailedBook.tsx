@@ -14,7 +14,7 @@ import { useAuthStore } from "../utils/store/useAuthStore";
 
 const BookDetail = () => {
   const { user } = useAuthStore();
-  const userId = Number(user?.id)
+  const userId = Number(user?.id);
   const { bookId } = useParams();
   const numericBookId = Number(bookId);
   const [book, setBook] = useState<IBook>();
@@ -53,7 +53,6 @@ const BookDetail = () => {
 
   useEffect(() => {
     const loadData = async () => {
-    
       if (bookId) {
         try {
           const newBook = await getOneBook(Number.parseInt(bookId));
@@ -109,9 +108,9 @@ const BookDetail = () => {
 
             <div className="flex gap-20 mt-4 ml-30">
               <button
-                onClick={ book.users_has_read.some((user) => user.id === userId) ? handleAddRead : handleRemoveRead }
+                onClick={book.users_has_read ? handleAddRead : handleRemoveRead}
                 className={`flex items-center gap-2 ${
-                  book.users_has_read.some((user) => user.id === userId)
+                  book.users_has_read
                     ? `bg-green-300 hover:bg-green-200 ${!toRead}`
                     : "bg-gray-300 hover:bg-gray-200"
                 }  rounded px-10 py-2 cursor-pointer`}
@@ -126,9 +125,13 @@ const BookDetail = () => {
                 <span>{`${isRead && !toRead ? "Lu" : "Non Lu"}`}</span>
               </button>
               <button
-                onClick={!book.users_need_to_read.some((user) => user.id === userId) ? handleRemoveWishRead : handleWishRead}
+                onClick={
+                  !book.users_need_to_read
+                    ? handleRemoveWishRead
+                    : handleWishRead
+                }
                 className={`flex items-center gap-2 ${
-                  book.users_need_to_read.some((user) => user.id === userId)
+                  book.users_need_to_read
                     ? "bg-green-300 hover:bg-green-200"
                     : "bg-gray-300 hover:bg-gray-200"
                 } rounded px-10 py-2 cursor-pointer`}
