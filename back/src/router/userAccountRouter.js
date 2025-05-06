@@ -14,7 +14,7 @@ export const router = Router();
  * @return {object} 200 - Success response with the user's data.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
-router.get("/user/:userId", authMiddleware, userController.getOneUser);
+router.get("/user", authMiddleware, userController.getOneUser);
 
 // Update user information
 /**
@@ -25,7 +25,7 @@ router.get("/user/:userId", authMiddleware, userController.getOneUser);
  * @return {object} 200 - Success response with the updated user data.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
-router.patch("/user/:userId", authMiddleware, validate(UpdateUserSchema), userController.updateUser);
+router.patch("/user", authMiddleware, validate(UpdateUserSchema), userController.updateUser);
 
 // Delete a user
 /**
@@ -35,4 +35,4 @@ router.patch("/user/:userId", authMiddleware, validate(UpdateUserSchema), userCo
  * @return {object} 200 - Success response with a message confirming deletion.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
-router.delete("/user/:userId", authMiddleware, validate(UpdateUserSchema), userController.deleteUser);
+router.delete("/user", authMiddleware, validate(UpdateUserSchema), userController.deleteUser);

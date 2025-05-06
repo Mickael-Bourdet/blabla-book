@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { userLibraryController } from "../controller/userLibraryController.js";
 
-
 export const router = Router();
 
 /**
@@ -13,7 +12,6 @@ export const router = Router();
 */
 router.get("/user/library/:userId", userLibraryController.getLibrary);
 
-
 // Read
 
 /**
@@ -23,7 +21,7 @@ router.get("/user/library/:userId", userLibraryController.getLibrary);
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.post("/user/:userId/books/read/:bookId", userLibraryController.addToMyReadLibrary);
+router.post("/user/books/read/:bookId", userLibraryController.addToMyReadLibrary);
 
 /**
  * DELETE /user/:userId/books/read/:bookId
@@ -32,7 +30,7 @@ router.post("/user/:userId/books/read/:bookId", userLibraryController.addToMyRea
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.delete("/user/:userId/books/read/:bookId", userLibraryController.deleteToMyReadLibrary);
+router.delete("/user/books/read/:bookId", userLibraryController.deleteToMyReadLibrary);
 
 
 // To Read
@@ -44,7 +42,7 @@ router.delete("/user/:userId/books/read/:bookId", userLibraryController.deleteTo
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.post("/user/:userId/books/to-read/:bookId", userLibraryController.addToWishRead);
+router.post("/user/books/to-read/:bookId", userLibraryController.addToWishRead);
 
 /**
  * DELETE /user/:userId/books/to-read/:bookId
@@ -53,4 +51,4 @@ router.post("/user/:userId/books/to-read/:bookId", userLibraryController.addToWi
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.delete("/user/:userId/books/to-read/:bookId", userLibraryController.deleteToWishRead);
+router.delete("/user/books/to-read/:bookId", userLibraryController.deleteToWishRead);
