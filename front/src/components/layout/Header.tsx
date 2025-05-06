@@ -18,7 +18,7 @@ const Header = () => {
         <nav className="hidden md:flex gap-6">
           <Link className="hover:text-blue-600" to="/">
             <i className="fa-solid fa-house-chimney"></i>
-            <span className="whitespace-nowrap hidden xl:inline">Accueil</span>
+            <span className="whitespace-nowrap hidden xl:inline"> Accueil</span>
           </Link>
           <Link className="hover:text-blue-600" to="/library">
             <i className="fa-solid fa-book"></i>
@@ -30,12 +30,12 @@ const Header = () => {
           {!user ? (
             <Link className="hover:text-blue-600" to="/auth">
               <i className="fa-solid fa-user"></i>
-              <span className="hidden xl:inline">Mon compte</span>
+              <span className="hidden xl:inline"> Mon compte</span>
             </Link>
           ) : (
             <Link className="hover:text-blue-600" to="/profile">
               <i className="fa-solid fa-user"></i>
-              <span className="hidden xl:inline">{user.name}</span>
+              <span className="hidden xl:inline"> {user.name}</span>
             </Link>
           )}
         </nav>
