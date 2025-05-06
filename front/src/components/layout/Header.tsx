@@ -33,7 +33,7 @@ const Header = () => {
               <span className="hidden xl:inline">Mon compte</span>
             </Link>
           ) : (
-            <Link className="hover:text-blue-600" to="/profile">
+            <Link className="hover:text-blue-600" to="/user/library/:userId">
               <i className="fa-solid fa-user"></i>
               <span className="hidden xl:inline">{user.name}</span>
             </Link>
@@ -71,7 +71,7 @@ const Header = () => {
           </Link>
         ) : (
           <Link
-            to="/profile"
+            to="/user/library/:userId"
             className="hover:text-blue-600 flex flex-col items-center text-sm"
           >
             <i className="fa-solid fa-user"></i>
