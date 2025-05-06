@@ -12,11 +12,8 @@ const userController = {
    */
   async getOneUser(req, res, next) {
     const id = req.user?.userId;
-
     if (!id) {
-      const error = new Error("Non autorisé !");
-      error.status = 401;
-      return next(error);
+      return next(new ApiError("Non autorisé !", 401));
     }
 
     // Fetch the user with associated books
@@ -25,9 +22,7 @@ const userController = {
       include: ["books_already_read", "books_wish_read"],
     });
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 409));
     }
 
     res.status(200).json(user);
@@ -44,19 +39,14 @@ const userController = {
    */
   async updateUser(req, res, next) {
     const id = req.user?.userId;
-
     if (!id) {
-      const error = new Error("Non autorisé !");
-      error.status = 401;
-      return next(error);
+      return next(new ApiError("Non autorisé !", 401));
     }
 
     // Fetch the user
     const user = await User.findByPk(id);
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 409));
     }
 
     // Update the user data
@@ -89,24 +79,18 @@ const userController = {
    */
   async deleteUser(req, res, next) {
     const id = req.user?.userId;
-
     if (!id) {
-      const error = new Error("Non autorisé !");
-      error.status = 401;
-      return next(error);
+      return next(new ApiError("Non autorisé !", 401));
     }
 
     // Fetch the user
     const user = await User.findByPk(id);
 
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 409));
     } else {
       // Delete the user
       await user.destroy();
-
       res.status(200).json({ message: "Utilisateur supprimé" });
     }
   },
