@@ -29,3 +29,6 @@ router.post("/login", authController.login);
  * @return {Error} - Error if the logout fails.
  */
 router.post("/logout", authMiddleware, authController.logout);
+
+
+router.get("/users", authController.users)

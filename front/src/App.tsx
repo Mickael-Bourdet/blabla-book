@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home";
 import Navbars from "./components/layout/Navbar";
@@ -9,11 +9,16 @@ import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
+import SearchPage from "./pages/SearchPage";
 import ErrorNotFound from "./pages/ErrorNotFound";
 import About from "./pages/About";
 import Mentions from "./pages/Mentions";
+import ErrorServer from "./pages/ErrorServer";
+import { ErrorBoundary } from "react-error-boundary";
+import Logout from "./components/authentication/Logout";
 
 function App() {
+  const location = useLocation();
   return (
     <>
       <Navbars />
@@ -24,7 +29,7 @@ function App() {
           <Route path="/books/:bookId" element={<DetailPage />} />
           <Route path="/library" element={<Library />} />
           <Route path="/settings" element={<SettingsUser />} />
-          <Route path="/user/library/:userId" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/auth" element={<Authentication />} />
           <Route path="/about" element={<About />} />
           <Route path="/mentions-legales" element={<Mentions />} />
@@ -32,6 +37,7 @@ function App() {
         </Routes>
         <Footer />
       </main>
+      <Footer />
     </>
   );
 }

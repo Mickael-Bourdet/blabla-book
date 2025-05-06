@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { getOneUser } from "../api/apiBooks";
 import type { IUser } from "../@types";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../utils/store/useAuthStore";
+
+
 
 const ProfilePage = () => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -36,10 +39,12 @@ const ProfilePage = () => {
   if (error) return <p className="text-center text-red-500">{error}</p>;
   if (!user) return null;
 
+  const { user } = useAuthStore();
+
   return (
-    <div className="p-4 md:ml-64">
+    <div className="p-4 ">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">{user.name}</h1>
+        <h1 className="text-3xl font-bold">{user?.name}</h1>
         <button className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500">
           Modifier le profil
         </button>
@@ -57,7 +62,7 @@ const ProfilePage = () => {
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="w-full h-64 object-cover mb-2 rounded"
+                  className="h-100 w-full object-cover mb-2"
                 />
                 <p className="text-center">{book.title}</p>
               </div>

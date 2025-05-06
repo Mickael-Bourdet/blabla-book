@@ -1,4 +1,10 @@
-import { sequelize, Author, Book, Category, User } from "../models/associations.js";
+import {
+  sequelize,
+  Author,
+  Book,
+  Category,
+  User,
+} from "../models/associations.js";
 
 async function seedDatabase() {
   try {
@@ -8,20 +14,6 @@ async function seedDatabase() {
     await sequelize.sync({ force: true });
     console.log("Base de donnée synchronisée ✅");
     console.log("Data inserted:");
-
-    // create users
-    const userData = [
-      {
-        email: "azerty@123.com",
-        name: "Admin",
-        password: "Motdepasse01?",
-      },
-      { email: "b@b.com", name: "Bob", password: "Motdepasse02?" },
-      { email: "c@c.com", name: "Charlie", password: "Motdepasse03?" },
-    ];
-
-    const user = await User.bulkCreate(userData);
-    console.log(userData.length, "User ");
 
     // create catégories
     const categoryData = [
@@ -425,7 +417,8 @@ async function seedDatabase() {
       },
       {
         isbn: "9782416014291",
-        title: "Ta deuxième vie commence quand tu comprends que tu n'en as qu'une",
+        title:
+          "Ta deuxième vie commence quand tu comprends que tu n'en as qu'une",
         description:
           'Ce livre raconte l\'histoire de Camille, une femme qui traverse une crise de la quarantaine et qui décide de réinventer sa vie grâce à un "coach de vie". Une approche simple et bienveillante pour retrouver sa joie de vivre.',
         published: "2024",
@@ -936,7 +929,9 @@ async function seedDatabase() {
       { book_id: 68, category_id: 10 },
     ];
 
-    await sequelize.models.book_has_category.bulkCreate(bookCategoryAssociation);
+    await sequelize.models.book_has_category.bulkCreate(
+      bookCategoryAssociation
+    );
 
     const userBooksReadAssociation = [
       { user_id: 1, book_id: 1 },
