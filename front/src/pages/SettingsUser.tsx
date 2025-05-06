@@ -2,6 +2,7 @@ import type { IUser } from "../@types";
 import { useState, useEffect } from "react";
 import { getOneUser, updateUser, deleteUser } from "../api/apiUser";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../utils/store/useAuthStore";
 
 const SettingsUser = () => {
   const navigate = useNavigate();
@@ -67,8 +68,7 @@ const SettingsUser = () => {
 
   const handleConfirmation = async (confirm: boolean) => {
     if (confirm) {
-      const updatedData: { name?: string; email?: string; password?: string } =
-        {};
+      const updatedData: { name?: string; email?: string; password?: string } = {};
       console.log("Mise à jour avec :", updatedData);
       // Mise à jour conditionnelle en fonction des champs modifiés
       if (username !== user?.name) updatedData.name = username;
@@ -106,7 +106,10 @@ const SettingsUser = () => {
   const handleDeleteAccount = async () => {
     if (userId) {
       await deleteUser(Number(userId));
-      // Rediriger vers la page d’accueil ou de connexion après suppression
+
+      // To clean the store
+      useAuthStore.getState().logout();
+      // Redirect to homepage
       navigate("/");
     }
   };
@@ -121,26 +124,17 @@ const SettingsUser = () => {
       </div>
       {/* Profil */}
       <div className="flex mb-8">
-        <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">
-          👤
-        </div>
+        <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">👤</div>
         <div className="flex flex-col">
           <p className="font-bold mt-10 ml-20 ">{user?.name}</p>
           <p className="font-bold mt-10 ml-20">
-            Nombre de pages lues :{" "}
-            {user?.books_already_read.reduce(
-              (total, book) => total + book.page_count,
-              0
-            )}
+            Nombre de pages lues : {user?.books_already_read.reduce((total, book) => total + book.page_count, 0)}
           </p>
         </div>
       </div>
 
       {/* Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md flex flex-col gap-6"
-      >
+      <form onSubmit={handleSubmit} className="w-full max-w-md flex flex-col gap-6">
         {/* Pseudo */}
         <div className="flex items-center justify-between border-b border-gray-300 pb-2">
           <input
@@ -180,9 +174,7 @@ const SettingsUser = () => {
         </div>
 
         {/* Affichage de l'erreur email */}
-        {emailError && (
-          <p className="text-red-500">Les emails ne correspondent pas.</p>
-        )}
+        {emailError && <p className="text-red-500">Les emails ne correspondent pas.</p>}
 
         {/* Mot de passe actuel */}
         <div className="flex items-center justify-between border-b border-gray-300 pb-2">
@@ -224,17 +216,10 @@ const SettingsUser = () => {
         </div>
 
         {/* Affichage de l'erreur de mot de passe */}
-        {passwordError && (
-          <p className="text-red-500">
-            Les mots de passe ne correspondent pas.
-          </p>
-        )}
+        {passwordError && <p className="text-red-500">Les mots de passe ne correspondent pas.</p>}
 
         {/* Bouton sauvegarder */}
-        <button
-          className="mt-4 bg-white border py-2 px-4 rounded hover:bg-gray-100"
-          type="submit"
-        >
+        <button className="mt-4 bg-white border py-2 px-4 rounded hover:bg-gray-100" type="submit">
           Sauvegarder
         </button>
       </form>
@@ -245,16 +230,10 @@ const SettingsUser = () => {
           <div className="bg-white p-6 rounded shadow-lg">
             <p>Êtes-vous sûr de vouloir sauvegarder ces modifications ?</p>
             <div className="flex gap-4 mt-4">
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded"
-                onClick={() => handleConfirmation(false)}
-              >
+              <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleConfirmation(false)}>
                 Annuler
               </button>
-              <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
-                onClick={() => handleConfirmation(true)}
-              >
+              <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={() => handleConfirmation(true)}>
                 Confirmer
               </button>
             </div>
@@ -266,8 +245,7 @@ const SettingsUser = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-body p-6 rounded shadow-lg">
             <p className="text-lg font-semibold">
-              Es-tu sûr de vouloir supprimer ton compte ? Cette action est
-              irréversible.
+              Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible.
             </p>
             <div className="flex gap-4 mt-4 justify-end">
               <button
@@ -276,10 +254,7 @@ const SettingsUser = () => {
               >
                 Annuler
               </button>
-              <button
-                className="bg-red-600 border text-white px-4 py-2 rounded"
-                onClick={handleDeleteAccount}
-              >
+              <button className="bg-red-600 border text-white px-4 py-2 rounded" onClick={handleDeleteAccount}>
                 Supprimer
               </button>
             </div>

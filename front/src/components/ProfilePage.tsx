@@ -9,19 +9,18 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const { user } = useAuthStore(); 
+  const { user } = useAuthStore();
 
   useEffect(() => {
     async function fetchUser() {
-      const userId = localStorage.getItem("userId");
-      if (!userId) {
+      if (!user?.id) {
         setError("Utilisateur non connecté");
         setLoading(false);
         return;
       }
 
       try {
-        const userData = await getOneUser(Number(userId));
+        const userData = await getOneUser(user.id);
         setLocalUser(userData);
       } catch (err) {
         setError("Impossible de charger le profil.");
@@ -48,17 +47,15 @@ const ProfilePage = () => {
 
       {/* Livres lus */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">
-          Mes livres lus : {localUser.books_already_read.length}
-        </h2>
+        <h2 className="text-2xl font-semibold mb-4">Mes livres lus : {localUser.books_already_read.length}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {localUser.books_already_read.map((book) => (
-            <Link key={book.id} to={`/books/${book.id}`}>
-              <div className="hover:shadow-lg rounded-md transition-shadow">
+            <Link key={book.id} to={`/books/${book.id}`} className="block">
+              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="h-64 w-full object-cover mb-2"
+                  className="h-80 w-full object-contain mb-2 mx-auto"
                 />
                 <p className="text-center">{book.title}</p>
               </div>
@@ -69,9 +66,7 @@ const ProfilePage = () => {
 
       {/* Livres à lire */}
       <section>
-        <h2 className="text-2xl font-semibold mb-4">
-          Mes livres à lire : {localUser.books_wish_read.length}
-        </h2>
+        <h2 className="text-2xl font-semibold mb-4">Mes livres à lire : {localUser.books_wish_read.length}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {localUser.books_wish_read.map((book) => (
             <Link key={book.id} to={`/books/${book.id}`}>
