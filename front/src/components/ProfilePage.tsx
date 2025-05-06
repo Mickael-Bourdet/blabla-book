@@ -10,8 +10,8 @@ const ProfilePage = () => {
 
   useEffect(() => {
     async function fetchUser() {
-      //localStorage.setItem("userId", "1");
-      localStorage.clear();
+      localStorage.setItem("userId", "1");
+      //localStorage.clear();
       const userId = localStorage.getItem("userId");
       if (!userId) {
         setError("Utilisateur non connecté");
