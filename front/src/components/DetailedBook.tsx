@@ -2,12 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBook } from "../@types";
 import { getOneBook } from "../api/apiBooks";
-import {
-  addToMyReadLibrary,
-  addToWishRead,
-  deleteToMyReadLibrary,
-  deleteToWishRead,
-} from "../api/apiUser";
+import { addToMyReadLibrary, addToWishRead, deleteToMyReadLibrary, deleteToWishRead } from "../api/apiUser";
 import { useErrorHandler } from "../utils/useErrorHandler";
 import { toastSuccess } from "../utils/toast/toastSuccess";
 
@@ -65,11 +60,7 @@ const BookDetail = () => {
   }, [bookId]);
 
   if (!book) {
-    return (
-      <div className="text-center text-red-600 bg-red-100 p-4 rounded-md shadow-md">
-        Livre non trouvé
-      </div>
-    );
+    return <div className="text-center text-red-600 bg-red-100 p-4 rounded-md shadow-md">Livre non trouvé</div>;
   }
 
   return (
@@ -85,20 +76,17 @@ const BookDetail = () => {
 
           <div className="text-sm md:text-base max-w-xl">
             <p>
-              <span className="font-semibold">Par</span> :{" "}
-              {book.authors.map((auth) => auth.name).join(", ")}
+              <span className="font-semibold">Par</span> : {book.authors.map((auth) => auth.name).join(", ")}
             </p>
 
             <h1 className="text-lg font-bold mb-2">{book.title}</h1>
 
             <p>
-              <span className="font-semibold">Catégorie</span> :{" "}
-              {book.categories.map((cat) => cat.name).join(", ")}
+              <span className="font-semibold">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
             </p>
 
             <p className="mb-2">
-              <span className="font-semibold">Date de publication</span> :{" "}
-              {book.published}
+              <span className="font-semibold">Date de publication</span> : {book.published}
             </p>
 
             <p className="font-semibold mt-4 mb-1">Description :</p>
@@ -108,26 +96,16 @@ const BookDetail = () => {
               <button
                 onClick={!isRead ? handleAddRead : handleRemoveRead}
                 className={`flex items-center gap-2 ${
-                  isRead && !toRead
-                    ? `bg-green-300 hover:bg-green-200 ${!toRead}`
-                    : "bg-gray-300 hover:bg-gray-200"
+                  isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : "bg-gray-300 hover:bg-gray-200"
                 }  rounded px-10 py-2 cursor-pointer`}
               >
-                <i
-                  className={`${
-                    isRead && !toRead
-                      ? "fa-solid fa-square-check"
-                      : "fa-solid fa-eye"
-                  }`}
-                ></i>
-                <span>{`${isRead && !toRead ? "Lu" : "Non Lu"}`}</span>
+                <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-square-xmark"}`}></i>
+                <span>{`${isRead && !toRead ? "Lu" : "Lu"}`}</span>
               </button>
               <button
                 onClick={!toRead ? handleWishRead : handleRemoveWishRead}
                 className={`flex items-center gap-2 ${
-                  toRead && !isRead
-                    ? "bg-green-300 hover:bg-green-200"
-                    : "bg-gray-300 hover:bg-gray-200"
+                  toRead && !isRead ? "bg-green-300 hover:bg-green-200" : "bg-gray-300 hover:bg-gray-200"
                 } rounded px-10 py-2 cursor-pointer`}
               >
                 <i className="fa-solid fa-book-open-reader"></i>

@@ -19,50 +19,6 @@ export default function CategoryPage() {
                 <p>Le Comte de Monte-Cristo</p>
               </div>
             </Link>
-
-            <Link to="/books/bookid" className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                <img
-                  src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                  alt="Le Comte de Monte-Cristo - Dumas"
-                  className="h-auto w-full object-cover mb-2"
-                />
-                <p>Le Comte de Monte-Cristo</p>
-              </div>
-            </Link>
-
-            <Link to="/books/bookid" className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                <img
-                  src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                  alt="Le Comte de Monte-Cristo - Dumas"
-                  className="h-auto w-full object-cover mb-2"
-                />
-                <p>Le Comte de Monte-Cristo</p>
-              </div>
-            </Link>
-
-            <Link to="/books/bookid" className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                <img
-                  src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                  alt="Le Comte de Monte-Cristo - Dumas"
-                  className="h-auto w-full object-cover mb-2"
-                />
-                <p>Le Comte de Monte-Cristo</p>
-              </div>
-            </Link>
-
-            <Link to="/books/bookid" className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                <img
-                  src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                  alt="Le Comte de Monte-Cristo - Dumas"
-                  className="h-auto w-full object-cover mb-2"
-                />
-                <p>Le Comte de Monte-Cristo</p>
-              </div>
-            </Link>
           </div>
         </section>
       </main>
