@@ -42,6 +42,7 @@ const authController = {
       name,
       email,
       password: await hash(password),
+      role: "user",
     });
 
     // 5. Send a success response with the new user's data
