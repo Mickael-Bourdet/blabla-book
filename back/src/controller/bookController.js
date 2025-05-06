@@ -1,5 +1,6 @@
 import { Book } from "../models/Book.js";
 import { Op } from "sequelize";
+import { ApiError } from "../middlewares/ApiError.js";
 
 const bookController = {
   /**

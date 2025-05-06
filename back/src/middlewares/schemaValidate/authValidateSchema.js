@@ -35,11 +35,16 @@ const registerSchema = Joi.object({
       "string.base": "Le mot de passe doit être une chaîne de caractères.",
       "string.empty": "Le mot de passe ne peut pas être vide.",
       "any.required": "Le mot de passe est requis.",
-      "password.minOfLowercase": "Le mot de passe doit contenir au moins une lettre minuscule.",
-      "password.minOfUppercase": "Le mot de passe doit contenir au moins une lettre majuscule.",
-      "password.minOfNumeric": "Le mot de passe doit contenir au moins un chiffre.",
-      "password.minOfSpecialCharacters": "Le mot de passe doit contenir au moins un caractère spécial.",
-      "password.noWhiteSpaces": "Le mot de passe ne doit pas contenir d'espaces.",
+      "password.minOfLowercase":
+        "Le mot de passe doit contenir au moins une lettre minuscule.",
+      "password.minOfUppercase":
+        "Le mot de passe doit contenir au moins une lettre majuscule.",
+      "password.minOfNumeric":
+        "Le mot de passe doit contenir au moins un chiffre.",
+      "password.minOfSpecialCharacters":
+        "Le mot de passe doit contenir au moins un caractère spécial.",
+      "password.noWhiteSpaces":
+        "Le mot de passe ne doit pas contenir d'espaces.",
     }),
   confirmPassword: Joi.string().valid(Joi.ref("password")).required().messages({
     "any.only": "Les mots de passe ne correspondent pas",

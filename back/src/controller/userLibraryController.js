@@ -1,4 +1,5 @@
 import { User, Book } from "../models/associations.js";
+import { ApiError } from "../middlewares/ApiError.js";
 
 const userLibraryController = {
   /**

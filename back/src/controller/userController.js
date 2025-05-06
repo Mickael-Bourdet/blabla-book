@@ -1,5 +1,6 @@
 import { User } from "../models/associations.js";
 import { hash } from "../services/authService.js";
+import { ApiError } from "../middlewares/ApiError.js";
 
 const userController = {
   // Get one user with associated tables (already read books, wish-to-read books)
