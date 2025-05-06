@@ -1,6 +1,7 @@
 import { User } from "../models/associations.js";
 import { ApiError } from "../middlewares/ApiError.js";
 import { compare, hash } from "../services/authService.js";
+import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
 
 const userController = {
   // Get one user with associated tables (already read books, wish-to-read books)
@@ -39,6 +40,7 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async updateUser(req, res, next) {
+    console.log("🔧 Corps de la requête :", req.body);
     const id = req.user?.userId;
     if (!id) {
       return next(new ApiError("Non autorisé !", 401));

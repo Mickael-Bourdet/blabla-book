@@ -9,14 +9,15 @@ export async function getOneUser(): Promise<IUser | null> {
     return null; // retourne null si l'utilisateur n'existe pas
   }
   const user = await response.json();
-  console.log("je récupére un utilisateur : ", user);
+  //console.log("je récupére un utilisateur : ", user);
 
   return user;
 }
 
-export const updateUser = async (data: { name?: string; email?: string; password?: string } | null) => {
+export const updateUser = async (data: { name?: string; email?: string; password?: string; currentPassword?: string } | null) => {
   const res = await authFetch(`${apiBaseUrl}/user`, {
     method: "PATCH",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
   if (!res.ok) {
