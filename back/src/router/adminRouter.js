@@ -5,6 +5,7 @@ import { categorySchema } from "../middlewares/schemaValidate/categoryValidateSc
 import { authorValidate } from "../middlewares/schemaValidate/authorValidateSchema.js";
 import { createBookSchema, updateBookSchema } from "../middlewares/schemaValidate/bookValidateSchema.js";
 import { isAdminMiddleware } from "../middlewares/isAdminMiddleware.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 export const router = Router();
 

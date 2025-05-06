@@ -1,5 +1,5 @@
 import { User } from "../models/User.js";
-import { ApiError } from "../utils/ApiError.js";
+import { ApiError } from "../middlewares/ApiError.js";
 
 export const isAdminMiddleware = async (req, _res, next) => {
   try {
@@ -16,7 +16,7 @@ export const isAdminMiddleware = async (req, _res, next) => {
     }
 
     next(); // accès autorisé
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
