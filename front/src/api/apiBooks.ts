@@ -1,5 +1,6 @@
 import type { IBooks, IBook } from "../@types";
-const apiBaseUrl = "http://localhost:3000";
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+console.log(import.meta.env.VITE_API_BASE_URL);
 
 export async function getAllBooks(): Promise<IBooks> {
   const response = await fetch(`${apiBaseUrl}/books`);
@@ -14,9 +15,7 @@ export async function getOneBook(id: number): Promise<IBook> {
 }
 
 export async function searchBooks(query: string): Promise<IBook[]> {
-  const response = await fetch(
-    `${apiBaseUrl}/books?search=${encodeURIComponent(query)}`
-  );
+  const response = await fetch(`${apiBaseUrl}/books?search=${encodeURIComponent(query)}`);
 
   const books = await response.json();
   return books;
