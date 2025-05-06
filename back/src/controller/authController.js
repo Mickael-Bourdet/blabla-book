@@ -1,10 +1,7 @@
-import {
-  hash,
-  compare,
-  generateJwtToken,
-} from "../services/authService.js";
+import { hash, compare, generateJwtToken } from "../services/authService.js";
 import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
 import { User } from "../models/User.js";
+import { ApiError } from "../middlewares/schemaValidate/ApiError.js";
 
 const authController = {
   /**
@@ -21,27 +18,23 @@ const authController = {
     // 1. Check if the email is already in use
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return next({
-        statusCode: 409,
-        message: "E-mail déjà utilisé",
-      });
+      return next(new ApiError("E-mail déjà utilisé", 409));
     }
 
     // 2. Check if the email is a disposable email
     if (isDisposableEmail(email)) {
-      return next({
-        statusCode: 400,
-        message: "Les adresses e-mail temporaires ne sont pas acceptées",
-      });
+      return next(
+        new ApiError(
+          "Les adresses e-mail temporaires ne sont pas acceptées",
+          400
+        )
+      );
     }
 
     // 3. Validate the email domain
     const domainIsValid = await isDomainValid(email);
     if (!domainIsValid) {
-      return next({
-        statusCode: 400,
-        message: "Ce domain n'est pas valide.",
-      });
+      return next(new ApiError("Ce domain n'est pas valide.", 400));
     }
 
     // 4. Create a new user with hashed password
@@ -79,19 +72,13 @@ const authController = {
     // 1. Find the user by email
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return next({
-        statusCode: 401,
-        message: "Identifiant invalide",
-      });
+      return next(new ApiError("Identifiant invalide", 401));
     }
 
     // 2. Verify the provided password against the stored hashed password
     const validPassword = await compare(password, user.password);
     if (!validPassword) {
-      return next({
-        statusCode: 401,
-        message: "Identifiant invalide",
-      });
+      return next(new ApiError("Identifiant invalide", 401));
     }
 
     // 3. Generate a JWT token with the user's ID as the payload
@@ -99,7 +86,7 @@ const authController = {
     // console.log("👤 Utilisateur trouvé :", user.toJSON());
 
     // 4. Send the JWT token and its expiration time in the response
-    res.json({name: user.name, id: user.id, token, expiresIn: "1h" });
+    res.json({ name: user.name, id: user.id, token, expiresIn: "1h" });
   },
 
   /**
@@ -118,23 +105,12 @@ const authController = {
       // Send a response indicating successful logout
       res.status(200).json({ message: "Déconnexion réussie" });
     } catch (error) {
-      // Handle any errors that occur during logout
-      res.status(500).json({
-        error: true,
-        message: "Une erreur est survenue lors de la déconnexion",
-      });
+      next(error);
     }
   },
 
   async users(req, res, next) {
     const users = await User.findAll();
-
-    if (!users) {
-      return next({
-        statusCode: 400,
-        message: "Aucun utilisateurs trouvés",
-      });
-    }
 
     res.status(200).json({ users });
   },
