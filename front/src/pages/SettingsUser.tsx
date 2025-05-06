@@ -116,7 +116,7 @@ const SettingsUser = () => {
           👤
         </div>
         <div className="flex flex-col">
-          <p className="font-bold mt-10 ml-20 ">{user?.name}</p>
+          <p className="font-bold mt-10 ml-20 ">{userData?.name}</p>
           <p className="font-bold mt-10 ml-20">
             Nombre de pages lues :{" "}
             {userData?.books_already_read.reduce(
