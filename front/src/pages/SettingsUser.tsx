@@ -1,12 +1,12 @@
 import type { IUser } from "../@types";
 import { useState, useEffect } from "react";
 import { getOneUser, updateUser, deleteUser } from "../api/apiUser";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../utils/store/useAuthStore";
 
 const SettingsUser = () => {
   const navigate = useNavigate();
-  const { userId } = useParams();
-  const [user, setUser] = useState<IUser | null>(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [emailConfirm, setEmailConfirm] = useState("");
@@ -18,22 +18,22 @@ const SettingsUser = () => {
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
+  const { user } = useAuthStore();
+
   useEffect(() => {
     const loadData = async () => {
-      if (userId) {
-        const newUser = await getOneUser();
-        if (!newUser) {
-          navigate("/404");
-          return;
-        }
-        setUser(newUser);
-        setUsername(newUser.name);
-        setEmail(newUser.email);
-        setEmailConfirm(newUser.email);
+      const newUser = await getOneUser();
+      if (!newUser) {
+        navigate("/404");
+        return;
       }
+      setUserData(newUser);
+      setUsername(newUser.name);
+      setEmail(newUser.email);
+      setEmailConfirm(newUser.email);
     };
     loadData();
-  }, [userId]);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,13 +54,6 @@ const SettingsUser = () => {
       setPasswordError(false);
     }
 
-    //  VERFIFICATION A RETIRER - UTILISER LE BACK POUR PLUS DE SECURITÉ
-    // Vérification du mot de passe actuel si un nouveau mot de passe est entré
-    if (password && currentPassword !== user?.password) {
-      alert("Le mot de passe actuel est incorrect");
-      return;
-    }
-
     // Ouvrir la fenêtre de confirmation
     setConfirmationModal(true);
   };
@@ -71,8 +64,8 @@ const SettingsUser = () => {
         {};
       console.log("Mise à jour avec :", updatedData);
       // Mise à jour conditionnelle en fonction des champs modifiés
-      if (username !== user?.name) updatedData.name = username;
-      if (email !== user?.email) updatedData.email = email;
+      if (username !== userData?.name) updatedData.name = username;
+      if (email !== userData?.email) updatedData.email = email;
       if (password) updatedData.password = password;
 
       // Si des données ont été modifiées, effectuer la mise à jour
@@ -84,7 +77,7 @@ const SettingsUser = () => {
           navigate("/404");
           return;
         }
-        setUser(updatedUser);
+        setUserData(updatedUser);
         setUsername(updatedUser.name);
         setEmail(updatedUser.email);
         setEmailConfirm(updatedUser.email);
@@ -104,11 +97,9 @@ const SettingsUser = () => {
   };
 
   const handleDeleteAccount = async () => {
-    if (userId) {
-      await deleteUser();
-      // Rediriger vers la page d’accueil ou de connexion après suppression
-      navigate("/");
-    }
+    await deleteUser();
+    // Rediriger vers la page d’accueil ou de connexion après suppression
+    navigate("/");
   };
 
   return (
@@ -128,7 +119,7 @@ const SettingsUser = () => {
           <p className="font-bold mt-10 ml-20 ">{user?.name}</p>
           <p className="font-bold mt-10 ml-20">
             Nombre de pages lues :{" "}
-            {user?.books_already_read.reduce(
+            {userData?.books_already_read.reduce(
               (total, book) => total + book.page_count,
               0
             )}

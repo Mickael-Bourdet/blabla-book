@@ -1,13 +1,13 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-interface IUser {
+interface IUserAuthStore {
   name: string,
   id: number,
 }
 
 interface AuthState {
-  user: IUser | null
+  user: IUserAuthStore | null
   token: string | null
   login: (name: string, id: number, token: string) => void
   logout: () => void
