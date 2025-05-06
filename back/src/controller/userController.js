@@ -47,15 +47,40 @@ const userController = {
     // Fetch the user
     const user = await User.findByPk(id);
     if (!user) {
-      return next(new ApiError("Utilisateur non trouvé", 409));
+      return next(new ApiError("Utilisateur non trouvé", 404));
     }
 
     // Update the user data
     const { email, name, password } = req.body;
 
     if (email) {
+      // 1. Vérifie si l'e-mail est déjà utilisé par un autre utilisateur
+      const existingUser = await User.findOne({ where: { email } });
+
+      if (existingUser && existingUser.id !== id) {
+        return next(new ApiError("E-mail déjà utilisé", 409));
+      }
+
+      // 2. Vérifie si l'e-mail est temporaire
+      if (isDisposableEmail(email)) {
+        return next(
+          new ApiError(
+            "Les adresses e-mail temporaires ne sont pas acceptées",
+            400
+          )
+        );
+      }
+
+      // 3. Vérifie si le domaine est valide
+      const domainIsValid = await isDomainValid(email);
+      if (!domainIsValid) {
+        return next(new ApiError("Ce domaine n'est pas valide.", 400));
+      }
+
+      // Si tout est bon, on met à jour
       user.email = email;
     }
+
     if (name) {
       user.name = name;
     }
@@ -88,11 +113,11 @@ const userController = {
     const user = await User.findByPk(id);
 
     if (!user) {
-      return next(new ApiError("Utilisateur non trouvé", 409));
+      return next(new ApiError("Utilisateur non trouvé", 404));
     } else {
       // Delete the user
       await user.destroy();
-      res.status(200).json({ message: "Utilisateur supprimé" });
+      res.sendStatus(204);
     }
   },
 };
