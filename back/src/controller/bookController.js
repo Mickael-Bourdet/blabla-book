@@ -30,7 +30,7 @@ const bookController = {
       // initialise association to prevent error
       includeOptions[0].where = includeOptions[0].where || {};
       // define categoryId as a filter
-      includeOptions[0].where.id = categoryId;
+      includeOptions[0].where.id = parseInt(categoryId);
     }
     // If param is given, filter by category name
     if (categoryName) {
