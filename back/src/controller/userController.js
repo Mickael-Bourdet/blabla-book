@@ -14,7 +14,8 @@ const userController = {
 
     // Fetch the user with associated books
     const user = await User.findByPk(id, {
-        include: ["books_already_read", "books_wish_read"],
+      attributes: ["id", "name", "email"],
+      include: ["books_already_read", "books_wish_read"],
     });
     if (!user) {
       const error = new Error("Utilisateur non trouvé");
