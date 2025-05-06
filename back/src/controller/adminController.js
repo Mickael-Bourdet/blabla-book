@@ -254,4 +254,4 @@ const adminController = {
   },
 };
 
-export default adminController;
+export { adminController };

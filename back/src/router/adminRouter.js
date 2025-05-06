@@ -1,5 +1,5 @@
 import { Router } from "express";
-import adminController from "../controller/adminController.js";
+import { adminController } from "../controller/adminController.js";
 import { validate } from "../middlewares/validateWrapper.js";
 import { categorySchema } from "../middlewares/schemaValidate/categoryValidateSchema.js";
 import { authorValidate } from "../middlewares/schemaValidate/authorValidateSchema.js";
