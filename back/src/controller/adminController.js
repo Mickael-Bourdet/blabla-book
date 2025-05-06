@@ -14,7 +14,8 @@ const adminController = {
 
   async AddNewBook(req, res, next) {
     // Get the params
-    const { isbn, title, description, published, cover_url, page_count } = req.body;
+    const { isbn, title, description, published, cover_url, page_count } =
+      req.body;
 
     //   check if the book is not already in the DB
     const isRegistered = await Book.findOne({ where: { isbn } });
@@ -56,7 +57,14 @@ const adminController = {
     }
 
     // Get the params
-    const fields = ["isbn", "title", "description", "published", "cover_url", "page_count"];
+    const fields = [
+      "isbn",
+      "title",
+      "description",
+      "published",
+      "cover_url",
+      "page_count",
+    ];
 
     // if a value is declare, change it otherwise don't
     fields.forEach((field) => {
@@ -101,22 +109,19 @@ const adminController = {
    * @param {object} req -- Express request object (expects `name` in body).
    * @param {object} res -Express response object.
    * @param {function} next - Express next middleware function.
-   * @return {object}- status 201 
-  */
+   * @return {object}- status 201
+   */
 
-  
   async createCategory(req, res, next) {
-   
     const { name } = req.body;
 
-    
     const isRegistered = await Category.findOne({ where: { name } });
-  if (isRegistered) {
-    return next({
-      statusCode: 409,
-      message: "Impossible d'ajouter cette catégorie car elle existe déjà",
-    });
-  }
+    if (isRegistered) {
+      return next({
+        statusCode: 409,
+        message: "Impossible d'ajouter cette catégorie car elle existe déjà",
+      });
+    }
 
     const newCategory = await Category.create({ name });
 
@@ -129,10 +134,9 @@ const adminController = {
    * @param {object} req -Express request object (expects `categoryId` as param).
    * @param {object} res -Express response object
    * @param {function} next - Express next middleware function.
-   * @return {object}- status 200  
-  */
+   * @return {object}- status 200
+   */
 
-  
   async updateCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
 
@@ -141,14 +145,14 @@ const adminController = {
       const error = new Error("La mise à jour est impossible ");
       error.statusCode = 404;
 
-      return next(error); 
+      return next(error);
     }
-   
-    const { name } = req.body; 
+
+    const { name } = req.body;
 
     //
     if (name) {
-      category.name = name; 
+      category.name = name;
     }
 
     await category.save();
@@ -161,10 +165,9 @@ const adminController = {
    * @param {object} req -Express request object
    * @param {object} res -Express response object, returns success message.
    * @param {function} next - Express next middleware function, used to handle errors.
-   * @return {void}- status 204  
-  */
+   * @return {void}- status 204
+   */
 
-  
   async deleteCategory(req, res, next) {
     const id = parseInt(req.params.categoryId);
 
@@ -243,18 +246,20 @@ const adminController = {
   async addAuthor(req, res, next) {
     const { name } = req.body;
     const allAuthors = await Author.findAll();
-    
+
     // Check if an author with the same name (case-insensitive) already exists
-    const authorExists = allAuthors.some(author => 
-      author.name.toLowerCase() === name.toLowerCase()
+    const authorExists = allAuthors.some(
+      (author) => author.name.toLowerCase() === name.toLowerCase()
     );
-    
+
     if (authorExists) {
-      const error = new Error("Impossible d'ajouter cet auteur car il existe déjà");
+      const error = new Error(
+        "Impossible d'ajouter cet auteur car il existe déjà"
+      );
       error.statusCode = 409;
-      return next(error);  
-    };
-       
+      return next(error);
+    }
+
     const newAuthor = await Author.create({ name });
     res.status(201).json(newAuthor);
   },
