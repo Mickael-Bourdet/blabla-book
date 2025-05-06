@@ -10,8 +10,11 @@ import {
 } from "../api/apiUser";
 import { useErrorHandler } from "../utils/useErrorHandler";
 import { toastSuccess } from "../utils/toast/toastSuccess";
+import { useAuthStore } from "../utils/store/useAuthStore";
 
 const BookDetail = () => {
+  const { user } = useAuthStore();
+  const userId = Number(user?.id)
   const { bookId } = useParams();
   const numericBookId = Number(bookId);
   const [book, setBook] = useState<IBook>();
@@ -21,7 +24,7 @@ const BookDetail = () => {
 
   // TODO changer 1 par userId
   const handleAddRead = () => {
-    addToMyReadLibrary(1, numericBookId);
+    addToMyReadLibrary(userId, numericBookId);
     if (toRead) {
       handleRemoveWishRead();
     }
@@ -30,12 +33,12 @@ const BookDetail = () => {
     setToRead(false);
   };
   const handleRemoveRead = () => {
-    deleteToMyReadLibrary(1, numericBookId);
+    deleteToMyReadLibrary(userId, numericBookId);
     toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
     setIsRead(false);
   };
   const handleWishRead = () => {
-    addToWishRead(1, numericBookId);
+    addToWishRead(userId, numericBookId);
     if (isRead) {
       handleRemoveRead();
     }
@@ -44,7 +47,7 @@ const BookDetail = () => {
     setIsRead(false);
   };
   const handleRemoveWishRead = () => {
-    deleteToWishRead(1, numericBookId);
+    deleteToWishRead(userId, numericBookId);
     toastSuccess(`Le livre a bien été enlevé de la liste "à lire"`);
     setToRead(false);
   };
