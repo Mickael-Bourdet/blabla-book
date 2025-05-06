@@ -1,9 +1,10 @@
 import type { IBook, IUser } from "../@types";
+import { authFetch } from "../utils/authFetch";
 
 const apiBaseUrl = "http://localhost:3000";
 
-export async function getOneUser(id: number): Promise<IUser | null> {
-  const response = await fetch(`${apiBaseUrl}/user/${id}`);
+export async function getOneUser(): Promise<IUser | null> {
+  const response = await authFetch(`${apiBaseUrl}/user`);
   if (!response.ok) {
     return null; // retourne null si l'utilisateur n'existe pas
   }
@@ -13,11 +14,8 @@ export async function getOneUser(id: number): Promise<IUser | null> {
   return user;
 }
 
-export const updateUser = async (
-  userId: number,
-  data: { name?: string; email?: string; password?: string } | null
-) => {
-  const res = await fetch(`${apiBaseUrl}/user/${userId}`, {
+export const updateUser = async (data: { name?: string; email?: string; password?: string } | null) => {
+  const res = await authFetch(`${apiBaseUrl}/user`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -31,18 +29,15 @@ export const updateUser = async (
   return res.json();
 };
 
-export const deleteUser = async (userId: number): Promise<void> => {
-  await fetch(`http://localhost:3000/user/${userId}`, {
+export const deleteUser = async (): Promise<void> => {
+  await authFetch(`${apiBaseUrl}/user`, {
     method: "DELETE",
   });
 };
 
-export async function addToMyReadLibrary(
-  userId: number,
-  bookId: number
-): Promise<IBook> {
-  const response = await fetch(
-    `${apiBaseUrl}/user/${userId}/books/read/${bookId}`,
+export async function addToMyReadLibrary(bookId: number): Promise<IBook> {
+  const response = await authFetch(
+    `${apiBaseUrl}/user/books/read/${bookId}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -53,13 +48,13 @@ export async function addToMyReadLibrary(
   return book;
 }
 
-export async function deleteToMyReadLibrary(userId: number, bookId: number) {
-  const response = await fetch(`${apiBaseUrl}/user/${userId}/books/read/${bookId}`, { method: "DELETE" });
+export async function deleteToMyReadLibrary(bookId: number) {
+  const response = await authFetch(`${apiBaseUrl}/user/books/read/${bookId}`, { method: "DELETE" });
   return response.ok;
 }
 
-export async function addToWishRead(userId: number, bookId: number): Promise<IBook> {
-  const response = await fetch(`${apiBaseUrl}/user/${userId}/books/to-read/${bookId}`, {
+export async function addToWishRead(bookId: number): Promise<IBook> {
+  const response = await authFetch(`${apiBaseUrl}/user/books/to-read/${bookId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -71,13 +66,13 @@ export async function addToWishRead(userId: number, bookId: number): Promise<IBo
   return book;
 }
 
-export async function deleteToWishRead(userId: number, bookId: number) {
-  const response = await fetch(`${apiBaseUrl}/user/${userId}/books/to-read/${bookId}`, { method: "DELETE" });
+export async function deleteToWishRead(bookId: number) {
+  const response = await authFetch(`${apiBaseUrl}/user/books/to-read/${bookId}`, { method: "DELETE" });
   return response.ok;
 }
 
 export async function getLibrary(id: number): Promise<IUser> {
-  const response = await fetch(`${apiBaseUrl}/user/library/${id}`);
+  const response = await authFetch(`${apiBaseUrl}/user/library/${id}`);
   const book = await response.json();
   return book;
 }
