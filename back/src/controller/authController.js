@@ -100,7 +100,7 @@ const authController = {
     console.log("👤 Utilisateur trouvé :", user.toJSON());
 
     // 4. Send the JWT token and its expiration time in the response
-    res.json({name: user.name, token, expiresIn: "1h" });
+    res.json({name: user.name, id: user.id, token, expiresIn: "1h" });
   },
 
   /**
