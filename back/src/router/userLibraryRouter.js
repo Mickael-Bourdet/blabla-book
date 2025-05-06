@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { userLibraryController } from "../controller/userLibraryController.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 export const router = Router();
 
@@ -10,7 +11,7 @@ export const router = Router();
 * @return {User} 200 - Success response with the user's library data.
 * @throws {Error} User not found (404) - If the user is not found.
 */
-router.get("/user/library/:userId", authMiddleware, userLibraryController.getLibrary);
+router.get("/user/library", authMiddleware, userLibraryController.getLibrary);
 
 // Read
 

@@ -1,14 +1,14 @@
 import { ApiError } from "./ApiError.js";
 
 /**
- * 
- * @param {*} error 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns 
+ *
+ * @param {*} error
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
  */
-export const errorHandler = (error, req, res, next) => {
+export const errorHandler = (error, _req, res, _next) => {
   // Cas 1 : Erreur personnalisée de l'app (ApiError)
   if (error instanceof ApiError) {
     return res.status(error.statusCode).json({

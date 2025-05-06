@@ -10,7 +10,7 @@ const userLibraryController = {
    */
   async getLibrary(req, res, next) {
     const userId = req.user.userId;
-    if (!id) {
+    if (!userId) {
       return next(new ApiError("Non autorisé !", 401));
     }
 
@@ -34,7 +34,7 @@ const userLibraryController = {
    */
   async addToMyReadLibrary(req, res, next) {
     const userId = req.user.userId;
-    if (!id) {
+    if (!userId) {
       return next(new ApiError("Non autorisé !", 401));
     }
     const bookId = parseInt(req.params.bookId);
@@ -62,7 +62,7 @@ const userLibraryController = {
    */
   async deleteToMyReadLibrary(req, res, next) {
     const userId = req.user.userId;
-    if (!id) {
+    if (!userId) {
       return next(new ApiError("Non autorisé !", 401));
     }
     const bookId = parseInt(req.params.bookId);
@@ -90,7 +90,7 @@ const userLibraryController = {
    */
   async addToWishRead(req, res, next) {
     const userId = req.user.userId;
-    if (!id) {
+    if (!userId) {
       return next(new ApiError("Non autorisé !", 401));
     }
     const bookId = parseInt(req.params.bookId);
@@ -120,7 +120,7 @@ const userLibraryController = {
    */
   async deleteToWishRead(req, res, next) {
     const userId = req.user.userId;
-    if (!id) {
+    if (!userId) {
       return next(new ApiError("Non autorisé !", 401));
     }
     const bookId = parseInt(req.params.bookId);
