@@ -115,10 +115,7 @@ const adminController = {
 
     const isRegistered = await Category.findOne({ where: { name } });
     if (isRegistered) {
-      return next({
-        statusCode: 409,
-        message: "Impossible d'ajouter cette catégorie car elle existe déjà",
-      });
+      return next(new ApiError("Impossible d'ajouter cette catégorie car elle existe déjà", 409));
     }
 
     const newCategory = await Category.create({ name });
@@ -140,10 +137,7 @@ const adminController = {
 
     const category = await Category.findByPk(id);
     if (!category) {
-      const error = new Error("La mise à jour est impossible ");
-      error.statusCode = 404;
-
-      return next(error);
+      return next(new ApiError("La mise à jour est impossible", 404));
     }
 
     const { name } = req.body;
@@ -172,10 +166,7 @@ const adminController = {
     const category = await Category.findByPk(id);
 
     if (!category) {
-      const error = new Error("Impossible de supprimer");
-      error.statusCode = 404;
-
-      return next(error);
+      return next(new ApiError("Impossible de supprimer", 404));
     }
     await category.destroy();
     res.sendStatus(204);
@@ -196,9 +187,7 @@ const adminController = {
 
     // check if author exist, if it doesn't, go to tne error middleware
     if (!author) {
-      const error = new Error("Cet auteur n'existe pas");
-      error.statusCode = 404;
-      return next(error);
+      return next(new ApiError("Cet auteur n'existe pas", 404));
     }
 
     // get the value to change, here : name
@@ -224,9 +213,7 @@ const adminController = {
     const author = await Author.findByPk(id);
 
     if (!author) {
-      const error = new Error("Cet auteur n'existe pas");
-      error.statusCode = 404;
-      return next(error);
+      return next(new ApiError("Cet auteur n'existe pas", 404));
     }
 
     await author.destroy();
@@ -251,11 +238,7 @@ const adminController = {
     );
 
     if (authorExists) {
-      const error = new Error(
-        "Impossible d'ajouter cet auteur car il existe déjà"
-      );
-      error.statusCode = 409;
-      return next(error);
+      return next(new ApiError("Impossible d'ajouter cet auteur car il existe déjà", 409));
     }
 
     const newAuthor = await Author.create({ name });
