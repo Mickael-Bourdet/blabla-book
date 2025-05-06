@@ -97,10 +97,14 @@ const userController = {
         );
       }
 
+      console.log("🧪 currentPassword reçu :", currentPassword);
+      console.log("🧪 Mot de passe actuel dans la base :", user.password);
+
       const passwordValid = await compare(currentPassword, user.password);
       if (!passwordValid) {
         return next(new ApiError("Mot de passe actuel incorrect", 401));
       }
+      console.log("✅ Résultat de la comparaison :", passwordValid);
 
       user.password = await hash(password);
     }
