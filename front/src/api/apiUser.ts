@@ -17,9 +17,6 @@ export async function getOneUser(): Promise<IUser | null> {
 export const updateUser = async (data: { name?: string; email?: string; password?: string } | null) => {
   const res = await authFetch(`${apiBaseUrl}/user`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(data),
   });
   if (!res.ok) {
@@ -40,7 +37,6 @@ export async function addToMyReadLibrary(bookId: number): Promise<IBook> {
     `${apiBaseUrl}/user/books/read/${bookId}`,
     {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       // TODO ajouter bearer token
     }
   );
@@ -56,11 +52,6 @@ export async function deleteToMyReadLibrary(bookId: number) {
 export async function addToWishRead(bookId: number): Promise<IBook> {
   const response = await authFetch(`${apiBaseUrl}/user/books/to-read/${bookId}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      // TODO
-      // "Authorization": `Bearer token`
-    },
   });
   const book = await response.json();
   return book;

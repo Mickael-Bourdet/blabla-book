@@ -13,15 +13,18 @@ const ProfilePage = () => {
 
   useEffect(() => {
     async function fetchUser() {
-      const userId = localStorage.getItem("userId");
-      if (!userId) {
+      if (!user?.id) {
         setError("Utilisateur non connecté");
         setLoading(false);
         return;
       }
 
       try {
-        const userData = await getOneUser(Number(userId));
+        const userData = await getOneUser();
+        if (!userData) {
+          setError("Impossible de charger le profil.");
+          return;
+        }
         setLocalUser(userData);
       } catch (err) {
         setError("Impossible de charger le profil.");
