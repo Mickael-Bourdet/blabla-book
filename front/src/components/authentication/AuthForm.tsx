@@ -14,6 +14,6 @@ const AuthForm = ({ title, children }: AuthFormProps) => {
       </form>
     </div>
   );
-}
+};
 
 export default AuthForm;

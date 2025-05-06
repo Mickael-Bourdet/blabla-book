@@ -97,9 +97,10 @@ const authController = {
 
     // 3. Generate a JWT token with the user's ID as the payload
     const token = generateJwtToken({ userId: user.id });
+    console.log("👤 Utilisateur trouvé :", user.toJSON());
 
     // 4. Send the JWT token and its expiration time in the response
-    res.json({ token, expiresIn: "1h" });
+    res.json({name: user.name, id: user.id, token, expiresIn: "1h" });
   },
 
   /**
@@ -119,13 +120,24 @@ const authController = {
       res.status(200).json({ message: "Déconnexion réussie" });
     } catch (error) {
       // Handle any errors that occur during logout
-      res
-        .status(500)
-        .json({
-          error: true,
-          message: "Une erreur est survenue lors de la déconnexion",
-        });
+      res.status(500).json({
+        error: true,
+        message: "Une erreur est survenue lors de la déconnexion",
+      });
     }
+  },
+
+  async users(req, res, next) {
+    const users = await User.findAll();
+
+    if (!users) {
+      return next({
+        statusCode: 400,
+        message: "Aucuns utilisateurs trouvés",
+      });
+    }
+
+    res.status(200).json({ users });
   },
 };
 

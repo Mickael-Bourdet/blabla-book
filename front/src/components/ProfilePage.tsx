@@ -1,35 +1,67 @@
-import { popularBooks } from "../data/popularBooks";
-import { recommendedBooks } from "../data/recommendedBooks";
+import { useEffect, useState } from "react";
+import { getOneUser } from "../api/apiUser";
+import type { IUser } from "../@types/index.d.ts";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../utils/store/useAuthStore";
 
 const ProfilePage = () => {
+  const [localUser, setLocalUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const { user } = useAuthStore(); 
+
+  useEffect(() => {
+    async function fetchUser() {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        setError("Utilisateur non connecté");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const userData = await getOneUser(Number(userId));
+        setLocalUser(userData);
+      } catch (err) {
+        setError("Impossible de charger le profil.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  if (loading) return <p className="text-center">Chargement de votre profil...</p>;
+  if (error) return <p className="text-center text-red-500">{error}</p>;
+  if (!localUser) return null;
+
   return (
-    <div className="p-4 md:ml-64">
+    <div className="p-4">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">NOM DU PROFIL</h1>
-        <button className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500">
+        <h1 className="text-3xl font-bold">{user?.name}</h1>
+        <Link to={`/user/${user?.id}/settings`} className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500">
           Modifier le profil
-        </button>
+        </Link>
       </div>
 
       {/* Livres lus */}
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">
-          Mes livres lus : {popularBooks.length}
+          Mes livres lus : {localUser.books_already_read.length}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {popularBooks.map((book) => (
-            <Link key={book.id} to={`/books/${book.id}`} className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
+          {localUser.books_already_read.map((book) => (
+            <Link key={book.id} to={`/books/${book.id}`}>
+              <div className="hover:shadow-lg rounded-md transition-shadow">
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="h-100 w-full object-cover mb-2"
-                  />
+                  className="h-64 w-full object-cover mb-2"
+                />
                 <p className="text-center">{book.title}</p>
-
               </div>
-              
             </Link>
           ))}
         </div>
@@ -38,21 +70,19 @@ const ProfilePage = () => {
       {/* Livres à lire */}
       <section>
         <h2 className="text-2xl font-semibold mb-4">
-          Mes livres à lire : {recommendedBooks.length}
+          Mes livres à lire : {localUser.books_wish_read.length}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {recommendedBooks.map((book) => (
-            <Link key={book.id} to={`/books/${book.id}`} className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
+          {localUser.books_wish_read.map((book) => (
+            <Link key={book.id} to={`/books/${book.id}`}>
+              <div className="hover:shadow-lg rounded-md transition-shadow">
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="h-100 w-full object-cover mb-2"
+                  className="w-full h-64 object-cover mb-2 rounded"
                 />
                 <p className="text-center">{book.title}</p>
-
               </div>
-
             </Link>
           ))}
         </div>

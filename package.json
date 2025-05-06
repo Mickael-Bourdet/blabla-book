@@ -17,5 +17,8 @@
     "url": "https://github.com/O-clock-Sushi/blabla-book-back/issues"
   },
   "homepage": "https://github.com/O-clock-Sushi/blabla-book-back#readme",
-  "description": "```bash # Depuis la racine du projet, se placer dans le répertoire back cd back/"
+  "description": "```bash # Depuis la racine du projet, se placer dans le répertoire back cd back/",
+  "dependencies": {
+    "izitoast": "^1.4.0"
+  }
 }
