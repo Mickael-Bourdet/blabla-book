@@ -36,7 +36,7 @@ function App() {
             <Route path="/books/:bookId" element={<DetailPage />} />
             <Route path="/library" element={<Library />} />
             <Route path="/user/:userId/settings" element={<SettingsUser />} />
-            <Route path="/user/library/:userId" element={<ProfilePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/auth" element={<Authentication />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/search" element={<SearchPage />} />
