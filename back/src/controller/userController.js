@@ -1,6 +1,7 @@
 import { User } from "../models/associations.js";
 import { hash } from "../services/authService.js";
 import { ApiError } from "../middlewares/ApiError.js";
+import { compare, hash } from "../services/authService.js";
 
 const userController = {
   // Get one user with associated tables (already read books, wish-to-read books)
@@ -51,7 +52,7 @@ const userController = {
     }
 
     // Update the user data
-    const { email, name, password } = req.body;
+    const { email, name, password, currentPassword } = req.body;
 
     if (email) {
       // 1. Vérifie si l'e-mail est déjà utilisé par un autre utilisateur
@@ -86,6 +87,20 @@ const userController = {
     }
 
     if (password) {
+      if (!currentPassword) {
+        return next(
+          new ApiError(
+            "Le mot de passe actuel est requis pour le modifier",
+            400
+          )
+        );
+      }
+
+      const passwordValid = await compare(currentPassword, user.password);
+      if (!passwordValid) {
+        return next(new ApiError("Mot de passe actuel incorrect", 401));
+      }
+
       user.password = await hash(password);
     }
 

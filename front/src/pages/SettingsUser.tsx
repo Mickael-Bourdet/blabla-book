@@ -21,7 +21,7 @@ const SettingsUser = () => {
   useEffect(() => {
     const loadData = async () => {
       if (userId) {
-        const newUser = await getOneUser(Number.parseInt(userId));
+        const newUser = await getOneUser();
         if (!newUser) {
           navigate("/404");
           return;
@@ -77,9 +77,9 @@ const SettingsUser = () => {
 
       // Si des données ont été modifiées, effectuer la mise à jour
       if (Object.keys(updatedData).length > 0) {
-        await updateUser(Number(userId), updatedData);
+        await updateUser(updatedData);
         // Recharge les infos utilisateur depuis l'API
-        const updatedUser = await getOneUser(Number(userId));
+        const updatedUser = await getOneUser();
         if (!updatedUser) {
           navigate("/404");
           return;
@@ -105,7 +105,7 @@ const SettingsUser = () => {
 
   const handleDeleteAccount = async () => {
     if (userId) {
-      await deleteUser(Number(userId));
+      await deleteUser();
       // Rediriger vers la page d’accueil ou de connexion après suppression
       navigate("/");
     }
