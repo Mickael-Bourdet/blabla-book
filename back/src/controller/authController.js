@@ -104,11 +104,6 @@ const authController = {
       next(error);
     }
   },
-
-  async users(_req, res, _next) {
-    const users = await User.findAll();
-    res.status(200).json({ users });
-  },
 };
 
 export { authController };
