@@ -1,5 +1,6 @@
 import { Book } from "../models/Book.js";
 import { Op } from "sequelize";
+import { Op } from "sequelize";
 
 const bookController = {
   /**

@@ -9,11 +9,13 @@ import Library from "./components/Library";
 import SettingsUser from "./pages/SettingsUser";
 import ProfilePage from "./components/ProfilePage";
 import Authentication from "./pages/Authentication";
+import SearchPage from "./pages/SearchPage";
 import ErrorNotFound from "./pages/ErrorNotFound";
 import About from "./pages/About";
 import Mentions from "./pages/Mentions";
 import ErrorServer from "./pages/ErrorServer";
 import { ErrorBoundary } from "react-error-boundary";
+import Logout from "./components/authentication/Logout";
 
 function App() {
   const location = useLocation();
@@ -21,11 +23,14 @@ function App() {
     <>
       <Navbars />
       <Header />
-      {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
+      <main className="md:ml-64 flex flex-col min-h-screen bg-body">
+        {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
           // The `resetKeys` prop resets the error state automatically whenever the URL changes.
           // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
-      <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
-        <main className="md:ml-64 flex flex-col min-h-screen bg-body">
+        <ErrorBoundary
+          FallbackComponent={ErrorServer}
+          resetKeys={[location.pathname]}
+        >
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
@@ -33,13 +38,14 @@ function App() {
             <Route path="/user/:userId/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/auth" element={<Authentication />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/mentions-legales" element={<Mentions />} />
             <Route path="*" element={<ErrorNotFound />} />
           </Routes>
-        </main>
-      </ErrorBoundary>
-
+        </ErrorBoundary>
+      </main>
       <Footer />
     </>
   );
