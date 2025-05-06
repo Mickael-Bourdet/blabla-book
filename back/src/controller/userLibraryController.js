@@ -69,9 +69,16 @@ const userLibraryController = {
 
     const user = await User.findByPk(userId);
     const book = await Book.findByPk(bookId);
-
     if (!user || !book) {
       return next(new ApiError("Utilisateur ou livre non trouvé", 404));
+    }
+
+    // Verification: Book present in the list
+    const isInList = await user.hasBooks_already_read(book);
+    if (!isInList) {
+      return next(
+        new ApiError("Ce livre n'est pas dans votre bibliothèque lue", 400)
+      );
     }
 
     await user.removeBooks_already_read(book);
@@ -132,6 +139,13 @@ const userLibraryController = {
       return next(new ApiError("Utilisateur ou livre non trouvé", 404));
     }
 
+    // Verification: Book present in the list
+    const isInList = await user.removeBooks_wish_read(book);
+    if (!isInList) {
+      return next(
+        new ApiError("Ce livre n'est pas dans votre bibliothèque à lire", 400)
+      );
+    }
     await user.removeBooks_wish_read(book);
 
     res
