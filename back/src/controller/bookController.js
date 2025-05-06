@@ -20,8 +20,8 @@ const bookController = {
     // filter by author or name
     if (search) {
       whereConditions[Op.or] = [
-        { title: { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le titre du livre
-        { "$authors.name$": { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le nom de l'auteur
+        { title: { [Op.iLike]: `%${search}%` } }, // case insensitive on the book title
+        { "$authors.name$": { [Op.iLike]: `%${search}%` } }, // case insensitive on the author name
       ];
     }
 
@@ -33,11 +33,11 @@ const bookController = {
       includeOptions[0].where.id = categoryId;
     }
     // If param is given, filter by category name
-    if (categoryId) {
+    if (categoryName) {
       // initialise association to prevent error
       includeOptions[0].where = includeOptions[0].where || {};
-      // define categoryId as a filter
-      includeOptions[0].where.id = categoryId;
+      // define categoryName as a filter
+      includeOptions[0].where.name = { [Op.iLike]: `%${categoryName}%` }; // case insensitive on the category name
     }
 
     const result = await Book.findAll({
