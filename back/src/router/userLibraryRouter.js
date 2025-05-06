@@ -10,7 +10,7 @@ export const router = Router();
 * @return {User} 200 - Success response with the user's library data.
 * @throws {Error} User not found (404) - If the user is not found.
 */
-router.get("/user/library/:userId", userLibraryController.getLibrary);
+router.get("/user/library/:userId", authMiddleware, userLibraryController.getLibrary);
 
 // Read
 
@@ -21,7 +21,7 @@ router.get("/user/library/:userId", userLibraryController.getLibrary);
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.post("/user/books/read/:bookId", userLibraryController.addToMyReadLibrary);
+router.post("/user/books/read/:bookId", authMiddleware, userLibraryController.addToMyReadLibrary);
 
 /**
  * DELETE /user/:userId/books/read/:bookId
@@ -30,7 +30,7 @@ router.post("/user/books/read/:bookId", userLibraryController.addToMyReadLibrary
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.delete("/user/books/read/:bookId", userLibraryController.deleteToMyReadLibrary);
+router.delete("/user/books/read/:bookId", authMiddleware, userLibraryController.deleteToMyReadLibrary);
 
 
 // To Read
@@ -42,7 +42,7 @@ router.delete("/user/books/read/:bookId", userLibraryController.deleteToMyReadLi
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.post("/user/books/to-read/:bookId", userLibraryController.addToWishRead);
+router.post("/user/books/to-read/:bookId", authMiddleware, userLibraryController.addToWishRead);
 
 /**
  * DELETE /user/:userId/books/to-read/:bookId
@@ -51,4 +51,4 @@ router.post("/user/books/to-read/:bookId", userLibraryController.addToWishRead);
  * @param {number} bookId.path.required - The ID of the book
  * @return {object} 200 - Success message
  */
-router.delete("/user/books/to-read/:bookId", userLibraryController.deleteToWishRead);
+router.delete("/user/books/to-read/:bookId", authMiddleware, userLibraryController.deleteToWishRead);
