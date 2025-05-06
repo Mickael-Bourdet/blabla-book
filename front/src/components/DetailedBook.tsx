@@ -73,8 +73,8 @@ const BookDetail = () => {
   }
 
   return (
-    <section className="bg-beige-50 p-4 flex items-center md:p-8 md:ml-50">
-      <div className="flex flex-row items-center md:flex-row  md:gap-8 mt-5">
+     
+      <div className="bg-beige-50 flex flex-row  p-4 items-center md:flex-row lg:ml-64 md:p-8 md:gap-8 mt-5">
         <img
           src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
           alt={`${book.title}`}
@@ -134,7 +134,7 @@ const BookDetail = () => {
           </div>
         </div>
       </div>
-    </section>
+ 
   );
 };
 
