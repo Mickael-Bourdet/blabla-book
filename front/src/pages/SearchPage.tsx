@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useLocation , Link} from "react-router-dom";
-import { searchBooks } from "../api/apiBooks"; 
+import { useLocation, Link } from "react-router-dom";
+import { searchBooks } from "../api/apiBooks";
 import { IBook } from "../@types";
-
 
 //get query string
 const useQuery = () => {
@@ -13,7 +12,6 @@ const SearchPage = () => {
   const query = useQuery();
   const searchTerm = query.get("query") || ""; //Si l'URL contient ?query=harry, alors searchTerm = "harry".
   const [results, setResults] = useState<IBook[]>([]);
-  
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -27,13 +25,12 @@ const SearchPage = () => {
   }, [searchTerm]);
 
   return (
-<>
-  {/* Contenu principal avec marge à gauche */}
-  <div>
-    {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
-    <main className="p-4">
+    <div>
+      {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
       <section className="content ml-[5vw] mr-[5vw]">
-        <h2 className="text-xl mt-8 mb-4 font-bold"> {results.length} Résultat(s) pour la recherche : " {searchTerm} "</h2>
+        <h2 className="text-xl mt-8 mb-4 font-bold">
+          {results.length} Résultat(s) pour la recherche : " {searchTerm} "
+        </h2>
         {results.length > 0 ? (
           <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {results.map((book: any) => (
@@ -53,9 +50,7 @@ const SearchPage = () => {
           <p>Aucun résultat trouvé.</p>
         )}
       </section>
-    </main>
-  </div>
-</>
+    </div>
   );
 };
 
