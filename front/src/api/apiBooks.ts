@@ -1,8 +1,8 @@
 import type { IBooks, IBook } from "../@types";
 const apiBaseUrl = "http://localhost:3000";
 
-
 export async function getAllBooks(): Promise<IBooks> {
+  throw new Error();
   const response = await fetch(`${apiBaseUrl}/books`);
   const books = await response.json();
   return books;
@@ -15,9 +15,10 @@ export async function getOneBook(id: number): Promise<IBook> {
 }
 
 export async function searchBooks(query: string): Promise<IBook[]> {
-    const response = await fetch(`${apiBaseUrl}/books?search=${encodeURIComponent(query)}`);
-  
-    const books = await response.json();
-    return books;
-  }
-  
+  const response = await fetch(
+    `${apiBaseUrl}/books?search=${encodeURIComponent(query)}`
+  );
+
+  const books = await response.json();
+  return books;
+}

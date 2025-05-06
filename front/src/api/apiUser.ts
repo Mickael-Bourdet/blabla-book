@@ -11,7 +11,6 @@ export async function getOneUser(id: number): Promise<IUser | null> {
   return user;
 }
 
-
 export const updateUser = async (
   userId: number,
   data: { name?: string; email?: string; password?: string } | null
@@ -36,14 +35,18 @@ export const deleteUser = async (userId: number): Promise<void> => {
   });
 };
 
-
-
-export async function addToMyReadLibrary(userId: number, bookId: number): Promise<IBook> {
-  const response = await fetch(`${apiBaseUrl}/user/${userId}/books/read/${bookId}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    // TODO ajouter bearer token
-  });
+export async function addToMyReadLibrary(
+  userId: number,
+  bookId: number
+): Promise<IBook> {
+  const response = await fetch(
+    `${apiBaseUrl}/user/${userId}/books/read/${bookId}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // TODO ajouter bearer token
+    }
+  );
   const book = await response.json();
   return book;
 }

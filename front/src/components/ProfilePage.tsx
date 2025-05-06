@@ -1,12 +1,17 @@
 import { popularBooks } from "../data/popularBooks";
 import { recommendedBooks } from "../data/recommendedBooks";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../utils/store/useAuthStore";
+
+
 
 const ProfilePage = () => {
+  const { user } = useAuthStore();
+
   return (
-    <div className="p-4 md:ml-64">
+    <div className="p-4 ">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">NOM DU PROFIL</h1>
+        <h1 className="text-3xl font-bold">{user?.name}</h1>
         <button className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500">
           Modifier le profil
         </button>
@@ -25,11 +30,9 @@ const ProfilePage = () => {
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
                   className="h-100 w-full object-cover mb-2"
-                  />
+                />
                 <p className="text-center">{book.title}</p>
-
               </div>
-              
             </Link>
           ))}
         </div>
@@ -50,9 +53,7 @@ const ProfilePage = () => {
                   className="h-100 w-full object-cover mb-2"
                 />
                 <p className="text-center">{book.title}</p>
-
               </div>
-
             </Link>
           ))}
         </div>

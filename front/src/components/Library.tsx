@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { IBooks } from "../@types";
 import { getAllBooks } from "../api/apiBooks";
 import { Link } from "react-router-dom";
-import { useErrorHandler } from "../useErrorHandler";
+import { useErrorHandler } from "../utils/useErrorHandler";
 
 const Library = () => {
   const [books, setBooks] = useState<IBooks>([]);

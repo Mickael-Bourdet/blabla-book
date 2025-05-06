@@ -8,8 +8,8 @@ import {
   deleteToMyReadLibrary,
   deleteToWishRead,
 } from "../api/apiUser";
-import { useErrorHandler } from "../useErrorHandler";
-import { toastSuccess } from "../utils/toast/success";
+import { useErrorHandler } from "../utils/useErrorHandler";
+import { toastSuccess } from "../utils/toast/toastSuccess";
 
 const BookDetail = () => {
   const { bookId } = useParams();
