@@ -2,7 +2,6 @@ import {
   hash,
   compare,
   generateJwtToken,
-  verifyJwtToken,
 } from "../services/authService.js";
 import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
 import { User } from "../models/User.js";
@@ -97,7 +96,7 @@ const authController = {
 
     // 3. Generate a JWT token with the user's ID as the payload
     const token = generateJwtToken({ userId: user.id });
-    console.log("👤 Utilisateur trouvé :", user.toJSON());
+    // console.log("👤 Utilisateur trouvé :", user.toJSON());
 
     // 4. Send the JWT token and its expiration time in the response
     res.json({name: user.name, id: user.id, token, expiresIn: "1h" });
@@ -133,7 +132,7 @@ const authController = {
     if (!users) {
       return next({
         statusCode: 400,
-        message: "Aucuns utilisateurs trouvés",
+        message: "Aucun utilisateurs trouvés",
       });
     }
 

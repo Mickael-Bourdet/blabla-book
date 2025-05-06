@@ -1,4 +1,5 @@
-import { User, Book, Author } from "../models/associations.js";
+import { User } from "../models/associations.js";
+import { hash } from "../services/authService.js";
 
 const userController = {
   // Get one user with associated tables (already read books, wish-to-read books)
@@ -14,7 +15,7 @@ const userController = {
 
     if (!id) {
       const error = new Error("Non autorisé !");
-      error.status = 404;
+      error.status = 401;
       return next(error);
     }
 
@@ -42,7 +43,13 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async updateUser(req, res, next) {
-    const id = parseInt(req.params.userId);
+    const id = req.user?.userId;
+
+    if (!id) {
+      const error = new Error("Non autorisé !");
+      error.status = 401;
+      return next(error);
+    }
 
     // Fetch the user
     const user = await User.findByPk(id);
@@ -63,7 +70,7 @@ const userController = {
     }
 
     if (password) {
-      user.password = password;
+      user.password = await hash(password);
     }
 
     // Save the updated user data
@@ -81,7 +88,13 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async deleteUser(req, res, next) {
-    const id = parseInt(req.params.userId);
+    const id = req.user?.userId;
+
+    if (!id) {
+      const error = new Error("Non autorisé !");
+      error.status = 401;
+      return next(error);
+    }
 
     // Fetch the user
     const user = await User.findByPk(id);

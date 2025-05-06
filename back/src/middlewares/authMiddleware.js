@@ -26,7 +26,6 @@ const authMiddleware = (req, res, next) => {
 
     // Verify the token using the JWT secret key
     const decoded = verifyJwtToken(token);
-    console.log("✅ Token décodé :", decoded);
 
     if (!decoded || !decoded.userId) {
       return res.status(401).json({ error: true, message: "Token invalide ou corrompu" });

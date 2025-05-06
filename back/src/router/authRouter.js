@@ -30,5 +30,4 @@ router.post("/login", authController.login);
  */
 router.post("/logout", authMiddleware, authController.logout);
 
-
 router.get("/users", authController.users)
