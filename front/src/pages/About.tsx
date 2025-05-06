@@ -1,15 +1,10 @@
 import HTMLFlipBook from "react-pageflip";
+
 export default function About() {
   return (
     <div className="flex justify-center pt-10 pb-10  items-stretch overflow-hidden">
-      <HTMLFlipBook
-        width={495}
-        height={700}
-        size={"fixed"}
-        showCover={true}
-        maxShadowOpacity={0.5}
-        flippingTime={700}
-      >
+      {/* @ts-ignore */}
+      <HTMLFlipBook width={495} height={700} size={"fixed"} showCover={true} maxShadowOpacity={0.5} flippingTime={700}>
         <div className="w-full h-auto">
           <img src="/front_cover.webp" alt="" />
         </div>
