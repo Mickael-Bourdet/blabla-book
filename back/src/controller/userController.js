@@ -10,7 +10,13 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async getOneUser(req, res, next) {
-    const id = parseInt(req.params.userId);
+    const id = req.user?.userId;
+
+    if (!id) {
+      const error = new Error("Non autorisé !");
+      error.status = 404;
+      return next(error);
+    }
 
     // Fetch the user with associated books
     const user = await User.findByPk(id, {

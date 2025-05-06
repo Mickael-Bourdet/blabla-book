@@ -1,4 +1,6 @@
+import "dotenv/config";
 import jwt from "jsonwebtoken";
+import { verifyJwtToken } from "../services/authService.js";
 
 /**
  * Middleware to authenticate requests using JWT.
@@ -23,7 +25,12 @@ const authMiddleware = (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     // Verify the token using the JWT secret key
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = verifyJwtToken(token);
+    console.log("✅ Token décodé :", decoded);
+
+    if (!decoded || !decoded.userId) {
+      return res.status(401).json({ error: true, message: "Token invalide ou corrompu" });
+    }
 
     // Attach the decoded user information to the request object
     req.user = decoded;
