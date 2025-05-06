@@ -10,49 +10,32 @@ import {
 } from "../api/apiUser";
 import { useErrorHandler } from "../utils/useErrorHandler";
 import { toastSuccess } from "../utils/toast/toastSuccess";
-import { useAuthStore } from "../utils/store/useAuthStore";
 
 const BookDetail = () => {
-  const { user } = useAuthStore();
-  const userId = Number(user?.id);
   const { bookId } = useParams();
   const numericBookId = Number(bookId);
   const [book, setBook] = useState<IBook>();
   const [isRead, setIsRead] = useState(false);
   const [toRead, setToRead] = useState(false);
-  const userHasRead = book?.users_has_read.some((user) => user.id === userId);
-  const userWishRead = book?.users_need_to_read.some((user) => user.id === userId);
   const { handleError } = useErrorHandler();
-  
-  
+
+  // TODO changer 1 par userId
   const handleAddRead = () => {
-    console.log(userHasRead);
-    console.log(userWishRead);
-    if (!userHasRead && userWishRead) {
-      addToMyReadLibrary(userId, numericBookId);
+    addToMyReadLibrary(1, numericBookId);
+    if (toRead) {
       handleRemoveWishRead();
-      toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
-      setIsRead(true);
-      setToRead(false);
-    } else if (!userHasRead && !userWishRead){
-      addToMyReadLibrary(userId, numericBookId);
-      toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
-      setIsRead(true);
-      setToRead(false);
-    } else {
-      deleteToMyReadLibrary(userId, numericBookId);
-      toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
-      setIsRead(false);
     }
+    toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
+    setIsRead(true);
+    setToRead(false);
   };
-  
   const handleRemoveRead = () => {
-    deleteToMyReadLibrary(userId, numericBookId);
+    deleteToMyReadLibrary(1, numericBookId);
     toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
     setIsRead(false);
   };
   const handleWishRead = () => {
-    addToWishRead(userId, numericBookId);
+    addToWishRead(1, numericBookId);
     if (isRead) {
       handleRemoveRead();
     }
@@ -61,7 +44,7 @@ const BookDetail = () => {
     setIsRead(false);
   };
   const handleRemoveWishRead = () => {
-    deleteToWishRead(userId, numericBookId);
+    deleteToWishRead(1, numericBookId);
     toastSuccess(`Le livre a bien été enlevé de la liste "à lire"`);
     setToRead(false);
   };
@@ -121,12 +104,11 @@ const BookDetail = () => {
             <p className="font-semibold mt-4 mb-1">Description :</p>
             <p>{book.description}</p>
 
-            <div className="flex gap-20 mt-4 ml-30">
+            <div className="flex flex-col items-center gap-4 lg:flex -row  lmt-4 ml-30">
               <button
-                onClick={handleAddRead}
-                
+                onClick={!isRead ? handleAddRead : handleRemoveRead}
                 className={`flex items-center gap-2 ${
-                  book.users_has_read
+                  isRead && !toRead
                     ? `bg-green-300 hover:bg-green-200 ${!toRead}`
                     : "bg-gray-300 hover:bg-gray-200"
                 }  rounded px-10 py-2 cursor-pointer`}
@@ -141,13 +123,9 @@ const BookDetail = () => {
                 <span>{`${isRead && !toRead ? "Lu" : "Non Lu"}`}</span>
               </button>
               <button
-                onClick={
-                  !book.users_need_to_read
-                    ? handleRemoveWishRead
-                    : handleWishRead
-                }
+                onClick={!toRead ? handleWishRead : handleRemoveWishRead}
                 className={`flex items-center gap-2 ${
-                  book.users_need_to_read
+                  toRead && !isRead
                     ? "bg-green-300 hover:bg-green-200"
                     : "bg-gray-300 hover:bg-gray-200"
                 } rounded px-10 py-2 cursor-pointer`}
