@@ -2,6 +2,7 @@ import { Router } from "express";
 import { validate } from "../middlewares/validateWrapper.js";
 import { UpdateUserSchema } from "../middlewares/schemaValidate/userValidateSchema.js";
 import { userController } from "../controller/userController.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 export const router = Router();
 
@@ -13,7 +14,7 @@ export const router = Router();
  * @return {object} 200 - Success response with the user's data.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
-router.get("/user/:userId", userController.getOneUser);
+router.get("/user/:userId", authMiddleware, userController.getOneUser);
 
 // Update user information
 /**
