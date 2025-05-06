@@ -16,7 +16,7 @@ export const router = Router();
  * @return {Error} 400 - Bad request response (missing property)
  * @return {Error} 409 - Conflict response (ex: isbn already taken)
  */
-router.post("/admin/add/books", authMiddleware, isAdminMiddleware, validate(createBookSchema), adminController.AddNewBook);
+router.post("/admin/add/books", authMiddleware, isAdminMiddleware, validate(createBookSchema), adminController.addNewBook);
 
 /**
  * PATCH /admin/update/books/:bookId
@@ -37,7 +37,7 @@ router.patch("/admin/update/books/:bookId", authMiddleware, isAdminMiddleware, v
 router.delete("/admin/delete/books/:bookId", authMiddleware, isAdminMiddleware, adminController.deleteBook);
 
 // TODO : add comments
-router.post("/admin/add/categories", authMiddleware, isAdminMiddleware, validate(categorySchema), adminController.createCategory);
+router.post("/admin/add/categories", authMiddleware, isAdminMiddleware, validate(categorySchema), adminController.addCategory);
 router.patch("/admin/update/categories/:categoryId", authMiddleware, isAdminMiddleware, validate(categorySchema), adminController.updateCategory);
 router.delete("/admin/delete/categories/:categoryId", authMiddleware, isAdminMiddleware, adminController.deleteCategory);
 

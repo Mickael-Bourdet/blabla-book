@@ -2,7 +2,6 @@ import { Book } from "../models/associations.js";
 import { Category } from "../models/Category.js";
 import { Author } from "../models/Author.js";
 import { ApiError } from "../middlewares/ApiError.js";
-import { fn, col, where } from "sequelize";
 
 const adminController = {
   /**
@@ -13,7 +12,7 @@ const adminController = {
    * @return {Object} Book
    */
 
-  async AddNewBook(req, res, next) {
+  async addNewBook(req, res, next) {
     // Get the params
     const { isbn, title, description, published, cover_url, page_count } =
       req.body;
@@ -21,7 +20,9 @@ const adminController = {
     //   check if the book is not already in the DB
     const isRegistered = await Book.findOne({ where: { isbn } });
     if (isRegistered) {
-      return next(new ApiError("Impossible d'ajouter ce livre car il existe déjà", 409));
+      return next(
+        new ApiError("Impossible d'ajouter ce livre car il existe déjà", 409)
+      );
     }
 
     const newBook = await Book.create({
@@ -51,7 +52,7 @@ const adminController = {
     const book = await Book.findByPk(bookId);
 
     if (!book) {
-      return next(new ApiError("Ce livre n'existe pas", 409));
+      return next(new ApiError("Ce livre n'existe pas", 404));
     }
 
     // Get the params
@@ -110,12 +111,17 @@ const adminController = {
    * @return {object}- status 201
    */
 
-  async createCategory(req, res, next) {
+  async addCategory(req, res, next) {
     const { name } = req.body;
 
     const isRegistered = await Category.findOne({ where: { name } });
     if (isRegistered) {
-      return next(new ApiError("Impossible d'ajouter cette catégorie car elle existe déjà", 409));
+      return next(
+        new ApiError(
+          "Impossible d'ajouter cette catégorie car elle existe déjà",
+          409
+        )
+      );
     }
 
     const newCategory = await Category.create({ name });
@@ -173,6 +179,32 @@ const adminController = {
   },
 
   /**
+   * @function addAuthor
+   * @description Create a new author with the provided name.
+   * @param {Object} req - Express request object (expects `name` in `req.body`).
+   * @param {Object} res - Express response object.
+   * @returns {Object} - author
+   */
+  async addAuthor(req, res, next) {
+    const { name } = req.body;
+    const allAuthors = await Author.findAll();
+
+    // Check if an author with the same name (case-insensitive) already exists
+    const authorExists = allAuthors.some(
+      (author) => author.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (authorExists) {
+      return next(
+        new ApiError("Impossible d'ajouter cet auteur car il existe déjà", 409)
+      );
+    }
+
+    const newAuthor = await Author.create({ name });
+    res.status(201).json(newAuthor);
+  },
+
+  /**
    * @function updateAuthor
    * @description Update the name of an existing author.
    * @param {Object} req - Express request object (expects `authorId` as param and `name` in body).
@@ -218,31 +250,7 @@ const adminController = {
 
     await author.destroy();
 
-    res.status(204).json({ message: "Auteur effacé avec succès" });
-  },
-
-  /**
-   * @function addAuthor
-   * @description Create a new author with the provided name.
-   * @param {Object} req - Express request object (expects `name` in `req.body`).
-   * @param {Object} res - Express response object.
-   * @returns {Object} - author
-   */
-  async addAuthor(req, res, next) {
-    const { name } = req.body;
-    const allAuthors = await Author.findAll();
-
-    // Check if an author with the same name (case-insensitive) already exists
-    const authorExists = allAuthors.some(
-      (author) => author.name.toLowerCase() === name.toLowerCase()
-    );
-
-    if (authorExists) {
-      return next(new ApiError("Impossible d'ajouter cet auteur car il existe déjà", 409));
-    }
-
-    const newAuthor = await Author.create({ name });
-    res.status(201).json(newAuthor);
+    res.sendStatus(204);
   },
 };
 
