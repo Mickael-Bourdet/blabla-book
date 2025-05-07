@@ -111,12 +111,16 @@ const SettingsUser = () => {
         </Link>
       </div>
       {/* Profil */}
-      <div className="flex mb-8">
+      <div className="flex mb-5">
         <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">
           👤
         </div>
         <div className="flex flex-col">
           <p className="font-bold mt-10 ml-20 ">{userData?.name}</p>
+          <p className="font-bold mt-10 ml-20">
+  Nombre de livres lus :{" "}
+  {userData?.books_already_read.length}
+</p>
           <p className="font-bold mt-10 ml-20">
             Nombre de pages lues :{" "}
             {userData?.books_already_read.reduce(
