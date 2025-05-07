@@ -14,7 +14,7 @@ import { useAuthStore } from "../utils/store/useAuthStore";
 
 const BookDetail = () => {
   const { user } = useAuthStore();
-  const userId = Number(user?.id);
+  const userId = user?.id;
   const { bookId } = useParams();
   const numericBookId = Number(bookId);
   const [book, setBook] = useState<IBook>();
@@ -23,7 +23,7 @@ const BookDetail = () => {
   const { handleError } = useErrorHandler();
 
   const handleAddRead = () => {
-    addToMyReadLibrary(userId, numericBookId);
+    addToMyReadLibrary(numericBookId);
     if (toRead) {
       handleRemoveWishRead();
     }
@@ -32,12 +32,12 @@ const BookDetail = () => {
     setToRead(false);
   };
   const handleRemoveRead = () => {
-    deleteToMyReadLibrary(userId, numericBookId);
+    deleteToMyReadLibrary(numericBookId);
     toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
     setIsRead(false);
   };
   const handleWishRead = () => {
-    addToWishRead(userId, numericBookId);
+    addToWishRead(numericBookId);
     if (isRead) {
       handleRemoveRead();
     }
@@ -46,7 +46,7 @@ const BookDetail = () => {
     setIsRead(false);
   };
   const handleRemoveWishRead = () => {
-    deleteToWishRead(userId, numericBookId);
+    deleteToWishRead(numericBookId);
     toastSuccess(`Le livre a bien été enlevé de la liste "à lire"`);
     setToRead(false);
   };
@@ -55,8 +55,14 @@ const BookDetail = () => {
     const loadData = async () => {
       if (bookId) {
         try {
-          const newBook = await getOneBook(Number.parseInt(bookId));
+          const newBook = await getOneBook(numericBookId);
           setBook(newBook);
+
+          const hasRead = newBook.users_has_read.some((user) => user.id === userId);
+          const wantsToRead = newBook.users_need_to_read.some((user) => user.id === userId);
+          setIsRead(hasRead);
+          setToRead(wantsToRead);
+
         } catch (error) {
           handleError(error);
         }
@@ -64,7 +70,7 @@ const BookDetail = () => {
     };
 
     loadData();
-  }, [bookId]);
+  }, [bookId, userId]);
 
   if (!book) {
     return (
@@ -119,7 +125,7 @@ const BookDetail = () => {
                   : "fa-solid fa-eye"
               }`}
             ></i>
-            <span>{`${isRead && !toRead ? "Lu" : "Non Lu"}`}</span>
+            <span>Lu</span>
           </button>
           <button
             onClick={!toRead ? handleWishRead : handleRemoveWishRead}
