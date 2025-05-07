@@ -1,9 +1,11 @@
 import { Router } from "express";
-import adminController from "../controller/adminController.js";
+import { adminController } from "../controller/adminController.js";
 import { validate } from "../middlewares/validateWrapper.js";
 import { categorySchema } from "../middlewares/schemaValidate/categoryValidateSchema.js";
 import { authorValidate } from "../middlewares/schemaValidate/authorValidateSchema.js";
 import { createBookSchema, updateBookSchema } from "../middlewares/schemaValidate/bookValidateSchema.js";
+import { isAdminMiddleware } from "../middlewares/isAdminMiddleware.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 export const router = Router();
 
@@ -14,7 +16,7 @@ export const router = Router();
  * @return {Error} 400 - Bad request response (missing property)
  * @return {Error} 409 - Conflict response (ex: isbn already taken)
  */
-router.post("/admin/add/books", validate(createBookSchema), adminController.AddNewBook);
+router.post("/admin/add/books", authMiddleware, isAdminMiddleware, validate(createBookSchema), adminController.addNewBook);
 
 /**
  * PATCH /admin/update/books/:bookId
@@ -24,7 +26,7 @@ router.post("/admin/add/books", validate(createBookSchema), adminController.AddN
  * @return {Error} 404 - Book not found
  * @return {Error} 409 - Conflict response (ex: isbn already taken)
  */
-router.patch("/admin/update/books/:bookId", validate(updateBookSchema), adminController.updateBook);
+router.patch("/admin/update/books/:bookId", authMiddleware, isAdminMiddleware, validate(updateBookSchema), adminController.updateBook);
 
 /**
  * DELETE /admin/delete/books/:bookId
@@ -32,14 +34,14 @@ router.patch("/admin/update/books/:bookId", validate(updateBookSchema), adminCon
  * @return {Book} 204 - success response no content send
  * @return {Error} 404 - Book not found
  */
-router.delete("/admin/delete/books/:bookId", adminController.deleteBook);
+router.delete("/admin/delete/books/:bookId", authMiddleware, isAdminMiddleware, adminController.deleteBook);
 
 // TODO : add comments
-router.post("/admin/add/categories", validate(categorySchema), adminController.createCategory);
-router.patch("/admin/update/categories/:categoryId", validate(categorySchema), adminController.updateCategory);
-router.delete("/admin/delete/categories/:categoryId", adminController.deleteCategory);
+router.post("/admin/add/categories", authMiddleware, isAdminMiddleware, validate(categorySchema), adminController.addCategory);
+router.patch("/admin/update/categories/:categoryId", authMiddleware, isAdminMiddleware, validate(categorySchema), adminController.updateCategory);
+router.delete("/admin/delete/categories/:categoryId", authMiddleware, isAdminMiddleware, adminController.deleteCategory);
 
 // TODO : add comments
-router.post("/admin/add/authors", validate(authorValidate), adminController.addAuthor);
-router.patch("/admin/update/authors/:authorId", validate(authorValidate), adminController.updateAuthor);
-router.delete("/admin/delete/authors/:authorId", adminController.deleteAuthor);
+router.post("/admin/add/authors", authMiddleware, isAdminMiddleware, validate(authorValidate), adminController.addAuthor);
+router.patch("/admin/update/authors/:authorId", authMiddleware, isAdminMiddleware, validate(authorValidate), adminController.updateAuthor);
+router.delete("/admin/delete/authors/:authorId", authMiddleware, isAdminMiddleware, adminController.deleteAuthor);
