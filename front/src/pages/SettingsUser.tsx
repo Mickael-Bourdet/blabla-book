@@ -1,12 +1,12 @@
 import type { IUser } from "../@types";
 import { useState, useEffect } from "react";
 import { getOneUser, updateUser, deleteUser } from "../api/apiUser";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../utils/store/useAuthStore";
 
 const SettingsUser = () => {
   const navigate = useNavigate();
-  const { userId } = useParams();
-  const [user, setUser] = useState<IUser | null>(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [emailConfirm, setEmailConfirm] = useState("");
@@ -18,22 +18,22 @@ const SettingsUser = () => {
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
 
+  const { user } = useAuthStore();
+
   useEffect(() => {
     const loadData = async () => {
-      if (userId) {
-        const newUser = await getOneUser(Number.parseInt(userId));
-        if (!newUser) {
-          navigate("/404");
-          return;
-        }
-        setUser(newUser);
-        setUsername(newUser.name);
-        setEmail(newUser.email);
-        setEmailConfirm(newUser.email);
+      const newUser = await getOneUser();
+      if (!newUser) {
+        navigate("/404");
+        return;
       }
+      setUserData(newUser);
+      setUsername(newUser.name);
+      setEmail(newUser.email);
+      setEmailConfirm(newUser.email);
     };
     loadData();
-  }, [userId]);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,40 +54,33 @@ const SettingsUser = () => {
       setPasswordError(false);
     }
 
-    //  VERFIFICATION A RETIRER - UTILISER LE BACK POUR PLUS DE SECURITÉ
-    // Vérification du mot de passe actuel si un nouveau mot de passe est entré
-    if (password && currentPassword !== user?.password) {
-      alert("Le mot de passe actuel est incorrect");
-      return;
-    }
-
     // Ouvrir la fenêtre de confirmation
     setConfirmationModal(true);
   };
 
   const handleConfirmation = async (confirm: boolean) => {
     if (confirm) {
-      const updatedData: { name?: string; email?: string; password?: string } =
+      const updatedData: { name?: string; email?: string; password?: string; currentPassword?: string; } =
         {};
       console.log("Mise à jour avec :", updatedData);
       // Mise à jour conditionnelle en fonction des champs modifiés
-      if (username !== user?.name) updatedData.name = username;
-      if (email !== user?.email) updatedData.email = email;
-      if (password) updatedData.password = password;
+      if (username !== userData?.name) updatedData.name = username;
+      if (email !== userData?.email) updatedData.email = email;
+      if (password && currentPassword) {
+        updatedData.password = password;
+        updatedData.currentPassword = currentPassword;
+      }
 
       // Si des données ont été modifiées, effectuer la mise à jour
       if (Object.keys(updatedData).length > 0) {
-        await updateUser(Number(userId), updatedData);
+        await updateUser(updatedData);
         // Recharge les infos utilisateur depuis l'API
-        const updatedUser = await getOneUser(Number(userId));
+        const updatedUser = await getOneUser();
         if (!updatedUser) {
           navigate("/404");
           return;
         }
-        setUser(updatedUser);
-        setUsername(updatedUser.name);
-        setEmail(updatedUser.email);
-        setEmailConfirm(updatedUser.email);
+        setUserData(updatedUser);
       }
 
       // Réinitialiser les champs et fermer la fenêtre de confirmation
@@ -104,11 +97,9 @@ const SettingsUser = () => {
   };
 
   const handleDeleteAccount = async () => {
-    if (userId) {
-      await deleteUser(Number(userId));
-      // Rediriger vers la page d’accueil ou de connexion après suppression
-      navigate("/");
-    }
+    await deleteUser();
+    // Rediriger vers la page d’accueil ou de connexion après suppression
+    navigate("/");
   };
 
   return (
@@ -125,10 +116,10 @@ const SettingsUser = () => {
           👤
         </div>
         <div className="flex flex-col">
-          <p className="font-bold mt-10 ml-20 ">{user?.name}</p>
+          <p className="font-bold mt-10 ml-20 ">{userData?.name}</p>
           <p className="font-bold mt-10 ml-20">
             Nombre de pages lues :{" "}
-            {user?.books_already_read.reduce(
+            {userData?.books_already_read.reduce(
               (total, book) => total + book.page_count,
               0
             )}

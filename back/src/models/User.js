@@ -18,6 +18,10 @@ User.init(
       type: DataTypes.STRING(100),
       allowNull: false,
     },
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: "user",
+    },
   },
   {
     sequelize,

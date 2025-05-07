@@ -13,15 +13,18 @@ const ProfilePage = () => {
 
   useEffect(() => {
     async function fetchUser() {
-      const userId = localStorage.getItem("userId");
-      if (!userId) {
+      if (!user?.id) {
         setError("Utilisateur non connecté");
         setLoading(false);
         return;
       }
 
       try {
-        const userData = await getOneUser(Number(userId));
+        const userData = await getOneUser();
+        if (!userData) {
+          setError("Impossible de charger le profil.");
+          return;
+        }
         setLocalUser(userData);
       } catch (err) {
         setError("Impossible de charger le profil.");
@@ -41,7 +44,7 @@ const ProfilePage = () => {
     <div className="p-4">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">{user?.name}</h1>
-        <Link to={`/user/${user?.id}/settings`} className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500">
+        <Link to={`/user/settings`} className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500">
           Modifier le profil
         </Link>
       </div>
