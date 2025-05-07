@@ -1,10 +1,18 @@
 import Joi from "joi";
 import { registerSchema } from "./authValidateSchema.js";
+import Joi from "joi";
 
-const updateUserSchema = registerSchema
+
+const UpdateUserSchema = registerSchema
   .fork(["name", "email", "password", "confirmPassword"], (schema) =>
     schema.optional()
-  )
+  ).append({
+    currentPassword: Joi.string().required().when("password", {
+      is: Joi.exist(),
+      then: Joi.string().required(),
+      otherwise: Joi.forbidden(), 
+    }),
+  })
   .keys({
     // Redefine confirmPassword to make it conditional
     confirmPassword: Joi.string().when("password", {
@@ -26,4 +34,4 @@ const updateUserSchema = registerSchema
     }),
   });
 
-export { updateUserSchema };
+  export { UpdateUserSchema };

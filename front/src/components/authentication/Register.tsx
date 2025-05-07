@@ -81,7 +81,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           id="registerName"
           value={data.name}
           onChange={(e) => onChange({ ...data, name: e.target.value })}
-          className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
           placeholder="Pseudo"
         />
       </div>
@@ -95,7 +95,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           id="registerEmail"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
-          className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
           placeholder="email@example.com"
         />
       </div>
@@ -111,7 +111,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           onChange={(e) => onChange({ ...data, password: e.target.value })}
           onFocus={() => setShowPasswordRules(true)}
           onBlur={() => setShowPasswordRules(false)}
-          className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
           placeholder="Mot de passe"
         />
 
@@ -196,7 +196,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           onChange={(e) =>
             onChange({ ...data, confirmPassword: e.target.value })
           }
-          className="w-full border border-gray-300 p-2 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
           placeholder="Confirmer le mot de passe"
         />
 

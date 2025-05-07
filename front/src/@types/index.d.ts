@@ -36,3 +36,11 @@ export interface IUser {
   books_already_read: IBook[];
   books_wish_read: IBook[];
 }
+
+export interface IUserUpdate {
+    name?: string;
+    email?: string;
+    currentPassword?: string;
+    password?: string;
+  }
+  

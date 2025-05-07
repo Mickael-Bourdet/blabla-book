@@ -45,14 +45,14 @@ const Authentication = () => {
   };
 
   return (
-    <main>
+    <section>
       <Login />
       <Register
         data={registerData}
         onChange={setRegisterDate}
         onSubmit={handleRegister}
       />
-    </main>
+    </section>
   );
 };
 
