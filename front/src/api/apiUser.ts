@@ -38,6 +38,7 @@ export async function addToMyReadLibrary(bookId: number): Promise<IBook> {
     `${apiBaseUrl}/user/books/read/${bookId}`,
     {
       method: "POST",
+      // TODO ajouter bearer token
     }
   );
   const book = await response.json();
