@@ -140,7 +140,7 @@ const BookDetail = () => {
               className={`${
                 isRead && !toRead
                   ? "fa-solid fa-square-check"
-                  : "fa-solid fa-eye"
+                  : "fa-solid fa-square-xmark"
               }`}
             ></i>
             <span>Lu</span>
