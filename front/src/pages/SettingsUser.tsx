@@ -1,137 +1,105 @@
-import type { IUser } from "../@types";
+import type { IUser,IUserUpdate } from "../@types";
 import { useState, useEffect } from "react";
 import { getOneUser, updateUser, deleteUser } from "../api/apiUser";
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useAuthStore } from "../utils/store/useAuthStore";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 const SettingsUser = () => {
   const navigate = useNavigate();
- // const { userId } = useParams();
-  const [user, setUser] = useState<IUser | null>(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [emailConfirm, setEmailConfirm] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
+ 
   const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-const [editEmail, setEditEmail] = useState(false);
-const [editPassword, setEditPassword] = useState(false);
-
-
-
-
-// en attendant une autre solution je recupere le token pour me servir de l'id
-const token = useAuthStore((state) => state.token);
-console.log("Token via Zustand :", token);
-
-    const payload = JSON.parse(atob(token.split('.')[1]));
-   
-console.log("Contenu du token :", payload.userId);
- const userId  = payload.userId
-  
-////////////
-
-
-
-
+  const [editEmail, setEditEmail] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [editPassword, setEditPassword] = useState(false);
 
 
   useEffect(() => {
     const loadData = async () => {
-      if (userId) {
-        const newUser = await getOneUser(Number.parseInt(userId));
-        if (!newUser) {
-          navigate("/404");
-          return;
-        }
-        
-        setUser(newUser);
-        setUsername(newUser.name);
-        setEmail(newUser.email);
-        setEmailConfirm(newUser.email);
+      const oneUser = await getOneUser();
+      if (!oneUser) {
+        navigate("/404");
+        return;
       }
+      setUserData(oneUser);
+      
+      setUsername(oneUser.name);
+      setEmail(oneUser.email);
+     
     };
-    loadData();
-  }, [userId]);
+    loadData();;
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Vérification de l'email
-    if (email !== emailConfirm) {
-      setEmailError(true);
-      return;
-    } else {
-      setEmailError(false);
-    }
-
-    // Vérification du mot de passe
-    if (password !== passwordConfirm) {
-      setPasswordError(true);
-      return;
-    } else {
-      setPasswordError(false);
-    }
-
-    //  VERFIFICATION A RETIRER - UTILISER LE BACK POUR PLUS DE SECURITÉ
-    // Vérification du mot de passe actuel si un nouveau mot de passe est entré
-    if (password && currentPassword !== user?.password) {
-      alert("Le mot de passe actuel est incorrect");
-      return;
-    }
+ 
 
     // Ouvrir la fenêtre de confirmation
     setConfirmationModal(true);
   };
 
   const handleConfirmation = async (confirm: boolean) => {
-    if (confirm) {
-      const updatedData: { name?: string; email?: string; password?: string } =
-        {};
-      console.log("Mise à jour avec :", updatedData);
-      // Mise à jour conditionnelle en fonction des champs modifiés
-      if (username !== user?.name) updatedData.name = username;
-      if (email !== user?.email) updatedData.email = email;
-      if (password) updatedData.password = password;
-
-      // Si des données ont été modifiées, effectuer la mise à jour
+    if (!confirm) {
+      setConfirmationModal(false);
+      return;
+    }
+  
+    const updatedData: IUserUpdate = {};
+  
+    if (username !== userData?.name) updatedData.name = username;
+    if (email !== userData?.email) updatedData.email = email;
+  
+    // Gestion du mot de passe
+    if (editPassword) {
+      if (newPassword !== confirmPassword) {
+        setPasswordError("Les mots de passe ne correspondent pas.");
+        return;
+      }
+      updatedData.currentPassword = currentPassword;
+      updatedData.password = newPassword;
+    }
+  
+    try {
       if (Object.keys(updatedData).length > 0) {
-        await updateUser(Number(userId), updatedData);
-        // Recharge les infos utilisateur depuis l'API
-        const updatedUser = await getOneUser(Number(userId));
+        await updateUser(updatedData);
+        const updatedUser = await getOneUser();
         if (!updatedUser) {
           navigate("/404");
           return;
         }
-        setUser(updatedUser);
-        setUsername(updatedUser.name);
-        setEmail(updatedUser.email);
-        setEmailConfirm(updatedUser.email);
+        setUserData(updatedUser);
       }
-
-      // Réinitialiser les champs et fermer la fenêtre de confirmation
-      setPassword("");
-      setPasswordConfirm("");
+  
+      // Réinitialisation des champs mot de passe
       setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      setEditPassword(false);
+      setPasswordError("");
+      setEditEmail(false);
       setEmailError(false);
-      setPasswordError(false);
       setConfirmationModal(false);
-    } else {
-      // Si l'utilisateur annule, fermer la fenêtre de confirmation
-      setConfirmationModal(false);
+    } catch (err) {
+      setPasswordError("Mot de passe actuel incorrect.");
     }
   };
+  
 
   const handleDeleteAccount = async () => {
-    if (userId) {
-      await deleteUser(Number(userId));
-      // Rediriger vers la page d’accueil ou de connexion après suppression
-      navigate("/");
-    }
+    await deleteUser();
+    
+
+    // Rediriger vers la page d’accueil ou de connexion après suppression
+    navigate("/");
   };
 
   return (
@@ -148,10 +116,10 @@ console.log("Contenu du token :", payload.userId);
           👤
         </div>
         <div className="flex flex-col">
-          <p className="font-bold mt-10 ml-20 ">{user?.name}</p>
+          <p className="font-bold mt-10 ml-20 ">{userData?.name}</p>
           <p className="font-bold mt-10 ml-20">
             Nombre de pages lues :{" "}
-            {user?.books_already_read.reduce(
+            {userData?.books_already_read.reduce(
               (total, book) => total + book.page_count,
               0
             )}
@@ -196,20 +164,6 @@ console.log("Contenu du token :", payload.userId);
     {editEmail ? "✔️" : "✏️"}
   </button>
 </div>
-{/* confirm email */}
-{editEmail && (
-  <div className="flex items-center justify-between border-b border-gray-300 pb-2">
-    <input
-      className="w-120 my-1 focus:outline-none"
-      type="email"
-      id="register-email-confirm"
-      name="email-confirm"
-      placeholder="Confirmer l'Email"
-      value={emailConfirm}
-      onChange={(e) => setEmailConfirm(e.target.value)}
-    />
-  </div>
-)}
 
 {emailError && <p className="text-red-500">Les emails ne correspondent pas.</p>}
 
@@ -217,29 +171,14 @@ console.log("Contenu du token :", payload.userId);
        
 
           {/* Nouveau mot de passe */}
-          <div className="hidden flex items-center justify-between border-b border-gray-300 pb-2">
-            <input
-              className="w-120 my-1 focus:outline-none "
-              type="password"
-              id="register-password"
-              name="password"
-              placeholder="Nouveau mot de passe"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-   
-
+{/* Changer mot de passe */}
 <div className="flex items-center justify-between border-b border-gray-300 pb-2">
   <input
     className="w-120 my-1 focus:outline-none"
     type="password"
-    id="register-password"
-    name="password"
     placeholder="Nouveau mot de passe"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
+    value={newPassword}
+    onChange={(e) => setNewPassword(e.target.value)}
     readOnly={!editPassword}
   />
   <button
@@ -252,34 +191,31 @@ console.log("Contenu du token :", payload.userId);
 </div>
 
 {editPassword && (
-  <div className="flex items-center justify-between border-b border-gray-300 pb-2">
-    <input
-      className="w-120 my-1 focus:outline-none"
-      type="password"
-      id="confirm-password"
-      name="confirm-password"
-      placeholder="Confirmer le mot de passe"
-      value={passwordConfirm}
-      onChange={(e) => setPasswordConfirm(e.target.value)}
-    />
-  </div>
-
-)}
-       {editPassword && (
-  <div className="flex items-center justify-between border-b border-gray-300 pb-2">
-  <input
-    className="w-120 my-1 focus:outline-none"
-    type="password"
-    id="current-password"
-    name="current-password"
-    placeholder="Mot de passe actuel"
-    value={currentPassword}
-    onChange={(e) => setCurrentPassword(e.target.value)}
-  />
-</div>
+  <>
+    <div className="flex items-center justify-between border-b border-gray-300 pb-2">
+      <input
+        className="w-120 my-1 focus:outline-none"
+        type="password"
+        placeholder="Confirmer le mot de passe"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+    </div>
+    <div className="flex items-center justify-between border-b border-gray-300 pb-2">
+      <input
+        className="w-120 my-1 focus:outline-none"
+        type="password"
+        placeholder="Mot de passe actuel"
+        value={currentPassword}
+        onChange={(e) => setCurrentPassword(e.target.value)}
+      />
+    </div>
+  </>
 )}
 
-{passwordError && <p className="text-red-500">Les mots de passe ne correspondent pas.</p>}
+{passwordError && <p className="text-red-500">{passwordError}</p>}
+
+
 
         {/* Bouton sauvegarder */}
         <button
@@ -290,28 +226,37 @@ console.log("Contenu du token :", payload.userId);
         </button>
       </form>
 
-      {/* Modal de confirmation */}
-      {confirmationModal && (
-        <div className="fixed center flex items-center justify-center">
-          <div className="bg-white p-6 rounded shadow-lg">
-            <p>Êtes-vous sûr de vouloir sauvegarder ces modifications ?</p>
-            <div className="flex gap-4 mt-4">
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded"
-                onClick={() => handleConfirmation(false)}
-              >
-                Annuler
-              </button>
-              <button
-                className="bg-green-500 text-white px-4 py-2 rounded"
-                onClick={() => handleConfirmation(true)}
-              >
-                Confirmer
-              </button>
-            </div>
-          </div>
+  {/* Modal de confirmation */}
+{confirmationModal && (
+  <div className="fixed center flex items-center justify-center">
+    <div className="bg-white p-6 rounded shadow-lg">
+      <p>Êtes-vous sûr de vouloir sauvegarder ces modifications ?</p>
+      
+      {/* Afficher l'email modifié s'il a changé */}
+      {email !== userData?.email && (
+        <div className="mt-4">
+          <p><strong>Nouvel Email : </strong>{email}</p>
         </div>
       )}
+
+      <div className="flex gap-4 mt-4">
+        <button
+          className="bg-red-500 text-white px-4 py-2 rounded"
+          onClick={() => handleConfirmation(false)}
+        >
+          Annuler
+        </button>
+        <button
+          className="bg-green-500 text-white px-4 py-2 rounded"
+          onClick={() => handleConfirmation(true)}
+        >
+          Confirmer
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
 
       {deleteModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -327,12 +272,11 @@ console.log("Contenu du token :", payload.userId);
               >
                 Annuler
               </button>
-              <button
-                className="bg-red-600 border text-white px-4 py-2 rounded"
-                onClick={handleDeleteAccount}
-              >
+              <Link
+          to="/logout"
+          className="bg-red-600 border text-white px-4 py-2 rounded" onClick={handleDeleteAccount} type="button" >             
                 Supprimer
-              </button>
+                </Link>
             </div>
           </div>
         </div>

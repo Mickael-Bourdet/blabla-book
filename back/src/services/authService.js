@@ -1,3 +1,4 @@
+import "dotenv/config";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 
@@ -29,7 +30,7 @@ export async function compare(plainTextPassword, hashedPassword) {
  * @returns {string} - The generated JWT token.
  */
 export function generateJwtToken(payload) {
-  return jwt.sign(payload, "your_secret_key", { expiresIn: "1h" });
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
 }
 
 /**
@@ -40,9 +41,9 @@ export function generateJwtToken(payload) {
  */
 export function verifyJwtToken(token) {
   try {
-    return jwt.verify(token, "your_secret_key");
+    return jwt.verify(token, process.env.JWT_SECRET);
   } catch (error) {
-    console.error(error);
+    console.error("❌ Erreur JWT :", error.message);
     return null;
   }
 }
