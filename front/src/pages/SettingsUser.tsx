@@ -60,8 +60,13 @@ const SettingsUser = () => {
 
   const handleConfirmation = async (confirm: boolean) => {
     if (confirm) {
-      const updatedData: { name?: string; email?: string; password?: string; currentPassword?: string; } =
-        {};
+      const updatedData: {
+        name?: string;
+        email?: string;
+        password?: string;
+        currentPassword?: string;
+        confirmPassword?: string;
+      } = {};
       console.log("Mise à jour avec :", updatedData);
       // Mise à jour conditionnelle en fonction des champs modifiés
       if (username !== userData?.name) updatedData.name = username;
@@ -69,6 +74,7 @@ const SettingsUser = () => {
       if (password && currentPassword) {
         updatedData.password = password;
         updatedData.currentPassword = currentPassword;
+        updatedData.confirmPassword = password;
       }
 
       // Si des données ont été modifiées, effectuer la mise à jour

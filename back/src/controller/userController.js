@@ -40,7 +40,6 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async updateUser(req, res, next) {
-    console.log("🔧 Corps de la requête :", req.body);
     const id = req.user?.userId;
     if (!id) {
       return next(new ApiError("Non autorisé !", 401));
@@ -56,14 +55,12 @@ const userController = {
     const { email, name, password, currentPassword } = req.body;
 
     if (email) {
-      // 1. Vérifie si l'e-mail est déjà utilisé par un autre utilisateur
       const existingUser = await User.findOne({ where: { email } });
 
       if (existingUser && existingUser.id !== id) {
         return next(new ApiError("E-mail déjà utilisé", 409));
       }
 
-      // 2. Vérifie si l'e-mail est temporaire
       if (isDisposableEmail(email)) {
         return next(
           new ApiError(
@@ -73,13 +70,11 @@ const userController = {
         );
       }
 
-      // 3. Vérifie si le domaine est valide
       const domainIsValid = await isDomainValid(email);
       if (!domainIsValid) {
         return next(new ApiError("Ce domaine n'est pas valide.", 400));
       }
 
-      // Si tout est bon, on met à jour
       user.email = email;
     }
 
@@ -97,14 +92,10 @@ const userController = {
         );
       }
 
-      console.log("🧪 currentPassword reçu :", currentPassword);
-      console.log("🧪 Mot de passe actuel dans la base :", user.password);
-
       const passwordValid = await compare(currentPassword, user.password);
       if (!passwordValid) {
         return next(new ApiError("Mot de passe actuel incorrect", 401));
       }
-      console.log("✅ Résultat de la comparaison :", passwordValid);
 
       user.password = await hash(password);
     }
