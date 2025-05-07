@@ -14,4 +14,20 @@ export const toastSuccess = (message: string) => {
   });
 };
 
+export const toastInfo = (message: string) => {
+  iziToast.info({
+    position: "topRight",
+    timeout: 4000,
+    message
+  });
+}
+
+export const toastWarning = (message: string) => {
+  iziToast.warning({
+    position: "center",
+    timeout: 10000,
+    message,
+  })
+}
+
 

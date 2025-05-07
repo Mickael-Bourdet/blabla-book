@@ -9,7 +9,7 @@ import {
   deleteToWishRead,
 } from "../api/apiUser";
 import { useErrorHandler } from "../utils/useErrorHandler";
-import { toastSuccess } from "../utils/toast/toastSuccess";
+import { toastSuccess, toastInfo, toastWarning } from "../utils/toast/toastSuccess";
 import { useAuthStore } from "../utils/store/useAuthStore";
 
 const BookDetail = () => {
@@ -21,8 +21,17 @@ const BookDetail = () => {
   const [isRead, setIsRead] = useState(false);
   const [toRead, setToRead] = useState(false);
   const { handleError } = useErrorHandler();
-
+  // Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes
   const handleAddRead = () => {
+    if (!userId) {
+      toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
+   <div class="mt-4 text-center">
+     <a href="/auth" class="text-blue-600 underline font-semibold hover:text-blue-800 transition">
+       Se connecter
+     </a>
+   </div>`)
+      return
+    }
     addToMyReadLibrary(numericBookId);
     if (toRead) {
       handleRemoveWishRead();
@@ -33,10 +42,19 @@ const BookDetail = () => {
   };
   const handleRemoveRead = () => {
     deleteToMyReadLibrary(numericBookId);
-    toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
+    toastInfo(`Le livre a été enlevé de la liste "lu"`);
     setIsRead(false);
   };
   const handleWishRead = () => {
+    if (!userId) {
+      toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
+   <div class="mt-4 text-center">
+     <a href="/auth" class="text-blue-600 underline font-semibold hover:text-blue-800 transition">
+       Se connecter
+     </a>
+   </div>`);
+      return
+    }
     addToWishRead(numericBookId);
     if (isRead) {
       handleRemoveRead();
@@ -47,7 +65,7 @@ const BookDetail = () => {
   };
   const handleRemoveWishRead = () => {
     deleteToWishRead(numericBookId);
-    toastSuccess(`Le livre a bien été enlevé de la liste "à lire"`);
+    toastInfo(`Le livre a été enlevé de la liste "à lire"`);
     setToRead(false);
   };
 
