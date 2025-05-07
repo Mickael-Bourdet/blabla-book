@@ -2,10 +2,13 @@ import type { IUser,IUserUpdate } from "../@types";
 import { useState, useEffect } from "react";
 import { getOneUser, updateUser, deleteUser } from "../api/apiUser";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../utils/store/useAuthStore";
 
 
 
 const SettingsUser = () => {
+
+    
   const navigate = useNavigate();
   const [userData, setUserData] = useState<IUser | null>(null);
   const [username, setUsername] = useState("");
@@ -25,6 +28,7 @@ const SettingsUser = () => {
   useEffect(() => {
     const loadData = async () => {
       const oneUser = await getOneUser();
+
       if (!oneUser) {
         navigate("/404");
         return;
@@ -77,6 +81,8 @@ const SettingsUser = () => {
           return;
         }
         setUserData(updatedUser);
+        // pour mettre a jour le user sur tout les autre composant 
+        useAuthStore.getState().setUser(updatedUser);
       }
   
       // Réinitialisation des champs mot de passe
@@ -103,7 +109,7 @@ const SettingsUser = () => {
   };
 
   return (
-    <div className="flex flex-col w-full p-8 md:ml-100">
+    <div className="flex flex-col w-full p-8 items-center">
       {/* Bouton Retour */}
       <div className="mb-4">
         <Link to={`/profile`}>
