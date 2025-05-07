@@ -52,7 +52,7 @@ const Login = () => {
           onChange={(e) =>
             setLoginData({ ...loginData, email: e.target.value })
           }
-          className="w-full border border-gray-300 p-2 text-gray-400 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
           placeholder="email@example.com"
         />
       </div>
@@ -67,7 +67,7 @@ const Login = () => {
           onChange={(e) =>
             setLoginData({ ...loginData, password: e.target.value })
           }
-          className="w-full border border-gray-300 p-2 text-gray-400 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
           placeholder="Mot de passe"
         />
       </div>

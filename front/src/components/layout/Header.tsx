@@ -24,9 +24,7 @@ const Header = () => {
           </Link>
           <Link className="hover:text-blue-600" to="/library">
             <i className="fa-solid fa-book"></i>
-            <span className="whitespace-nowrap hidden xl:inline">
-              Bibliothèque
-            </span>
+            <span className="whitespace-nowrap hidden xl:inline"> Bibliothèque</span>
           </Link>
 
           {!user ? (
