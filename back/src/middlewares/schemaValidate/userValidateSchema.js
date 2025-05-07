@@ -1,9 +1,9 @@
 import Joi from "joi";
 import { registerSchema } from "./authValidateSchema.js";
-import Joi from "joi";
 
 
-const UpdateUserSchema = registerSchema
+
+const updateUserSchema = registerSchema
   .fork(["name", "email", "password", "confirmPassword"], (schema) =>
     schema.optional()
   ).append({
@@ -34,4 +34,4 @@ const UpdateUserSchema = registerSchema
     }),
   });
 
-  export { UpdateUserSchema };
+  export { updateUserSchema };
