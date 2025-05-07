@@ -45,7 +45,7 @@ const Authentication = () => {
   };
 
   return (
-    <section className="bg-white ">
+    <section>
       <Login />
       <Register
         data={registerData}
