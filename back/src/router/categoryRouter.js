@@ -9,3 +9,6 @@ export const router = Router();
  * @return {Category[]} 200 - success response
  */
 router.get("/categories", categoryController.getAllCategories);
+router.get("/categories/books", categoryController.getBooksByCategories);
+
+// TODO : delete this page
