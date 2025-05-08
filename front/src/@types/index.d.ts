@@ -38,9 +38,13 @@ export interface IUser {
 }
 
 export interface IUserUpdate {
-    name?: string;
-    email?: string;
-    currentPassword?: string;
-    password?: string;
-  }
-  
+  name?: string;
+  email?: string;
+  currentPassword?: string;
+  password?: string;
+}
+
+export interface ICategoryBooks {
+  category: ICategory[];
+  books: IBook[];
+}

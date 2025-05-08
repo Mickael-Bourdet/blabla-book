@@ -1,12 +1,32 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ICategory, ICategoryBooks } from "../@types";
+import { useErrorHandler } from "../utils/useErrorHandler";
+import { getBooksByCategories } from "../api/apiBooks";
 
 export default function CategoryPage() {
+  const [booksCategories, setBooksCategories] = useState<ICategoryBooks[]>([]);
+  const { handleError } = useErrorHandler();
+
+  useEffect(() => {
+    async function loadBooks() {
+      try {
+        const booksByCategories = await getBooksByCategories();
+        setBooksCategories(booksByCategories);
+      } catch (error) {
+        handleError(error);
+      }
+    }
+    loadBooks();
+    console.log(loadBooks());
+  }, []);
+
   return (
     <div className="md:ml-64">
       {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
       <main className="p-4">
         <section className="content">
-          <h2 className="text-xl mb-4 font-bold mt-[100px] ">Catégorie</h2>
+          <h2 className="text-xl mb-4 font-bold mt-[100px] ">{booksCategories.name}</h2>
 
           <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             <Link to="/books/bookid" className="block">
