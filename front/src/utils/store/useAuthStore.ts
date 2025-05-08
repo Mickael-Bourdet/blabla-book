@@ -13,19 +13,28 @@ interface AuthState {
   logout: () => void
 }
 
+
+/**
+ * Custom hook for managing authentication state with persistence.
+ * Uses Zustand for state management and persist middleware for local storage.
+ *
+ * @returns {AuthState} - The authentication state and methods.
+ */
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      user: null,
-      token: null,
+      user: null,  // Initialize user as null (not authenticated)
+      token: null, // Initialize token as null (not authenticated)
 
-      login: (name, id, token) => set(() => ({user : {name, id}, token})),
+      // Login function to set user data and token
+      login: (name, id, token) => set(() => ({user: {name, id}, token})),
 
+      // Logout function to clear user data and token
       logout: () => set({ user: null, token: null }),
     }),
     {
-      name: "auth-storage",
-      partialize: (state) => ({ user: state.user, token: state.token }),
+      name: "auth-storage",  // Key for local storage
+      partialize: (state) => ({ user: state.user, token: state.token }),  // Specify which parts of state to persist
     }
   )
 );

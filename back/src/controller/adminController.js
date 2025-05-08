@@ -1,6 +1,4 @@
-import { Book } from "../models/associations.js";
-import { Category } from "../models/Category.js";
-import { Author } from "../models/Author.js";
+import { Book, Category, Author } from "../models/associations.js";
 import { ApiError } from "../middlewares/ApiError.js";
 
 const adminController = {

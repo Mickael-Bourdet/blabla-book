@@ -17,11 +17,17 @@ interface PasswordRules {
   noSpaces: boolean;
 }
 
+/**
+ * Register component for user registration.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {IRegister} param0.data - Registration form data.
+ * @param {Function} param0.onChange - Function to handle form data changes.
+ * @param {Function} param0.onSubmit - Function to handle form submission.
+ * @returns {JSX.Element} - The rendered registration form.
+ */
 const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
-  // État pour contrôler l'affichage des règles de mot de passe
   const [showPasswordRules, setShowPasswordRules] = useState(false);
-
-  // État pour suivre quelles règles de mot de passe sont respectées
   const [passwordValidation, setPasswordValidation] = useState<PasswordRules>({
     minLength: false,
     hasUppercase: false,
@@ -70,6 +76,15 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
     );
   };
 
+  const passwordRulesList = [
+    { key: "minLength", label: "Au moins 12 caractères" },
+    { key: "hasUppercase", label: "Au moins une lettre majuscule" },
+    { key: "hasLowercase", label: "Au moins une lettre minuscule" },
+    { key: "hasNumber", label: "Au moins un chiffre" },
+    { key: "hasSpecial", label: "Au moins un caractère spécial" },
+    { key: "noSpaces", label: "Pas d'espaces" },
+  ] as const;
+
   return (
     <AuthForm title="M'inscrire">
       <div className="mb-4">
@@ -115,71 +130,22 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           placeholder="Mot de passe"
         />
 
-        {/* Affichage des règles de mot de passe uniquement quand l'input est en focus */}
+        {/* Display password rules only when the input is in focus */}
         {showPasswordRules && (
           <div className="mt-2 text-xs bg-gray-50 p-3 rounded border border-gray-200">
             <p className="font-medium mb-2">Le mot de passe doit contenir :</p>
             <ul className="space-y-1">
-              <li
-                className={
-                  passwordValidation.minLength
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.minLength)} Au moins 12
-                caractères
-              </li>
-              <li
-                className={
-                  passwordValidation.hasUppercase
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasUppercase)} Au moins
-                une lettre majuscule
-              </li>
-              <li
-                className={
-                  passwordValidation.hasLowercase
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasLowercase)} Au moins
-                une lettre minuscule
-              </li>
-              <li
-                className={
-                  passwordValidation.hasNumber
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasNumber)} Au moins un
-                chiffre
-              </li>
-              <li
-                className={
-                  passwordValidation.hasSpecial
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasSpecial)} Au moins
-                un caractère spécial
-              </li>
-              <li
-                className={
-                  passwordValidation.noSpaces
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.noSpaces)} Pas
-                d'espaces
-              </li>
+              {passwordRulesList.map((rule) => {
+                const isValid = passwordValidation[rule.key];
+                return (
+                  <li
+                    key={rule.key}
+                    className={isValid ? "text-green-600" : "text-gray-600"}
+                  >
+                    {renderValidationMark(isValid)} {rule.label}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}
@@ -200,7 +166,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           placeholder="Confirmer le mot de passe"
         />
 
-        {/* Vérification que les mots de passe correspondent */}
+        {/* Checking that passwords match */}
         {data.password && data.confirmPassword && (
           <div
             className={`mt-1 text-xs ${

@@ -1,4 +1,4 @@
-import { User } from "../models/User.js";
+import { User } from "../models/associations.js"
 import { ApiError } from "../middlewares/ApiError.js";
 
 /**
