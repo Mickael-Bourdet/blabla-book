@@ -77,5 +77,3 @@ export async function getBooksByCategories(id: number): Promise<ICategoryBooks |
     return null;
   }
 }
-
-console.log(getBooksByCategories(2));
