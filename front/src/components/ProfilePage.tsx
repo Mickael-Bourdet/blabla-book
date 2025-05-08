@@ -20,15 +20,11 @@ const ProfilePage = () => {
       }
 
       try {
-<<<<<<< HEAD
-        const userData = await getOneUser(user.id);
-=======
         const userData = await getOneUser();
         if (!userData) {
           setError("Impossible de charger le profil.");
           return;
         }
->>>>>>> dev
         setLocalUser(userData);
       } catch (err) {
         setError("Impossible de charger le profil.");

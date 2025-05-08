@@ -24,8 +24,8 @@ const BookDetail = () => {
      <a href="/auth" class="text-blue-600 underline font-semibold hover:text-blue-800 transition">
        Se connecter
      </a>
-   </div>`)
-      return
+   </div>`);
+      return;
     }
     addToMyReadLibrary(numericBookId);
     if (toRead) {
@@ -48,7 +48,7 @@ const BookDetail = () => {
        Se connecter
      </a>
    </div>`);
-      return
+      return;
     }
     addToWishRead(numericBookId);
     if (isRead) {
@@ -75,7 +75,6 @@ const BookDetail = () => {
           const wantsToRead = newBook.users_need_to_read.some((user) => user.id === userId);
           setIsRead(hasRead);
           setToRead(wantsToRead);
-
         } catch (error) {
           handleError(error);
         }
@@ -97,97 +96,43 @@ const BookDetail = () => {
         className="w-30 mr-5 h-auto mb-4 md:w-60"
       />
 
-<<<<<<< HEAD
-          <div className="text-sm md:text-base max-w-xl">
-            <p>
-              <span className="font-semibold">Par</span> : {book.authors.map((auth) => auth.name).join(", ")}
-            </p>
-=======
       <div className="text-sm md:text-base max-w-xl">
         <p>
-          <span className="font-semibold">Par</span> :{" "}
-          {book.authors.map((auth) => auth.name).join(", ")}
+          <span className="font-semibold">Par</span> : {book.authors.map((auth) => auth.name).join(", ")}
         </p>
->>>>>>> dev
 
         <h1 className="text-lg font-bold mb-2">{book.title}</h1>
 
-<<<<<<< HEAD
-            <p>
-              <span className="font-semibold">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
-            </p>
-
-            <p className="mb-2">
-              <span className="font-semibold">Date de publication</span> : {book.published}
-            </p>
-=======
         <p>
-          <span className="font-semibold">Catégorie</span> :{" "}
-          {book.categories.map((cat) => cat.name).join(", ")}
+          <span className="font-semibold">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
         </p>
 
         <p className="mb-2">
-          <span className="font-semibold">Date de publication</span> :{" "}
-          {book.published}
+          <span className="font-semibold">Date de publication</span> : {book.published}
         </p>
->>>>>>> dev
 
         <p className="font-semibold mt-4 mb-1">Description :</p>
         <p>{book.description}</p>
 
-<<<<<<< HEAD
-            <div className="flex gap-20 mt-4 ml-30">
-              <button
-                onClick={!isRead ? handleAddRead : handleRemoveRead}
-                className={`flex items-center gap-2 ${
-                  isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : "bg-gray-300 hover:bg-gray-200"
-                }  rounded px-10 py-2 cursor-pointer`}
-              >
-                <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-square-xmark"}`}></i>
-                <span>{`${isRead && !toRead ? "Lu" : "Lu"}`}</span>
-              </button>
-              <button
-                onClick={!toRead ? handleWishRead : handleRemoveWishRead}
-                className={`flex items-center gap-2 ${
-                  toRead && !isRead ? "bg-green-300 hover:bg-green-200" : "bg-gray-300 hover:bg-gray-200"
-                } rounded px-10 py-2 cursor-pointer`}
-              >
-                <i className="fa-solid fa-book-open-reader"></i>
-                <span>À Lire</span>
-              </button>
-            </div>
-          </div>
-=======
         <div className="flex flex-col items-center gap-4 lg:flex-row mt-4">
           <button
             onClick={!isRead ? handleAddRead : handleRemoveRead}
             className={`flex items-center gap-2 ${
-              isRead && !toRead
-                ? `bg-green-300 hover:bg-green-200 ${!toRead}`
-                : "bg-gray-300 hover:bg-gray-200"
+              isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : "bg-gray-300 hover:bg-gray-200"
             }  rounded px-10 py-2 cursor-pointer`}
           >
-            <i
-              className={`${
-                isRead && !toRead
-                  ? "fa-solid fa-square-check"
-                  : "fa-solid fa-square-xmark"
-              }`}
-            ></i>
+            <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-square-xmark"}`}></i>
             <span>Lu</span>
           </button>
           <button
             onClick={!toRead ? handleWishRead : handleRemoveWishRead}
             className={`flex items-center gap-2 ${
-              toRead && !isRead
-                ? "bg-green-300 hover:bg-green-200"
-                : "bg-gray-300 hover:bg-gray-200"
+              toRead && !isRead ? "bg-green-300 hover:bg-green-200" : "bg-gray-300 hover:bg-gray-200"
             } rounded px-10 py-2 cursor-pointer`}
           >
             <i className="fa-solid fa-book-open-reader"></i>
             <span>À Lire</span>
           </button>
->>>>>>> dev
         </div>
       </div>
     </div>

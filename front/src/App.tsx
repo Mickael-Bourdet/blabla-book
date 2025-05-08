@@ -16,6 +16,7 @@ import Mentions from "./pages/Mentions";
 import ErrorServer from "./pages/ErrorServer";
 import { ErrorBoundary } from "react-error-boundary";
 import Logout from "./components/authentication/Logout";
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   const location = useLocation();
@@ -23,7 +24,7 @@ function App() {
     <>
       <Navbars />
       <Header />
-      <main className="md:ml-64 flex flex-col bg-body">
+      <main className="md:ml-64 flex flex-col min-h-screen bg-body">
         {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
           // The `resetKeys` prop resets the error state automatically whenever the URL changes.
           // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
+            <Route path="/categories/:categoryId" element={<CategoryPage />} />
             <Route path="/library" element={<Library />} />
             <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />

@@ -5,8 +5,6 @@ import SearchBar from "./SearchBar";
 const Header = () => {
   const { user } = useAuthStore();
 
-  
-
   return (
     <div className="flex ml-0 sticky top-0 z-10">
       <header className="bg-header flex items-center justify-between p-4 left-0 w-full md:pl-64 backdrop-blur-sm transition-all">
@@ -24,11 +22,7 @@ const Header = () => {
           </Link>
           <Link className="hover:text-blue-600" to="/library">
             <i className="fa-solid fa-book"></i>
-<<<<<<< HEAD
-            <span className="whitespace-nowrap hidden xl:inline">Bibliothèque</span>
-=======
             <span className="whitespace-nowrap hidden xl:inline"> Bibliothèque</span>
->>>>>>> dev
           </Link>
 
           {!user ? (
@@ -50,16 +44,8 @@ const Header = () => {
       </header>
 
       {/* Navigation mobile */}
-<<<<<<< HEAD
-      <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4 z-10 rounded-t md:hidden">
-        <Link to="/" className="hover:text-blue-600 flex flex-col items-center text-sm">
-=======
       <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4 z-10 rounded-t md:hidden ">
-        <Link
-          to="/"
-          className="hover:text-blue-600 flex flex-col items-center text-sm"
-        >
->>>>>>> dev
+        <Link to="/" className="hover:text-blue-600 flex flex-col items-center text-sm">
           <i className="fa-solid fa-house-chimney"></i> Accueil
         </Link>
         <Link to="/library" className="hover:text-blue-600 flex flex-col items-center text-sm">

@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ICategory } from "../../@types";
+import { getAllCategories } from "../../api/apiBooks";
 
 const Navbars = () => {
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  useEffect(() => {
+    async function loadCategories() {
+      try {
+        const allCategories = await getAllCategories();
+        setCategories(allCategories);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadCategories();
+  }, []);
   return (
     <div>
       {/* Conteneur principal avec Flexbox */}
@@ -15,86 +30,15 @@ const Navbars = () => {
           </div>
           <h2 className="text-lg mb-4">Genres</h2>
           <ul>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Romance
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Thriller
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Fantaisie
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Science-fiction
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Développement personnel
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Biographie
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Jeunesse
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Manga
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Bande dessinée
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Classique
-              </Link>
-            </li>
+            {categories.map((category) => {
+              return (
+                <li key={category.id}>
+                  <Link to={`/categories/${category.id}`} className="block text-gray-800 hover:text-blue-600 mb-2">
+                    {category.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </aside>
 
