@@ -1,4 +1,4 @@
-import { Book } from "../models/Book.js";
+import { Book, Author } from "../models/associations.js";
 import { Op } from "sequelize";
 import { ApiError } from "../middlewares/ApiError.js";
 
@@ -12,47 +12,84 @@ const bookController = {
    * @returns {Array} - Object
    */
   async getAllBooks(req, res, next) {
-    const { search, categoryId, categoryName } = req.query; // get query
+    const { query } = req.query;
 
-    const whereConditions = {};
-
-    const includeOptions = [{ association: "categories" }, { association: "authors" }];
-
-    // filter by author or name
-    if (search) {
-      whereConditions[Op.or] = [
-        { title: { [Op.iLike]: `%${search}%` } }, // case insensitive on the book title
-        { "$authors.name$": { [Op.iLike]: `%${search}%` } }, // case insensitive on the author name
-      ];
+    // Vérifie si le paramètre de recherche est passé
+    if (!query) {
+      return res.status(400).json({ message: "Query parameter is required" });
     }
 
-    // If param is given, filter by category ID
-    if (categoryId) {
-      // initialise association to prevent error
-      includeOptions[0].where = includeOptions[0].where || {};
-      // define categoryId as a filter
-      includeOptions[0].where.id = parseInt(categoryId);
-    }
-    // If param is given, filter by category name
-    if (categoryName) {
-      // initialise association to prevent error
-      includeOptions[0].where = includeOptions[0].where || {};
-      // define categoryName as a filter
-      includeOptions[0].where.name = { [Op.iLike]: `%${categoryName}%` }; // case insensitive on the category name
-    }
+    try {
+      console.log(`Recherche backend pour: "${query}"`);
 
-    const result = await Book.findAll({
-      where: whereConditions,
-      include: includeOptions,
-    });
-
-    if (result.length === 0) {
-      return res.status(200).json({
-        message: "Aucun livre trouvé.",
-        data: [],
+      // Première requête : recherche par titre de livre
+      const booksByTitle = await Book.findAll({
+        where: {
+          title: { [Op.iLike]: `%${query}%` },
+        },
+        include: [
+          {
+            model: Author,
+            as: "author",
+          },
+        ],
       });
+
+      // Deuxième requête : recherche des livres par nom d'auteur
+      const booksByAuthor = await Book.findAll({
+        include: [
+          {
+            model: Author,
+            as: "author",
+            where: {
+              name: { [Op.iLike]: `%${query}%` },
+            },
+          },
+        ],
+      });
+
+      // Fusion des résultats sans doublons
+      const allBookIds = new Set();
+      const books = [];
+
+      // Ajoute les livres trouvés par titre
+      booksByTitle.forEach((book) => {
+        if (!allBookIds.has(book.id)) {
+          allBookIds.add(book.id);
+          books.push(book);
+        }
+      });
+
+      // Ajoute les livres trouvés par auteur (sans dupliquer)
+      booksByAuthor.forEach((book) => {
+        if (!allBookIds.has(book.id)) {
+          allBookIds.add(book.id);
+          books.push(book);
+        }
+      });
+
+      // Recherche directe des auteurs par nom
+      const authors = await Author.findAll({
+        where: {
+          name: { [Op.iLike]: `%${query}%` },
+        },
+        limit: 10,
+      });
+
+      console.log(
+        `Résultats trouvés - Livres par titre: ${booksByTitle.length}, Livres par auteur: ${booksByAuthor.length}, Total livres: ${books.length}, Auteurs: ${authors.length}`
+      );
+
+      // Réponse avec les deux collections
+      return res.status(200).json({
+        books,
+        authors,
+        message: books.length === 0 && authors.length === 0 ? "No results found" : undefined,
+      });
+    } catch (error) {
+      console.error("Error while searching books and authors:", error);
+      return res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
-    res.status(200).json(result);
   },
 
   /**
