@@ -5,6 +5,26 @@ import { isAdminMiddleware } from "../middlewares/isAdminMiddleware.js";
 
 export const router = Router();
 
+/**
+ * GET /dashboard/users
+ * @summary Retrieve all users (admin only).
+ * @return {Object} - The response object with the list of users.
+ * @return {Error} - Error if the request fails.
+ */
 router.get("/dashboard/users", authMiddleware, isAdminMiddleware, dashboardController.getAllUsers);
+
+/**
+ * GET /dashboard/categories
+ * @summary Retrieve all categories (admin only).
+ * @return {Object} - The response object with the list of categories.
+ * @return {Error} - Error if the request fails.
+ */
 router.get("/dashboard/categories", authMiddleware, isAdminMiddleware, dashboardController.getAllCategories);
+
+/**
+ * GET /dashboard/authors
+ * @summary Retrieve all authors (admin only).
+ * @return {Object} - The response object with the list of authors.
+ * @return {Error} - Error if the request fails.
+ */
 router.get("/dashboard/authors", authMiddleware, isAdminMiddleware, dashboardController.getAllAuthors);
