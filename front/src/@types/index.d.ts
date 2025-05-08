@@ -44,7 +44,16 @@ export interface IUserUpdate {
   password?: string;
 }
 
-export interface ICategoryBooks {
-  category: ICategory[];
-  books: IBook[];
+export interface ICategoryBooks extends ICategory {
+  books: IBookFromCategory[];
+}
+
+export interface IBookFromCategory {
+  id: number;
+  title: string;
+  isbn: string;
+  description: string | null;
+  published: number | null;
+  cover_url: string | null;
+  page_count: number;
 }

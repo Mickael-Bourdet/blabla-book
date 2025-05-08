@@ -5,7 +5,7 @@ import { useErrorHandler } from "../utils/useErrorHandler";
 import { getBooksByCategories } from "../api/apiBooks";
 
 export default function CategoryPage() {
-  const [booksCategories, setBooksCategories] = useState<ICategoryBooks[]>([]);
+  const [booksCategories, setBooksCategories] = useState<ICategoryBooks | null>(null);
   const { handleError } = useErrorHandler();
   const { categoryId } = useParams();
 
@@ -23,26 +23,39 @@ export default function CategoryPage() {
   }, [categoryId]);
 
   return (
-    <div className="md:ml-64">
-      {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
-      <main className="p-4">
+    <div className="bg-body font-sans pt-8">
+      {/* Contenu principal avec marge à gauche */}
+      <div className="">
+        {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
         <section className="content">
-          <h2 className="text-xl mb-4 font-bold mt-[100px] ">{booksCategories.name}</h2>
-
-          <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            <Link to="/books/bookid" className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                <img
-                  src="https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg"
-                  alt="Le Comte de Monte-Cristo - Dumas"
-                  className="h-auto w-full object-cover mb-2"
-                />
-                <p>Le Comte de Monte-Cristo</p>
-              </div>
-            </Link>
+          <div>
+            <div className="bg-nav-footer-50 font-sans">
+              {/* Contenu principal avec marge à gauche */}{" "}
+              {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
+              <section className="content ml-[5vw] mr-[5vw] pb-20 ">
+                <h2 className="text-xl mb-4 font-title font-bold">
+                  Tous Nos Livres du genre : {booksCategories?.name}
+                </h2>
+                <div className="book-list grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+                  {/* loop on books */}
+                  {booksCategories?.books.map((book) => (
+                    <Link to={`/books/${book.id}`} key={book.id} className="block">
+                      <div className="book cursor-pointer hover:shadow-lg hover:rounded-md transition-shadow text-center">
+                        <img
+                          src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
+                          alt={`${book.title}`}
+                          className="h-80 w-100 object-contain mb-2 mx-auto"
+                        />
+                        <p className="font-body tracking-wider [word-spacing:5px] text-lg">{book.title}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

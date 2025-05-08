@@ -64,18 +64,18 @@ export async function getAllCategories(): Promise<ICategory[]> {
     return [];
   }
 }
-export async function getBooksByCategories(id: number): Promise<ICategoryBooks[]> {
+export async function getBooksByCategories(id: number): Promise<ICategoryBooks | null> {
   try {
     const response = await fetch(`${apiBaseUrl}/categories/${id}/books`);
     if (response.ok && response.status === 200) {
       const categoriesWithBooks = await response.json();
       return categoriesWithBooks;
     }
-    return [];
+    return null;
   } catch (error) {
     console.error("Erreur lors du chargement", error);
-    return [];
+    return null;
   }
 }
 
-console.log(getBooksByCategories());
+console.log(getBooksByCategories(2));
