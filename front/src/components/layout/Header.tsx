@@ -44,7 +44,7 @@ const Header = () => {
       </header>
 
       {/* Navigation mobile */}
-      <div className="fixed bottom-0 left-0 w-full bg-stone-300 flex justify-around p-4 z-10 rounded-t md:hidden ">
+      <div className="fixed bottom-0 left-0 w-full bg-body border-t-1 border-placeholder flex justify-around p-4 z-10 rounded-t md:hidden ">
         <Link to="/" className="hover:text-blue-600 flex flex-col items-center text-sm">
           <i className="fa-solid fa-house-chimney"></i> Accueil
         </Link>

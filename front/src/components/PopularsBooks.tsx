@@ -5,7 +5,7 @@ const PopularBooks = () => {
   return (
     <section className="content ml-[5vw] mr-[5vw] pt-8">
       <h2 className="text-3xl mb-4 font-bold font-title">Livres populaires</h2>
-      <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="book-list grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
         {popularBooks.map((popularBook) => {
           return (
             <Link key={popularBook.id} to={`/books/${popularBook.id}`} className="block">
@@ -13,7 +13,7 @@ const PopularBooks = () => {
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${popularBook.cover_url}.jpg`}
                   alt={popularBook.title}
-                  className="h-80 w-100 object-contain mb-2 mx-auto"
+                  className="h-80 w-full object-contain mb-2 mx-auto"
                 />
                 <p className="text-center text-lg font-body">{popularBook.title}</p>
               </div>
