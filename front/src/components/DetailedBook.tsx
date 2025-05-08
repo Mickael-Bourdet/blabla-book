@@ -115,7 +115,7 @@ const BookDetail = () => {
         <p className="font-bold mt-4 mb-1 font-title text-lg">Description :</p>
         <p>{book.description}</p>
 
-        <div className="flex flex-col items-center gap-4 lg:flex-row mt-4">
+        <div className="flex flex-col items-center gap-4 sm:flex-row mt-4">
           <button
             onClick={!isRead ? handleAddRead : handleRemoveRead}
             className={`flex items-center gap-2 ${
