@@ -1,4 +1,4 @@
-import type { IBooks, IBook } from "../@types";
+import type { IBooks, IBook, ICategory } from "../@types";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 interface IBookQueryParams {
@@ -49,4 +49,18 @@ export async function searchBooks(query: string): Promise<IBook[]> {
 
   const books = await response.json();
   return books;
+}
+
+export async function getAllCategories(): Promise<ICategory[]> {
+  try {
+    const response = await fetch(`${apiBaseUrl}/categories`);
+    if (response.ok && response.status === 200) {
+      const categories = await response.json();
+      return categories;
+    }
+    return [];
+  } catch (error) {
+    console.error("Erreur lors du chargement", error);
+    return [];
+  }
 }
