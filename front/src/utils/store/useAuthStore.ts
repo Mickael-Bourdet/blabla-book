@@ -11,7 +11,7 @@ interface AuthState {
   token: string | null
   login: (name: string, id: number, token: string) => void
   logout: () => void,
-  setUser: (userData: IUserAuthStore) => void; // permet de mettre a jour le user et de le rendre dispo a tout les composants
+  setUser: (userData: IUserAuthStore) => void; // Allows you to update the user and make it available to all components
 }
 
 /**
