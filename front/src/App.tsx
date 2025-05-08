@@ -23,7 +23,7 @@ function App() {
     <>
       <Navbars />
       <Header />
-      <main className="md:ml-64 flex flex-col min-h-screen bg-body">
+      <main className="md:ml-64 flex flex-col bg-body">
         {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
           // The `resetKeys` prop resets the error state automatically whenever the URL changes.
           // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
@@ -32,7 +32,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
             <Route path="/library" element={<Library />} />
-            <Route path="/user/:userId/settings" element={<SettingsUser />} />
+            <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/auth" element={<Authentication />} />
             <Route path="/logout" element={<Logout />} />

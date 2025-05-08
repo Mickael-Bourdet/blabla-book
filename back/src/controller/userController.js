@@ -1,4 +1,7 @@
-import { User, Book, Author } from "../models/associations.js";
+import { User } from "../models/associations.js";
+import { ApiError } from "../middlewares/ApiError.js";
+import { compare, hash } from "../services/authService.js";
+import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
 
 const userController = {
   // Get one user with associated tables (already read books, wish-to-read books)
@@ -10,16 +13,18 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async getOneUser(req, res, next) {
-    const id = parseInt(req.params.userId);
+    const id = req.user?.userId;
+    if (!id) {
+      return next(new ApiError("Non autorisé !", 401));
+    }
 
     // Fetch the user with associated books
     const user = await User.findByPk(id, {
-        include: ["books_already_read", "books_wish_read"],
+      attributes: ["id", "name", "email"],
+      include: ["books_already_read", "books_wish_read"],
     });
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 409));
     }
 
     res.status(200).json(user);
@@ -35,28 +40,64 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async updateUser(req, res, next) {
-    const id = parseInt(req.params.userId);
+    const id = req.user?.userId;
+    if (!id) {
+      return next(new ApiError("Non autorisé !", 401));
+    }
 
     // Fetch the user
     const user = await User.findByPk(id);
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 404));
     }
 
     // Update the user data
-    const { email, name, password } = req.body;
+    const { email, name, password, currentPassword } = req.body;
 
     if (email) {
+      const existingUser = await User.findOne({ where: { email } });
+
+      if (existingUser && existingUser.id !== id) {
+        return next(new ApiError("E-mail déjà utilisé", 409));
+      }
+
+      if (isDisposableEmail(email)) {
+        return next(
+          new ApiError(
+            "Les adresses e-mail temporaires ne sont pas acceptées",
+            400
+          )
+        );
+      }
+
+      const domainIsValid = await isDomainValid(email);
+      if (!domainIsValid) {
+        return next(new ApiError("Ce domaine n'est pas valide.", 400));
+      }
+
       user.email = email;
     }
+
     if (name) {
       user.name = name;
     }
 
     if (password) {
-      user.password = password;
+      if (!currentPassword) {
+        return next(
+          new ApiError(
+            "Le mot de passe actuel est requis pour le modifier",
+            400
+          )
+        );
+      }
+
+      const passwordValid = await compare(currentPassword, user.password);
+      if (!passwordValid) {
+        return next(new ApiError("Mot de passe actuel incorrect", 401));
+      }
+
+      user.password = await hash(password);
     }
 
     // Save the updated user data
@@ -74,20 +115,20 @@ const userController = {
    * @throws {Error} 409 - Utilisateur non trouvé.
    */
   async deleteUser(req, res, next) {
-    const id = parseInt(req.params.userId);
+    const id = req.user?.userId;
+    if (!id) {
+      return next(new ApiError("Non autorisé !", 401));
+    }
 
     // Fetch the user
     const user = await User.findByPk(id);
 
     if (!user) {
-      const error = new Error("Utilisateur non trouvé");
-      error.status = 409;
-      return next(error);
+      return next(new ApiError("Utilisateur non trouvé", 404));
     } else {
       // Delete the user
       await user.destroy();
-
-      res.status(200).json({ message: "Utilisateur supprimé" });
+      res.sendStatus(204);
     }
   },
 };

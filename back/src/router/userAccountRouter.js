@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { validate } from "../middlewares/validateWrapper.js";
-import { UpdateUserSchema } from "../middlewares/schemaValidate/userValidateSchema.js";
+import { updateUserSchema } from "../middlewares/schemaValidate/userValidateSchema.js";
 import { userController } from "../controller/userController.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 export const router = Router();
 
@@ -13,7 +14,7 @@ export const router = Router();
  * @return {object} 200 - Success response with the user's data.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
-router.get("/user/:userId", userController.getOneUser);
+router.get("/user", authMiddleware, userController.getOneUser);
 
 // Update user information
 /**
@@ -24,7 +25,7 @@ router.get("/user/:userId", userController.getOneUser);
  * @return {object} 200 - Success response with the updated user data.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
-router.patch("/user/:userId", validate(UpdateUserSchema), userController.updateUser);
+router.patch("/user", authMiddleware, validate(updateUserSchema), userController.updateUser);
 
 // Delete a user
 /**
@@ -34,4 +35,4 @@ router.patch("/user/:userId", validate(UpdateUserSchema), userController.updateU
  * @return {object} 200 - Success response with a message confirming deletion.
  * @throws {Error} User not found (404) - If the user does not exist.
  */
-router.delete("/user/:userId", validate(UpdateUserSchema), userController.deleteUser);
+router.delete("/user", authMiddleware, userController.deleteUser);
