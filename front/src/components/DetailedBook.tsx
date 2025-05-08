@@ -89,7 +89,7 @@ const BookDetail = () => {
   }
 
   return (
-    <div className="bg-beige-50 flex flex-row  p-4 items-center md:flex-row lg:ml-64 md:p-8 md:gap-8 mt-5">
+    <div className="bg-body flex flex-row  p-4 items-center md:flex-row lg:ml-64 md:p-8 md:gap-8 mt-5 font-body tracking-wider [word-spacing:2px]">
       <img
         src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
         alt={`${book.title}`}
@@ -98,20 +98,21 @@ const BookDetail = () => {
 
       <div className="text-sm md:text-base max-w-xl">
         <p>
-          <span className="font-semibold">Par</span> : {book.authors.map((auth) => auth.name).join(", ")}
+          <span className="font-bold font-title text:2xl">Par</span> :{" "}
+          {book.authors.map((auth) => auth.name).join(", ")}
         </p>
 
-        <h1 className="text-lg font-bold mb-2">{book.title}</h1>
+        <h1 className="text-2xl font-title font-bold mb-2">{book.title}</h1>
 
         <p>
-          <span className="font-semibold">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
+          <span className="font-bold font-title">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
         </p>
 
         <p className="mb-2">
-          <span className="font-semibold">Date de publication</span> : {book.published}
+          <span className="font-bold font-title">Date de publication</span> : {book.published}
         </p>
 
-        <p className="font-semibold mt-4 mb-1">Description :</p>
+        <p className="font-bold mt-4 mb-1 font-title text-lg">Description :</p>
         <p>{book.description}</p>
 
         <div className="flex flex-col items-center gap-4 lg:flex-row mt-4">
