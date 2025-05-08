@@ -64,3 +64,16 @@ export async function getAllCategories(): Promise<ICategory[]> {
     return [];
   }
 }
+export async function getBooksByCategories(): Promise<ICategory[]> {
+  try {
+    const response = await fetch(`${apiBaseUrl}/categories/books`);
+    if (response.ok && response.status === 200) {
+      const categories = await response.json();
+      return categories;
+    }
+    return [];
+  } catch (error) {
+    console.error("Erreur lors du chargement", error);
+    return [];
+  }
+}
