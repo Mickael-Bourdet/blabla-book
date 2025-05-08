@@ -10,9 +10,9 @@ interface AuthState {
   user: IUserAuthStore | null
   token: string | null
   login: (name: string, id: number, token: string) => void
-  logout: () => void
+  logout: () => void,
+  setUser: (userData: IUserAuthStore) => void; // permet de mettre a jour le user et de le rendre dispo a tout les composants
 }
-
 
 /**
  * Custom hook for managing authentication state with persistence.
@@ -31,6 +31,8 @@ export const useAuthStore = create<AuthState>()(
 
       // Logout function to clear user data and token
       logout: () => set({ user: null, token: null }),
+
+      setUser: (userData) => set({ user: userData }),
     }),
     {
       name: "auth-storage",  // Key for local storage

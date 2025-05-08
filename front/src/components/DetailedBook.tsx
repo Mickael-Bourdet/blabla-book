@@ -9,19 +9,30 @@ import {
   deleteToWishRead,
 } from "../api/apiUser";
 import { useErrorHandler } from "../utils/useErrorHandler";
-import { toastSuccess } from "../utils/toast/toastSuccess";
+import { toastSuccess, toastInfo, toastWarning } from "../utils/toast/toastSuccess";
+import { useAuthStore } from "../utils/store/useAuthStore";
 
 const BookDetail = () => {
+  const { user } = useAuthStore();
+  const userId = user?.id;
   const { bookId } = useParams();
   const numericBookId = Number(bookId);
   const [book, setBook] = useState<IBook>();
   const [isRead, setIsRead] = useState(false);
   const [toRead, setToRead] = useState(false);
   const { handleError } = useErrorHandler();
-
-  // TODO changer 1 par userId
+  // Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes
   const handleAddRead = () => {
-    addToMyReadLibrary(1, numericBookId);
+    if (!userId) {
+      toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
+   <div class="mt-4 text-center">
+     <a href="/auth" class="text-blue-600 underline font-semibold hover:text-blue-800 transition">
+       Se connecter
+     </a>
+   </div>`)
+      return
+    }
+    addToMyReadLibrary(numericBookId);
     if (toRead) {
       handleRemoveWishRead();
     }
@@ -30,12 +41,21 @@ const BookDetail = () => {
     setToRead(false);
   };
   const handleRemoveRead = () => {
-    deleteToMyReadLibrary(1, numericBookId);
-    toastSuccess(`Le livre a bien été enlevé de la liste "lu"`);
+    deleteToMyReadLibrary(numericBookId);
+    toastInfo(`Le livre a été enlevé de la liste "lu"`);
     setIsRead(false);
   };
   const handleWishRead = () => {
-    addToWishRead(1, numericBookId);
+    if (!userId) {
+      toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
+   <div class="mt-4 text-center">
+     <a href="/auth" class="text-blue-600 underline font-semibold hover:text-blue-800 transition">
+       Se connecter
+     </a>
+   </div>`);
+      return
+    }
+    addToWishRead(numericBookId);
     if (isRead) {
       handleRemoveRead();
     }
@@ -44,8 +64,8 @@ const BookDetail = () => {
     setIsRead(false);
   };
   const handleRemoveWishRead = () => {
-    deleteToWishRead(1, numericBookId);
-    toastSuccess(`Le livre a bien été enlevé de la liste "à lire"`);
+    deleteToWishRead(numericBookId);
+    toastInfo(`Le livre a été enlevé de la liste "à lire"`);
     setToRead(false);
   };
 
@@ -53,8 +73,14 @@ const BookDetail = () => {
     const loadData = async () => {
       if (bookId) {
         try {
-          const newBook = await getOneBook(Number.parseInt(bookId));
+          const newBook = await getOneBook(numericBookId);
           setBook(newBook);
+
+          const hasRead = newBook.users_has_read.some((user) => user.id === userId);
+          const wantsToRead = newBook.users_need_to_read.some((user) => user.id === userId);
+          setIsRead(hasRead);
+          setToRead(wantsToRead);
+
         } catch (error) {
           handleError(error);
         }
@@ -62,7 +88,7 @@ const BookDetail = () => {
     };
 
     loadData();
-  }, [bookId]);
+  }, [bookId, userId]);
 
   if (!book) {
     return (
@@ -73,70 +99,65 @@ const BookDetail = () => {
   }
 
   return (
-    <div className="md:ml-64">
-      {/* Ajoute une marge à gauche sur les écrans md et plus grands */}
-      <section className="bg-beige-50 p-4 md:p-8">
-        <div className="flex flex-row items-center md:flex-row  md:gap-8 mt-15">
-          <img
-            src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
-            alt={`${book.title}`}
-            className="w-30 mr-5 h-auto mb-4 md:w-60"
-          />
+    <div className="bg-beige-50 flex flex-row  p-4 items-center md:flex-row lg:ml-64 md:p-8 md:gap-8 mt-5">
+      <img
+        src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
+        alt={`${book.title}`}
+        className="w-30 mr-5 h-auto mb-4 md:w-60"
+      />
 
-          <div className="text-sm md:text-base max-w-xl">
-            <p>
-              <span className="font-semibold">Par</span> :{" "}
-              {book.authors.map((auth) => auth.name).join(", ")}
-            </p>
+      <div className="text-sm md:text-base max-w-xl">
+        <p>
+          <span className="font-semibold">Par</span> :{" "}
+          {book.authors.map((auth) => auth.name).join(", ")}
+        </p>
 
-            <h1 className="text-lg font-bold mb-2">{book.title}</h1>
+        <h1 className="text-lg font-bold mb-2">{book.title}</h1>
 
-            <p>
-              <span className="font-semibold">Catégorie</span> :{" "}
-              {book.categories.map((cat) => cat.name).join(", ")}
-            </p>
+        <p>
+          <span className="font-semibold">Catégorie</span> :{" "}
+          {book.categories.map((cat) => cat.name).join(", ")}
+        </p>
 
-            <p className="mb-2">
-              <span className="font-semibold">Date de publication</span> :{" "}
-              {book.published}
-            </p>
+        <p className="mb-2">
+          <span className="font-semibold">Date de publication</span> :{" "}
+          {book.published}
+        </p>
 
-            <p className="font-semibold mt-4 mb-1">Description :</p>
-            <p>{book.description}</p>
+        <p className="font-semibold mt-4 mb-1">Description :</p>
+        <p>{book.description}</p>
 
-            <div className="flex gap-20 mt-4 ml-30">
-              <button
-                onClick={!isRead ? handleAddRead : handleRemoveRead}
-                className={`flex items-center gap-2 ${
-                  isRead && !toRead
-                    ? `bg-green-300 hover:bg-green-200 ${!toRead}`
-                    : "bg-gray-300 hover:bg-gray-200"
-                }  rounded px-10 py-2 cursor-pointer`}
-              >
-                <i
-                  className={`${
-                    isRead && !toRead
-                      ? "fa-solid fa-square-check"
-                      : "fa-solid fa-eye"
-                  }`}
-                ></i>
-                <span>{`${isRead && !toRead ? "Lu" : "Non Lu"}`}</span>
-              </button>
-              <button
-                onClick={!toRead ? handleWishRead : handleRemoveWishRead}
-                className={`flex items-center gap-2 ${
-                  toRead && !isRead
-                    ? "bg-green-300 hover:bg-green-200"
-                    : "bg-gray-300 hover:bg-gray-200"
-                } rounded px-10 py-2 cursor-pointer`}
-              >
-                <i className="fa-solid fa-book-open-reader"></i>
-                <span>À Lire</span>
-              </button>
-            </div>
-          </div>
+        <div className="flex flex-col items-center gap-4 lg:flex-row mt-4">
+          <button
+            onClick={!isRead ? handleAddRead : handleRemoveRead}
+            className={`flex items-center gap-2 ${
+              isRead && !toRead
+                ? `bg-green-300 hover:bg-green-200 ${!toRead}`
+                : "bg-gray-300 hover:bg-gray-200"
+            }  rounded px-10 py-2 cursor-pointer`}
+          >
+            <i
+              className={`${
+                isRead && !toRead
+                  ? "fa-solid fa-square-check"
+                  : "fa-solid fa-square-xmark"
+              }`}
+            ></i>
+            <span>Lu</span>
+          </button>
+          <button
+            onClick={!toRead ? handleWishRead : handleRemoveWishRead}
+            className={`flex items-center gap-2 ${
+              toRead && !isRead
+                ? "bg-green-300 hover:bg-green-200"
+                : "bg-gray-300 hover:bg-gray-200"
+            } rounded px-10 py-2 cursor-pointer`}
+          >
+            <i className="fa-solid fa-book-open-reader"></i>
+            <span>À Lire</span>
+          </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

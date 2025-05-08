@@ -49,6 +49,6 @@ const registerSchema = Joi.object({
   confirmPassword: Joi.string().valid(Joi.ref("password")).required().messages({
     "any.only": "Les mots de passe ne correspondent pas",
     "any.required": "La confirmation du mot de passe est requise",
-  }),
+  })
 });
 export { registerSchema };

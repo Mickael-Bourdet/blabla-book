@@ -23,7 +23,7 @@ function App() {
     <>
       <Navbars />
       <Header />
-      <main className="md:ml-64 flex flex-col min-h-screen bg-body">
+      <main className="md:ml-64 flex flex-col bg-body">
         {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
           // The `resetKeys` prop resets the error state automatically whenever the URL changes.
           // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}

@@ -1,4 +1,4 @@
-import type { IBook, IUser } from "../@types";
+import type { IBook, IUser,IUserUpdate } from "../@types";
 import { authFetch } from "../utils/authFetch";
 
 const apiBaseUrl = "http://localhost:3000";
@@ -14,7 +14,7 @@ export async function getOneUser(): Promise<IUser | null> {
   return user;
 }
 
-export const updateUser = async (data: { name?: string; email?: string; password?: string; currentPassword?: string } | null) => {
+export const updateUser = async (data: IUserUpdate) => {
   const res = await authFetch(`${apiBaseUrl}/user`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },

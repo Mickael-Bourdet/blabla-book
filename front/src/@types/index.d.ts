@@ -13,9 +13,13 @@ export interface IBook {
   page_count: number;
   categories: ICategory[];
   authors: IAuthor[];
+  users_has_read: IUsers;
+  users_need_to_read: IUsers;
 }
 
 export type IBooks = IBook[];
+
+export type IUsers = IUser[];
 
 export interface IAuthor {
   id: number;
@@ -32,3 +36,11 @@ export interface IUser {
   books_already_read: IBook[];
   books_wish_read: IBook[];
 }
+
+export interface IUserUpdate {
+    name?: string;
+    email?: string;
+    currentPassword?: string;
+    password?: string;
+  }
+  
