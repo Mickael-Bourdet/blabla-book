@@ -40,7 +40,7 @@ const Library = () => {
                       alt={`${book.title}`}
                       className="h-80 w-100 object-contain mb-2 mx-auto"
                     />
-                    <p className="text-center text-lg font-body [word-spacing:5px] tracking-wider">{book.title}</p>
+                    <p className="text-center text-lg font-body [word-spacing:2px] tracking-wider">{book.title}</p>
                   </div>
                 </Link>
               ))}
