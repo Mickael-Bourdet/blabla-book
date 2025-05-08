@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const RecommendedBooks = () => {
   return (
-    <section className="content ml-[5vw] mr-[5vw] pb-8">
-      <h2 className="text-xl mt-8 mb-4 font-bold">Recommandations</h2>
-      <div className="book-list grid grid-cols-2 gap-4 sm:grid-cols-3  lg:grid-cols-5">
+    <section className="content ml-[5vw] mr-[5vw] pb-20 md:pb-8">
+      <h2 className="text-3xl mt-8 mb-4 font-bold font-title ">Recommandations</h2>
+      <div className="book-list grid grid-cols-2 gap-6 sm:grid-cols-3  lg:grid-cols-5">
         {recommendedBooks.map((book) => {
           return (
             <Link key={book.id} to={`/books/${book.id}`} className="block">
@@ -15,7 +15,7 @@ const RecommendedBooks = () => {
                   alt={book.title}
                   className="h-80 w-full object-contain mb-2 mx-auto"
                 />
-                <p className="text-center">{book.title}</p>
+                <p className="text-center text-lg font-body">{book.title}</p>
               </div>
             </Link>
           );
