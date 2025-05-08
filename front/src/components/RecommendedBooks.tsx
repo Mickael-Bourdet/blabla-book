@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const RecommendedBooks = () => {
   return (
     <section className="content ml-[5vw] mr-[5vw] pb-20 md:pb-8">
-      <h2 className="text-3xl mt-8 mb-4 font-bold font-title ">Recommandations</h2>
+      <h2 className="text-3xl mt-8 mb-4 font-bold font-title">Recommandations</h2>
       <div className="book-list grid grid-cols-2 gap-6 sm:grid-cols-3  lg:grid-cols-5">
         {recommendedBooks.map((book) => {
           return (
