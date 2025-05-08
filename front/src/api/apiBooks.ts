@@ -64,9 +64,9 @@ export async function getAllCategories(): Promise<ICategory[]> {
     return [];
   }
 }
-export async function getBooksByCategories(): Promise<ICategoryBooks[]> {
+export async function getBooksByCategories(id: number): Promise<ICategoryBooks[]> {
   try {
-    const response = await fetch(`${apiBaseUrl}/categories/books`);
+    const response = await fetch(`${apiBaseUrl}/categories/${id}/books`);
     if (response.ok && response.status === 200) {
       const categoriesWithBooks = await response.json();
       return categoriesWithBooks;

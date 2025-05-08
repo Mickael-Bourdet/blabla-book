@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { ICategory, ICategoryBooks } from "../@types";
+import { Link, useParams } from "react-router-dom";
+import { ICategoryBooks } from "../@types";
 import { useErrorHandler } from "../utils/useErrorHandler";
 import { getBooksByCategories } from "../api/apiBooks";
 
 export default function CategoryPage() {
   const [booksCategories, setBooksCategories] = useState<ICategoryBooks[]>([]);
   const { handleError } = useErrorHandler();
+  const { categoryId } = useParams();
 
   useEffect(() => {
     async function loadBooks() {
       try {
-        const booksByCategories = await getBooksByCategories();
+        const booksByCategories = await getBooksByCategories(Number(categoryId));
         setBooksCategories(booksByCategories);
       } catch (error) {
         handleError(error);
@@ -19,7 +20,7 @@ export default function CategoryPage() {
     }
     loadBooks();
     console.log(loadBooks());
-  }, []);
+  }, [categoryId]);
 
   return (
     <div className="md:ml-64">
