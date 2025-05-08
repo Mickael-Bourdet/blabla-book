@@ -28,18 +28,23 @@ const Navbars = () => {
               <h1 className="text-xl font-black font-title">BlaBlaBook</h1>
             </Link>
           </div>
-          <h2 className="text-lg mb-4">Genres</h2>
-          <ul>
-            {categories.map((category) => {
-              return (
-                <li key={category.id}>
-                  <Link to={`/categories/${category.id}`} className="block text-gray-800 hover:text-blue-600 mb-2">
-                    {category.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="pl-4">
+            <h2 className="text-xl mb-4 font-title font-bold">Genres</h2>
+            <ul>
+              {categories.map((category) => {
+                return (
+                  <li key={category.id}>
+                    <Link
+                      to={`/categories/${category.id}`}
+                      className="block text-gray-800 hover:text-blue-600 mb-2 font-body tracking-widest"
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </aside>
 
         {/* Contenu principal avec la Navbar */}
