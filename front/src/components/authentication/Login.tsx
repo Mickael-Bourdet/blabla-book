@@ -41,40 +41,36 @@ const Login = () => {
 
   return (
     <AuthForm title="Me connecter">
-      <div className="mb-4">
-        <label htmlFor="loginEmail" className="block mb-1 text-sm">
+      <div className="mb-4 font-body tracking-wider">
+        <label htmlFor="loginEmail" className="block mb-1 text-lg ">
           E-mail
         </label>
         <input
           type="text"
           id="loginEmail"
           value={loginData.email}
-          onChange={(e) =>
-            setLoginData({ ...loginData, email: e.target.value })
-          }
-          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
+          onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="email@example.com"
         />
       </div>
-      <div className="mb-6">
-        <label htmlFor="loginPassword" className="block mb-1 text-sm">
+      <div className="mb-6 font-body tracking-wider">
+        <label htmlFor="loginPassword" className="block mb-1 text-lg">
           Mot de passe
         </label>
         <input
           type="password"
           id="loginPassword"
           value={loginData.password}
-          onChange={(e) =>
-            setLoginData({ ...loginData, password: e.target.value })
-          }
-          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
+          onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="Mot de passe"
         />
       </div>
       <div className="flex justify-center">
         <button
           type="button"
-          className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded"
+          className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded font-title"
           onClick={handleLogin}
         >
           Connexion
