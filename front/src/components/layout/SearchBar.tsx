@@ -48,7 +48,7 @@ const SearchBar = () => {
         <input
           type="text"
           value={researchTerm}
-          placeholder="Chercher un livre et/ou un auteur"
+          placeholder="Chercher un livre ou un auteur"
           onChange={(e) => setResearch(e.target.value)}
           className="border rounded px-3 py-2 w-full pl-10"
         />

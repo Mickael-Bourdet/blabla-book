@@ -15,7 +15,7 @@ const PopularBooks = () => {
                   alt={popularBook.title}
                   className="h-80 w-full object-contain mb-2 mx-auto"
                 />
-                <p className="text-center text-lg font-body">{popularBook.title}</p>
+                <p className="text-center text-lg font-body ">{popularBook.title}</p>
               </div>
             </Link>
           );

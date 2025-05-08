@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className="flex ml-0 sticky top-0 z-10">
       <header className="bg-header flex items-center justify-between p-4 left-0 w-full md:pl-64 backdrop-blur-sm transition-all">
-        <div className="logo flex items-center gap-2 md:hidden">
+        <div className="logo flex items-center gap-2 md:hidden ">
           <img src="/blablabook.webp" alt="BlaBlaBook" className="h-[10vw]" />
           <h1 className="text-xl">BlaBlaBook</h1>
         </div>
@@ -38,8 +38,8 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="block hover:text-blue-600 md:hidden">
-          <i className="fas fa-search search-mobile text-xl"></i>
+        <div className="block hover:text-blue-600 md:hidden pr-8 text-placeholder">
+          <i className="fas fa-search search-mobile text-2xl text-placeholder"></i>
         </div>
       </header>
 
