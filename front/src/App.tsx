@@ -22,14 +22,14 @@ import BackToTopPage from "./components/BackToTopPage";
 function App() {
   const location = useLocation();
   return (
-    <>
+    // Wrapper div pour toute l'application
+    <div className="flex flex-col min-h-screen">
       <BackToTopPage />
       <Navbars />
       <Header />
-      <main className="md:ml-64 flex flex-col min-h-screen bg-body">
-        {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
-          // The `resetKeys` prop resets the error state automatically whenever the URL changes.
-          // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
+
+      {/* Le main prend tout l'espace disponible avec flex-grow */}
+      <main className="md:ml-64 flex-grow bg-body">
         <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -47,8 +47,10 @@ function App() {
           </Routes>
         </ErrorBoundary>
       </main>
+
+      {/* Le footer sera toujours en bas */}
       <Footer />
-    </>
+    </div>
   );
 }
 
