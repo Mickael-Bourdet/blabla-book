@@ -64,21 +64,44 @@ const dashboardController = {
     const reviews = await Review.findAll({
       where: { book_id: bookId },
       include: { association: "users", attributes: ["id", "name"] },
+      order: [["createdAt", "DESC"]],
     });
 
     if (!reviews) {
       return next(new ApiError("Aucun avis trouvés pour ce livre", 404));
     }
 
-    res.status(200).json(reviews);
+    const rating = reviews.find((r) => r.rating !== null);
+    const comments = reviews.filter((r) => r.comment || r.title);
+
+    res.status(200).json({
+      book_id: bookId,
+      rating: rating
+        ? {
+            id: rating.id,
+            rating: rating.rating,
+            user: rating.users,
+            createdAt: rating.createdAt,
+            updatedAt: rating.updatedAt,
+          }
+        : null,
+      comments: comments.map((comment) => ({
+        id: comment.id,
+        title: comment.title,
+        comment: comment.comment,
+        user: comment.users,
+        createdAt: comment.createdAt,
+        updatedAt: comment.updatedAt,
+      })),
+    });
   },
 
   /**
-   * 
-   * @param {*} req 
-   * @param {*} res 
-   * @param {*} next 
-   * @returns 
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @returns
    */
   async getReviewsByUser(req, res, next) {
     const userId = parseInt(req.params.userId);
@@ -88,14 +111,39 @@ const dashboardController = {
 
     const reviews = await Review.findAll({
       where: { user_id: userId },
-      include: [{ association: "books" }, { association: "users", attributes: ["id", "name"] }],
+      include: [
+        { association: "books" },
+        { association: "users", attributes: ["id", "name"] },
+      ],
     });
 
     if (!reviews) {
       return next(new ApiError("Aucun avis trouvés pour cet utilisateur", 404));
     }
 
-    res.status(200).json(reviews);
+    const rating = reviews.find((r) => r.rating !== null);
+    const comments = reviews.filter((r) => r.comment || r.title);
+
+    res.status(200).json({
+      user: reviews[0].users,
+      rating: rating
+        ? {
+            id: rating.id,
+            rating: rating.rating,
+            book: rating.books,
+            createdAt: rating.createdAt,
+            updatedAt: rating.updatedAt,
+          }
+        : null,
+      comments: comments.map((comment) => ({
+        id: comment.id,
+        title: comment.title,
+        comment: comment.comment,
+        book: comment.books,
+        createdAt: comment.createdAt,
+        updatedAt: comment.updatedAt,
+      })),
+    });
   },
 };
 

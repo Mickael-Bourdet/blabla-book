@@ -7,18 +7,13 @@ console.log("✅ Connexion à la base de données réussie");
 
 const usersToCreate = [
   {
-    name: "Alice",
-    email: "alice@example.com",
-    password: "Motdepasse.1",
-  },
-  {
-    name: "Bob",
-    email: "bob@example.com",
+    name: "Test",
+    email: "test@blabla.fr",
     password: "Motdepasse.1",
   },
   {
     name: "Charlie",
-    email: "charlie@example.com",
+    email: "charlie@blabla.com",
     password: "Motdepasse.1",
   },
 ];
