@@ -1,4 +1,4 @@
-import { Author, Category, User } from "../models/associations.js"
+import { Author, Category, Review, User } from "../models/associations.js";
 
 const dashboardController = {
   /**
@@ -38,6 +38,64 @@ const dashboardController = {
   async getAllAuthors(_req, res, _next) {
     const authors = await Author.findAll();
     res.status(200).json({ authors });
+  },
+
+  /**
+   *
+   * @param {*} _req
+   * @param {*} res
+   * @param {*} _next
+   */
+  async getAllReview(_req, res, _next) {
+    const reviews = await Review.findAll();
+    res.status(200).json({ reviews });
+  },
+
+  /**
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   * @returns
+   */
+  async getReviewsByBook(req, res, next) {
+    const bookId = parseInt(req.params.bookId);
+
+    const reviews = await Review.findAll({
+      where: { book_id: bookId },
+      include: { association: "users", attributes: ["id", "name"] },
+    });
+
+    if (!reviews) {
+      return next(new ApiError("Aucun avis trouvés pour ce livre", 404));
+    }
+
+    res.status(200).json(reviews);
+  },
+
+  /**
+   * 
+   * @param {*} req 
+   * @param {*} res 
+   * @param {*} next 
+   * @returns 
+   */
+  async getReviewsByUser(req, res, next) {
+    const userId = parseInt(req.params.userId);
+    if (!userId) {
+      return next(new ApiError("Non autorisé !", 401));
+    }
+
+    const reviews = await Review.findAll({
+      where: { user_id: userId },
+      include: [{ association: "books" }, { association: "users", attributes: ["id", "name"] }],
+    });
+
+    if (!reviews) {
+      return next(new ApiError("Aucun avis trouvés pour cet utilisateur", 404));
+    }
+
+    res.status(200).json(reviews);
   },
 };
 

@@ -7,19 +7,23 @@ Review.init(
   {
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       validate: {
         min: 0,
         max: 5,
       },
     },
-    comment: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+    title: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
     },
     comment: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.STRING(1000),
+      allowNull: true,
     },
+  },
+  {
+    sequelize,
+    tableName: "review",
   }
 )

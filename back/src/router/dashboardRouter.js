@@ -28,3 +28,27 @@ router.get("/dashboard/categories", authMiddleware, isAdminMiddleware, dashboard
  * @return {Error} - Error if the request fails.
  */
 router.get("/dashboard/authors", authMiddleware, isAdminMiddleware, dashboardController.getAllAuthors);
+
+/**
+ *
+ * @summary
+ * @return {Object}
+ * @return {Error}
+ */
+router.get("/dashboard/reviews", authMiddleware, isAdminMiddleware, dashboardController.getAllReview);
+
+/**
+ *
+ * @summary
+ * @return {Object}
+ * @return {Error}
+ */
+router.get("/dashboard/user/:userId/reviews", authMiddleware, isAdminMiddleware, dashboardController.getReviewsByUser);
+
+/**
+ *
+ * @summary
+ * @return {Object}
+ * @return {Error}
+ */
+router.get("/dashboard/book/:bookId/reviews", authMiddleware, isAdminMiddleware, dashboardController.getReviewsByBook);

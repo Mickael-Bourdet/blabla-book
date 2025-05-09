@@ -51,4 +51,5 @@ const registerSchema = Joi.object({
     "any.required": "La confirmation du mot de passe est requise",
   })
 });
+
 export { registerSchema };
