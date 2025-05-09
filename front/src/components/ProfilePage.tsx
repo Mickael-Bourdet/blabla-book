@@ -41,7 +41,7 @@ const ProfilePage = () => {
   if (!localUser) return null;
 
   return (
-    <div className="pt-8 content ml-[5vw] mr-[5vw]">
+    <div className="pt-8 content ml-[5vw] mr-[5vw] pb-10 md:pb-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-4xl font-bold font-title">{user?.name}</h1>
         <Link to={`/user/settings`} className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600">
@@ -55,7 +55,7 @@ const ProfilePage = () => {
           Mes livres lus : {localUser.books_already_read.length}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {localUser.books_already_read.map((book) => (
+          {localUser.books_already_read.slice(0, 5).map((book) => (
             <Link key={book.id} to={`/books/${book.id}`} className="block">
               <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                 <img
@@ -74,7 +74,7 @@ const ProfilePage = () => {
       <section className="pb-20 md:pb-8">
         <h2 className="text-2xl mb-4 font-bold font-title">Mes livres à lire : {localUser.books_wish_read.length}</h2>
         <div className="book-list grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-          {localUser.books_wish_read.map((book) => (
+          {localUser.books_wish_read.slice(0, 5).map((book) => (
             <Link key={book.id} to={`/books/${book.id}`} className="block">
               <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                 <img
