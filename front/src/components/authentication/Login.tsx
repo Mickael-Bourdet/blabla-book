@@ -2,7 +2,7 @@ import AuthForm from "./AuthForm";
 import { ILogin } from "../../@types/auth";
 import { useAuthStore } from "../../utils/store/useAuthStore";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { loginUser } from "../../api/apiAuth";
 import { toastSuccess } from "../../utils/toast/toastSuccess";
 import { toastError } from "../../utils/toast/toastError";
@@ -19,7 +19,8 @@ const Login = () => {
   /**
    * Handles the login process.
    */
-  const handleLogin = async () => {
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
     try {
       const data = await loginUser(loginData);
       const { name, id, token } = data;
@@ -69,7 +70,7 @@ const Login = () => {
       </div>
       <div className="flex justify-center">
         <button
-          type="button"
+          type="submit"
           className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded font-title"
           onClick={handleLogin}
         >

@@ -41,17 +41,19 @@ const ProfilePage = () => {
   if (!localUser) return null;
 
   return (
-    <div className="p-4">
+    <div className="pt-8 content ml-[5vw] mr-[5vw]">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">{user?.name}</h1>
+        <h1 className="text-4xl font-bold font-title">{user?.name}</h1>
         <Link to={`/user/settings`} className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600">
           Modifier le profil
         </Link>
       </div>
 
       {/* Livres lus */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">Mes livres lus : {localUser.books_already_read.length}</h2>
+      <section className="pb-4 md:pb-8">
+        <h2 className="text-2xl font-semibold mb-4 font-title">
+          Mes livres lus : {localUser.books_already_read.length}
+        </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {localUser.books_already_read.map((book) => (
             <Link key={book.id} to={`/books/${book.id}`} className="block">
@@ -61,7 +63,7 @@ const ProfilePage = () => {
                   alt={book.title}
                   className="h-80 w-full object-contain mb-2 mx-auto"
                 />
-                <p className="text-center">{book.title}</p>
+                <p className="text-center text-lg font-body [word-spacing:2px] tracking-wider">{book.title}</p>
               </div>
             </Link>
           ))}
@@ -69,18 +71,18 @@ const ProfilePage = () => {
       </section>
 
       {/* Livres à lire */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">Mes livres à lire : {localUser.books_wish_read.length}</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <section className="pb-20 md:pb-8">
+        <h2 className="text-2xl mb-4 font-bold font-title">Mes livres à lire : {localUser.books_wish_read.length}</h2>
+        <div className="book-list grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
           {localUser.books_wish_read.map((book) => (
-            <Link key={book.id} to={`/books/${book.id}`}>
-              <div className="hover:shadow-lg rounded-md transition-shadow">
+            <Link key={book.id} to={`/books/${book.id}`} className="block">
+              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
                 <img
                   src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
                   alt={book.title}
-                  className="w-full h-64 object-cover mb-2 rounded"
+                  className="h-80 w-full object-contain mb-2 mx-auto"
                 />
-                <p className="text-center">{book.title}</p>
+                <p className="text-center text-lg font-body [word-spacing:2px] tracking-wider">{book.title}</p>
               </div>
             </Link>
           ))}
