@@ -17,11 +17,13 @@ import ErrorServer from "./pages/ErrorServer";
 import { ErrorBoundary } from "react-error-boundary";
 import Logout from "./components/authentication/Logout";
 import CategoryPage from "./pages/CategoryPage";
+import BackToTopPage from "./components/BackToTopPage";
 
 function App() {
   const location = useLocation();
   return (
     <>
+      <BackToTopPage />
       <Navbars />
       <Header />
       <main className="md:ml-64 flex flex-col min-h-screen bg-body">
