@@ -45,13 +45,9 @@ const Authentication = () => {
   };
 
   return (
-    <section>
+    <section className="pb-18 ">
       <Login />
-      <Register
-        data={registerData}
-        onChange={setRegisterDate}
-        onSubmit={handleRegister}
-      />
+      <Register data={registerData} onChange={setRegisterDate} onSubmit={handleRegister} />
     </section>
   );
 };

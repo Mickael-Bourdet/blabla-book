@@ -102,7 +102,7 @@ const BookDetail = () => {
           {book.authors.map((auth) => auth.name).join(", ")}
         </p>
 
-        <h1 className="text-2xl font-title font-bold mb-2">{book.title}</h1>
+        <h1 className="text-xl font-title font-bold mb-2">{book.title}</h1>
 
         <p>
           <span className="font-bold font-title">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}

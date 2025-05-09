@@ -63,17 +63,13 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
    * @returns {JSX.Element} - A span element with a checkmark or dot based on the validation state.
    */
   const renderValidationMark = (isValid: boolean) => {
-    return isValid ? (
-      <span className="text-green-500 ml-1">✓</span>
-    ) : (
-      <span className="text-gray-400 ml-1">•</span>
-    );
+    return isValid ? <span className="text-green-500 ml-1">✓</span> : <span className="text-gray-400 ml-1">•</span>;
   };
 
   return (
     <AuthForm title="M'inscrire">
-      <div className="mb-4">
-        <label htmlFor="registerName" className="block mb-1 text-sm">
+      <div className="mb-4 font-body tracking-wider">
+        <label htmlFor="registerName" className="block mb-1 text-lg">
           Nom
         </label>
         <input
@@ -81,13 +77,13 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           id="registerName"
           value={data.name}
           onChange={(e) => onChange({ ...data, name: e.target.value })}
-          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="Pseudo"
         />
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="email" className="block mb-1 text-sm">
+      <div className="mb-4 font-body tracking-wider">
+        <label htmlFor="email" className="block mb-1 text-lg">
           Adresse email
         </label>
         <input
@@ -95,13 +91,13 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           id="registerEmail"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
-          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="email@example.com"
         />
       </div>
 
-      <div className="mb-4">
-        <label htmlFor="registerPassword" className="block mb-1 text-sm">
+      <div className="mb-4 font-body tracking-wider">
+        <label htmlFor="registerPassword" className="block mb-1 text-lg">
           Mot de passe
         </label>
         <input
@@ -111,7 +107,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           onChange={(e) => onChange({ ...data, password: e.target.value })}
           onFocus={() => setShowPasswordRules(true)}
           onBlur={() => setShowPasswordRules(false)}
-          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
+          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="Mot de passe"
         />
 
@@ -120,95 +116,45 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           <div className="mt-2 text-xs bg-gray-50 p-3 rounded border border-gray-200">
             <p className="font-medium mb-2">Le mot de passe doit contenir :</p>
             <ul className="space-y-1">
-              <li
-                className={
-                  passwordValidation.minLength
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.minLength)} Au moins 12
-                caractères
+              <li className={passwordValidation.minLength ? "text-green-600" : "text-gray-600"}>
+                {renderValidationMark(passwordValidation.minLength)} Au moins 12 caractères
               </li>
-              <li
-                className={
-                  passwordValidation.hasUppercase
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasUppercase)} Au moins
-                une lettre majuscule
+              <li className={passwordValidation.hasUppercase ? "text-green-600" : "text-gray-600"}>
+                {renderValidationMark(passwordValidation.hasUppercase)} Au moins une lettre majuscule
               </li>
-              <li
-                className={
-                  passwordValidation.hasLowercase
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasLowercase)} Au moins
-                une lettre minuscule
+              <li className={passwordValidation.hasLowercase ? "text-green-600" : "text-gray-600"}>
+                {renderValidationMark(passwordValidation.hasLowercase)} Au moins une lettre minuscule
               </li>
-              <li
-                className={
-                  passwordValidation.hasNumber
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasNumber)} Au moins un
-                chiffre
+              <li className={passwordValidation.hasNumber ? "text-green-600" : "text-gray-600"}>
+                {renderValidationMark(passwordValidation.hasNumber)} Au moins un chiffre
               </li>
-              <li
-                className={
-                  passwordValidation.hasSpecial
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.hasSpecial)} Au moins
-                un caractère spécial
+              <li className={passwordValidation.hasSpecial ? "text-green-600" : "text-gray-600"}>
+                {renderValidationMark(passwordValidation.hasSpecial)} Au moins un caractère spécial
               </li>
-              <li
-                className={
-                  passwordValidation.noSpaces
-                    ? "text-green-600"
-                    : "text-gray-600"
-                }
-              >
-                {renderValidationMark(passwordValidation.noSpaces)} Pas
-                d'espaces
+              <li className={passwordValidation.noSpaces ? "text-green-600" : "text-gray-600"}>
+                {renderValidationMark(passwordValidation.noSpaces)} Pas d'espaces
               </li>
             </ul>
           </div>
         )}
       </div>
 
-      <div className="mb-6">
-        <label htmlFor="confirmPassword" className="block mb-1 text-sm">
+      <div className="mb-6 font-body tracking-wider">
+        <label htmlFor="confirmPassword" className="block mb-1 text-lg">
           Confirmation
         </label>
         <input
           type="password"
           id="confirmPassword"
           value={data.confirmPassword}
-          onChange={(e) =>
-            onChange({ ...data, confirmPassword: e.target.value })
-          }
-          className="w-full border border-gray-300 p-2 placeholder-gray-400 rounded focus:outline-none"
+          onChange={(e) => onChange({ ...data, confirmPassword: e.target.value })}
+          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="Confirmer le mot de passe"
         />
 
         {/* Vérification que les mots de passe correspondent */}
         {data.password && data.confirmPassword && (
-          <div
-            className={`mt-1 text-xs ${
-              data.password === data.confirmPassword
-                ? "text-green-600"
-                : "text-red-600"
-            }`}
-          >
+          <div className={`mt-1 text-xs ${data.password === data.confirmPassword ? "text-green-600" : "text-red-600"}`}>
             {data.password === data.confirmPassword ? (
               <span>✓ Les mots de passe correspondent</span>
             ) : (
@@ -219,11 +165,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
       </div>
 
       <div className="flex justify-center">
-        <button
-          type="button"
-          className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded"
-          onClick={onSubmit}
-        >
+        <button type="button" className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded" onClick={onSubmit}>
           Inscription
         </button>
       </div>

@@ -70,7 +70,7 @@ const Login = () => {
       <div className="flex justify-center">
         <button
           type="button"
-          className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-6 rounded font-title"
+          className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded font-title"
           onClick={handleLogin}
         >
           Connexion
