@@ -7,8 +7,8 @@ const Header = () => {
 
   return (
     <div className="flex ml-0 sticky top-0 z-10">
-      <header className="bg-header flex items-center justify-between p-4 left-0 w-full md:pl-64 backdrop-blur-sm transition-all font-title">
-        <div className="logo flex items-center gap-2 md:hidden ">
+      <header className="bg-header flex items-center gap-4 justify-between p-4 left-0 w-full md:pl-64 md:px-10 backdrop-blur-sm transition-all font-title">
+        <div className=" flex flex-col xs:flex-row items-center justify-between md:hidden ">
           <img src="/blablabook.webp" alt="BlaBlaBook" className="h-[10vw]" />
           <h1 className="text-xl">BlaBlaBook</h1>
         </div>
@@ -38,9 +38,10 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="block hover:text-blue-600 md:hidden pr-8 text-placeholder">
-          <i className="fas fa-search search-mobile text-2xl text-placeholder"></i>
-        </div>
+        {/* Categories search */}
+        <Link to="/CategoryPage" className="block md:hidden pr-4 ">
+          <i className="fa-solid fa-sliders text-2xl text-placeholder"></i>
+        </Link>
       </header>
 
       {/* Navigation mobile */}
