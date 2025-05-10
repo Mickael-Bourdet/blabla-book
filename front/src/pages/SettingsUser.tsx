@@ -136,27 +136,36 @@ const SettingsUser = () => {
 
   return (
     <>
-      <div className="px-10 pt-5">
+      <div className="px-10 pt-5 font-title">
         {/* Bouton Retour */}
         <Link to={`/profile`}>
-          <button className="text-blue-500 hover:underline">← Retour</button>
+          <button className="text-blue-900 hover:underline">← Retour</button>
         </Link>
       </div>
-      <div className="flex flex-col w-full p-4 items-center ">
+      <div className="flex flex-col w-full p-4 items-center font-title">
         {/* Profil */}
-        <div className="flex mb-5">
+        <div className="flex mb-5 items-center">
           <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">👤</div>
           <div className="flex flex-col">
             <p className="font-bold mt-8 ml-20 ">{userData?.name}</p>
-            <p className="font-bold mt-8 ml-20">Nombre de livres lus : {userData?.books_already_read.length}</p>
             <p className="font-bold mt-8 ml-20">
-              Nombre de pages lues : {userData?.books_already_read.reduce((total, book) => total + book.page_count, 0)}
+              Nombre de livres lus :{" "}
+              <span className="font-body font-normal"> {userData?.books_already_read.length} </span>
+            </p>
+            <p className="font-bold mt-8 ml-20">
+              Nombre de pages lues :{" "}
+              <span className="font-body font-normal">
+                {userData?.books_already_read.reduce((total, book) => total + book.page_count, 0)}
+              </span>
             </p>
           </div>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="w-full max-w-md flex flex-col gap-6 pt-10">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-md flex flex-col gap-6 pt-10 font-body [word-spacing:2px] tracking-wider"
+        >
           {/* Pseudo */}
           <div className="flex items-center justify-between border-b border-gray-300 pb-2">
             <input

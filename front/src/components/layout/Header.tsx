@@ -16,11 +16,11 @@ const Header = () => {
         <SearchBar />
 
         <nav className="hidden md:flex gap-6">
-          <Link className="hover:text-blue-600" to="/">
+          <Link className="hover:text-red-900" to="/">
             <i className="fa-solid fa-house-chimney"></i>
             <span className="whitespace-nowrap hidden xl:inline"> Accueil</span>
           </Link>
-          <Link className="hover:text-blue-600" to="/library">
+          <Link className="hover:text-blue-800" to="/library">
             <i className="fa-solid fa-book"></i>
             <span className="whitespace-nowrap hidden xl:inline"> Bibliothèque</span>
           </Link>
@@ -31,7 +31,7 @@ const Header = () => {
               <span className="hidden xl:inline"> Mon compte</span>
             </Link>
           ) : (
-            <Link className="hover:text-blue-600" to="/profile">
+            <Link className="hover:text-yellow-700 " to="/profile">
               <i className="fa-solid fa-user"></i>
               <span className="hidden xl:inline"> {user.name}</span>
             </Link>
