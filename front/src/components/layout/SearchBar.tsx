@@ -50,7 +50,7 @@ const SearchBar = () => {
           value={researchTerm}
           placeholder="Chercher un livre ou un auteur"
           onChange={(e) => setResearch(e.target.value)}
-          className="border rounded px-3 py-2 w-full pl-14 "
+          className="border rounded px-3 py-2 w-full pl-14 placeholder-gray-400 "
         />
       </form>
 

@@ -28,9 +28,7 @@ export const toastError = (message: string | string[]) => {
       setTimeout(() => {
         iziToast.info({
           title: "Information",
-          message: `+ ${
-            message.length - limitedMessages.length
-          } autre(s) erreur(s)`,
+          message: `+ ${message.length - limitedMessages.length} autre(s) erreur(s)`,
           position: "topRight",
           timeout: 5000,
           color: "blue",
