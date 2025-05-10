@@ -45,7 +45,7 @@ const Authentication = () => {
   };
 
   return (
-    <section className="pb-6">
+    <section className="pb-14 md:pb-6 ">
       <Login />
       <Register data={registerData} onChange={setRegisterDate} onSubmit={handleRegister} />
     </section>

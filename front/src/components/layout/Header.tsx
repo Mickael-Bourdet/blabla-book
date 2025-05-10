@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <div className="flex ml-0 sticky top-0 z-10">
-      <header className="bg-header flex items-center gap-4 justify-between p-4 left-0 w-full md:pl-64 md:px-10 backdrop-blur-sm transition-all font-title">
+      <header className="bg-header flex items-center gap-4 justify-between p-4 left-0 w-full md:pl-64 md:px-20 backdrop-blur-sm transition-all font-title">
         <div className=" flex flex-col xs:flex-row items-center justify-between md:hidden ">
           <img src="/blablabook.webp" alt="BlaBlaBook" className="h-[10vw]" />
           <h1 className="text-xl">BlaBlaBook</h1>
@@ -15,24 +15,24 @@ const Header = () => {
 
         <SearchBar />
 
-        <nav className="hidden md:flex gap-6">
-          <Link className="hover:text-red-900" to="/">
-            <i className="fa-solid fa-house-chimney"></i>
+        <nav className="hidden md:flex gap-8">
+          <Link className="hover:text-red-900 " to="/">
+            <i className="fa-solid fa-house-chimney text-xl xl:text-base"></i>
             <span className="whitespace-nowrap hidden xl:inline"> Accueil</span>
           </Link>
           <Link className="hover:text-blue-800" to="/library">
-            <i className="fa-solid fa-book"></i>
+            <i className="fa-solid fa-book text-xl xl:text-base"></i>
             <span className="whitespace-nowrap hidden xl:inline"> Bibliothèque</span>
           </Link>
 
           {!user ? (
             <Link className="hover:text-blue-600" to="/auth">
-              <i className="fa-solid fa-user"></i>
+              <i className="fa-solid fa-user text-xl xl:text-base"></i>
               <span className="hidden xl:inline"> Mon compte</span>
             </Link>
           ) : (
             <Link className="hover:text-yellow-700 " to="/profile">
-              <i className="fa-solid fa-user"></i>
+              <i className="fa-solid fa-user text-xl"></i>
               <span className="hidden xl:inline"> {user.name}</span>
             </Link>
           )}

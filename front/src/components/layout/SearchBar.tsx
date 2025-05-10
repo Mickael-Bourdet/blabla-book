@@ -40,10 +40,10 @@ const SearchBar = () => {
   }, [researchTerm]);
 
   return (
-    <div className="search-bar text-placeholder relative max-w-70 md:min-w-80 md:block font-body tracking-wider">
-      <form onSubmit={handleSearch} className="flex gap-2 md:gap-10">
+    <div className="search-bar text-placeholder relative max-w-70 md:min-w-90 md:block font-body tracking-wider">
+      <form onSubmit={handleSearch} className="flex gap-2 md:gap-14">
         <button type="submit">
-          <i className="fas fa-search absolute left-3 -translate-y-1/2 pl-4 md:pl-10"></i>
+          <i className="fas fa-search absolute left-3 -translate-y-1/2 pl-4 md:pl-14"></i>
         </button>
         <input
           type="text"
