@@ -36,7 +36,7 @@ const Navbars = () => {
                   <li key={category.id}>
                     <Link
                       to={`/categories/${category.id}`}
-                      className="block text-gray-800 hover:text-blue-600 mb-2 font-body tracking-widest"
+                      className="block text-gray-800 hover:text-blue-800 hover:underline mb-2 font-body tracking-widest"
                     >
                       {category.name}
                     </Link>
