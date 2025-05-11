@@ -135,7 +135,7 @@ const SettingsUser = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full px-4">
       <div className="px-4 sm:px-10 pt-5 font-title">
         {/* Bouton Retour */}
         <Link to="/profile">
