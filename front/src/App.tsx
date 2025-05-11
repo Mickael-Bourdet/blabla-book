@@ -18,6 +18,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Logout from "./components/authentication/Logout";
 import CategoryPage from "./pages/CategoryPage";
 import BackToTopPage from "./components/BackToTopPage";
+import MobileNav from "./components/layout/MobileNav";
 
 function App() {
   const location = useLocation();
@@ -47,9 +48,10 @@ function App() {
           </Routes>
         </ErrorBoundary>
       </main>
-
       {/* Le footer sera toujours en bas */}
       <Footer />
+      {/* Mobile nav at the end, after Footer */}
+      <MobileNav />
     </div>
   );
 }
