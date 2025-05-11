@@ -11,7 +11,7 @@
   --font-title: "Atkinson", sans-serif;
   --font-body: "Merriweather", serif;
   --breakpoint-xs: 31.25rem;
-  --breakpoint-xl: 59.375rem;
+  --breakpoint-ml: 59.375rem;
 }
 
 .iziToast-wrapper.iziToast-wrapper-topRight {

@@ -40,17 +40,17 @@ const SearchBar = () => {
   }, [researchTerm]);
 
   return (
-    <div className="search-bar text-placeholder relative max-w-70 md:min-w-90 md:block font-body tracking-wider">
-      <form onSubmit={handleSearch} className="flex gap-2 md:gap-14">
+    <div className="search-bar text-placeholder relative max-w-70 md:min-w-75 md:block font-body tracking-wider">
+      <form onSubmit={handleSearch} className="flex gap-2 ">
         <button type="submit">
-          <i className="fas fa-search absolute left-3 -translate-y-1/2 pl-4 md:pl-14"></i>
+          <i className="fas fa-search absolute left-3 -translate-y-1/2 pl-2"></i>
         </button>
         <input
           type="text"
           value={researchTerm}
           placeholder="Chercher un livre ou un auteur"
           onChange={(e) => setResearch(e.target.value)}
-          className="border rounded px-3 py-2 w-full pl-12 placeholder-gray-400 "
+          className="border rounded px-3 py-2 w-full pl-10 placeholder-gray-400 "
         />
       </form>
 
