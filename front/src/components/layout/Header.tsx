@@ -16,17 +16,17 @@ const Header = () => {
         <SearchBar />
 
         <nav className="hidden md:flex gap-6">
-          <Link className="hover:text-red-900 " to="/">
+          <Link className="hover:text-yellow-700 " to="/">
             <i className="fa-solid fa-house-chimney text-xl ml:text-base"></i>
             <span className="whitespace-nowrap hidden ml:inline"> Accueil</span>
           </Link>
-          <Link className="hover:text-blue-800" to="/library">
+          <Link className="hover:text-yellow-700" to="/library">
             <i className="fa-solid fa-book text-xl ml:text-base"></i>
             <span className="whitespace-nowrap hidden ml:inline"> Bibliothèque</span>
           </Link>
 
           {!user ? (
-            <Link className="hover:text-blue-600" to="/auth">
+            <Link className="hover:text-yellow-700" to="/auth">
               <i className="fa-solid fa-user text-xl ml:text-base"></i>
               <span className="hidden ml:inline"> Mon compte</span>
             </Link>
