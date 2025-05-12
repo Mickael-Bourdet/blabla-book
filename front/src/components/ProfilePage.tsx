@@ -51,43 +51,57 @@ const ProfilePage = () => {
 
       {/* Livres lus */}
       <section className="pb-4 md:pb-8">
-        <h2 className="text-2xl font-semibold mb-4 font-title">
-          Mes livres lus : {localUser.books_already_read.length}
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {localUser.books_already_read.slice(0, 5).map((book) => (
-            <Link key={book.id} to={`/books/${book.id}`} className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                <img
-                  src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
-                  alt={book.title}
-                  className="h-80 w-full object-contain mb-2 mx-auto"
-                />
-                <p className="text-center text-lg font-body [word-spacing:2px] tracking-wider">{book.title}</p>
-              </div>
-            </Link>
-          ))}
+  <div className="flex justify-between items-center mb-4">
+    <h2 className="text-2xl font-semibold font-title">
+      <Link to="/books/read" className="block text-gray-800 hover:underline ">
+        Mes livres lus : {localUser.books_already_read.length}
+      </Link>
+    </h2>
+  </div>
+  
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+    {localUser.books_already_read.slice(0, 5).map((book) => (
+      <Link key={book.id} to={`/books/${book.id}`} className="block">
+        <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
+          <img
+            src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
+            alt={book.title}
+            className="h-80 w-full object-contain mb-2 mx-auto"
+          />
+          <p className="text-center text-lg font-body tracking-wider">{book.title}</p>
         </div>
-      </section>
+      </Link>
+    ))}
+  </div>
+</section>
 
       {/* Livres à lire */}
       <section className="pb-20 md:pb-8">
-        <h2 className="text-2xl mb-4 font-bold font-title">Mes livres à lire : {localUser.books_wish_read.length}</h2>
-        <div className="book-list grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-          {localUser.books_wish_read.slice(0, 5).map((book) => (
-            <Link key={book.id} to={`/books/${book.id}`} className="block">
-              <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
-                <img
-                  src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
-                  alt={book.title}
-                  className="h-80 w-full object-contain mb-2 mx-auto"
-                />
-                <p className="text-center text-lg font-body [word-spacing:2px] tracking-wider">{book.title}</p>
-              </div>
-            </Link>
-          ))}
+
+  <div className="flex justify-between items-center mb-4">
+    <h2 className="text-2xl font-bold font-title">
+      <Link to="/books/to-read" className="block text-gray-800 hover:underline">
+        Mes livres à lire : {localUser.books_wish_read.length}
+      </Link>
+    </h2>
+  </div>
+
+  <div className="book-list grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+    {localUser.books_wish_read.slice(0, 5).map((book) => (
+      <Link key={book.id} to={`/books/${book.id}`} className="block">
+        <div className="book cursor-pointer hover:shadow-lg hover:rounded-md hover:transition-shadow">
+          <img
+            src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
+            alt={book.title}
+            className="h-80 w-full object-contain mb-2 mx-auto"
+          />
+          <p className="text-center text-lg font-body tracking-wider">{book.title}</p>
         </div>
-      </section>
+      </Link>
+    ))}
+  </div>
+</section>
+
     </div>
   );
 };
