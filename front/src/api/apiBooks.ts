@@ -39,9 +39,20 @@ export async function getAllBooks(params: IBookQueryParams = {}): Promise<IBooks
 }
 
 export async function getOneBook(id: number): Promise<IBook> {
-  const response = await fetch(`${apiBaseUrl}/books/${id}`);
-  const book = await response.json();
-  return book;
+  try {
+    const response = await fetch(`${apiBaseUrl}/books/${id}`);
+
+    if (!response.ok) {
+      throw new Error(`Erreur lors de la récupération des livres: ${response.statusText}`);
+
+    }
+    const book = await response.json();
+    return book;
+
+  } catch (error) {
+    console.error("Erreur de chargement", error);
+    throw error;
+  }
 }
 
 export async function searchBooks(query: string): Promise<IBook[]> {
