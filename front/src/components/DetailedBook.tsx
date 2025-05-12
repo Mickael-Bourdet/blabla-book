@@ -88,8 +88,8 @@ const BookDetail = () => {
     return <div className="text-center text-red-600 bg-red-100 p-4 rounded-md shadow-md">Livre non trouvé</div>;
   }
 
-  return (
-    <div className="bg-body flex flex-row  p-4 items-center md:flex-row lg:ml-64 md:p-8 md:gap-8 mt-5 font-body tracking-wider [word-spacing:2px]">
+  return (          
+    <div className="bg-body flex flex-col p-4 items-center sm:flex-col ml:flex-row lg:ml-0 xl:ml-64 md:p-8 md:gap-8 mt-5 font-body tracking-wider [word-spacing:2px]">
       <img
         src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
         alt={`${book.title}`}
@@ -115,12 +115,12 @@ const BookDetail = () => {
         <p className="font-bold mt-4 mb-1 font-title text-lg">Description :</p>
         <p>{book.description}</p>
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row mt-4">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-4">
           <button
             onClick={!isRead ? handleAddRead : handleRemoveRead}
             className={`flex items-center gap-2 ${
               isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : "bg-gray-300 hover:bg-gray-200"
-            }  rounded px-10 py-2 cursor-pointer`}
+            }  rounded justify-center w-40 px-10 py-2 cursor-pointer`}
           >
             <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-square-xmark"}`}></i>
             <span>Lu</span>
@@ -129,7 +129,7 @@ const BookDetail = () => {
             onClick={!toRead ? handleWishRead : handleRemoveWishRead}
             className={`flex items-center gap-2 ${
               toRead && !isRead ? "bg-green-300 hover:bg-green-200" : "bg-gray-300 hover:bg-gray-200"
-            } rounded px-10 py-2 cursor-pointer`}
+            } rounded justify-center w-40 px-10 py-2 cursor-pointer`}
           >
             <i className="fa-solid fa-book-open-reader"></i>
             <span>À Lire</span>
