@@ -19,6 +19,8 @@ import Logout from "./components/authentication/Logout";
 import CategoryPage from "./pages/CategoryPage";
 import BackToTopPage from "./components/BackToTopPage";
 import MobileNav from "./components/layout/MobileNav";
+import UserReadPage from "./pages/UserReadPage";
+import UserToReadPage from "./pages/UserToReadPage";
 
 function App() {
   const location = useLocation();
@@ -39,6 +41,8 @@ function App() {
             <Route path="/library" element={<Library />} />
             <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/books/read" element={<UserReadPage />} />
+              <Route path="/books/to-read" element={<UserToReadPage />} />
             <Route path="/auth" element={<Authentication />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/search" element={<SearchPage />} />
