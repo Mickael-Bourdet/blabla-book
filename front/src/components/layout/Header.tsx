@@ -39,7 +39,7 @@ const Header = () => {
         </nav>
 
         {/* Categories search */}
-        <Link to="/CategoryPage" className="block md:hidden pr-4 ">
+        <Link to="/categories" className="block md:hidden pr-4 ">
           <i className="fa-solid fa-sliders text-2xl text-placeholder"></i>
         </Link>
       </header>

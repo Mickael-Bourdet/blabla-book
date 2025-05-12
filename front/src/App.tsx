@@ -19,6 +19,7 @@ import Logout from "./components/authentication/Logout";
 import CategoryPage from "./pages/CategoryPage";
 import BackToTopPage from "./components/BackToTopPage";
 import MobileNav from "./components/layout/MobileNav";
+import MobileCategoryPage from "./pages/MobileCategoryPage";
 
 function App() {
   const location = useLocation();
@@ -36,6 +37,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
             <Route path="/categories/:categoryId" element={<CategoryPage />} />
+            <Route path="/categories" element={<MobileCategoryPage />} />
             <Route path="/library" element={<Library />} />
             <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
