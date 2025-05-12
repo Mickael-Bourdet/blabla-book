@@ -1,10 +1,4 @@
-import {
-  sequelize,
-  Author,
-  Book,
-  Category,
-  User,
-} from "../models/associations.js";
+import { sequelize, Author, Book, Category, User } from "../models/associations.js";
 
 async function seedDatabase() {
   try {
@@ -417,8 +411,7 @@ async function seedDatabase() {
       },
       {
         isbn: "9782416014291",
-        title:
-          "Ta deuxième vie commence quand tu comprends que tu n'en as qu'une",
+        title: "Ta deuxième vie commence quand tu comprends que tu n'en as qu'une",
         description:
           'Ce livre raconte l\'histoire de Camille, une femme qui traverse une crise de la quarantaine et qui décide de réinventer sa vie grâce à un "coach de vie". Une approche simple et bienveillante pour retrouver sa joie de vivre.',
         published: "2024",

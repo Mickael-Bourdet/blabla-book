@@ -38,9 +38,22 @@ export interface IUser {
 }
 
 export interface IUserUpdate {
-    name?: string;
-    email?: string;
-    currentPassword?: string;
-    password?: string;
-  }
-  
+  name?: string;
+  email?: string;
+  currentPassword?: string;
+  password?: string;
+}
+
+export interface ICategoryBooks extends ICategory {
+  books: IBookFromCategory[];
+}
+
+export interface IBookFromCategory {
+  id: number;
+  title: string;
+  isbn: string;
+  description: string | null;
+  published: number | null;
+  cover_url: string | null;
+  page_count: number;
+}

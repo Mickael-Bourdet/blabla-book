@@ -2,12 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBook } from "../@types";
 import { getOneBook } from "../api/apiBooks";
-import {
-  addToMyReadLibrary,
-  addToWishRead,
-  deleteToMyReadLibrary,
-  deleteToWishRead,
-} from "../api/apiUser";
+import { addToMyReadLibrary, addToWishRead, deleteToMyReadLibrary, deleteToWishRead } from "../api/apiUser";
 import { useErrorHandler } from "../utils/useErrorHandler";
 import { toastSuccess, toastInfo, toastWarning } from "../utils/toast/toastSuccess";
 import { useAuthStore } from "../utils/store/useAuthStore";
@@ -29,8 +24,8 @@ const BookDetail = () => {
      <a href="/auth" class="text-blue-600 underline font-semibold hover:text-blue-800 transition">
        Se connecter
      </a>
-   </div>`)
-      return
+   </div>`);
+      return;
     }
     addToMyReadLibrary(numericBookId);
     if (toRead) {
@@ -53,7 +48,7 @@ const BookDetail = () => {
        Se connecter
      </a>
    </div>`);
-      return
+      return;
     }
     addToWishRead(numericBookId);
     if (isRead) {
@@ -80,7 +75,6 @@ const BookDetail = () => {
           const wantsToRead = newBook.users_need_to_read.some((user) => user.id === userId);
           setIsRead(hasRead);
           setToRead(wantsToRead);
-
         } catch (error) {
           handleError(error);
         }
@@ -91,15 +85,11 @@ const BookDetail = () => {
   }, [bookId, userId]);
 
   if (!book) {
-    return (
-      <div className="text-center text-red-600 bg-red-100 p-4 rounded-md shadow-md">
-        Livre non trouvé
-      </div>
-    );
+    return <div className="text-center text-red-600 bg-red-100 p-4 rounded-md shadow-md">Livre non trouvé</div>;
   }
 
   return (
-    <div className="bg-beige-50 flex flex-row  p-4 items-center md:flex-row lg:ml-64 md:p-8 md:gap-8 mt-5">
+    <div className="bg-body flex flex-row  p-4 items-center md:flex-row lg:ml-64 md:p-8 md:gap-8 mt-5 font-body tracking-wider [word-spacing:2px]">
       <img
         src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
         alt={`${book.title}`}
@@ -108,49 +98,37 @@ const BookDetail = () => {
 
       <div className="text-sm md:text-base max-w-xl">
         <p>
-          <span className="font-semibold">Par</span> :{" "}
+          <span className="font-bold font-title text:2xl">Par</span> :{" "}
           {book.authors.map((auth) => auth.name).join(", ")}
         </p>
 
-        <h1 className="text-lg font-bold mb-2">{book.title}</h1>
+        <h1 className="text-xl font-title font-bold mb-2">{book.title}</h1>
 
         <p>
-          <span className="font-semibold">Catégorie</span> :{" "}
-          {book.categories.map((cat) => cat.name).join(", ")}
+          <span className="font-bold font-title">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
         </p>
 
         <p className="mb-2">
-          <span className="font-semibold">Date de publication</span> :{" "}
-          {book.published}
+          <span className="font-bold font-title">Date de publication</span> : {book.published}
         </p>
 
-        <p className="font-semibold mt-4 mb-1">Description :</p>
+        <p className="font-bold mt-4 mb-1 font-title text-lg">Description :</p>
         <p>{book.description}</p>
 
-        <div className="flex flex-col items-center gap-4 lg:flex-row mt-4">
+        <div className="flex flex-col items-center gap-4 sm:flex-row mt-4">
           <button
             onClick={!isRead ? handleAddRead : handleRemoveRead}
             className={`flex items-center gap-2 ${
-              isRead && !toRead
-                ? `bg-green-300 hover:bg-green-200 ${!toRead}`
-                : "bg-gray-300 hover:bg-gray-200"
+              isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : "bg-gray-300 hover:bg-gray-200"
             }  rounded px-10 py-2 cursor-pointer`}
           >
-            <i
-              className={`${
-                isRead && !toRead
-                  ? "fa-solid fa-square-check"
-                  : "fa-solid fa-square-xmark"
-              }`}
-            ></i>
+            <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-square-xmark"}`}></i>
             <span>Lu</span>
           </button>
           <button
             onClick={!toRead ? handleWishRead : handleRemoveWishRead}
             className={`flex items-center gap-2 ${
-              toRead && !isRead
-                ? "bg-green-300 hover:bg-green-200"
-                : "bg-gray-300 hover:bg-gray-200"
+              toRead && !isRead ? "bg-green-300 hover:bg-green-200" : "bg-gray-300 hover:bg-gray-200"
             } rounded px-10 py-2 cursor-pointer`}
           >
             <i className="fa-solid fa-book-open-reader"></i>

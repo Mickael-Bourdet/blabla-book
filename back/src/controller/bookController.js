@@ -12,20 +12,38 @@ const bookController = {
    * @returns {Array} - Object
    */
   async getAllBooks(req, res, next) {
-    const { search } = req.query; // get query string
+    const { search, categoryId, categoryName } = req.query; // get query
 
-    const conditions = {};
+    const whereConditions = {};
+
+    const includeOptions = [{ association: "categories" }, { association: "authors" }];
 
     // filter by author or name
     if (search) {
-      conditions[Op.or] = [
-        { title: { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le titre du livre
-        { "$authors.name$": { [Op.iLike]: `%${search}%` } }, // Recherche insensible à la casse sur le nom de l'auteur
+      whereConditions[Op.or] = [
+        { title: { [Op.iLike]: `%${search}%` } }, // case insensitive on the book title
+        { "$authors.name$": { [Op.iLike]: `%${search}%` } }, // case insensitive on the author name
       ];
     }
+
+    // If param is given, filter by category ID
+    if (categoryId) {
+      // initialise association to prevent error
+      includeOptions[0].where = includeOptions[0].where || {};
+      // define categoryId as a filter
+      includeOptions[0].where.id = parseInt(categoryId);
+    }
+    // If param is given, filter by category name
+    if (categoryName) {
+      // initialise association to prevent error
+      includeOptions[0].where = includeOptions[0].where || {};
+      // define categoryName as a filter
+      includeOptions[0].where.name = { [Op.iLike]: `%${categoryName}%` }; // case insensitive on the category name
+    }
+
     const result = await Book.findAll({
-      where: conditions,
-      include: [{ association: "categories" }, { association: "authors" }],
+      where: whereConditions,
+      include: includeOptions,
     });
 
     if (result.length === 0) {

@@ -16,24 +16,26 @@ import Mentions from "./pages/Mentions";
 import ErrorServer from "./pages/ErrorServer";
 import { ErrorBoundary } from "react-error-boundary";
 import Logout from "./components/authentication/Logout";
+import CategoryPage from "./pages/CategoryPage";
+import BackToTopPage from "./components/BackToTopPage";
+import MobileNav from "./components/layout/MobileNav";
 
 function App() {
   const location = useLocation();
   return (
-    <>
+    // Wrapper div pour toute l'application
+    <div className="flex flex-col min-h-screen">
+      <BackToTopPage />
       <Navbars />
       <Header />
-      <main className="md:ml-64 flex flex-col bg-body">
-        {/* // Wrap Routes with ErrorBoundary to display a 500 error page when an error occurs.
-          // The `resetKeys` prop resets the error state automatically whenever the URL changes.
-          // This ensures that navigation via <Link> works correctly by re-rendering the affected components.  */}
-        <ErrorBoundary
-          FallbackComponent={ErrorServer}
-          resetKeys={[location.pathname]}
-        >
+
+      {/* Le main prend tout l'espace disponible avec flex-grow */}
+      <main className="md:ml-64 flex-grow bg-body">
+        <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
+            <Route path="/categories/:categoryId" element={<CategoryPage />} />
             <Route path="/library" element={<Library />} />
             <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
@@ -46,8 +48,11 @@ function App() {
           </Routes>
         </ErrorBoundary>
       </main>
+      {/* Le footer sera toujours en bas */}
       <Footer />
-    </>
+      {/* Mobile nav at the end, after Footer */}
+      <MobileNav />
+    </div>
   );
 }
 

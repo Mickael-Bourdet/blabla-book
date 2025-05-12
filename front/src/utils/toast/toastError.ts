@@ -29,10 +29,8 @@ export const toastError = (message: string | string[]) => {
     if (message.length > limitedMessages.length) {
       setTimeout(() => {
         iziToast.info({
-          title: "Information", 
-          message: `+ ${
-            message.length - limitedMessages.length
-          } autre(s) erreur(s)`,
+          title: "Information",
+          message: `+ ${message.length - limitedMessages.length} autre(s) erreur(s)`,
           position: "topRight",
           timeout: 5000,
           color: "blue",
@@ -50,6 +48,3 @@ export const toastError = (message: string | string[]) => {
     });
   }
 };
-
-
-
