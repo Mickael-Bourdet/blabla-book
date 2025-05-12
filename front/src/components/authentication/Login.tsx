@@ -6,10 +6,11 @@ import { FormEvent, useState } from "react";
 import { loginUser } from "../../api/apiAuth";
 import { toastSuccess } from "../../utils/toast/toastSuccess";
 import { toastError } from "../../utils/toast/toastError";
+import PasswordField from "./PasswordField";
 
 /**
- * 
- * @returns 
+ *
+ * @returns
  */
 const Login = () => {
   const navigate = useNavigate();
@@ -54,7 +55,9 @@ const Login = () => {
           type="text"
           id="loginEmail"
           value={loginData.email}
-          onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+          onChange={(e) =>
+            setLoginData({ ...loginData, email: e.target.value })
+          }
           className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="email@example.com"
         />
@@ -63,12 +66,13 @@ const Login = () => {
         <label htmlFor="loginPassword" className="block mb-1 text-lg">
           Mot de passe
         </label>
-        <input
-          type="password"
+        <PasswordField
           id="loginPassword"
+          name="password"
           value={loginData.password}
-          onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
+          onChange={(e) =>
+            setLoginData({ ...loginData, password: e.target.value })
+          }
           placeholder="Mot de passe"
         />
       </div>
