@@ -23,13 +23,13 @@ const ReviewList = ({ reviews, perPage = 2 }: IReviewListProps) => {
 
   return (
     <div className="mt-10 space-y-10">
-      {visibleReviews.map((r) => (
+      {visibleReviews.map((review) => (
         <ReviewCard
-          key={r.id}
-          username={r.username}
-          date={r.date}
-          rating={r.rating}
-          review={r.content}
+          key={review.id}
+          username={review.username}
+          date={review.date}
+          rating={review.rating}
+          review={review.content}
         />
       ))}
 
@@ -37,9 +37,9 @@ const ReviewList = ({ reviews, perPage = 2 }: IReviewListProps) => {
         <div className="flex justify-center pt-4">
           <button
             onClick={() => setVisibleCount((v) => v + perPage)}
-            className="px-6 py-3 rounded-full bg-indigo-600 text-white font-semibold hover:bg-indigo-700"
+            className="rounded px-6 py-4 bg-white font-semibold text-lg text-gray-700 text-center shadow-sm transition-all duration-300 hover:bg-gray-300 hover:shadow-gray-400 cursor-pointer"
           >
-            Load more reviews
+            Voir tout les avis
           </button>
         </div>
       )}

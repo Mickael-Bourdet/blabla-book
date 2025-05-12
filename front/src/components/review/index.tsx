@@ -9,31 +9,30 @@ import ReviewList from "./ReviewList";
 // Reviews factices
 const reviews = [
   {
-    id: '1',
-    username: 'alice',
-    date: 'May 10, 2025',
+    id: "1",
+    username: "alice",
+    date: "May 10, 2025",
     rating: 5,
-    content: 'Amazing product, it helped streamline my workflow!',
+    content: "Amazing product, it helped streamline my workflow!",
   },
   {
-    id: '2',
-    username: 'bob',
-    date: 'May 08, 2025',
+    id: "2",
+    username: "bob",
+    date: "May 08, 2025",
     rating: 4,
-    content: 'Really good, just missing one feature I needed.',
+    content: "Really good, just missing one feature I needed.",
   },
   {
-    id: '3',
-    username: 'charlie',
-    date: 'May 06, 2025',
+    id: "3",
+    username: "charlie",
+    date: "May 06, 2025",
     rating: 3,
-    content: 'It’s okay. Not bad but could be better.',
+    content: "It’s okay. Not bad but could be better.",
   },
 ];
 
 const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showAllReviews, setShowAllReviews] = useState(false);
 
   return (
     <section className="py-24 relative font-body">
@@ -52,7 +51,9 @@ const ReviewSection = () => {
           </div>
 
           <div className="flex items-center justify-center">
-            <ReviewActions onWriteClick={() => setIsModalOpen(true)} />
+            <ReviewActions
+              onWriteClick={() => setIsModalOpen(true)}
+            />
           </div>
         </div>
 
@@ -66,8 +67,10 @@ const ReviewSection = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center pt-8">
-          <p className="text-lg text-black">46 reviews</p>
+          <p className="text-lg text-black">{reviews.length} reviews</p>
         </div>
+        {/* Liste des avis */}
+        <ReviewList reviews={reviews} perPage={2} />
       </div>
 
       {/* Modale */}
@@ -76,4 +79,4 @@ const ReviewSection = () => {
   );
 };
 
-export default ReviewSection
+export default ReviewSection;
