@@ -5,8 +5,6 @@ import SearchBar from "./SearchBar";
 const Header = () => {
   const { user } = useAuthStore();
 
-  
-
   return (
     <div className="flex ml-0 sticky top-0 z-10">
       <header className="bg-header flex items-center justify-between p-4 left-0 w-full md:pl-64 backdrop-blur-sm transition-all">
