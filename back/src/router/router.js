@@ -19,6 +19,11 @@ router.use(authRouter);
 // TODO : delete this route
 router.use(categoryRouter);
 
+// Use the dashboard router to handle admin operations for categories, authors, and users.
+// This includes routes for:
+// - Creating, updating, and deleting categories
+// - Creating, updating, and deleting authors
+// - Creating, updating, and deleting users
 router.use(dashboard);
 
 export { router };

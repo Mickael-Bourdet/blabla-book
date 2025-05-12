@@ -1,6 +1,6 @@
 import { hash, compare, generateJwtToken } from "../services/authService.js";
 import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
-import { User } from "../models/User.js";
+import { User } from "../models/associations.js"
 import { ApiError } from "../middlewares/ApiError.js";
 
 const authController = {

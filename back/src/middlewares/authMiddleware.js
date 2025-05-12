@@ -1,5 +1,4 @@
 import "dotenv/config";
-import jwt from "jsonwebtoken";
 import { verifyJwtToken } from "../services/authService.js";
 
 /**
@@ -13,7 +12,6 @@ const authMiddleware = (req, res, next) => {
   try {
     // Retrieve the Authorization header from the request
     const authHeader = req.headers.authorization;
-
     // Check if the Authorization header is missing or does not start with "Bearer "
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res
@@ -26,7 +24,6 @@ const authMiddleware = (req, res, next) => {
 
     // Verify the token using the JWT secret key
     const decoded = verifyJwtToken(token);
-
     if (!decoded || !decoded.userId) {
       return res.status(401).json({ error: true, message: "Token invalide ou corrompu" });
     }
@@ -34,10 +31,8 @@ const authMiddleware = (req, res, next) => {
     // Attach the decoded user information to the request object
     req.user = decoded;
 
-    // Proceed to the next middleware
     next();
   } catch (error) {
-    // Handle token verification errors
     return res.status(401).json({ error: true, message: "Accès non autorisé" });
   }
 };
