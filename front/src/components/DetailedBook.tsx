@@ -120,7 +120,7 @@ const BookDetail = () => {
             onClick={!isRead ? handleAddRead : handleRemoveRead}
             className={`flex items-center gap-2 ${
               isRead && !toRead ? `bg-green-300 hover:bg-green-200 ${!toRead}` : "bg-gray-300 hover:bg-gray-200"
-            }  rounded justify-center w-40 px-10 py-2 cursor-pointer`}
+            }  rounded justify-center w-60 px-10 py-2 cursor-pointer sm:w-full`}
           >
             <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-square-xmark"}`}></i>
             <span>Lu</span>
@@ -129,7 +129,7 @@ const BookDetail = () => {
             onClick={!toRead ? handleWishRead : handleRemoveWishRead}
             className={`flex items-center gap-2 ${
               toRead && !isRead ? "bg-green-300 hover:bg-green-200" : "bg-gray-300 hover:bg-gray-200"
-            } rounded justify-center w-40 px-10 py-2 cursor-pointer`}
+            } rounded justify-center w-60 px-10 py-2 cursor-pointer sm:w-full`}
           >
             <i className="fa-solid fa-book-open-reader"></i>
             <span>À Lire</span>
