@@ -1,11 +1,9 @@
-import React from 'react';
-
-type AverageRatingProps = {
+interface IAverageRatingProps {
   value: number;        // La note, ex: 4.3
   subtitle: string;     // Le sous-texte, ex: "46 Ratings" ou "Last Month"
 };
 
-export const AverageRating: React.FC<AverageRatingProps> = ({ value, subtitle }) => {
+export const AverageRating = ({ value, subtitle }: IAverageRatingProps) => {
   // On arrondit pour savoir combien d'étoiles pleines afficher
   const fullStars = Math.round(value);
 

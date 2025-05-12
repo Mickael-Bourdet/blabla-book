@@ -1,18 +1,16 @@
-import React from 'react';
-
-type ReviewHighlightProps = {
+interface IReviewHighlightProps {
   username: string;
   date: string;
   rating: number;
   review: string;
 };
 
-export const ReviewHighlight: React.FC<ReviewHighlightProps> = ({
+export const ReviewHighlight = ({
   username,
   date,
   rating,
   review,
-}) => {
+}: IReviewHighlightProps) => {
   const fullStars = Math.round(rating);
 
   return (

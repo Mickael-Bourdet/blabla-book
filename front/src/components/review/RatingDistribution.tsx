@@ -1,4 +1,3 @@
-import React from 'react';
 import { RatingBar } from './RatingBar';
 
 // Exemple de données statiques pour l'instant
@@ -10,7 +9,7 @@ const ratings = [
   { stars: 1, percentage: 8, count: 8 },
 ];
 
-export const RatingDistribution: React.FC = () => {
+export const RatingDistribution = () => {
   return (
     <div className="flex flex-col gap-4">
       {ratings.map((rating) => (

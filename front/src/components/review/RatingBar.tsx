@@ -1,12 +1,10 @@
-import React from 'react';
-
-type RatingBarProps = {
+interface IRatingBarProps {
   stars: number;           // Le nombre d’étoiles (1 à 5)
   percentage: number;      // Pourcentage de remplissage (0 à 100)
   count: number;           // Nombre d’avis pour cette note
 };
 
-export const RatingBar: React.FC<RatingBarProps> = ({ stars, percentage, count }) => {
+export const RatingBar = ({ stars, percentage, count }: IRatingBarProps) => {
   return (
     <div className="flex items-center w-full">
       {/* Nombre d'étoiles */}
