@@ -66,15 +66,11 @@ const UserReadPage = () => {
         <div className="mt-10">
         <Link
           to="/profile"
-          className="text-blue-700 underline font-title text-lg hover:text-blue-500"
+         className="block text-gray-800 hover:text-yellow-700 hover:underline mb-2 font-body tracking-widest"
         >
           ← Retour au profil
         </Link>
       </div>
-
-
-
-
 
     </section>
   );

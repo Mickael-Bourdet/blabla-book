@@ -53,7 +53,7 @@ const ProfilePage = () => {
       <section className="pb-4 md:pb-8">
   <div className="flex justify-between items-center mb-4">
     <h2 className="text-2xl font-semibold font-title">
-      <Link to="/books/read" className="no-underline text-inherit">
+      <Link to="/books/read" className="block text-gray-800 hover:underline ">
         Mes livres lus : {localUser.books_already_read.length}
       </Link>
     </h2>
@@ -80,7 +80,7 @@ const ProfilePage = () => {
 
   <div className="flex justify-between items-center mb-4">
     <h2 className="text-2xl font-bold font-title">
-      <Link to="/books/to-read" className="no-underline text-inherit">
+      <Link to="/books/to-read" className="block text-gray-800 hover:underline">
         Mes livres à lire : {localUser.books_wish_read.length}
       </Link>
     </h2>

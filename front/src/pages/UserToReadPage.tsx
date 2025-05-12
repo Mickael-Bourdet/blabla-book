@@ -41,7 +41,7 @@ const UserToReadPage = () => {
 
   return (
     <section className="content ml-[5vw] mr-[5vw] pt-10 pb-20">
-      <h1 className="text-3xl font-bold font-title mb-6">
+      <h1 className="text-3xl font-bold font-title mb-6 ">
       Mes livres à lire : {localUser.books_wish_read.length}
       </h1>
 
@@ -67,7 +67,7 @@ const UserToReadPage = () => {
       <div className="mt-10">
         <Link
           to="/profile"
-          className="text-blue-700 underline font-title text-lg hover:text-blue-500"
+          className="block text-gray-800 hover:text-yellow-700 hover:underline mb-2 font-body tracking-widest"
         >
           ← Retour au profil
         </Link>
