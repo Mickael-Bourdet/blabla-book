@@ -51,7 +51,6 @@ const ProfilePage = () => {
 
       {/* Livres lus */}
       <section className="pb-4 md:pb-8">
-        
   <div className="flex justify-between items-center mb-4">
     <h2 className="text-2xl font-semibold font-title">
       <Link to="/books/read" className="no-underline text-inherit">
@@ -59,7 +58,7 @@ const ProfilePage = () => {
       </Link>
     </h2>
   </div>
-
+  
   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
     {localUser.books_already_read.slice(0, 5).map((book) => (
       <Link key={book.id} to={`/books/${book.id}`} className="block">
