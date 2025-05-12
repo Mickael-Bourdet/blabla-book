@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { RatingDistribution } from "./RatingDistribution";
-import { AverageRating } from "./AverageRating";
-import { ReviewHighlight } from "./ReviewHighlight";
-import { ReviewActions } from "./ReviewActions";
-import { ReviewModal } from "./ReviewModal";
+import RatingDistribution from "./RatingDistribution";
+import AverageRating from "./AverageRating";
+import ReviewHighlight from "./ReviewHighlight";
+import ReviewActions from "./ReviewActions";
+import ReviewModal from "./ReviewModal";
 
 export const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

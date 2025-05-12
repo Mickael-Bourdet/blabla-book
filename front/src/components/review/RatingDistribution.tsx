@@ -1,4 +1,4 @@
-import { RatingBar } from './RatingBar';
+import RatingBar from './RatingBar';
 
 // Exemple de données statiques pour l'instant
 const ratings = [
@@ -9,7 +9,7 @@ const ratings = [
   { stars: 1, percentage: 8, count: 8 },
 ];
 
-export const RatingDistribution = () => {
+const RatingDistribution = () => {
   return (
     <div className="flex flex-col gap-4">
       {ratings.map((rating) => (
@@ -23,3 +23,5 @@ export const RatingDistribution = () => {
     </div>
   );
 };
+
+export default RatingDistribution;

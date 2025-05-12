@@ -5,7 +5,7 @@ interface IReviewHighlightProps {
   review: string;
 };
 
-export const ReviewHighlight = ({
+const ReviewHighlight = ({
   username,
   date,
   rating,
@@ -48,3 +48,5 @@ export const ReviewHighlight = ({
     </div>
   );
 };
+
+export default ReviewHighlight;

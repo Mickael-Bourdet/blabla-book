@@ -4,7 +4,7 @@ interface IRatingBarProps {
   count: number;           // Nombre d’avis pour cette note
 };
 
-export const RatingBar = ({ stars, percentage, count }: IRatingBarProps) => {
+const RatingBar = ({ stars, percentage, count }: IRatingBarProps) => {
   return (
     <div className="flex items-center w-full">
       {/* Nombre d'étoiles */}
@@ -31,3 +31,5 @@ export const RatingBar = ({ stars, percentage, count }: IRatingBarProps) => {
     </div>
   );
 };
+
+export default RatingBar;

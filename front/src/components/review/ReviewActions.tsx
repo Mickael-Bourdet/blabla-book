@@ -1,7 +1,8 @@
 interface IReviewActionsProps {
   onWriteClick?: () => void;
 }
-export const ReviewActions = ({onWriteClick}: IReviewActionsProps) => {
+
+const ReviewActions = ({onWriteClick}: IReviewActionsProps) => {
 
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-end w-full">
@@ -21,3 +22,5 @@ export const ReviewActions = ({onWriteClick}: IReviewActionsProps) => {
     </div>
   );
 };
+
+export default ReviewActions;

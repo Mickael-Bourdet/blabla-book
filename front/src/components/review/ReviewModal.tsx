@@ -5,7 +5,7 @@ interface IReviewModalProps {
   onClose: () => void;
 }
 
-export const ReviewModal = ({ isOpen, onClose }: IReviewModalProps) => {
+const ReviewModal = ({ isOpen, onClose }: IReviewModalProps) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
@@ -49,3 +49,5 @@ export const ReviewModal = ({ isOpen, onClose }: IReviewModalProps) => {
     document.body
   );
 };
+
+export default ReviewModal;

@@ -3,7 +3,7 @@ interface IAverageRatingProps {
   subtitle: string;     // Le sous-texte, ex: "46 Ratings" ou "Last Month"
 };
 
-export const AverageRating = ({ value, subtitle }: IAverageRatingProps) => {
+const AverageRating = ({ value, subtitle }: IAverageRatingProps) => {
   // On arrondit pour savoir combien d'étoiles pleines afficher
   const fullStars = Math.round(value);
 
@@ -33,3 +33,5 @@ export const AverageRating = ({ value, subtitle }: IAverageRatingProps) => {
     </div>
   );
 };
+
+export default AverageRating;
