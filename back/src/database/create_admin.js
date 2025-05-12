@@ -1,4 +1,4 @@
-import sequelize from "../models/client-sequelize.js"
+import sequelize from "../models/client-sequelize.js";
 import { User } from "../models/User.js";
 import { hash } from "../services/authService.js";
 

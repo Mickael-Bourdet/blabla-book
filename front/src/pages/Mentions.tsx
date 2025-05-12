@@ -1,25 +1,72 @@
-import HTMLFlipBook from "react-pageflip";
-
 export default function Mentions() {
   return (
     <div className="flex justify-center p-20 pb-25 items-stretch">
-      {/* @ts-ignore */}
-      <HTMLFlipBook width={500} height={600} size={"fixed"} showCover={true} maxShadowOpacity={0.5} flippingTime={700}>
-        <div
-          className="bg-red-800 h-full flex flex-col items-center justify-center 
-    rounded-md bg-[linear-gradient(to_right,_rgb(60,_13,_20)_3px,_rgba(255,_255,_255,_0.5)_10px,_rgba(255,_255,_255,_0.25)_7px,_rgba(255,_255,_255,_0.25)_20px,_transparent_24px,_transparent_32px,_rgba(255,_255,_255,_0.25)_34px,_transparent_44px)]"
-        >
-          <div className="flex flex-col items-center justify-center h-full text-gray-300">
-            <p className=" text-4xl text-center leading-[1.5]">
-              Mentions Légales
-            </p>
-            <p className="text-center mt-4">Un livre edition O'clock</p>
-          </div>
-        </div>
-        <div className="bg-white">Page 2</div>
-        <div className="bg-white">Page 3</div>
-        <div className="bg-white">Page 4</div>
-      </HTMLFlipBook>
+      <div className="max-w-4xl text-gray-800 space-y-8">
+        <h1 className="text-3xl font-title font-bold text-center mb-8">
+          Mentions légales
+        </h1>
+
+        <section>
+          <h2 className="text-xl font-title font-bold mb-2">Hébergement</h2>
+          <p className="font-body mb-2">A déterminer</p>
+          <p className="font-body mb-2">
+            Site web :{" "}
+            <a href="" className="text-yellow-700 hover:underline">
+              A déterminer
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-title font-bold mb-2">
+            Propriété intellectuelle
+          </h2>
+          <p className="font-body mb-2">
+            Le contenu du site BlaBlaBook (textes, images, code, etc.) est
+            protégé par les lois en vigueur. Toute reproduction ou usage non
+            autorisé est interdit.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-title font-bold mb-2">
+            Données personnelles
+          </h2>
+          <p className="font-body mb-2">
+            BlaBlaBook collecte des données personnelles uniquement pour assurer
+            ses fonctionnalités. Conformément au RGPD, vous pouvez demander la
+            suppression ou la modification de vos données à :
+            contact@blablabook.fr
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-title font-bold mb-2">Cookies</h2>
+          <p className="font-body mb-2">
+            Des cookies peuvent être utilisés pour améliorer l’expérience
+            utilisateur. Vous pouvez les désactiver dans les paramètres de votre
+            navigateur.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-title font-bold mb-2">
+            Limitation de responsabilité
+          </h2>
+          <p className="font-body mb-2">
+            BlaBlaBook ne peut être tenu responsable des erreurs ou
+            interruptions de service, ni des dommages liés à l’utilisation du
+            site.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-title font-bold mb-2">Crédits</h2>
+          <p className="font-body mb-2">
+            Icônes via FontAwesome, images via Unsplash.
+          </p>
+        </section>
+      </div>
     </div>
   );
 }
