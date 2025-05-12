@@ -1,7 +1,7 @@
 import { IError, ILogin, IRegister } from "../@types/auth";
 import { useAuthStore } from "../utils/store/useAuthStore";
 
-const API_URL = "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 /**
  * Function to log in a user.
