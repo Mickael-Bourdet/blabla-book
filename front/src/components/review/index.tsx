@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { RatingDistribution } from "./RatingDistribution";
 import { AverageRating } from "./AverageRating";
 import { ReviewHighlight } from "./ReviewHighlight";
 import { ReviewActions } from "./ReviewActions";
+import { ReviewModal } from "./ReviewModal";
 
 export const ReviewSection: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section className="py-24 relative font-body">
       <div className="max-w-7xl mx-auto px-4">
@@ -22,7 +25,7 @@ export const ReviewSection: React.FC = () => {
           </div>
 
           <div className="flex items-center justify-center">
-            <ReviewActions />
+            <ReviewActions onClick={() => setIsModalOpen(true)} />
           </div>
         </div>
 
@@ -39,6 +42,9 @@ export const ReviewSection: React.FC = () => {
           <p className="text-lg text-black">46 reviews</p>
         </div>
       </div>
+      
+      {/* Modale */}
+      <ReviewModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };

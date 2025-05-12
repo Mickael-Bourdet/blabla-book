@@ -7,7 +7,7 @@ import { toastError } from "../utils/toast/toastError";
 import { toastSuccess } from "../utils/toast/toastSuccess";
 
 const Authentication = () => {
-  const [registerData, setRegisterDate] = useState<IRegister>({
+  const [registerData, setRegisterData] = useState<IRegister>({
     name: "",
     email: "",
     password: "",
@@ -24,7 +24,7 @@ const Authentication = () => {
       await registerUser(registerData);
       toastSuccess("Inscription réussie !");
 
-      setRegisterDate({
+      setRegisterData({
         name: "",
         email: "",
         password: "",
@@ -45,7 +45,7 @@ const Authentication = () => {
   return (
     <section className="pb-14 md:pb-6 ">
       <Login />
-      <Register data={registerData} onChange={setRegisterDate} onSubmit={handleRegister} />
+      <Register data={registerData} onChange={setRegisterData} onSubmit={handleRegister} />
     </section>
   );
 };

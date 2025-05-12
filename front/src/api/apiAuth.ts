@@ -27,7 +27,7 @@ export const loginUser = async (loginData: ILogin) => {
     }
 
     const data = await response.json();
-    console.log("📥 Données reçues du backend :", data);
+    //console.log("📥 Données reçues du backend :", data);
 
     // Utiliser le store pour stocker les informations d'authentification
     if (data.user && data.token) {

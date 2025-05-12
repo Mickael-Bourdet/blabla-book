@@ -17,7 +17,6 @@ export async function getOneUser(): Promise<IUser | null> {
 export const updateUser = async (data: IUserUpdate) => {
   const res = await authFetch(`${apiBaseUrl}/user`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
   if (!res.ok) {

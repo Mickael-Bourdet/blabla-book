@@ -75,7 +75,7 @@ const Login = () => {
       <div className="flex justify-center">
         <button
           type="submit"
-          className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded font-title"
+          className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded font-title cursor-pointer"
           onClick={handleLogin}
         >
           Connexion
