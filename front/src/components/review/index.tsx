@@ -4,9 +4,36 @@ import AverageRating from "./AverageRating";
 import ReviewHighlight from "./ReviewHighlight";
 import ReviewActions from "./ReviewActions";
 import ReviewModal from "./ReviewModal";
+import ReviewList from "./ReviewList";
 
-export const ReviewSection = () => {
+// Reviews factices
+const reviews = [
+  {
+    id: '1',
+    username: 'alice',
+    date: 'May 10, 2025',
+    rating: 5,
+    content: 'Amazing product, it helped streamline my workflow!',
+  },
+  {
+    id: '2',
+    username: 'bob',
+    date: 'May 08, 2025',
+    rating: 4,
+    content: 'Really good, just missing one feature I needed.',
+  },
+  {
+    id: '3',
+    username: 'charlie',
+    date: 'May 06, 2025',
+    rating: 3,
+    content: 'It’s okay. Not bad but could be better.',
+  },
+];
+
+const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showAllReviews, setShowAllReviews] = useState(false);
 
   return (
     <section className="py-24 relative font-body">
@@ -48,3 +75,5 @@ export const ReviewSection = () => {
     </section>
   );
 };
+
+export default ReviewSection
