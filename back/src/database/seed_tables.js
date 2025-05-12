@@ -1,10 +1,4 @@
-import {
-  sequelize,
-  Author,
-  Book,
-  Category,
-  User,
-} from "../models/associations.js";
+import { sequelize, Author, Book, Category, User } from "../models/associations.js";
 
 async function seedDatabase() {
   try {
@@ -417,8 +411,7 @@ async function seedDatabase() {
       },
       {
         isbn: "9782416014291",
-        title:
-          "Ta deuxième vie commence quand tu comprends que tu n'en as qu'une",
+        title: "Ta deuxième vie commence quand tu comprends que tu n'en as qu'une",
         description:
           'Ce livre raconte l\'histoire de Camille, une femme qui traverse une crise de la quarantaine et qui décide de réinventer sa vie grâce à un "coach de vie". Une approche simple et bienveillante pour retrouver sa joie de vivre.',
         published: "2024",
@@ -929,31 +922,29 @@ async function seedDatabase() {
       { book_id: 68, category_id: 10 },
     ];
 
-    await sequelize.models.book_has_category.bulkCreate(
-      bookCategoryAssociation
-    );
+    await sequelize.models.book_has_category.bulkCreate(bookCategoryAssociation);
 
-    const userBooksReadAssociation = [
-      { user_id: 1, book_id: 1 },
-      { user_id: 1, book_id: 3 },
-      { user_id: 2, book_id: 2 },
-      { user_id: 3, book_id: 4 },
-      { user_id: 3, book_id: 5 },
-    ];
+    // const userBooksReadAssociation = [
+    //   { user_id: 1, book_id: 1 },
+    //   { user_id: 1, book_id: 3 },
+    //   { user_id: 2, book_id: 2 },
+    //   { user_id: 3, book_id: 4 },
+    //   { user_id: 3, book_id: 5 },
+    // ];
 
-    // Insérer des associations dans la table de jointure book_read
-    await sequelize.models.book_read.bulkCreate(userBooksReadAssociation);
+    // // Insérer des associations dans la table de jointure book_already_read
+    // await sequelize.models.book_read.bulkCreate(userBooksReadAssociation);
 
-    const bookToReadData = [
-      { user_id: user[0].id, book_id: books[0].id },
-      { user_id: user[0].id, book_id: books[1].id },
-      { user_id: user[1].id, book_id: books[2].id },
-      { user_id: user[1].id, book_id: books[3].id },
-      { user_id: user[2].id, book_id: books[4].id },
-    ];
+    // const bookToReadData = [
+    //   { user_id: user[0].id, book_id: books[0].id },
+    //   { user_id: user[0].id, book_id: books[1].id },
+    //   { user_id: user[1].id, book_id: books[2].id },
+    //   { user_id: user[1].id, book_id: books[3].id },
+    //   { user_id: user[2].id, book_id: books[4].id },
+    // ];
 
-    // Insérer les associations dans la table de jonction
-    await sequelize.models.book_to_read.bulkCreate(bookToReadData);
+    // // Insérer les associations dans la table de jonction
+    // await sequelize.models.book_to_read.bulkCreate(bookToReadData);
   } catch (error) {
     console.error("Erreur lors du seeding :", error);
   } finally {

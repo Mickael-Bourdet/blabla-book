@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ICategory } from "../../@types";
+import { getAllCategories } from "../../api/apiBooks";
 
 const Navbars = () => {
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  useEffect(() => {
+    async function loadCategories() {
+      try {
+        const allCategories = await getAllCategories();
+        setCategories(allCategories);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadCategories();
+  }, []);
   return (
     <div>
       {/* Conteneur principal avec Flexbox */}
@@ -9,93 +24,27 @@ const Navbars = () => {
         <aside className="hidden md:block bg-sidebar p-4 w-64 fixed h-screen z-20 overflow-y-auto">
           <div className="logo flex items-center gap-2 mb-10">
             <Link to="/" className="flex items-center">
-              <img src="/blablabook.webp" alt="BlaBlaBook" className="w-20" />
+              <img src="/blablabook.webp" alt="BlaBlaBook" className="w-10" />
               <h1 className="text-xl font-black font-title">BlaBlaBook</h1>
             </Link>
           </div>
-          <h2 className="text-lg mb-4">Genres</h2>
-          <ul>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Romance
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Thriller
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Fantaisie
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Science-fiction
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Développement personnel
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Biographie
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Jeunesse
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Manga
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Bande dessinée
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className="block text-gray-800 hover:text-blue-600 mb-2"
-              >
-                Classique
-              </Link>
-            </li>
-          </ul>
+          <div className="pl-4">
+            <h2 className="text-xl mb-4 font-title font-bold">Genres</h2>
+            <ul>
+              {categories.map((category) => {
+                return (
+                  <li key={category.id}>
+                    <Link
+                      to={`/categories/${category.id}`}
+                      className="block text-gray-800 hover:text-yellow-700 hover:underline mb-2 font-body tracking-widest"
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </aside>
 
         {/* Contenu principal avec la Navbar */}
