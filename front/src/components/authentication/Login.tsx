@@ -7,6 +7,10 @@ import { loginUser } from "../../api/apiAuth";
 import { toastSuccess } from "../../utils/toast/toastSuccess";
 import { toastError } from "../../utils/toast/toastError";
 
+/**
+ * 
+ * @returns 
+ */
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuthStore();

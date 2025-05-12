@@ -1,33 +1,35 @@
 import iziToast from "izitoast";
 
 /**
+ * Displays error messages as toast notifications.
  *
- * @param message
+ * @param {string | string[]} message - The error message(s) to display.
+ * Can be a single string or an array of strings.
  */
 export const toastError = (message: string | string[]) => {
-  // Si c'est un tableau d'erreurs, afficher chaque erreur séparément
+  // Handle case when message is an array of strings
   if (Array.isArray(message)) {
-    // Pour éviter trop de notifications, limiter à 3-4 erreurs maximum
+    // Limit the number of displayed messages to 4 to avoid overwhelming the user
     const limitedMessages = message.slice(0, 4);
 
-    // Afficher chaque erreur avec un délai croissant pour éviter qu'elles se superposent
+    // Display each error message with a slight delay between them
     limitedMessages.forEach((msg, index) => {
       setTimeout(() => {
         iziToast.error({
           title: "Erreur",
           message: msg,
           position: "topRight",
-          timeout: 5000 + index * 500, // Augmenter le temps d'affichage pour les erreurs suivantes
+          timeout: 5000 + index * 500,
           color: "red",
         });
-      }, index * 300); // Délai pour l'apparition de chaque toast
+      }, index * 300);
     });
 
-    // Si on a tronqué le tableau, ajouter un message pour le signaler
+    // If there are more messages than displayed, show an info toast with the count
     if (message.length > limitedMessages.length) {
       setTimeout(() => {
         iziToast.info({
-          title: "Information",
+          title: "Information", 
           message: `+ ${
             message.length - limitedMessages.length
           } autre(s) erreur(s)`,
@@ -38,7 +40,7 @@ export const toastError = (message: string | string[]) => {
       }, limitedMessages.length * 300);
     }
   } else {
-    // Comportement d'origine pour un message unique
+    // Handle case when message is a single string
     iziToast.error({
       title: "Erreur",
       message,
@@ -48,3 +50,6 @@ export const toastError = (message: string | string[]) => {
     });
   }
 };
+
+
+

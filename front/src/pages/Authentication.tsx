@@ -24,7 +24,6 @@ const Authentication = () => {
       await registerUser(registerData);
       toastSuccess("Inscription réussie !");
 
-      // ✅ Réinitialisation des champs
       setRegisterDate({
         name: "",
         email: "",
@@ -35,7 +34,6 @@ const Authentication = () => {
       console.error("❌ Étape 4 - erreur :", error);
       const apiError = error as IError;
 
-      // Utiliser le tableau d'erreurs s'il existe, sinon utiliser le message général
       if (apiError.errors && apiError.errors.length > 0) {
         toastError(apiError.errors);
       } else {

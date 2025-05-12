@@ -1,24 +1,23 @@
-import { ApiError } from "./ApiError.js";
-
 /**
+ * Middleware to handle errors.
  *
- * @param {*} error
- * @param {*} req
- * @param {*} res
- * @param {*} next
- * @returns
+ * @param {Error} error - The error object.
+ * @param {Object} _req - The request object (unused).
+ * @param {Object} res - The response object.
+ * @param {Function} _next - The next middleware function (unused).
+ * @returns {Object} - The response object with the error details.
  */
 export const errorHandler = (error, _req, res, _next) => {
-  // Cas 1 : Erreur personnalisée de l'app (ApiError)
+  // Case 1: Custom application error (ApiError)
   if (error instanceof ApiError) {
     return res.status(error.statusCode).json({
       status: error.statusCode,
       message: error.message,
-      errors: error.details ?? undefined,
+      errors: error.details ?? undefined, // Use error.details if it exists, otherwise set to undefined (the coalescence operator)
     });
   }
 
-  // Cas 2 : Erreur de validation (ex: Joi)
+  // Case 2: Validation error (e.g., Joi)
   if (error.details && Array.isArray(error.details)) {
     return res.status(400).json({
       status: 400,
@@ -27,7 +26,7 @@ export const errorHandler = (error, _req, res, _next) => {
     });
   }
 
-  // Cas 3 : Erreur inattendue
+  // Case 3: Unexpected error
   const status = error.statusCode || 500;
   const message = error.message || "Une erreur est survenue";
 
@@ -36,6 +35,7 @@ export const errorHandler = (error, _req, res, _next) => {
     message,
   };
 
+  // Include the error stack trace in the response if not in production environment
   if (process.env.NODE_ENV !== "production") {
     response.stack = error.stack;
   }

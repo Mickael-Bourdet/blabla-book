@@ -8,7 +8,7 @@ export const router = Router();
 
 // Get one user
 /**
- * GET /user/:userId
+ * GET /user
  * @summary Retrieve information about a specific user.
  * @param {number} userId.path.required - The ID of the user.
  * @return {object} 200 - Success response with the user's data.
@@ -18,7 +18,7 @@ router.get("/user", authMiddleware, userController.getOneUser);
 
 // Update user information
 /**
- * PATCH /user/:userId
+ * PATCH /user
  * @summary Update a specific user's information (name, email, password).
  * @param {number} userId.path.required - The ID of the user to update.
  * @param {object} - The user data to update (email, name, password).
@@ -29,7 +29,7 @@ router.patch("/user", authMiddleware, validate(updateUserSchema), userController
 
 // Delete a user
 /**
- * DELETE /user/:userId
+ * DELETE /user
  * @summary Delete a specific user from the system.
  * @param {number} userId.path.required - The ID of the user to delete.
  * @return {object} 200 - Success response with a message confirming deletion.

@@ -6,7 +6,7 @@ import { isDisposableEmail, isDomainValid } from "../services/emailService.js";
 const userController = {
   // Get one user with associated tables (already read books, wish-to-read books)
   /**
-   * GET /user/:userId
+   * GET /user
    * @summary Fetch a user's information along with their associated books (already read and wish-to-read).
    * @param {number} userId.path.required - The ID of the user.
    * @return {object} 200 - Success response with user data and associated books.
@@ -32,7 +32,7 @@ const userController = {
 
   // Update a user's information (name, email, password)
   /**
-   * PATCH /user/:userId
+   * PATCH /user
    * @summary Update a user's information such as name, email, and password.
    * @param {number} userId.path.required - The ID of the user to update.
    * @param {object} body.body.required - The fields to update (email, name, password).
@@ -108,7 +108,7 @@ const userController = {
 
   // Delete a user
   /**
-   * DELETE /user/:userId
+   * DELETE /user
    * @summary Delete a specific user.
    * @param {number} userId.path.required - The ID of the user to delete.
    * @return {object} 200 - Success message indicating the user was deleted.
