@@ -6,7 +6,7 @@ import ReviewActions from "./ReviewActions";
 import ReviewModal from "./ReviewModal";
 import ReviewList from "./ReviewList";
 
-// Reviews factices
+// Fake Reviews
 const reviews = [
   {
     id: "1",
@@ -31,6 +31,11 @@ const reviews = [
   },
 ];
 
+/**
+ * ReviewSection component that displays ratings, reviews, and review actions.
+ *
+ * @returns {JSX.Element} - The rendered review section.
+ */
 const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -69,11 +74,11 @@ const ReviewSection = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center pt-8">
           <p className="text-lg text-black">{reviews.length} reviews</p>
         </div>
-        {/* Liste des avis */}
+        {/* List of reviews */}
         <ReviewList reviews={reviews} perPage={2} />
       </div>
 
-      {/* Modale */}
+      {/* Modal */}
       <ReviewModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );

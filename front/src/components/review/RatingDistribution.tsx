@@ -1,6 +1,6 @@
 import RatingBar from './RatingBar';
 
-// Exemple de données statiques pour l'instant
+// Example of static data for now
 const ratings = [
   { stars: 5, percentage: 30, count: 30 },
   { stars: 4, percentage: 40, count: 40 },
@@ -9,6 +9,11 @@ const ratings = [
   { stars: 1, percentage: 8, count: 8 },
 ];
 
+/**
+ * RatingDistribution component that displays a distribution of ratings.
+ *
+ * @returns {JSX.Element} - The rendered rating distribution component.
+ */
 const RatingDistribution = () => {
   return (
     <div className="flex flex-col gap-4">

@@ -1,18 +1,26 @@
 interface IAverageRatingProps {
-  value: number;        // La note, ex: 4.3
-  subtitle: string;     // Le sous-texte, ex: "46 Ratings" ou "Last Month"
+  value: number;        // The grade, ex: 4.3
+  subtitle: string;     // The subtext, ex: "46 Ratings" or "Last Month"
 };
 
+/**
+ * Component to display an average rating with stars.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {number} param0.value - The average rating value (0-5).
+ * @param {string} param0.subtitle - The subtitle text to display below the rating.
+ * @returns {JSX.Element} - The rendered average rating component.
+ */
 const AverageRating = ({ value, subtitle }: IAverageRatingProps) => {
-  // On arrondit pour savoir combien d'étoiles pleines afficher
+  // We round up to know how many full stars to display
   const fullStars = Math.round(value);
 
   return (
     <div className="flex flex-col items-center justify-center text-center px-4">
-      {/* Note moyenne */}
+      {/* Average rating */}
       <h2 className="text-5xl text-black mb-4">{value.toFixed(1)}</h2>
 
-      {/* Étoiles */}
+      {/* Stars */}
       <div className="flex items-center gap-1 mb-2">
         {Array.from({ length: 5 }).map((_, i) => (
           <svg
@@ -28,7 +36,7 @@ const AverageRating = ({ value, subtitle }: IAverageRatingProps) => {
         ))}
       </div>
 
-      {/* Sous-titre */}
+      {/* Subtitle */}
       <p className="text-lg text-gray-500">{subtitle}</p>
     </div>
   );

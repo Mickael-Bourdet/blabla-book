@@ -9,8 +9,9 @@ import { toastError } from "../../utils/toast/toastError";
 import PasswordField from "./PasswordField";
 
 /**
+ * Login component that handles user authentication.
  *
- * @returns
+ * @returns {JSX.Element} - The rendered login form.
  */
 const Login = () => {
   const navigate = useNavigate();

@@ -5,13 +5,21 @@ interface IReviewModalProps {
   onClose: () => void;
 }
 
+/**
+ * ReviewModal component that displays a modal for submitting a new review.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {boolean} param0.isOpen - Whether the modal is open.
+ * @param {Function} param0.onClose - Function to call when closing the modal.
+ * @returns {JSX.Element|null} - The rendered modal component or null if not open.
+ */
 const ReviewModal = ({ isOpen, onClose }: IReviewModalProps) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
     <div className="fixed font-body inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-body rounded-lg p-6 w-full max-w-xl relative shadow-lg">
-        {/* Bouton de fermeture */}
+        {/* Close button */}
         <button
           className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl"
           onClick={onClose}
@@ -19,12 +27,12 @@ const ReviewModal = ({ isOpen, onClose }: IReviewModalProps) => {
           &times;
         </button>
 
-        {/* Contenu du formulaire */}
+        {/* Form content */}
         <h2 className="text-2xl font-title font-bold mb-4 text-black">
           Laissez votre avis
         </h2>
         <form className="flex flex-col gap-4">
-          {/* Placeholder pour les étoiles (non fonctionnel pour l'instant) */}
+          {/* Placeholder for stars (not working yet) */}
           <div className="text-gray-500">★ ★ ★ ★ ★</div>
 
           <input

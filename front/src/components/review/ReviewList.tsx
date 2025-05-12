@@ -15,11 +15,18 @@ interface IReviewListProps {
   showAll?: boolean;
 }
 
+/**
+ * ReviewList component that displays a paginated list of reviews.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {Array} param0.reviews - Array of review objects to display.
+ * @param {number} [param0.perPage=2] - Number of reviews to show per page (defaults to 2).
+ * @returns {JSX.Element} - The rendered review list component.
+ */
 const ReviewList = ({ reviews, perPage = 2 }: IReviewListProps) => {
   const [visibleCount, setVisibleCount] = useState(perPage);
   const visibleReviews = reviews.slice(0, visibleCount);
   const hasMore = visibleCount < reviews.length;
-
 
   return (
     <div className="mt-10 space-y-10">

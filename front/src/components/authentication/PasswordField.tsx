@@ -12,9 +12,18 @@ interface PasswordFieldProps {
 }
 
 /**
- * 
- * @param param0 
- * @returns 
+ * PasswordField component for handling password input with toggle visibility.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {string} param0.label - Label for the password field.
+ * @param {string} param0.id - ID attribute for the input element.
+ * @param {string} param0.name - Name attribute for the input element.
+ * @param {string} param0.value - Current value of the password field.
+ * @param {Function} param0.onChange - Function to handle value changes.
+ * @param {string} param0.placeholder - Placeholder text for the input.
+ * @param {Function} param0.onFocus - Function to handle focus events.
+ * @param {Function} param0.onBlur - Function to handle blur events.
+ * @returns {JSX.Element} - The rendered password field component.
  */
 const PasswordField = ({
   label,

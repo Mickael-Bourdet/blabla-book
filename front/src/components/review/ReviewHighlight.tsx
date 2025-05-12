@@ -5,6 +5,16 @@ interface IReviewHighlightProps {
   review: string;
 };
 
+/**
+ * ReviewHighlight component that displays a featured review with rating, username, date, and content.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {string} param0.username - The username of the reviewer.
+ * @param {string} param0.date - The date of the review.
+ * @param {number} param0.rating - The rating given in the review (0-5).
+ * @param {string} param0.review - The text content of the review.
+ * @returns {JSX.Element} - The rendered featured review component.
+ */
 const ReviewHighlight = ({
   username,
   date,
@@ -15,12 +25,12 @@ const ReviewHighlight = ({
 
   return (
     <div className="w-full">
-      {/* Titre */}
+      {/* Title */}
       <h4 className="font-title text-3xl text-black mb-6">
         Le dernier avis posté
       </h4>
 
-      {/* Étoiles + utilisateur */}
+      {/* Stars + user */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
         <div className="flex items-center gap-2">
           {Array.from({ length: 5 }).map((_, i) => (
@@ -43,7 +53,7 @@ const ReviewHighlight = ({
         </div>
       </div>
 
-      {/* Texte de la review */}
+      {/* Text of the review */}
       <p className="text-lg text-gray-600 leading-8">{review}</p>
     </div>
   );

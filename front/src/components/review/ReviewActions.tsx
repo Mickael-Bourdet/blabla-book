@@ -2,6 +2,13 @@ interface IReviewActionsProps {
   onWriteClick?: () => void;
 }
 
+/**
+ * ReviewActions component that provides buttons for review-related actions.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {Function} param0.onWriteClick - Callback function when the write review button is clicked.
+ * @returns {JSX.Element} - The rendered review actions component.
+ */
 const ReviewActions = ({ onWriteClick }: IReviewActionsProps) => {
 
   return (
