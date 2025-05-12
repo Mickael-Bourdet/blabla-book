@@ -1,9 +1,11 @@
 import type { IBooks, IBook, ICategory, ICategoryBooks } from "../@types";
+
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 interface IBookQueryParams {
   [key: string]: string | number | boolean | undefined;
 }
+
 export async function getAllBooks(params: IBookQueryParams = {}): Promise<IBooks> {
   const urlParams = new URLSearchParams();
 
@@ -44,8 +46,8 @@ export async function getOneBook(id: number): Promise<IBook> {
 
     if (!response.ok) {
       throw new Error(`Erreur lors de la récupération des livres: ${response.statusText}`);
-
     }
+
     const book = await response.json();
     return book;
 
@@ -56,10 +58,20 @@ export async function getOneBook(id: number): Promise<IBook> {
 }
 
 export async function searchBooks(query: string): Promise<IBook[]> {
-  const response = await fetch(`${apiBaseUrl}/books?search=${encodeURIComponent(query)}`);
+  try {
+    const response = await fetch(`${apiBaseUrl}/books?search=${encodeURIComponent(query)}`);
 
-  const books = await response.json();
-  return books;
+    if (!response.ok) {
+      throw new Error(`Erreur lors de la récupération des livres: ${response.statusText}`);
+    }
+
+    const books = await response.json();
+    return books;
+
+  } catch (error) {
+    console.error("Erreur de chargement", error);
+    throw error;
+  }
 }
 
 export async function getAllCategories(): Promise<ICategory[]> {
