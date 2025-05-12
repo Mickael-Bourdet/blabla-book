@@ -33,7 +33,7 @@ export default function MobileCategoryPage() {
                   >
                     <img src="/romance.jpg" alt="" className="rounded-2xl" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <p className="text-white font-bold text-2xl "> {category.name}</p>
+                      <p className="text-white font-bold text-2xl text-center"> {category.name}</p>
                     </div>
                   </Link>
                 </li>
