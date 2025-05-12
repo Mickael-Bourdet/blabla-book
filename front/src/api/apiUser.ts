@@ -1,7 +1,7 @@
-import type { IBook, IUser,IUserUpdate } from "../@types";
+import type { IBook, IUser, IUserUpdate } from "../@types";
 import { authFetch } from "../utils/authFetch";
 
-const apiBaseUrl = "http://localhost:3000";
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;;
 
 export async function getOneUser(): Promise<IUser | null> {
   const response = await authFetch(`${apiBaseUrl}/user`);
