@@ -19,7 +19,6 @@ export default function CategoryPage() {
       }
     }
     loadBooks();
-    console.log(loadBooks());
   }, [categoryId]);
 
   return (
