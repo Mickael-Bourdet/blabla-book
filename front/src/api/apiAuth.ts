@@ -21,7 +21,6 @@ export const loginUser = async (loginData: ILogin) => {
 
     if (!response.ok) {
       const error = await response.json();
-      console.log("❌ Réponse non OK :", error);
       throw new Error(error.message || "Erreur inconnue lors de la connexion.");
     }
 

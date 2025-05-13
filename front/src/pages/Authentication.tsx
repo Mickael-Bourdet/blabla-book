@@ -31,7 +31,6 @@ const Authentication = () => {
         confirmPassword: "",
       });
     } catch (error: unknown) {
-      console.error("❌ Étape 4 - erreur :", error);
       const apiError = error as IError;
 
       if (apiError.errors && apiError.errors.length > 0) {

@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import { getOneUser, updateUser, deleteUser } from "../api/apiUser";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../utils/store/useAuthStore";
+import { IError } from "../@types/auth";
+import { toastError } from "../utils/toast/toastError";
+import { toastSuccess } from "../utils/toast/toastSuccess";
 
 const SettingsUser = () => {
   const navigate = useNavigate();
@@ -87,12 +90,19 @@ const SettingsUser = () => {
       setNewPassword("");
       setConfirmPassword("");
       setEditPassword(false);
-      setPasswordError("");
       setEditEmail(false);
-      setEmailError(false);
       setConfirmationModal(false);
-    } catch (err) {
-      setPasswordError("Mot de passe actuel incorrect.");
+      toastSuccess("Profil mis à jour avec succès !")
+    } catch (error: unknown) {
+      const apiError = error as IError;
+
+      if (apiError.errors && apiError.errors.length > 0) {
+        toastError(apiError.errors);
+      } else {
+        toastError(apiError.message || "Une erreur est survenue.");
+      }
+
+      setConfirmationModal(false); // Ne pas rester bloqué
     }
   };
 
@@ -145,17 +155,25 @@ const SettingsUser = () => {
       <div className="flex flex-col w-full  items-center font-title">
         {/* Profil */}
         <div className="flex mb-5 items-center">
-          <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">👤</div>
+          <div className="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-4xl mb-4">
+            👤
+          </div>
           <div className="flex flex-col">
             <p className="font-bold mt-8 ml-20 ">{userData?.name}</p>
             <p className="font-bold mt-8 ml-20">
               Nombre de livres lus :{" "}
-              <span className="font-body font-normal tracking-wider"> {userData?.books_already_read.length} </span>
+              <span className="font-body font-normal tracking-wider">
+                {" "}
+                {userData?.books_already_read.length}{" "}
+              </span>
             </p>
             <p className="font-bold mt-8 ml-20">
               Nombre de pages lues :{" "}
               <span className="font-body font-normal tracking-wider">
-                {userData?.books_already_read.reduce((total, book) => total + book.page_count, 0)}
+                {userData?.books_already_read.reduce(
+                  (total, book) => total + book.page_count,
+                  0
+                )}
               </span>
             </p>
           </div>
@@ -163,7 +181,10 @@ const SettingsUser = () => {
 
         {/* Form */}
         <div className="font-body [word-spacing:2px] tracking-widest w-full max-w-md px-4">
-          <form onSubmit={handleSubmit} className="w-full max-w-md flex flex-col gap-4 pt-10 ">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-md flex flex-col gap-4 pt-10 "
+          >
             {/* Pseudo */}
             <div className="flex items-center justify-between border-b border-gray-300 pb-2">
               <input
@@ -177,8 +198,18 @@ const SettingsUser = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 readOnly={!editUserName}
               />
-              <button type="button" className="ml-2 text-gray-500 text-sm" onClick={handleUsernameEdit}>
-                <i className={editUserName ? "fa-solid fa-hourglass-half text-xl" : "fa-solid fa-pencil text-xl"}></i>
+              <button
+                type="button"
+                className="ml-2 text-gray-500 text-sm"
+                onClick={handleUsernameEdit}
+              >
+                <i
+                  className={
+                    editUserName
+                      ? "fa-solid fa-hourglass-half text-xl"
+                      : "fa-solid fa-pencil text-xl"
+                  }
+                ></i>
               </button>
             </div>
             {/* email */}
@@ -194,11 +225,23 @@ const SettingsUser = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 readOnly={!editEmail}
               />
-              <button type="button" className="ml-2 text-gray-500 text-sm" onClick={handleEmailEdit}>
-                <i className={editEmail ? "fa-solid fa-hourglass-half text-xl" : "fa-solid fa-pencil text-xl"}></i>
+              <button
+                type="button"
+                className="ml-2 text-gray-500 text-sm"
+                onClick={handleEmailEdit}
+              >
+                <i
+                  className={
+                    editEmail
+                      ? "fa-solid fa-hourglass-half text-xl"
+                      : "fa-solid fa-pencil text-xl"
+                  }
+                ></i>
               </button>
             </div>
-            {emailError && <p className="text-red-500">Les emails ne correspondent pas.</p>}
+            {emailError && (
+              <p className="text-red-500">Les emails ne correspondent pas.</p>
+            )}
             {/* Nouveau mot de passe */}
             {/* Changer mot de passe */}
             <div className="flex items-center justify-between border-b border-gray-300 pb-2">
@@ -215,7 +258,13 @@ const SettingsUser = () => {
                 className="ml-2 text-gray-500 text-sm"
                 onClick={() => setEditPassword(!editPassword)}
               >
-                <i className={editPassword ? "fa-solid fa-hourglass-half text-xl" : "fa-solid fa-pencil text-xl"}></i>
+                <i
+                  className={
+                    editPassword
+                      ? "fa-solid fa-hourglass-half text-xl"
+                      : "fa-solid fa-pencil text-xl"
+                  }
+                ></i>
               </button>
             </div>
             {editPassword && (
@@ -269,10 +318,16 @@ const SettingsUser = () => {
               )}
 
               <div className="flex gap-4 mt-4">
-                <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleConfirmation(false)}>
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                  onClick={() => handleConfirmation(false)}
+                >
                   Annuler
                 </button>
-                <button className="bg-green-500 text-white px-4 py-2 rounded" onClick={() => handleConfirmation(true)}>
+                <button
+                  className="bg-green-500 text-white px-4 py-2 rounded"
+                  onClick={() => handleConfirmation(true)}
+                >
                   Confirmer
                 </button>
               </div>
@@ -284,7 +339,8 @@ const SettingsUser = () => {
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-body p-6 rounded shadow-lg">
               <p className="text-lg font-semibold">
-                Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible.
+                Es-tu sûr de vouloir supprimer ton compte ? Cette action est
+                irréversible.
               </p>
               <div className="flex gap-4 mt-4 justify-end">
                 <button

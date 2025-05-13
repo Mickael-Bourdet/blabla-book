@@ -41,7 +41,6 @@ const Login = () => {
 
       navigate("/profile");
     } catch (error) {
-      console.log("❌ Étape 5 - erreur capturée :", error);
       toastError("Echec de la connexion");
     }
   };
