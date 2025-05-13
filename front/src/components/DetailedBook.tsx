@@ -156,8 +156,13 @@ const BookDetail = () => {
     return <div className="text-center text-red-600 bg-red-100 p-4 rounded-md shadow-md">Livre non trouvé</div>;
   }
 
-  return (          
+  return ( 
+    // Main container with responsive design
+    // - Flex column on mobile, can become row on certain screen sizes
+    // - Spacing and padding adapted according to breakpoints
+    // - Specific font and tracking for the entire component         
     <div className="bg-body flex flex-col p-4 items-center sm:flex-col ml:flex-row lg:ml-0 xl:ml-64 md:p-8 md:gap-8 mt-5 font-body tracking-wider [word-spacing:2px]">
+
       <img
         src={`https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/${book.cover_url}.jpg`}
         alt={`${book.title}`}
@@ -166,14 +171,17 @@ const BookDetail = () => {
 
       <div className="text-sm md:text-base max-w-xl">
         <p>
-          <span className="font-bold font-title text:2xl">Par</span> :{" "}
+          <span className="font-bold font-title text:2xl">Par :</span>{" "}
+           {/* Join author names if there are multiple */}
           {book.authors.map((auth) => auth.name).join(", ")}
         </p>
 
         <h1 className="text-xl font-title font-bold mb-2">{book.title}</h1>
 
         <p>
-          <span className="font-bold font-title">Catégorie</span> : {book.categories.map((cat) => cat.name).join(", ")}
+          <span className="font-bold font-title">Catégorie :</span>{" "}
+           {/* Join category names if there are multiple */}
+          {book.categories.map((cat) => cat.name).join(", ")}
         </p>
 
         <p className="mb-2">
@@ -184,6 +192,11 @@ const BookDetail = () => {
         <p>{book.description}</p>
 
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row mt-4">
+
+           {/* "Read" button
+              - Changes color based on state (green if selected)
+              - Uses different handlers depending on current state
+              - Includes appropriate icon based on status */}
           <button
             onClick={!isRead ? handleAddRead : handleRemoveRead}
             className={`flex items-center gap-2 ${
@@ -193,6 +206,10 @@ const BookDetail = () => {
             <i className={`${isRead && !toRead ? "fa-solid fa-square-check" : "fa-solid fa-square-xmark"}`}></i>
             <span>Lu</span>
           </button>
+
+           {/* "To Read" button
+              - Changes color based on state (green if selected)
+              - Uses different handlers depending on current state */}
           <button
             onClick={!toRead ? handleWishRead : handleRemoveWishRead}
             className={`flex items-center gap-2 ${
