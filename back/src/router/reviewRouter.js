@@ -23,11 +23,9 @@ router.post("/user/books/:bookId/review", authMiddleware, validate(reviewSchema)
  * GET route to retrieve reviews for a specific book (admin only).
  *
  * @summary Get all reviews for a specific book.
- * @route GET /dashboard/book/:bookId/reviews
- * @middleware authMiddleware - Ensures the user is authenticated.
- * @middleware isAdminMiddleware - Ensures the user is an admin.
- * @controller dashboardController.getReviewsByBook - Handles retrieving the book reviews.
+ * @route GET /book/:bookId/reviews
+ * @controller reviewController.getReviewsByBook - Handles retrieving the book reviews.
  * @return {Object} - The list of reviews for the book.
  * @return {Error} - Error if the request fails.
  */
-router.get("/dashboard/book/:bookId/reviews", authMiddleware, isAdminMiddleware, dashboardController.getReviewsByBook);
+router.get("/book/:bookId/reviews", reviewController.getReviewsByBook);
