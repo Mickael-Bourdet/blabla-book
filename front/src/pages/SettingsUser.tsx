@@ -13,7 +13,7 @@ const SettingsUser = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
 
-  const [emailError, setEmailError] = useState(false);
+  //const [emailError, setEmailError] = useState(false);
   const [confirmationModal, setConfirmationModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [editUserName, setEditUserName] = useState(false);
@@ -239,9 +239,7 @@ const SettingsUser = () => {
                 ></i>
               </button>
             </div>
-            {emailError && (
-              <p className="text-red-500">Les emails ne correspondent pas.</p>
-            )}
+        
             {/* Nouveau mot de passe */}
             {/* Changer mot de passe */}
             <div className="flex items-center justify-between border-b border-gray-300 pb-2">
