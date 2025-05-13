@@ -7,6 +7,10 @@ import { useErrorHandler } from "../utils/useErrorHandler";
 import { toastSuccess, toastInfo, toastWarning } from "../utils/toast/toastSuccess";
 import { useAuthStore } from "../utils/store/useAuthStore";
 
+/**
+ * @component BookDetail
+ * @description Displays detailed information about a specific book and allows the user to manage their read/to-read status.
+ */
 const BookDetail = () => {
   const { user } = useAuthStore();
   const userId = user?.id;
@@ -17,7 +21,11 @@ const BookDetail = () => {
   const [toRead, setToRead] = useState(false);
   const { handleError } = useErrorHandler();
   
-  // Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes
+  /**
+ * @function handleAddRead
+ * @description Adds the current book to the user's "read" list. If the book is in the wishlist ("to-read"), it will be removed from there.
+ * Displays a warning if the user is not authenticated.
+ */
   const handleAddRead = () => {
     if (!userId) {
       toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
@@ -28,19 +36,41 @@ const BookDetail = () => {
    </div>`);
       return;
     }
-    addToMyReadLibrary(numericBookId);
-    if (toRead) {
-      handleRemoveWishRead();
+
+    try {
+      addToMyReadLibrary(numericBookId);
+      if (toRead) {
+        handleRemoveWishRead();
+      }
+      toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
+      setIsRead(true);
+      setToRead(false);
+      
+    } catch (error) {
+      handleError(error);
     }
-    toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
-    setIsRead(true);
-    setToRead(false);
   };
-  const handleRemoveRead = () => {
-    deleteToMyReadLibrary(numericBookId);
-    toastInfo(`Le livre a été enlevé de la liste "lu"`);
-    setIsRead(false);
+
+  /**
+ * @function handleRemoveRead
+ * @description Removes the current book from the user's "read" list.
+ * Displays a notification on success, and handles errors gracefully.
+ */
+  const handleRemoveRead = async () => {
+    try {
+      const success = await deleteToMyReadLibrary(numericBookId);
+
+      if (!success) {
+        throw new Error("Impossible de retirer le livre de la liste 'lu'.");
+      }
+      
+      toastInfo(`Le livre a été enlevé de la liste "lu"`);
+      setIsRead(false);
+    } catch (error) {
+      handleError(error);
+    }  
   };
+
   const handleWishRead = () => {
     if (!userId) {
       toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
@@ -59,6 +89,7 @@ const BookDetail = () => {
     setToRead(true);
     setIsRead(false);
   };
+
   const handleRemoveWishRead = () => {
     deleteToWishRead(numericBookId);
     toastInfo(`Le livre a été enlevé de la liste "à lire"`);
