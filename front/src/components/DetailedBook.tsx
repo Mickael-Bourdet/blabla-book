@@ -140,7 +140,7 @@ const BookDetail = () => {
 
          // Check if the current user wants to read the book
         const wantsToRead = newBook.users_need_to_read.some((user) => user.id === userId);
-        
+
         setIsRead(hasRead);
         setToRead(wantsToRead);
       } catch (error) {
@@ -151,6 +151,7 @@ const BookDetail = () => {
     loadData();
   }, [bookId, userId]);
 
+  // check if the book exists
   if (!book) {
     return <div className="text-center text-red-600 bg-red-100 p-4 rounded-md shadow-md">Livre non trouvé</div>;
   }
