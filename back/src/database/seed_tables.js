@@ -922,29 +922,9 @@ async function seedDatabase() {
       { book_id: 68, category_id: 10 },
     ];
 
-    await sequelize.models.book_has_category.bulkCreate(bookCategoryAssociation);
-
-    // const userBooksReadAssociation = [
-    //   { user_id: 1, book_id: 1 },
-    //   { user_id: 1, book_id: 3 },
-    //   { user_id: 2, book_id: 2 },
-    //   { user_id: 3, book_id: 4 },
-    //   { user_id: 3, book_id: 5 },
-    // ];
-
-    // // Insérer des associations dans la table de jointure book_already_read
-    // await sequelize.models.book_read.bulkCreate(userBooksReadAssociation);
-
-    // const bookToReadData = [
-    //   { user_id: user[0].id, book_id: books[0].id },
-    //   { user_id: user[0].id, book_id: books[1].id },
-    //   { user_id: user[1].id, book_id: books[2].id },
-    //   { user_id: user[1].id, book_id: books[3].id },
-    //   { user_id: user[2].id, book_id: books[4].id },
-    // ];
-
-    // // Insérer les associations dans la table de jonction
-    // await sequelize.models.book_to_read.bulkCreate(bookToReadData);
+    await sequelize.models.book_has_category.bulkCreate(
+      bookCategoryAssociation
+    );
   } catch (error) {
     console.error("Erreur lors du seeding :", error);
   } finally {

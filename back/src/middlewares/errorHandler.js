@@ -1,4 +1,5 @@
-import { ApiError } from "./ApiError.js"
+import { ApiError } from "./ApiError.js";
+
 /**
  * Middleware to handle errors.
  *

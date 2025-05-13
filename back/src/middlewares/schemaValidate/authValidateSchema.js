@@ -12,11 +12,13 @@ const registerSchema = Joi.object({
     "string.base": "Le nom doit être une chaîne de caractères",
     "string.min": "Le nom doit contenir au moins 3 caractères",
     "string.max": "Le nom doit contenir au plus 50 caractères",
+    "string.empty": "Le nom ne peut pas être vide",
     "any.required": "Le nom est requis",
   }),
   email: Joi.string().trim().email().required().messages({
     "string.base": "L'email doit être une chaîne de caractères",
     "string.email": "L'email doit être valide",
+    "string.empty": "L'email ne peut pas être vide",
     "any.required": "L'email est requis",
   }),
   password: joiPassword
@@ -51,4 +53,5 @@ const registerSchema = Joi.object({
     "any.required": "La confirmation du mot de passe est requise",
   })
 });
+
 export { registerSchema };

@@ -5,6 +5,14 @@ type AuthFormProps = {
   children: ReactNode;
 };
 
+/**
+ * AuthForm component that provides a consistent layout for authentication forms.
+ *
+ * @param {Object} param0 - Component props.
+ * @param {string} param0.title - The title to display at the top of the form.
+ * @param {ReactNode} param0.children - The form content to be rendered inside the layout.
+ * @returns {JSX.Element} - The rendered authentication form layout.
+ */
 const AuthForm = ({ title, children }: AuthFormProps) => {
   return (
     <div className="flex items-center justify-center bg-body">

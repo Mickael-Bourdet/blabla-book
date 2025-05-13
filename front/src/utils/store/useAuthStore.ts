@@ -6,21 +6,21 @@ interface IUserAuthStore {
   id: number,
 }
 
-interface AuthState {
+interface IAuthState {
   user: IUserAuthStore | null
   token: string | null
   login: (name: string, id: number, token: string) => void
   logout: () => void,
-  setUser: (userData: IUserAuthStore) => void; // permet de mettre a jour le user et de le rendre dispo a tout les composants
+  setUser: (userData: IUserAuthStore) => void; // Allows you to update the user and make it available to all components
 }
 
 /**
  * Custom hook for managing authentication state with persistence.
  * Uses Zustand for state management and persist middleware for local storage.
  *
- * @returns {AuthState} - The authentication state and methods.
+ * @returns {IAuthState} - The authentication state and methods.
  */
-export const useAuthStore = create<AuthState>()(
+export const useAuthStore = create<IAuthState>()(
   persist(
     (set) => ({
       user: null,  // Initialize user as null (not authenticated)
