@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home";
-import Navbars from "./components/layout/Navbar";
+import Navbar from "./components/layout/Navbar";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
@@ -28,7 +28,7 @@ function App() {
     // Wrapper div pour toute l'application
     <div className="flex flex-col min-h-screen">
       <BackToTopPage />
-      <Navbars />
+      <Navbar />
       <Header />
 
       {/* Le main prend tout l'espace disponible avec flex-grow */}
