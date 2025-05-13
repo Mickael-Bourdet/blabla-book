@@ -4,10 +4,12 @@ import { ApiError } from "../middlewares/ApiError.js";
 
 const reviewController = {
   /**
+   * Controller method to create a new review or rating for a book.
    *
-   * @param {*} req
-   * @param {*} res
-   * @param {*} _next
+   * @param {Object} req - The request object.
+   * @param {Object} res - The response object.
+   * @param {Function} next - The next middleware function.
+   * @returns {Object} - The response object with the created review data.
    */
   async createReview(req, res, next) {
     const userId = req.user?.userId;
@@ -20,13 +22,13 @@ const reviewController = {
       );
     }
 
-    // Mon tableau d'avis (title et comment)
+    // Object to store the results of the review creation/updating
     const reviews = {
       updatedRating: null,
       newComments: [],
     };
 
-    // Cas où l'utilisateur veux ajouter une note (avec ou sans avis)
+    // Case where user wants to add or update a rating (with or without review)
     if (rating !== undefined) {
       const existingRating = await Review.findOne({
         where: {
@@ -38,6 +40,7 @@ const reviewController = {
       if (existingRating) {
         existingRating.rating = rating;
         await existingRating.save();
+        // Store the updated rating information
         reviews.updatedRating = {
           id: existingRating.id,
           rating: existingRating.rating,
@@ -84,6 +87,52 @@ const reviewController = {
     res
       .status(201)
       .json({ message: "Avis ou note ajoutée avec succès", review: reviews });
+  },
+
+  /**
+   * Controller method to retrieve reviews for a specific book.
+   *
+   * @param {Object} req - The request object.
+   * @param {Object} res - The response object.
+   * @param {Function} next - The next middleware function.
+   * @returns {Object} - The response object with the book reviews data.
+   */
+  async getReviewsByBook(req, res, next) {
+    const bookId = parseInt(req.params.bookId);
+
+    const reviews = await Review.findAll({
+      where: { book_id: bookId },
+      include: { association: "users", attributes: ["id", "name"] },
+      order: [["createdAt", "DESC"]],
+    });
+
+    if (!reviews) {
+      return next(new ApiError("Aucun avis trouvés pour ce livre", 404));
+    }
+
+    const rating = reviews.find((review) => review.rating !== null);
+    const comments = reviews.filter((review) => review.comment || review.title);
+
+    res.status(200).json({
+      book_id: bookId,
+      rating: rating
+        ? {
+            id: rating.id,
+            rating: rating.rating,
+            user: rating.users,
+            createdAt: rating.createdAt,
+            updatedAt: rating.updatedAt,
+          }
+        : null,
+      comments: comments.map((comment) => ({
+        id: comment.id,
+        title: comment.title,
+        comment: comment.comment,
+        user: comment.users,
+        createdAt: comment.createdAt,
+        updatedAt: comment.updatedAt,
+      })),
+    });
   },
 };
 

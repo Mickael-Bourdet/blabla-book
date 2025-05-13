@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/Home";
-import Navbars from "./components/layout/Navbar";
+import Navbar from "./components/layout/Navbar";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import DetailPage from "./pages/DetailsBookPage";
@@ -28,12 +28,15 @@ function App() {
     // Wrapper div pour toute l'application
     <div className="flex flex-col min-h-screen">
       <BackToTopPage />
-      <Navbars />
+      <Navbar />
       <Header />
 
       {/* Le main prend tout l'espace disponible avec flex-grow */}
       <main className="md:ml-64 flex-grow bg-body">
-        <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
+        <ErrorBoundary
+          FallbackComponent={ErrorServer}
+          resetKeys={[location.pathname]}
+        >
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
@@ -42,7 +45,7 @@ function App() {
             <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/books/read" element={<UserReadPage />} />
-              <Route path="/books/to-read" element={<UserToReadPage />} />
+            <Route path="/books/to-read" element={<UserToReadPage />} />
             <Route path="/auth" element={<Authentication />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/search" element={<SearchPage />} />
