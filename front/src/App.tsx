@@ -33,7 +33,10 @@ function App() {
 
       {/* Le main prend tout l'espace disponible avec flex-grow */}
       <main className="md:ml-64 flex-grow bg-body">
-        <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
+        <ErrorBoundary
+          FallbackComponent={ErrorServer}
+          resetKeys={[location.pathname]}
+        >
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
@@ -42,7 +45,7 @@ function App() {
             <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/books/read" element={<UserReadPage />} />
-              <Route path="/books/to-read" element={<UserToReadPage />} />
+            <Route path="/books/to-read" element={<UserToReadPage />} />
             <Route path="/auth" element={<Authentication />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/search" element={<SearchPage />} />
