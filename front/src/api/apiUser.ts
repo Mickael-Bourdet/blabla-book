@@ -33,16 +33,35 @@ export const deleteUser = async (): Promise<void> => {
   });
 };
 
+/**
+ * @function addToMyReadLibrary
+ * @description Adds a book to the user's "read" library.
+ *
+ * @param {number} bookId - The ID of the book to mark as read.
+ * @returns {Promise<IBook>} A promise that resolves to the added book object.
+ *
+ * @throws Will throw an error if the request fails or the response is not OK.
+ */
 export async function addToMyReadLibrary(bookId: number): Promise<IBook> {
-  const response = await authFetch(
-    `${apiBaseUrl}/user/books/read/${bookId}`,
-    {
-      method: "POST",
-      // TODO ajouter bearer token
+  try {
+    const response = await authFetch(
+      `${apiBaseUrl}/user/books/read/${bookId}`,
+      {
+        method: "POST",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Impossible d'ajouter ce livre à la liste "lu" : ${response.statusText}`);
     }
-  );
-  const book = await response.json();
-  return book;
+
+    const book = await response.json();
+    return book;
+
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 /**
@@ -58,7 +77,7 @@ export async function deleteToMyReadLibrary(bookId: number): Promise<boolean> {
   try {
     const response = await authFetch(`${apiBaseUrl}/user/books/read/${bookId}`, { method: "DELETE" });
     if (!response.ok) {
-      throw new Error(`Impossible de supprimer ce livre de la liste "lu" : ${response.statusText}`)
+      throw new Error(`Impossible de supprimer ce livre de la liste "lu" : ${response.statusText}`);
     }
     return true;
 
