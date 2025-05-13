@@ -40,6 +40,15 @@ export async function getAllBooks(params: IBookQueryParams = {}): Promise<IBooks
   }
 }
 
+/**
+ * @function getOneBook
+ * @description Fetches a single book by its ID from the API.
+ *
+ * @param {number} id - The ID of the book to retrieve.
+ * @returns {Promise<IBook>} A promise that resolves to the retrieved book object.
+ *
+ * @throws Will throw an error if the request fails or if the response is not OK.
+ */
 export async function getOneBook(id: number): Promise<IBook> {
   try {
     const response = await fetch(`${apiBaseUrl}/books/${id}`);

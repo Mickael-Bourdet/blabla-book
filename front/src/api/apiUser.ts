@@ -46,39 +46,110 @@ export const deleteUser = async (): Promise<void> => {
   });
 };
 
+/**
+ * @function addToMyReadLibrary
+ * @description Adds a book to the user's "read" library.
+ *
+ * @param {number} bookId - The ID of the book to mark as read.
+ * @returns {Promise<IBook>} A promise that resolves to the added book object.
+ *
+ * @throws Will throw an error if the request fails or the response is not OK.
+ */
 export async function addToMyReadLibrary(bookId: number): Promise<IBook> {
-  const response = await authFetch(`${apiBaseUrl}/user/books/read/${bookId}`, {
-    method: "POST",
-    // TODO ajouter bearer token
-  });
-  const book = await response.json();
-  return book;
-}
+  try {
+    const response = await authFetch(
+      `${apiBaseUrl}/user/books/read/${bookId}`,
+      {
+        method: "POST",
+      }
+    );
 
-export async function deleteToMyReadLibrary(bookId: number) {
-  const response = await authFetch(`${apiBaseUrl}/user/books/read/${bookId}`, {
-    method: "DELETE",
-  });
-  return response.ok;
-}
-
-export async function addToWishRead(bookId: number): Promise<IBook> {
-  const response = await authFetch(
-    `${apiBaseUrl}/user/books/to-read/${bookId}`,
-    {
-      method: "POST",
+    if (!response.ok) {
+      throw new Error(`Impossible d'ajouter ce livre à la liste "lu" : ${response.statusText}`);
     }
-  );
-  const book = await response.json();
-  return book;
+
+    const book = await response.json();
+    return book;
+
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
-export async function deleteToWishRead(bookId: number) {
-  const response = await authFetch(
-    `${apiBaseUrl}/user/books/to-read/${bookId}`,
-    { method: "DELETE" }
-  );
-  return response.ok;
+/**
+ * @function deleteToMyReadLibrary
+ * @description Deletes a book from the user's "read" library.
+ *
+ * @param {number} bookId - The ID of the book to delete.
+ * @returns {Promise<boolean>} A promise that resolves to true if the deletion was successful, false otherwise.
+ *
+ * @throws Will throw an error if the request fails (e.g., network error or non-OK response).
+ */
+export async function deleteToMyReadLibrary(bookId: number): Promise<boolean> {
+  try {
+    const response = await authFetch(`${apiBaseUrl}/user/books/read/${bookId}`, { method: "DELETE" });
+    if (!response.ok) {
+      throw new Error(`Impossible de supprimer ce livre de la liste "lu" : ${response.statusText}`);
+    }
+    return true;
+
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
+
+/**
+ * @function addToWishRead
+ * @description Adds a book to the user's "to-read" (wishlist) library.
+ *
+ * @param {number} bookId - The ID of the book to add to the wishlist.
+ * @returns {Promise<IBook>} A promise that resolves to the added book object.
+ *
+ * @throws Will throw an error if the request fails or the response is not OK.
+ */
+export async function addToWishRead(bookId: number): Promise<IBook> {
+  try {
+    const response = await authFetch(`${apiBaseUrl}/user/books/to-read/${bookId}`, {
+      method: "POST",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Impossible d'ajouter ce livre à la liste "à lire" : ${response.statusText}`)
+    }
+
+    const book = await response.json();
+    return book;
+
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+/**
+ * @function deleteToWishRead
+ * @description Deletes a book from the user's "to-read" (wishlist) library.
+ *
+ * @param {number} bookId - The ID of the book to remove from the wishlist.
+ * @returns {Promise<boolean>} A promise that resolves to true if the deletion was successful, false otherwise.
+ *
+ * @throws Will throw an error if the request fails (e.g., network error or non-OK response).
+ */
+export async function deleteToWishRead(bookId: number): Promise<boolean> {
+  try {
+    const response = await authFetch(`${apiBaseUrl}/user/books/to-read/${bookId}`, { method: "DELETE" });
+
+    if (!response.ok) {
+      throw new Error(`Impossible de supprimer ce livre de la liste "à lire" : ${response.statusText}`);
+    }
+    return true;
+
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
 
 export async function getLibrary(id: number): Promise<IUser> {
