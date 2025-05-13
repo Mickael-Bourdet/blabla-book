@@ -16,6 +16,7 @@ const BookDetail = () => {
   const [isRead, setIsRead] = useState(false);
   const [toRead, setToRead] = useState(false);
   const { handleError } = useErrorHandler();
+  
   // Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes
   const handleAddRead = () => {
     if (!userId) {
