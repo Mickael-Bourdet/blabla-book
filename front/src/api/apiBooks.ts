@@ -51,6 +51,12 @@ export async function searchBooks(query: string): Promise<IBook[]> {
   return books;
 }
 
+/**
+ * Function to fetch all categories.
+ *
+ * @returns {Promise<ICategory[]>} - A promise that resolves to an array of category objects.
+ * @throws {Error} - Throws an error if the request fails or if there is an issue with the network.
+ */
 export async function getAllCategories(): Promise<ICategory[]> {
   try {
     const response = await fetch(`${apiBaseUrl}/categories`);
@@ -64,6 +70,14 @@ export async function getAllCategories(): Promise<ICategory[]> {
     return [];
   }
 }
+
+/**
+ * Function to fetch books by category.
+ *
+ * @param {number} id - The ID of the category for which books are to be fetched.
+ * @returns {Promise<ICategoryBooks | null>} - A promise that resolves to a category object with books or `null` if the request fails.
+ * @throws {Error} - Throws an error if the request fails or if there is an issue with the network.
+ */
 export async function getBooksByCategories(id: number): Promise<ICategoryBooks | null> {
   try {
     const response = await fetch(`${apiBaseUrl}/categories/${id}/books`);
