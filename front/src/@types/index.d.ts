@@ -57,3 +57,8 @@ export interface IBookFromCategory {
   cover_url: string | null;
   page_count: number;
 }
+
+interface IBookWithCategories {
+  id: number;
+  categories: ICategory[];
+}

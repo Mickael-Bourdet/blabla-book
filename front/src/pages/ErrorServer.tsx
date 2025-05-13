@@ -6,7 +6,7 @@ export default function ErrorServer() {
       <h1 className="font-title text-9xl text-center font-black p-7">500</h1>
       <img
         className="w-120 mt-4 mx-auto"
-        src="img/errorPage/error500_femme.webp"
+        src="/img/errorPage/error500_femme.webp"
         alt="Femme utilisant un extincteur pour éteindre un livre en feu"
       />
       <p className="font-title text-6xl text-center font-bold pt-6 ">Catastrophe - Littéraire !</p>

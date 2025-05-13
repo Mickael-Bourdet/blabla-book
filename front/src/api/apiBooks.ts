@@ -1,4 +1,4 @@
-import type { IBooks, IBook, ICategory, ICategoryBooks } from "../@types";
+import type { IBooks, IBook, ICategory, ICategoryBooks, IBookWithCategories } from "../@types";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 interface IBookQueryParams {
@@ -58,16 +58,27 @@ export async function searchBooks(query: string): Promise<IBook[]> {
  * @throws {Error} - Throws an error if the request fails or if there is an issue with the network.
  */
 export async function getAllCategories(): Promise<ICategory[]> {
+  // Request parameters optimized to fetch only categories
+  const url = `${apiBaseUrl}/books?fields=categories`;
+
   try {
-    const response = await fetch(`${apiBaseUrl}/categories`);
-    if (response.ok && response.status === 200) {
-      const categories = await response.json();
-      return categories;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Erreur lors de la récupération des catégories: ${response.statusText}`);
     }
-    return [];
+
+    const data = (await response.json()) as IBookWithCategories[];
+
+    // Extract all categories from all books
+    const allCategories = data.flatMap((book) => book.categories || []);
+
+    // Filter to keep only unique categories (by ID)
+    const uniqueCategories = Array.from(new Map(allCategories.map((category) => [category.id, category])).values());
+    return uniqueCategories;
   } catch (error) {
-    console.error("Erreur lors du chargement", error);
-    return [];
+    console.error("Erreur lors de la récupération des catégories:", error);
+    throw error;
   }
 }
 
@@ -78,16 +89,18 @@ export async function getAllCategories(): Promise<ICategory[]> {
  * @returns {Promise<ICategoryBooks | null>} - A promise that resolves to a category object with books or `null` if the request fails.
  * @throws {Error} - Throws an error if the request fails or if there is an issue with the network.
  */
-export async function getBooksByCategories(id: number): Promise<ICategoryBooks | null> {
+export async function getBooksByCategories(id: number): Promise<IBook[]> {
+  const url = `${apiBaseUrl}/books?categoryId=${id}`;
   try {
-    const response = await fetch(`${apiBaseUrl}/categories/${id}/books`);
+    const response = await fetch(url);
     if (response.ok && response.status === 200) {
       const categoriesWithBooks = await response.json();
+      console.log(categoriesWithBooks);
       return categoriesWithBooks;
     }
-    return null;
+    return [];
   } catch (error) {
     console.error("Erreur lors du chargement", error);
-    return null;
+    return [];
   }
 }
