@@ -58,7 +58,7 @@ export async function deleteToMyReadLibrary(bookId: number): Promise<boolean> {
   try {
     const response = await authFetch(`${apiBaseUrl}/user/books/read/${bookId}`, { method: "DELETE" });
     if (!response.ok) {
-      throw new Error(`Impossible de supprimer ce livre : ${response.statusText}`)
+      throw new Error(`Impossible de supprimer ce livre de la liste "lu" : ${response.statusText}`)
     }
     return true;
 
@@ -96,9 +96,28 @@ export async function addToWishRead(bookId: number): Promise<IBook> {
   }
 }
 
-export async function deleteToWishRead(bookId: number) {
-  const response = await authFetch(`${apiBaseUrl}/user/books/to-read/${bookId}`, { method: "DELETE" });
-  return response.ok;
+/**
+ * @function deleteToWishRead
+ * @description Deletes a book from the user's "to-read" (wishlist) library.
+ *
+ * @param {number} bookId - The ID of the book to remove from the wishlist.
+ * @returns {Promise<boolean>} A promise that resolves to true if the deletion was successful, false otherwise.
+ *
+ * @throws Will throw an error if the request fails (e.g., network error or non-OK response).
+ */
+export async function deleteToWishRead(bookId: number): Promise<boolean> {
+  try {
+    const response = await authFetch(`${apiBaseUrl}/user/books/to-read/${bookId}`, { method: "DELETE" });
+
+    if (!response.ok) {
+      throw new Error(`Impossible de supprimer ce livre de la liste "à lire" : ${response.statusText}`);
+    }
+    return true;
+
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
 
 export async function getLibrary(id: number): Promise<IUser> {
