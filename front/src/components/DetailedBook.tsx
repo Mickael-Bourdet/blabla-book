@@ -124,20 +124,27 @@ const BookDetail = () => {
     }   
   };
 
+  /**
+ * Load book data and user's reading status when `bookId` or `userId` changes.
+ */
   useEffect(() => {
     const loadData = async () => {
-      if (bookId) {
-        try {
-          const newBook = await getOneBook(numericBookId);
-          setBook(newBook);
+      if (!bookId) return;
 
-          const hasRead = newBook.users_has_read.some((user) => user.id === userId);
-          const wantsToRead = newBook.users_need_to_read.some((user) => user.id === userId);
-          setIsRead(hasRead);
-          setToRead(wantsToRead);
-        } catch (error) {
-          handleError(error);
-        }
+      try {
+        const newBook = await getOneBook(numericBookId);
+        setBook(newBook);
+
+        // Check if the current user has marked the book as read
+        const hasRead = newBook.users_has_read.some((user) => user.id === userId);
+
+         // Check if the current user wants to read the book
+        const wantsToRead = newBook.users_need_to_read.some((user) => user.id === userId);
+        
+        setIsRead(hasRead);
+        setToRead(wantsToRead);
+      } catch (error) {
+        handleError(error);
       }
     };
 
