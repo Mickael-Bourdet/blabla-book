@@ -42,6 +42,7 @@ export interface IUserUpdate {
   name?: string;
   email?: string;
   currentPassword?: string;
+  confirmPassword?: string;
   password?: string;
 }
 

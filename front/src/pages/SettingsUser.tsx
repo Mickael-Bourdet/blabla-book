@@ -80,6 +80,7 @@ const SettingsUser = () => {
       }
       updatedData.currentPassword = currentPassword;
       updatedData.password = newPassword;
+      updatedData.confirmPassword = confirmPassword;
     }
 
     try {
