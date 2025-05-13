@@ -60,26 +60,26 @@ async updateUser(req, res, next) {
     const id = req.user?.userId
     // if no id, user is not authorized
     if (!id) {
-      return next(new ApiError("non autorisé !", 401))
+      return next(new ApiError("Non autorisé !", 401));
     }
 
     // find user by id
     const user = await User.findByPk(id)
     // if user not found, send error
     if (!user) {
-      return next(new ApiError("utilisateur non trouvé", 404))
+      return next(new ApiError("Utilisateur non trouvé", 404));
     }
 
     // get updated values from request body
-    const { email, name, password, currentPassword } = req.body
+    const { email, name, password, currentPassword } = req.body;
 
     // check and update email
     if (email) {
-      const existingUser = await User.findOne({ where: { email } })
+      const existingUser = await User.findOne({ where: { email } });
 
       // if email already used by another user
       if (existingUser && existingUser.id !== id) {
-        return next(new ApiError("e-mail déjà utilisé", 409))
+        return next(new ApiError("e-mail déjà utilisé", 409));
       }
 
       // check if email is disposable
@@ -90,7 +90,7 @@ async updateUser(req, res, next) {
       // check if domain is valid
       const domainIsValid = await isDomainValid(email)
       if (!domainIsValid) {
-        return next(new ApiError("ce domaine n'est pas valide", 400))
+        return next(new ApiError("Ce domaine n'est pas valide;", 400));
       }
 
       // set new email
@@ -99,7 +99,7 @@ async updateUser(req, res, next) {
 
     // check and update name
     if (name) {
-      user.name = name
+      user.name = name;
     }
 
     // check and update password
@@ -112,15 +112,15 @@ async updateUser(req, res, next) {
       // compare current password
       const passwordValid = await compare(currentPassword, user.password)
       if (!passwordValid) {
-        return next(new ApiError("mot de passe actuel incorrect", 401))
+        return next(new ApiError("Mot de passe actuel incorrect", 401));
       }
 
       // hash and set new password
-      user.password = await hash(password)
+      user.password = await hash(password);
     }
 
-    // save updated user in database
-    await user.save()
+    // Save the updated user in database
+    await user.save();
 
     // return updated user in response
     res.status(200).json(user)

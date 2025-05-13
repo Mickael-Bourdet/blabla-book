@@ -15,6 +15,11 @@ export const toastSuccess = (message: string) => {
   });
 };
 
+/**
+ * Displays an information's message as a toast notification.
+ *
+ * @param {string} message - The message to display.
+ */
 export const toastInfo = (message: string) => {
   iziToast.info({
     position: "topRight",
@@ -23,6 +28,11 @@ export const toastInfo = (message: string) => {
   });
 };
 
+/**
+ * Displays a warning's message as a toast notification.
+ *
+ * @param {string} message - The message to display.
+ */
 export const toastWarning = (message: string) => {
   iziToast.warning({
     position: "center",
