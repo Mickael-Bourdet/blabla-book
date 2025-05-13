@@ -19,6 +19,7 @@ import Logout from "./components/authentication/Logout";
 import CategoryPage from "./pages/CategoryPage";
 import BackToTopPage from "./components/BackToTopPage";
 import MobileNav from "./components/layout/MobileNav";
+import MobileCategoryPage from "./pages/MobileCategoryPage";
 import UserReadPage from "./pages/UserReadPage";
 import UserToReadPage from "./pages/UserToReadPage";
 
@@ -33,14 +34,12 @@ function App() {
 
       {/* Le main prend tout l'espace disponible avec flex-grow */}
       <main className="md:ml-64 flex-grow bg-body">
-        <ErrorBoundary
-          FallbackComponent={ErrorServer}
-          resetKeys={[location.pathname]}
-        >
+        <ErrorBoundary FallbackComponent={ErrorServer} resetKeys={[location.pathname]}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/books/:bookId" element={<DetailPage />} />
             <Route path="/categories/:categoryId" element={<CategoryPage />} />
+            <Route path="/categories" element={<MobileCategoryPage />} />
             <Route path="/library" element={<Library />} />
             <Route path="/user/settings" element={<SettingsUser />} />
             <Route path="/profile" element={<ProfilePage />} />
