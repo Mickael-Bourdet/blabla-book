@@ -12,35 +12,31 @@ export const categoriesImage = [
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
   {
-    src: "/romance.jpg",
+    src: "/science_fiction.jpg",
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
   {
-    src: "/romance.jpg",
+    src: "/developpement_perso.jpg",
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
   {
-    src: "/romance.jpg",
+    src: "/biographie.jpg",
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
   {
-    src: "/romance.jpg",
+    src: "/jeunesse.jpg",
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
   {
-    src: "/romance.jpg",
+    src: "/manga.jpg",
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
   {
-    src: "/romance.jpg",
+    src: "/bande_dessinee.jpg",
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
   {
-    src: "/romance.jpg",
-    alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
-  },
-  {
-    src: "/romance.jpg",
+    src: "/classique.jpg",
     alt: "Un bouquet de fleurs blanches et une bougie posées sur une table",
   },
 ];
