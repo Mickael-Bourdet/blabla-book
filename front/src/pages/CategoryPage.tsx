@@ -14,7 +14,6 @@ export default function CategoryPage() {
       try {
         const booksByCategories = await getBooksByCategories(Number(categoryId));
         setBooksCategories(booksByCategories);
-        console.log(booksCategories);
       } catch (error) {
         handleError(error);
       }

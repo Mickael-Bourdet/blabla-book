@@ -1,4 +1,4 @@
-import type { IBooks, IBook, ICategory, ICategoryBooks, IBookWithCategories } from "../@types";
+import type { IBooks, IBook, ICategory, IBookWithCategories } from "../@types";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 interface IBookQueryParams {
@@ -59,7 +59,7 @@ export async function searchBooks(query: string): Promise<IBook[]> {
  */
 export async function getAllCategories(): Promise<ICategory[]> {
   // Request parameters optimized to fetch only categories
-  const url = `${apiBaseUrl}/books?fields=categories`;
+  const url = `${apiBaseUrl}/books?onlyCategories=true`;
 
   try {
     const response = await fetch(url);
@@ -67,15 +67,8 @@ export async function getAllCategories(): Promise<ICategory[]> {
     if (!response.ok) {
       throw new Error(`Erreur lors de la récupération des catégories: ${response.statusText}`);
     }
-
-    const data = (await response.json()) as IBookWithCategories[];
-
-    // Extract all categories from all books
-    const allCategories = data.flatMap((book) => book.categories || []);
-
-    // Filter to keep only unique categories (by ID)
-    const uniqueCategories = Array.from(new Map(allCategories.map((category) => [category.id, category])).values());
-    return uniqueCategories;
+    const categories = (await response.json()) as ICategory[];
+    return categories;
   } catch (error) {
     console.error("Erreur lors de la récupération des catégories:", error);
     throw error;
@@ -95,7 +88,6 @@ export async function getBooksByCategories(id: number): Promise<IBook[]> {
     const response = await fetch(url);
     if (response.ok && response.status === 200) {
       const categoriesWithBooks = await response.json();
-      console.log(categoriesWithBooks);
       return categoriesWithBooks;
     }
     return [];

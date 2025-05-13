@@ -5,7 +5,6 @@ import { router as userAccountRouter } from "./userAccountRouter.js";
 import { router as adminRouter } from "./adminRouter.js";
 import { router as authRouter } from "./authRouter.js";
 import { router as dashboard } from "./dashboardRouter.js";
-import { router as categoryRouter } from "./categoryRouter.js";
 
 // Main API router
 const router = Router();
@@ -16,8 +15,6 @@ router.use(userLibraryRouter);
 router.use(userAccountRouter);
 router.use(adminRouter);
 router.use(authRouter);
-// TODO : delete this route
-router.use(categoryRouter);
 
 // Use the dashboard router to handle admin operations for categories, authors, and users.
 // This includes routes for:
