@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ICategory } from "../../@types";
 import { getAllCategories } from "../../api/apiBooks";
 
-const Navbars = () => {
+const Navbar = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   useEffect(() => {
     async function loadCategories() {
@@ -53,4 +53,4 @@ const Navbars = () => {
   );
 };
 
-export default Navbars;
+export default Navbar;

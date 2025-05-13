@@ -6,10 +6,12 @@ import { FormEvent, useState } from "react";
 import { loginUser } from "../../api/apiAuth";
 import { toastSuccess } from "../../utils/toast/toastSuccess";
 import { toastError } from "../../utils/toast/toastError";
+import PasswordField from "./PasswordField";
 
 /**
- * 
- * @returns 
+ * Login component that handles user authentication.
+ *
+ * @returns {JSX.Element} - The rendered login form.
  */
 const Login = () => {
   const navigate = useNavigate();
@@ -39,7 +41,6 @@ const Login = () => {
 
       navigate("/profile");
     } catch (error) {
-      console.log("❌ Étape 5 - erreur capturée :", error);
       toastError("Echec de la connexion");
     }
   };
@@ -54,7 +55,9 @@ const Login = () => {
           type="text"
           id="loginEmail"
           value={loginData.email}
-          onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+          onChange={(e) =>
+            setLoginData({ ...loginData, email: e.target.value })
+          }
           className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="email@example.com"
         />
@@ -63,19 +66,20 @@ const Login = () => {
         <label htmlFor="loginPassword" className="block mb-1 text-lg">
           Mot de passe
         </label>
-        <input
-          type="password"
+        <PasswordField
           id="loginPassword"
+          name="password"
           value={loginData.password}
-          onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
+          onChange={(e) =>
+            setLoginData({ ...loginData, password: e.target.value })
+          }
           placeholder="Mot de passe"
         />
       </div>
       <div className="flex justify-center">
         <button
           type="submit"
-          className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded font-title"
+          className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded font-title cursor-pointer"
           onClick={handleLogin}
         >
           Connexion

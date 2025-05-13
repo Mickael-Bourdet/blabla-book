@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AuthForm from "./AuthForm";
 import { IRegister } from "../../@types/auth";
+import PasswordField from "./PasswordField";
 
 export interface IRegisterProps {
   data: IRegister;
@@ -69,7 +70,11 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
    * @returns {JSX.Element} - A span element with a checkmark or dot based on the validation state.
    */
   const renderValidationMark = (isValid: boolean) => {
-    return isValid ? <span className="text-green-500 ml-1">✓</span> : <span className="text-gray-400 ml-1">•</span>;
+    return isValid ? (
+      <span className="text-green-500 ml-1">✓</span>
+    ) : (
+      <span className="text-gray-400 ml-1">•</span>
+    );
   };
 
   const passwordRulesList = [
@@ -93,7 +98,7 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           value={data.name}
           onChange={(e) => onChange({ ...data, name: e.target.value })}
           className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
-          placeholder="Pseudo"
+          placeholder="Nom"
         />
       </div>
 
@@ -115,14 +120,13 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
         <label htmlFor="registerPassword" className="block mb-1 text-lg">
           Mot de passe
         </label>
-        <input
-          type="password"
+        <PasswordField
           id="registerPassword"
+          name="password"
           value={data.password}
           onChange={(e) => onChange({ ...data, password: e.target.value })}
           onFocus={() => setShowPasswordRules(true)}
           onBlur={() => setShowPasswordRules(false)}
-          className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="Mot de passe"
         />
 
@@ -134,7 +138,10 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
               {passwordRulesList.map((rule) => {
                 const isValid = passwordValidation[rule.key];
                 return (
-                  <li key={rule.key} className={isValid ? "text-green-600" : "text-gray-600"}>
+                  <li
+                    key={rule.key}
+                    className={isValid ? "text-green-600" : "text-gray-600"}
+                  >
                     {renderValidationMark(isValid)} {rule.label}
                   </li>
                 );
@@ -152,14 +159,22 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
           type="password"
           id="confirmPassword"
           value={data.confirmPassword}
-          onChange={(e) => onChange({ ...data, confirmPassword: e.target.value })}
+          onChange={(e) =>
+            onChange({ ...data, confirmPassword: e.target.value })
+          }
           className="w-full border border-gray-300 p-2 placeholder-placeholder rounded focus:outline-none"
           placeholder="Confirmer le mot de passe"
         />
 
         {/* Checking that passwords match */}
         {data.password && data.confirmPassword && (
-          <div className={`mt-1 text-xs ${data.password === data.confirmPassword ? "text-green-600" : "text-red-600"}`}>
+          <div
+            className={`mt-1 text-xs ${
+              data.password === data.confirmPassword
+                ? "text-green-600"
+                : "text-red-600"
+            }`}
+          >
             {data.password === data.confirmPassword ? (
               <span>✓ Les mots de passe correspondent</span>
             ) : (
@@ -170,7 +185,11 @@ const Register = ({ data, onChange, onSubmit }: IRegisterProps) => {
       </div>
 
       <div className="flex justify-center">
-        <button type="button" className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded" onClick={onSubmit}>
+        <button
+          type="button"
+          className="bg-gray-800 hover:bg-gray-600 text-white py-2 px-6 rounded cursor-pointer"
+          onClick={onSubmit}
+        >
           Inscription
         </button>
       </div>

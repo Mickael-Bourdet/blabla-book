@@ -3,6 +3,7 @@ export interface ICategory {
   name: string;
 }
 
+// Interface for one book
 export interface IBook {
   id: number;
   title: string;
@@ -41,6 +42,7 @@ export interface IUserUpdate {
   name?: string;
   email?: string;
   currentPassword?: string;
+  confirmPassword?: string;
   password?: string;
 }
 

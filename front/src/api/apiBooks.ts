@@ -1,9 +1,11 @@
-import type { IBooks, IBook, ICategory, IBookWithCategories } from "../@types";
+import type { IBooks, IBook, ICategory } from "../@types";
+
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 interface IBookQueryParams {
   [key: string]: string | number | boolean | undefined;
 }
+
 export async function getAllBooks(params: IBookQueryParams = {}): Promise<IBooks> {
   const urlParams = new URLSearchParams();
 
@@ -38,17 +40,45 @@ export async function getAllBooks(params: IBookQueryParams = {}): Promise<IBooks
   }
 }
 
+/**
+ * @function getOneBook
+ * @description Fetches a single book by its ID from the API.
+ *
+ * @param {number} id - The ID of the book to retrieve.
+ * @returns {Promise<IBook>} A promise that resolves to the retrieved book object.
+ *
+ * @throws Will throw an error if the request fails or if the response is not OK.
+ */
 export async function getOneBook(id: number): Promise<IBook> {
-  const response = await fetch(`${apiBaseUrl}/books/${id}`);
-  const book = await response.json();
-  return book;
+  try {
+    const response = await fetch(`${apiBaseUrl}/books/${id}`);
+
+    if (!response.ok) {
+      throw new Error(`Erreur lors de la récupération des livres: ${response.statusText}`);
+    }
+
+    const book = await response.json();
+    return book;
+  } catch (error) {
+    console.error("Erreur de chargement", error);
+    throw error;
+  }
 }
 
 export async function searchBooks(query: string): Promise<IBook[]> {
-  const response = await fetch(`${apiBaseUrl}/books?search=${encodeURIComponent(query)}`);
+  try {
+    const response = await fetch(`${apiBaseUrl}/books?search=${encodeURIComponent(query)}`);
 
-  const books = await response.json();
-  return books;
+    if (!response.ok) {
+      throw new Error(`Erreur lors de la récupération des livres: ${response.statusText}`);
+    }
+
+    const books = await response.json();
+    return books;
+  } catch (error) {
+    console.error("Erreur de chargement", error);
+    throw error;
+  }
 }
 
 /**

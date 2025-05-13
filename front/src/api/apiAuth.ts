@@ -1,7 +1,6 @@
 import { IError, ILogin, IRegister } from "../@types/auth";
 import { useAuthStore } from "../utils/store/useAuthStore";
-
-const API_URL = "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 /**
  * Function to log in a user.
@@ -22,14 +21,12 @@ export const loginUser = async (loginData: ILogin) => {
 
     if (!response.ok) {
       const error = await response.json();
-      console.log("❌ Réponse non OK :", error);
       throw new Error(error.message || "Erreur inconnue lors de la connexion.");
     }
 
     const data = await response.json();
-    console.log("📥 Données reçues du backend :", data);
 
-    // Utiliser le store pour stocker les informations d'authentification
+    // Use the store to store authentication information
     if (data.user && data.token) {
       const { name, id } = data.user;
       useAuthStore.getState().login(name, id, data.token);
@@ -60,11 +57,11 @@ export const registerUser = async (registerData: IRegister) => {
     const resData = await response.json();
 
     if (!response.ok) {
-      // Créer un objet d'erreur avec toutes les informations de la réponse
+      // Create an error object with all the information from the response
       const error: IError = {
         message: resData.message || "Erreur d'inscription",
         status: resData.status,
-        errors: resData.errors, // Récupérer le tableau d'erreurs s'il existe
+        errors: resData.errors, // Retrieve the error table if it exists
       };
       throw error;
     }
