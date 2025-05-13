@@ -9,7 +9,7 @@ const Header = () => {
     <div className="flex ml-0 sticky top-0 z-10">
       <header className="bg-header flex items-center gap-4 justify-between p-4 left-0 w-full md:ml-64 md:px-10 ml:px-4 lg:px-10  backdrop-blur-sm transition-all font-title">
         <div className=" flex  items-center  md:hidden ">
-          <img src="/blablabook.webp" alt="BlaBlaBook" className="h-[6vw]  " />
+          <img src="/img/logo/blablabook.webp" alt="BlaBlaBook" className="h-[6vw]  " />
           <h1 className="text-lg font-black font-title">BlaBlaBook</h1>
         </div>
 

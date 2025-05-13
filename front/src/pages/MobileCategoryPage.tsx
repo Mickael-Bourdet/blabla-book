@@ -34,7 +34,7 @@ export default function MobileCategoryPage() {
                   >
                     <div className="h-40 relative">
                       <img
-                        src={categoriesImage[category.id - 1].src}
+                        src={`/img/categories/${categoriesImage[category.id - 1].src}`}
                         alt={categoriesImage[category.id - 1].alt}
                         className="rounded-2xl brightness-50 w-full h-full object-cover absolute inset-0"
                       />
