@@ -26,7 +26,7 @@ const BookDetail = () => {
  * @description Adds the current book to the user's "read" list. If the book is in the wishlist ("to-read"), it will be removed from there.
  * Displays a warning if the user is not authenticated.
  */
-  const handleAddRead = () => {
+  const handleAddRead = async () => {
     if (!userId) {
       toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
    <div class="mt-4 text-center">
@@ -38,14 +38,15 @@ const BookDetail = () => {
     }
 
     try {
-      addToMyReadLibrary(numericBookId);
+      await addToMyReadLibrary(numericBookId);
+      
       if (toRead) {
-        handleRemoveWishRead();
+       await handleRemoveWishRead();
       }
+
       toastSuccess(`Le livre a bien été ajouté à la liste "lu"`);
       setIsRead(true);
-      setToRead(false);
-      
+      setToRead(false);   
     } catch (error) {
       handleError(error);
     }
@@ -71,7 +72,13 @@ const BookDetail = () => {
     }  
   };
 
-  const handleWishRead = () => {
+  /**
+ * @function handleWishRead
+ * @description Adds the current book to the user's "to-read" list. 
+ * If the book is already in the "read" list, it will be removed from there.
+ * Requires the user to be authenticated.
+ */
+  const handleWishRead = async () => {
     if (!userId) {
       toastWarning(`Vous devez être connecté pour pouvoir ajouter un livre à une de vos listes.
    <div class="mt-4 text-center">
@@ -81,13 +88,20 @@ const BookDetail = () => {
    </div>`);
       return;
     }
-    addToWishRead(numericBookId);
-    if (isRead) {
-      handleRemoveRead();
+
+    try { 
+      await addToWishRead(numericBookId);
+      
+      if (isRead) {
+        await handleRemoveRead();
+      }
+
+      toastSuccess(`Le livre a bien été ajouté à la liste "à lire"`);
+      setToRead(true);
+      setIsRead(false);
+    } catch (error) {
+      handleError(error);
     }
-    toastSuccess(`Le livre a bien été ajouté à la liste "à lire"`);
-    setToRead(true);
-    setIsRead(false);
   };
 
   const handleRemoveWishRead = () => {
