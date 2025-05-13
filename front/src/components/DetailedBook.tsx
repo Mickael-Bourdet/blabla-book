@@ -104,10 +104,24 @@ const BookDetail = () => {
     }
   };
 
-  const handleRemoveWishRead = () => {
-    deleteToWishRead(numericBookId);
-    toastInfo(`Le livre a été enlevé de la liste "à lire"`);
-    setToRead(false);
+  /**
+ * @function handleRemoveWishRead
+ * @description Removes the current book from the user's "to-read" (wishlist) list.
+ * Displays a notification on success, and handles errors gracefully.
+ */
+  const handleRemoveWishRead = async () => {
+    try {
+      const success = await deleteToWishRead(numericBookId);
+
+      if (!success) {
+        throw new Error ("Impossible de retirer le livre de la liste 'à lire'.");
+      }
+
+      toastInfo(`Le livre a été enlevé de la liste "à lire"`);
+      setToRead(false);
+    } catch (error) {
+      handleError(error);
+    }   
   };
 
   useEffect(() => {
