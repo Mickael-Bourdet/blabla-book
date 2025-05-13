@@ -27,4 +27,3 @@ node_modules/
 .env
 .prettierrc
 .DS_Store
-front/src/components/review/
