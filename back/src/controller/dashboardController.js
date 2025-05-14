@@ -1,4 +1,4 @@
-import { Author, Category, Review, User } from "../models/associations.js";
+import { Author, Category, User } from "../models/associations.js";
 
 const dashboardController = {
   /**
